@@ -31,3 +31,17 @@ export const UserModel = sequelize.define(
     timestamps: true,
   }
 );
+
+// Servicios
+
+export async function getAllUsers() {
+  return (await UserModel.findAll()) ?? null;
+}
+
+export async function createUser(user) {
+  return await UserModel.create(user);
+}
+
+export async function getUserById(userID) {
+  return (await UserModel.findById(userID)) ?? null;
+}
