@@ -24,7 +24,7 @@ export const createUserSchema = [
     .notEmpty()
     .withMessage('el nombre de usuario no debe estar vacio')
     .isAlphanumeric()
-    .withMessage('el nombre de usuario puede ser alphanumerico')
+    .withMessage('el nombre de usuario debe ser alphanumerico')
     .isLength({min: 5, max: 20})
     .withMessage(
       'El nombre de usuario debe tener un minimo de 5 caracteres y un maximo de 20.'
@@ -32,20 +32,18 @@ export const createUserSchema = [
   body('email')
     .exists()
     .trim()
-    .notEmpty('El email no debe estar vacio.')
+    .notEmpty()
+    .withMessage('El email no debe estar vacio')
     .isEmail()
     .withMessage('El email debe tener formato de correo valido.'),
   body('password')
     .exists()
     .trim()
-    .notEmpty('La contraseña no debe estar vacia.')
+    .notEmpty()
+    .withMessage('La contraseña no debe estar vacia')
     .isString()
     .isLength({min: 8, max: 20})
-    .withMessage('Debe tener un minimo de 5 caracteres y un maximo de 20.')
-    .matches('/^(?=.*d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[]:;<>,.?~\\-]).+$/')
-    .withMessage(
-      'La contraseña debe contener al menos un número, una letra mayúscula y un carácter especial.'
-    ),
+    .withMessage('Debe tener un mínimo de 8 caracteres y un máximo de 20.'),
 ];
 
 export const loginUserSchema = [body('username')];
