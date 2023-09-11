@@ -3,6 +3,6 @@ import { ctrlCreateUser } from '../controllers/users.controllers.js';
 
 const userRoter = Router();
 
-userRoter.post('/', ctrlCreateUser);
+userRoter.post('/user', ctrlCreateUser);
 
 export { userRoter };

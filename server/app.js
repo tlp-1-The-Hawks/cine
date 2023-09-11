@@ -18,8 +18,11 @@ app.use(helmet({ contentSecurityPolicy: false }));
 // Rutas
 import { userRoter } from './routes/users.routes.js';
 import { cinemaRouter } from './routes/cinema.routes.js';
-app.use('/api/users', userRoter);
-app.use('/api/', cinemaRouter)
+import { commentRouter } from './routes/comment.routes.js';
+
+app.use('/api/', userRoter);
+app.use('/api/', cinemaRouter);
+app.use('/api/', commentRouter);
 
 
 // Servidor escuchando
