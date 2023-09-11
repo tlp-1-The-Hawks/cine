@@ -1,29 +1,43 @@
-import { bookingModel } from "../models/Reserva.models.js";
-import { cinemaModel } from "../models/Cine.models.js";
-import { sequelize } from "./database.js";
+import { bookingModel } from "../models/Booking.models.js";
+import { cinemaModel } from "../models/Cinema.models.js";
+import { commentModel } from "../models/Comment.model.js";
 import { UserModel } from "../models/user_model.js";
+import { sequelize } from "./database.js";
 
-
+//cinema and booking
 cinemaModel.hasMany(bookingModel, {
     foreignKey: "cineId",
     sourceKey: "id"
 })
+
 
 bookingModel.belongsTo(cinemaModel, {
     foreignKey: "cineId",
     targetKey: "id"
 })
 
+//user and booking
 UserModel.hasMany(bookingModel, {
     foreignKey: "userId",
     sourceKey: "id"
 })
+
 
 bookingModel.belongsTo(UserModel, {
     foreignKey: "userId",
     targetKey: "id"
 })
 
+//user and comments
+UserModel.hasMany(commentModel, {
+    foreignKey: "userId",
+    sourceKey: "id"
+})
+
+commentModel.belongsTo(UserModel, {
+    foreignKey: "userId",
+    targetKey: "id"
+})
 
 
 
