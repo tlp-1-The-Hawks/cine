@@ -2,8 +2,8 @@ import { sequelize } from '../config/database.js';
 import { DataTypes } from 'sequelize'
 
 
-export const cineModel = sequelize.define(
-    'cine',
+export const cinemaModel = sequelize.define(
+    'cinema',
     {
         name: {
             type: DataTypes.STRING,

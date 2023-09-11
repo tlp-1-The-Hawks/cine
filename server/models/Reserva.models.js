@@ -1,7 +1,7 @@
 import { sequelize } from "../config/database.js";
 
-export const reservaModel = sequelize.define(
-    'reserva',
+export const bookingModel = sequelize.define(
+    'booking',
     {
 
     }, {
