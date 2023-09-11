@@ -1,5 +1,6 @@
 import { sequelize } from "../config/database.js";
 import { DataTypes } from "sequelize";
+import { UserModel} from "./user_model.js"
 
 export const commentModel = sequelize.define(
     'comment', {
@@ -21,13 +22,24 @@ export async function addcomment(description, userId) {
 }
 
 export async function getAllComments() {
-    return commentModel.findAll() ?? null
+    return commentModel.findAll({
+        include: [
+            {
+                model: UserModel,
+                as: 'User'
+            }
+        ]
+    }) ?? null
 }
 
 export async function getCommentByid(id) {
     return commentModel.findOne({
         where: {
             id
+        },
+        include:{
+            model: UserModel,
+            as: 'User'
         }
     })
 }

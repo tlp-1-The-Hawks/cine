@@ -1,8 +1,17 @@
 import { Router } from "express";
-import { ctrlAddcomment } from "../controllers/comment.controllers.js";
+import { ctrlAddcomment, ctrlDeleteComment, ctrlEditComment, ctrlGetAllcomment, ctrlGetCommentById } from "../controllers/comment.controllers.js";
+
 
 const commentRouter = Router();
 
-commentRouter.post('/comment/:userId', ctrlAddcomment)
+commentRouter.post('/comment/:userId', ctrlAddcomment);
+
+commentRouter.get('/comment/:id', ctrlGetCommentById);
+
+commentRouter.get('/comment', ctrlGetAllcomment);
+
+commentRouter.put('/comment/:id', ctrlEditComment);
+
+commentRouter.delete('/comment/:id', ctrlDeleteComment);
 
 export { commentRouter }
