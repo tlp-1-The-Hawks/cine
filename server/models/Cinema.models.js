@@ -21,3 +21,40 @@ export const cinemaModel = sequelize.define(
     timestamps: true
 })
 
+//services
+export async function addCinema(cinema) {
+    return await cinemaModel.create(cinema)
+}
+
+export async function getAllCinema() {
+    return await cinemaModel.findAll();
+}
+
+export async function getCinemaById(id) {
+    return await cinemaModel.findOne({
+        where: {
+            id
+        }
+    }) ?? null;
+}
+
+export async function deleteCinema(id) {
+    return await cinemaModel.destroy({
+        where: {
+            id
+        }
+    }) ?? null;
+}
+
+export async function updateCinema(id, cinema) {
+
+    const editcinema = await cinemaModel.findOne(
+        {
+            where: {
+                id
+            }
+        }
+    );
+
+    return await editcinema.update(cinema)
+}

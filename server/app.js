@@ -17,7 +17,10 @@ app.use(helmet({ contentSecurityPolicy: false }));
 
 // Rutas
 import { userRoter } from './routes/users.routes.js';
+import { cinemaRouter } from './routes/cinema.routes.js';
 app.use('/api/users', userRoter);
+app.use('/api/', cinemaRouter)
+
 
 // Servidor escuchando
 app.listen(environments.PORT, () => {
