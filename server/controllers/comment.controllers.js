@@ -1,4 +1,4 @@
-import { addcomment } from "../models/Comment.model.js";
+import { addcomment, getAllComments } from "../models/Comment.model.js";
 
 export const ctrlAddcomment = async (req, res) => {
     try {
@@ -14,6 +14,19 @@ export const ctrlAddcomment = async (req, res) => {
         console.log(error);
         res.status(500).json({
             message: 'Error adding comment'
+        })
+    }
+}
+
+export const ctrlGetAllcomment = async (req, res) => {
+    try {
+        const comments = await getAllComments()
+
+        return res.status(200).json(comments)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: 'Error when getall comments'
         })
     }
 }
