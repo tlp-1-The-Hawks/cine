@@ -1,5 +1,5 @@
-import {Sequelize} from 'sequelize';
-import {environments} from './environments.js';
+import { Sequelize } from 'sequelize';
+import { environments } from './environments.js';
 
 export const sequelize = new Sequelize(
   environments.DB.DB_NAME,
@@ -12,10 +12,4 @@ export const sequelize = new Sequelize(
   }
 );
 
-export async function startDb() {
-  try {
-    await sequelize.sync({force: false});
-  } catch (error) {
-    console.log(error);
-  }
-}
+

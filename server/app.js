@@ -3,9 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import { environments } from './src/config/environments.js';
-import { startDb } from './src/config/database.js';
-import { userRoter } from './src/routes/users.routes.js';
+import { environments } from './config/environments.js';
+import { startDb } from './config/associations.js';
+
 
 // Middlewares
 const app = express();
@@ -16,7 +16,7 @@ app.use(morgan('dev'));
 app.use(helmet({ contentSecurityPolicy: false }));
 
 // Rutas
-
+import { userRoter } from './routes/users.routes.js';
 app.use('/api/users', userRoter);
 
 // Servidor escuchando
