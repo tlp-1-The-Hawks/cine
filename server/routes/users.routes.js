@@ -1,10 +1,23 @@
 import {Router} from 'express';
-import {ctrlCreateUser} from '../controllers/users.controllers.js';
-import {createUserSchema} from '../models/schemas/user.shemas.js';
+import {
+  ctrlCreateUser,
+  ctrlDeleteUser,
+  ctrlGetAllUsers,
+  ctrlGetOneUser,
+  ctrlUpdateUser,
+} from '../controllers/users.controllers.js';
+import {
+  createUserSchema,
+  updateUserSchema,
+} from '../models/schemas/user.shemas.js';
 import {validador} from '../middlewares/validator.js';
 
-const userRoter = Router();
+const userRouter = Router();
 
-userRoter.post('/users', createUserSchema, validador, ctrlCreateUser);
+userRouter.get('/users', ctrlGetAllUsers);
+userRouter.get('/users/:id', ctrlGetOneUser);
+userRouter.post('/users', createUserSchema, validador, ctrlCreateUser);
+userRouter.delete('/users/:id', ctrlDeleteUser);
+userRouter.put('/users/:id', updateUserSchema, validador, ctrlUpdateUser);
 
-export {userRoter};
+export {userRouter as userRoter};

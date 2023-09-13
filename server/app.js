@@ -19,10 +19,8 @@ import {userRoter} from './routes/users.routes.js';
 import {cinemaRouter} from './routes/cinema.routes.js';
 import {commentRouter} from './routes/comment.routes.js';
 
-app.use('/api/', userRoter);
-app.use('/api/', cinemaRouter);
-app.use('/api/', commentRouter);
-
+app.use('/api', cinemaRouter);
+app.use('/api', commentRouter);
 app.use('/api', userRoter);
 
 // Servidor escuchando
