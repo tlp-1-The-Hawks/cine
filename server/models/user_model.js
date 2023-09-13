@@ -1,10 +1,10 @@
-import {sequelize} from '../config/database.js';
-import {DataTypes} from 'sequelize';
-import {hashString} from '../helpers/hash.js';
+import { sequelize } from '../config/database.js';
+import { DataTypes } from 'sequelize';
+import { hashString } from '../helpers/hash.js';
 import bcrypt from 'bcrypt';
 
 export const UserModel = sequelize.define(
-  'User',
+  'user',
   {
     name: {
       type: DataTypes.STRING,
@@ -40,7 +40,7 @@ export async function createUser(user) {
   try {
     const hashedPassword = await hashString(user.password);
 
-    const newUser = await UserModel.create({...user, password: hashedPassword});
+    const newUser = await UserModel.create({ ...user, password: hashedPassword });
     return newUser;
   } catch (error) {
     console.error('Error al crear el usuario:', error);
@@ -76,8 +76,8 @@ export async function updateUser(userId, user) {
   return editUser;
 }
 
-export async function getUserByEmailAndPassword({email, password}) {
-  const user = await UserModel.findOne({where: {email}});
+export async function getUserByEmailAndPassword({ email, password }) {
+  const user = await UserModel.findOne({ where: { email } });
 
   if (!user) {
     return null;
