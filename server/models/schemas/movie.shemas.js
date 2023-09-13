@@ -34,6 +34,8 @@ export const createMovieValidation = [
   body('duration')
     .exists()
     .notEmpty()
+    .isString()
+    .withMessage('la duracion tiene que ser en formato string')
     .withMessage('La duracion es requerida')
     .matches(/^\d+:\d{2}hs$/)
     .withMessage(
