@@ -24,7 +24,7 @@ export const MovieModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    duracion: {
+    duration: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -32,7 +32,7 @@ export const MovieModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    actores: {
+    actors: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
