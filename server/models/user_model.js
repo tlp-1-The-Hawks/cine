@@ -1,6 +1,6 @@
-import { sequelize } from '../config/database.js';
-import { DataTypes } from 'sequelize';
-import { hashString } from '../helpers/hash.js';
+import {sequelize} from '../config/database.js';
+import {DataTypes} from 'sequelize';
+import {hashString} from '../helpers/hash.js';
 
 export const UserModel = sequelize.define(
   'User',
@@ -35,16 +35,14 @@ export const UserModel = sequelize.define(
 
 // Servicios
 
-export async function getAllUsers() {
-  return (await UserModel.findAll()) ?? null;
-}
-
 export async function createUser(user) {
-  const hashedPassword = await hashString(user.password);
+  try {
+    const hashedPassword = await hashString(user.password);
 
-  return await UserModel.create({ ...user, password: hashedPassword });
-}
-
-export async function getUserById(userID) {
-  return (await UserModel.findById(userID)) ?? null;
+    const newUser = await UserModel.create({...user, password: hashedPassword});
+    return newUser;
+  } catch (error) {
+    console.error('Error al crear el usuario:', error);
+    throw error;
+  }
 }
