@@ -1,5 +1,5 @@
-import { sequelize } from '../config/database.js';
-import { DataTypes } from 'sequelize';
+import {sequelize} from '../config/database.js';
+import {DataTypes} from 'sequelize';
 
 export const MovieModel = sequelize.define(
   'Movie',
@@ -25,7 +25,7 @@ export const MovieModel = sequelize.define(
       allowNull: false,
     },
     duration: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     rating: {
