@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import {
   ctrlCreateUser,
   ctrlDeleteUser,
@@ -10,7 +10,7 @@ import {
   createUserSchema,
   updateUserSchema,
 } from '../models/schemas/user.shemas.js';
-import {validador} from '../middlewares/validator.js';
+import { validador } from '../middlewares/validator.js';
 
 const userRouter = Router();
 
@@ -20,4 +20,4 @@ userRouter.post('/users', createUserSchema, validador, ctrlCreateUser);
 userRouter.delete('/users/:id', ctrlDeleteUser);
 userRouter.put('/users/:id', updateUserSchema, validador, ctrlUpdateUser);
 
-export {userRouter as userRoter};
+export { userRouter };
