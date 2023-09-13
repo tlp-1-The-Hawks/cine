@@ -5,6 +5,6 @@ import {validador} from '../middlewares/validator.js';
 
 const userRoter = Router();
 
-userRoter.post('/', createUserSchema, validador, ctrlCreateUser);
+userRoter.post('/users', createUserSchema, validador, ctrlCreateUser);
 
 export {userRoter};

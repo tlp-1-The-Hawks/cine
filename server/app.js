@@ -17,7 +17,7 @@ app.use(helmet({contentSecurityPolicy: false}));
 
 // Rutas
 
-app.use('/api/users', userRoter);
+app.use('/api', userRoter);
 
 // Servidor escuchando
 app.listen(environments.PORT, () => {
