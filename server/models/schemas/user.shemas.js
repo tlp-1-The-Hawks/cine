@@ -81,3 +81,8 @@ export const updateUserSchema = [
     .isLength({min: 8, max: 20})
     .withMessage('Debe tener un mínimo de 8 caracteres y un máximo de 20.'),
 ];
+
+export const loginUserSchema = [
+  body('email').exists().notEmpty().isEmail(),
+  body('password').exists().notEmpty().isString(),
+];
