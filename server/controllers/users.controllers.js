@@ -62,7 +62,7 @@ export const ctrlUpdateUser = async (req, res) => {
     const user = req.body;
     const userUpdated = await updateUser(req.params.id, user);
     return res.status(200).json({
-      message: 'Comment edited',
+      message: 'User edited',
       userUpdated,
     });
   } catch (error) {

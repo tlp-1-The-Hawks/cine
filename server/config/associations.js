@@ -3,6 +3,7 @@ import { cinemaModel } from "../models/Cinema.models.js";
 import { commentModel } from "../models/Comment.model.js";
 import { UserModel } from "../models/user_model.js";
 import { sequelize } from "./database.js";
+import { MovieModel } from "../models/movie_model.js";
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -39,8 +40,27 @@ commentModel.belongsTo(UserModel, {
     targetKey: "id"
 })
 
+//movie and comments 
+MovieModel.hasMany(commentModel, {
+    foreignKey: "movieId",
+    sourceKey: "id"
+})
 
+commentModel.belongsTo(MovieModel, {
+    foreignKey: "movieId",
+    targetKey: "id"
+})
 
+//booking and movie 
+MovieModel.hasMany(bookingModel, {
+    foreignKey: "movieId",
+    sourceKey: "id"
+})
+
+bookingModel.belongsTo(MovieModel, {
+    foreignKey: "movieId",
+    targetKey: "id"
+})
 
 export async function startDb() {
     try {

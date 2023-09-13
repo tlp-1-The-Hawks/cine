@@ -15,15 +15,14 @@ app.use(morgan('dev'));
 app.use(helmet({contentSecurityPolicy: false}));
 
 // Rutas
-import {userRoter} from './routes/users.routes.js';
+import {userRouter} from './routes/users.routes.js';
 import {cinemaRouter} from './routes/cinema.routes.js';
 import {commentRouter} from './routes/comment.routes.js';
 import {authRouter} from './routes/auth.routes.js';
-import {movieRouter} from './routes/movies.routes.js';
+
 app.use('/api', cinemaRouter);
 app.use('/api', commentRouter);
-app.use('/api', userRoter);
-app.use('/api', movieRouter);
+app.use('/api', userRouter);
 app.use('/auth', authRouter);
 
 // Servidor escuchando

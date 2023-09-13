@@ -1,6 +1,6 @@
 import { sequelize } from "../config/database.js";
 import { DataTypes } from "sequelize";
-import { UserModel} from "./user_model.js"
+import { UserModel } from "./user_model.js"
 
 export const commentModel = sequelize.define(
     'comment', {
@@ -37,7 +37,7 @@ export async function getCommentByid(id) {
         where: {
             id
         },
-        include:{
+        include: {
             model: UserModel,
             as: 'User'
         }
