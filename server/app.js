@@ -8,7 +8,7 @@ import { userRouter } from './routes/users.routes.js';
 import { cinemaRouter } from './routes/cinema.routes.js';
 import { commentRouter } from './routes/comment.routes.js';
 import { authRouter } from './routes/auth.routes.js';
-import __dirname from './helpers/__dirname.js'; // Importa __dirname desde el módulo dirname.js
+import __dirname from './helpers/__dirname.js';
 import { handleErrors } from './middlewares/handleError.js';
 import { createLogs } from './helpers/createLogs.js';
 
@@ -17,10 +17,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(
-  morgan('dev', {
+  morgan('combined', {
     stream: {
       write: (message) => {
-        const logDirectory = __dirname; // Utiliza __dirname desde el módulo dirname.js
+        const logDirectory = __dirname;
         createLogs(message, logDirectory, 'logs');
       },
     },
