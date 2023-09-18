@@ -1,9 +1,9 @@
-import {bookingModel} from '../models/Booking.models.js';
-import {cinemaModel} from '../models/Cinema.models.js';
-import {commentModel} from '../models/Comment.model.js';
-import {UserModel} from '../models/user_model.js';
-import {sequelize} from './database.js';
-import {MovieModel} from '../models/movie_model.js';
+import { bookingModel } from '../models/Booking.models.js';
+import { cinemaModel } from '../models/Cinema.models.js';
+import { CommentModel } from '../models/Comment.model.js';
+import { UserModel } from '../models/user_model.js';
+import { sequelize } from './database.js';
+import { MovieModel } from '../models/movie_model.js';
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -28,23 +28,23 @@ bookingModel.belongsTo(UserModel, {
 });
 
 //user and comments
-UserModel.hasMany(commentModel, {
+UserModel.hasMany(CommentModel, {
   foreignKey: 'userId',
   sourceKey: 'id',
 });
 
-commentModel.belongsTo(UserModel, {
+CommentModel.belongsTo(UserModel, {
   foreignKey: 'userId',
   targetKey: 'id',
 });
 
 //movie and comments
-MovieModel.hasMany(commentModel, {
+MovieModel.hasMany(CommentModel, {
   foreignKey: 'movieId',
   sourceKey: 'id',
 });
 
-commentModel.belongsTo(MovieModel, {
+CommentModel.belongsTo(MovieModel, {
   foreignKey: 'movieId',
   targetKey: 'id',
 });
@@ -62,7 +62,7 @@ bookingModel.belongsTo(MovieModel, {
 
 export async function startDb() {
   try {
-    await sequelize.sync({force: false});
+    await sequelize.sync({ force: false });
   } catch (error) {
     console.log(error);
   }

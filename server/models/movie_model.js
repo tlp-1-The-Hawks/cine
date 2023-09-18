@@ -1,5 +1,5 @@
-import {sequelize} from '../config/database.js';
-import {DataTypes} from 'sequelize';
+import { sequelize } from '../config/database.js';
+import { DataTypes } from 'sequelize';
 
 export const MovieModel = sequelize.define(
   'Movie',
@@ -54,11 +54,79 @@ export const MovieModel = sequelize.define(
 
 export async function createMovie(movieData) {
   try {
-    const movie = await MovieModel.create(movieData);
+    const newMovie = await MovieModel.create(movieData);
+
+    return newMovie;
+  } catch (error) {
+    console.error('Error al crear la película:');
+
+    throw error;
+  }
+}
+
+export async function getAllMovies() {
+  try {
+    return (await MovieModel.findAll()) ?? null;
+  } catch (error) {
+    console.error('Error al encontrar las películas:');
+
+    throw error;
+  }
+}
+
+export async function getMovieById(movieId) {
+  try {
+    const movie = await MovieModel.findByPk(movieId);
+    if (!movie) {
+      return null;
+    }
+    return movie;
+  } catch (error) {
+    console.error('Error al encontrar la película:');
+
+    throw error;
+  }
+}
+
+export async function deleteMovieById(movieId) {
+  try {
+    const movie = await MovieModel.findByPk(movieId);
+    if (!movie) {
+      return null;
+    }
+    await movie.destroy();
+    return movie;
+  } catch (error) {
+    console.error('Error al eliminar la película:');
+
+    throw error;
+  }
+}
+
+export async function updateMovie(movieId, movieData) {
+  try {
+    const editMovie = await MovieModel.findByPk(movieId);
+
+    editMovie.update(movieData);
+    return editMovie;
+  } catch (error) {
+    console.error('Error al actualizar la película:');
+
+    throw error;
+  }
+}
+
+export async function getMovieByTitle(title) {
+  try {
+    const movie = await MovieModel.findOne({ where: { title } });
+
+    if (!movie) {
+      return null;
+    }
 
     return movie;
   } catch (error) {
-    console.error('Error al crear la película:', error);
+    console.error('Error al encontrar la película:');
 
     throw error;
   }
