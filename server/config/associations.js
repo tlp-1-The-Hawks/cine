@@ -1,9 +1,11 @@
+import { sequelize } from './database.js';
 import { bookingModel } from '../models/Booking.models.js';
 import { cinemaModel } from '../models/Cinema.models.js';
 import { CommentModel } from '../models/Comment.model.js';
 import { UserModel } from '../models/user_model.js';
-import { sequelize } from './database.js';
 import { MovieModel } from '../models/movie_model.js';
+import { movieCinemaModel } from '../models/movieXcinema.js';
+import { ratingModel } from '../models/Rating.models.js';
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -56,6 +58,29 @@ MovieModel.hasMany(bookingModel, {
 });
 
 bookingModel.belongsTo(MovieModel, {
+  foreignKey: 'movieId',
+  targetKey: 'id',
+});
+
+MovieModel.belongsToMany(cinemaModel, { through: movieCinemaModel });
+cinemaModel.belongsToMany(MovieModel, { through: movieCinemaModel });
+
+UserModel.hasMany(ratingModel, {
+  foreignKey: 'userId',
+  sourceKey: 'id',
+});
+
+ratingModel.belongsTo(UserModel, {
+  foreignKey: 'userId',
+  targetKey: 'id',
+});
+
+MovieModel.hasMany(ratingModel, {
+  foreignKey: 'movieId',
+  sourceKey: 'id',
+});
+
+ratingModel.belongsTo(MovieModel, {
   foreignKey: 'movieId',
   targetKey: 'id',
 });
