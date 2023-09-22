@@ -1,8 +1,16 @@
 /* header /
     / Estilo base para el contenedor del menú */
-body {
-        background-color: #DBCBCB;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Establece la altura mínima del viewport */
 }
+
+body {
+    background-color: #DBCBCB;
+}
+
 header {
     font-family: sans-serif;
     background-color: #9E2A2A;
@@ -14,18 +22,25 @@ header img {
     width: 50px;
 }
 
-main{
- height: 80vh;
+main {
+    height: 100%;
+    flex-grow: 1;
 }
+
+section {
+    margin-bottom: 50px;
+}
+
 .contimgtitu {
     background-color: #063BC3;
 }
+
 .titulo {
     margin: 0 auto;
     width: 100px;
 }
 
-.filtros{
+.filtros {
     padding: 20px 0;
     position: relative;
 }
@@ -40,6 +55,11 @@ main{
     z-index: 100;
 }
 
+.card {
+    margin: 10px;
+
+}
+
 .button2 {
     width: 350px;
     margin: auto;
@@ -50,9 +70,9 @@ main{
 @media (max-width: 767px) {
     .button1 {
         left: 50%;
-    }  
-    
-    .button2{
+    }
+
+    .button2 {
         position: absolute;
         left: 25%;
     }
