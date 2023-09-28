@@ -1,4 +1,5 @@
 import React from 'react';
+import { Login } from './Login.jsx'
 
 export const Header = () => {
   return (
@@ -28,14 +29,8 @@ export const Header = () => {
           </button>
         </form>
 
-        <div className="col-md-3 text-end">
-          <button type="button" className="btn bg-dark text-white me-2">
-            Registrarse
-          </button>
-          <button type="button" className="btn bg-dark text-white">
-            Iniciar sesión
-          </button>
-        </div>
+        <Login />
+
       </nav>
     </header>
   );

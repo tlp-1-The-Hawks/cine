@@ -1,8 +1,8 @@
 import React from 'react';
-import { Header } from './components/Header';
-import { Filtros } from './components/Filtros';
-import { Tarjetas } from './components/Tarjetas';
-import { Footer } from './components/Footer';
+import { Header } from './components/Header/Header.jsx';
+import { Filtros } from './components/Filtros.jsx';
+import { Tarjetas } from './components/Tarjetas.jsx';
+import { Footer } from './components/Footer.jsx';
 
 import './App.css';
 function App() {
