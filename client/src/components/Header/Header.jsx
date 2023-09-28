@@ -1,6 +1,6 @@
 import React from 'react';
+import '../../../public/style/Header.css';
 import { Login } from './Login.jsx'
-
 export const Header = () => {
   return (
     <header>

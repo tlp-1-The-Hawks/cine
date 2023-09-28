@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../../public/style/Footer.css'
 export const Footer = () => {
   return (
     <footer className="py-3">

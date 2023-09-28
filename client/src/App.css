@@ -7,102 +7,12 @@
   /* Estable3ce la altura mínima del viewport */
 }
 
-/* Estilos para el contenedor */
-.container {
-  background-color: #C3C5C4;
-  padding: 20px;
-  border-radius: 5px;
-}
-
 body {
   background-color: #C3C5C4;
-}
-
-nav {
-  font-family: sans-serif;
-  background-color: #001011;
-  color: aliceblue;
-  padding: 10px;
-}
-
-header img {
-  width: 50px;
 }
 
 main {
   height: 100%;
   margin-bottom: 50px;
   flex-grow: 1;
-}
-
-.tarjeta {
-  width: 18rem;
-}
-
-.contimgtitu {
-  background-color: #001011;
-}
-
-.titulo {
-  margin: 0 auto;
-  width: 100px;
-}
-
-.borde-naranja {
-  border: 2px solid orange;
-}
-
-.color-fondo {
-  background-color: grey;
-  color: white;
-}
-
-.color-fondo:hover {
-  background-color: #e3a209;
-  color: white;
-}
-
-
-.button1 {
-  width: 350px;
-  margin: auto;
-  position: absolute;
-  top: 97%;
-  left: 80%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-}
-
-.card {
-  margin: 10px;
-
-}
-
-.button2 {
-  width: 350px;
-  margin: auto;
-  position: relative;
-  left: 0%;
-}
-
-footer {
-  background-color: #001011;
-
-}
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-
-@media (max-width: 767px) {
-  .button1 {
-    left: 50%;
-  }
-
-  .button2 {
-    position: absolute;
-    left: 25%;
-  }
 }

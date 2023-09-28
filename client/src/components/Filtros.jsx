@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../public/style/Filtros.css'
 
 export const Filtros = () => {
   return (
