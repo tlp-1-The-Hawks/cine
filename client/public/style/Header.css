@@ -1,0 +1,34 @@
+nav {
+  font-family: sans-serif;
+  background-color: #001011;
+  color: aliceblue;
+  padding: 10px;
+}
+
+header img {
+  width: 50px;
+}
+
+.contimgtitu {
+  background-color: #001011;
+}
+
+
+.titulo {
+  margin: 0 auto;
+  width: 100px;
+}
+
+.borde-naranja {
+  border: 2px solid orange;
+}
+
+.color-fondo {
+  background-color: grey;
+  color: white;
+}
+
+.color-fondo:hover {
+  background-color: #e3a209;
+  color: white;
+}
