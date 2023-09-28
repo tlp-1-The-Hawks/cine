@@ -6,7 +6,7 @@ export const Header = () => {
       <nav className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
         <div className="col-md-3 mb-2 mb-md-0r d-flex">
           <div className="contimgtitu rounded d-flex">
-            <img src="../logo.png" alt="Logo" />
+            <img src="/img/logo.png" alt="Logo" />
             <div className="d-flex align-items-center">
               <p className="titulo">Cines Formosa</p>
             </div>

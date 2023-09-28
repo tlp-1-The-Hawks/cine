@@ -6,9 +6,9 @@ export const Tarjetas = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-3">
-            <div className="card" style={{ width: '18rem' }}>
+            <div className="tarjeta card">
               <img
-                src="../image-example.png"
+                src="/img/image-example.png"
                 className="card-img-top"
                 alt="..."
               />
@@ -21,9 +21,9 @@ export const Tarjetas = () => {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card" style={{ width: '18rem' }}>
+            <div className="tarjeta card">
               <img
-                src="../image-example.png"
+                src="/img/image-example.png"
                 className="card-img-top"
                 alt="..."
               />
@@ -36,9 +36,9 @@ export const Tarjetas = () => {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card" style={{ width: '18rem' }}>
+            <div className="tarjeta card">
               <img
-                src="../image-example.png"
+                src="/img/image-example.png"
                 className="card-img-top"
                 alt="..."
               />
@@ -51,9 +51,9 @@ export const Tarjetas = () => {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card" style={{ width: '18rem' }}>
+            <div className="tarjeta card">
               <img
-                src="../image-example.png"
+                src="/img/image-example.png"
                 className="card-img-top"
                 alt="..."
               />

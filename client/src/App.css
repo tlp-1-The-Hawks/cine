@@ -35,7 +35,9 @@ main {
   flex-grow: 1;
 }
 
-
+.tarjeta {
+  width: 18rem;
+}
 
 .contimgtitu {
   background-color: #001011;
