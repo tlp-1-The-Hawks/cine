@@ -1,19 +1,17 @@
 import React from 'react';
-import './../../public/style/Header.css';
-
+import '../../../public/style/Header.css';
+import { Login } from './ButtonLoginRegister.jsx'
 export const Header = () => {
   return (
     <header>
       <nav className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
         <div className="col-md-3 mb-2 mb-md-0r d-flex">
-          <a href="/">
           <div className="contimgtitu rounded d-flex">
             <img src="/img/logo.png" alt="Logo" />
             <div className="d-flex align-items-center">
               <p className="titulo">Cines Formosa</p>
             </div>
-          </div>  
-          </a>
+          </div>
         </div>
 
         <form className="d-flex prueba" role="search">
@@ -31,14 +29,8 @@ export const Header = () => {
           </button>
         </form>
 
-        <div className="col-md-3 text-end">
-          <button type="button" className="btn bg-dark text-white me-2">
-            Registrarse
-          </button>
-          <button type="button" className="btn bg-dark text-white">
-            Iniciar sesión
-          </button>
-        </div>
+        <Login />
+
       </nav>
     </header>
   );
