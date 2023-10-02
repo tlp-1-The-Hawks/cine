@@ -21,99 +21,66 @@ export const bookingModel = sequelize.define(
 //services
 
 export async function addBooking(booking, userId, movieId) {
-  try {
-    const newBooking = await bookingModel.create({
-      ...booking,
-      userId,
-      movieId,
-    });
+  const newBooking = await bookingModel.create({
+    ...booking,
+    userId,
+    movieId,
+  });
 
-    return newBooking;
-  } catch (error) {
-    console.error('Erro al crear un booking');
-    throw error;
-  }
+  return newBooking;
+
 }
 
 export async function getAllBooking() {
-  try {
-    const bookings = await bookingModel.findAll();
-    return bookings;
-  } catch (error) {
-    console.error('Error al encontrar bookings');
-    throw error;
-  }
+  const bookings = await bookingModel.findAll();
+  return bookings;
+
 }
 
 export async function getBookingById(id) {
-  try {
-    const booking = await bookingModel.findByPk(id);
-    if (!booking) {
-      return null;
-    }
-    return booking;
-  } catch (error) {
-    console.error('Error al encontrar el booking');
-    throw error;
+  const booking = await bookingModel.findByPk(id);
+  if (!booking) {
+    return null;
   }
+  return booking;
 }
 
 export async function deleteBooking(id) {
-  try {
-    const booking = await bookingModel.findByPk(id);
-    if (!booking) {
-      return null;
-    }
-    return await booking.destroy();
-  } catch (error) {
-    console.error('Error al eliminar el booking');
-    throw error;
+  const booking = await bookingModel.findByPk(id);
+  if (!booking) {
+    return null;
   }
+  return await booking.destroy();
 }
 
 export async function updateBooking(id, booking) {
-  try {
-    const bookingToUpdate = await bookingModel.findByPk(id);
-    if (!bookingToUpdate) {
-      return null;
-    }
-    return await bookingToUpdate.update(booking);
-  } catch (error) {
-    console.error('Error al actualizar el booking');
-    throw error;
+  const bookingToUpdate = await bookingModel.findByPk(id);
+  if (!bookingToUpdate) {
+    return null;
   }
+  return await bookingToUpdate.update(booking);
 }
 
 export async function getBookingByUserId(userId) {
-  try {
-    const booking = await bookingModel.findAll({
-      where: {
-        userId,
-      },
-    });
-    if (!booking) {
-      return null;
-    }
-    return booking;
-  } catch (error) {
-    console.error('Error al encontrar el booking');
-    throw error;
+  const booking = await bookingModel.findAll({
+    where: {
+      userId,
+    },
+  });
+  if (!booking) {
+    return null;
   }
+  return booking;
 }
 
 export async function getBookingByMovieId(movieId) {
-  try {
-    const booking = await bookingModel.findAll({
-      where: {
-        movieId,
-      },
-    });
-    if (!booking) {
-      return null;
-    }
-    return booking;
-  } catch (error) {
-    console.error('Error al encontrar el booking');
-    throw error;
+  const booking = await bookingModel.findAll({
+    where: {
+      movieId,
+    },
+  });
+  if (!booking) {
+    return null;
   }
+  return booking;
 }

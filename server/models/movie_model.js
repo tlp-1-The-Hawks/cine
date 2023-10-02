@@ -53,81 +53,45 @@ export const MovieModel = sequelize.define(
 // Servicios
 
 export async function createMovie(movieData) {
-  try {
-    const newMovie = await MovieModel.create(movieData);
+  const newMovie = await MovieModel.create(movieData);
 
-    return newMovie;
-  } catch (error) {
-    console.error('Error al crear la película:');
-
-    throw error;
-  }
+  return newMovie;
 }
 
 export async function getAllMovies() {
-  try {
-    return (await MovieModel.findAll()) ?? null;
-  } catch (error) {
-    console.error('Error al encontrar las películas:');
-
-    throw error;
-  }
+  return (await MovieModel.findAll()) ?? null;
 }
 
 export async function getMovieById(movieId) {
-  try {
-    const movie = await MovieModel.findByPk(movieId);
-    if (!movie) {
-      return null;
-    }
-    return movie;
-  } catch (error) {
-    console.error('Error al encontrar la película:');
-
-    throw error;
+  const movie = await MovieModel.findByPk(movieId);
+  if (!movie) {
+    return null;
   }
+  return movie;
 }
 
 export async function deleteMovieById(movieId) {
-  try {
-    const movie = await MovieModel.findByPk(movieId);
-    if (!movie) {
-      return null;
-    }
-    await movie.destroy();
-    return movie;
-  } catch (error) {
-    console.error('Error al eliminar la película:');
-
-    throw error;
+  const movie = await MovieModel.findByPk(movieId);
+  if (!movie) {
+    return null;
   }
+  await movie.destroy();
+  return movie;
 }
 
 export async function updateMovie(movieId, movieData) {
-  try {
-    const editMovie = await MovieModel.findByPk(movieId);
+  const editMovie = await MovieModel.findByPk(movieId);
 
-    editMovie.update(movieData);
-    return editMovie;
-  } catch (error) {
-    console.error('Error al actualizar la película:');
-
-    throw error;
-  }
+  editMovie.update(movieData);
+  return editMovie;
 }
 
 export async function getMovieByTitle(title) {
-  try {
-    const movie = await MovieModel.findOne({ where: { title } });
+  const movie = await MovieModel.findOne({ where: { title } });
 
-    if (!movie) {
-      return null;
-    }
-
-    return movie;
-  } catch (error) {
-    console.error('Error al encontrar la película:');
-
-    throw error;
+  if (!movie) {
+    return null;
   }
+
+  return movie;
 }

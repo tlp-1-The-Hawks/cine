@@ -24,63 +24,40 @@ export const cinemaModel = sequelize.define(
 
 //services
 export async function addCinema(cinema) {
-  try {
-    const newCinema = await cinemaModel.create(cinema);
+  const newCinema = await cinemaModel.create(cinema);
 
-    return newCinema;
-  } catch (error) {
-    console.error('Erro al crear un cine');
-    throw error;
-  }
+  return newCinema;
 }
 
 export async function getAllCinema() {
-  try {
-    const cinemas = await cinemaModel.findAll();
-    return cinemas;
-  } catch (error) {
-    console.error('Error al encontrar cines');
-    throw error;
-  }
+  const cinemas = await cinemaModel.findAll();
+
+  return cinemas;
 }
 
 export async function getCinemaById(id) {
-  try {
-    const cinema = await cinemaModel.findByPk(id);
-    if (!cinema) {
-      return null;
-    }
-    return cinema;
-  } catch (error) {
-    console.error('Error al encontrar el cine');
-    throw error;
+  const cinema = await cinemaModel.findByPk(id);
+  if (!cinema) {
+    return null;
   }
+  return cinema;
 }
 
 export async function deleteCinema(id) {
-  try {
-    const cinema = await cinemaModel.findByPk(id);
-    if (!cinema) {
-      return null;
-    }
-    await cinema.destroy();
-    return cinema;
-  } catch (error) {
-    console.error('Error al eliminar el cine');
-    throw error;
+
+  const cinema = await cinemaModel.findByPk(id);
+  if (!cinema) {
+    return null;
   }
+  await cinema.destroy();
+  return cinema;
 }
 
 export async function updateCinema(id, cinema) {
-  try {
-    const cinemaToUpdate = await cinemaModel.findByPk(id);
-    if (!cinemaToUpdate) {
-      return null;
-    }
-    const cinemaUpdated = await cinemaToUpdate.update(cinema);
-    return cinemaUpdated;
-  } catch (error) {
-    console.error('Error al actualizar el cine');
-    throw error;
+  const cinemaToUpdate = await cinemaModel.findByPk(id);
+  if (!cinemaToUpdate) {
+    return null;
   }
+  const cinemaUpdated = await cinemaToUpdate.update(cinema);
+  return cinemaUpdated;
 }

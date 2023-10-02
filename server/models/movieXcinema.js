@@ -19,52 +19,32 @@ export const movieCinemaModel = sequelize.define(
 //services
 
 export async function addMovieCinema(movieId, cineId) {
-  try {
-    const newMovieCinema = await movieCinemaModel.create({
-      movieId,
-      cineId,
-    });
+  const newMovieCinema = await movieCinemaModel.create({
+    movieId,
+    cineId,
+  });
 
-    return newMovieCinema;
-  } catch (error) {
-    console.error('Erro al crear un movieXcinema');
-    throw error;
-  }
+  return newMovieCinema;
 }
 
 export async function getAllMovieCinema() {
-  try {
-    const movieXcinemas = await movieCinemaModel.findAll();
-    return movieXcinemas;
-  } catch (error) {
-    console.error('Error al encontrar movieXcinemas');
-    throw error;
-  }
+  const movieXcinemas = await movieCinemaModel.findAll();
+  return movieXcinemas;
 }
 
 export async function getMovieCinemaById(id) {
-  try {
-    const movieXcinema = await movieCinemaModel.findByPk(id);
-    if (!movieXcinema) {
-      return null;
-    }
-    return movieXcinema;
-  } catch (error) {
-    console.error('Error al encontrar el movieXcinema');
-    throw error;
+  const movieXcinema = await movieCinemaModel.findByPk(id);
+  if (!movieXcinema) {
+    return null;
   }
+  return movieXcinema;
 }
 
 export async function deleteMovieCinema(id) {
-  try {
-    const movieXcinema = await movieCinemaModel.findByPk(id);
-    if (!movieXcinema) {
-      return null;
-    }
-    await movieXcinema.destroy();
-    return movieXcinema;
-  } catch (error) {
-    console.error('Error al eliminar el movieXcinema');
-    throw error;
+  const movieXcinema = await movieCinemaModel.findByPk(id);
+  if (!movieXcinema) {
+    return null;
   }
+  await movieXcinema.destroy();
+  return movieXcinema;
 }

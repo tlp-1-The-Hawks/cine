@@ -38,80 +38,52 @@ export const UserModel = sequelize.define(
 
 export async function createUser(user) {
   const passwordHashed = await hashString(user.password);
-  user.password = passwordHashed;
-  try {
-    const newUser = await UserModel.create(user);
 
-    return newUser;
-  } catch (error) {
-    console.error(error);
-  }
+  user.password = passwordHashed;
+  const newUser = await UserModel.create(user);
+
+  return newUser;
 }
 
 export async function getAllUsers() {
-  try {
-    const users = await UserModel.findAll();
-    return users;
-  } catch (error) {
-    console.error('Error al encontrar usuarios');
-    throw error;
-  }
+  const users = await UserModel.findAll();
+  return users;
 }
 
 export async function getUserById(userId) {
-  try {
-    const user = await UserModel.findByPk(userId);
-    if (!user) {
-      return null;
-    }
-    return user;
-  } catch (error) {
-    console.error('Error al encontrar usuario');
-    throw error;
+  const user = await UserModel.findByPk(userId);
+  if (!user) {
+    return null;
   }
+  return user;
 }
 
 export async function deleteUserById(userId) {
-  try {
-    const user = await UserModel.findByPk(userId);
-    if (!user) {
-      return null;
-    }
-    await user.destroy();
-    return user;
-  } catch (error) {
-    console.error('Error al eliminar usuario');
-    throw error;
+  const user = await UserModel.findByPk(userId);
+  if (!user) {
+    return null;
   }
+  await user.destroy();
+  return user;
 }
 
 export async function updateUser(userId, user) {
-  try {
-    const userToUpdate = await UserModel.findByPk(userId);
-    if (!userToUpdate) {
-      return null;
-    }
-    const updatedUser = await UserModel.update(user);
-    return updatedUser;
-  } catch (error) {
-    console.error('Error al actualizar usuario');
-    throw error;
+  const userToUpdate = await UserModel.findByPk(userId);
+  if (!userToUpdate) {
+    return null;
   }
+  const updatedUser = await UserModel.update(user);
+  return updatedUser;
 }
 
 export async function getUserByEmailAndPassword({ email, password }) {
-  try {
-    const user = await UserModel.findOne({ where: { email } });
-    if (!user) {
-      return null;
-    }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return null;
-    }
-    return user;
-  } catch (error) {
-    console.error('Error al encontrar usuario');
-    throw error;
+  const user = await UserModel.findOne({ where: { email } });
+  if (!user) {
+    return null;
   }
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    return null;
+  }
+  return user;
 }
