@@ -4,6 +4,10 @@
   border-radius: 5px;
 }
 
+body {
+  background-color: white;
+}
+
 .tarjeta {
   width: 18rem;
 }
