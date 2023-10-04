@@ -1,8 +1,8 @@
-import React from 'react';
-import '../../public/style/Filtros.css'
+  import React from 'react';
+  import '../../../public/style/Filtros.css'
 
 export const Filtros = () => {
-  return (
+  return (  
     <>
       <div className="container pt-4 pb-4">
         <div className="row">
@@ -20,7 +20,7 @@ export const Filtros = () => {
             </form>
           </div>
           <div className="col-sm-8 col-lg-6">
-            <h1 className="text-center">Cartelera</h1>
+            <h1>Películas Estrenos</h1>
           </div>
         </div>
       </div>

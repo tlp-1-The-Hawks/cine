@@ -1,6 +1,5 @@
 import React from 'react';
-import '../../public/style/Tarjetas.css'
-
+import '../../../public/style/Tarjetas.css'
 export const Tarjetas = () => {
   return (
     <section>

@@ -1,7 +1,10 @@
 import React from 'react';
 import '../../../public/style/Header.css';
+<<<<<<<< HEAD:client/src/components/Header/Header.jsx
 import { Login } from './Login.jsx'
+========
 import { Login } from './ButtonLoginRegister.jsx'
+>>>>>>>> origin/develop-brian:client/src/components/Headers/Header.jsx
 export const Header = () => {
   return (
     <header>
