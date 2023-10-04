@@ -2,7 +2,7 @@
   import '../../../public/style/Filtros.css'
 
 export const Filtros = () => {
-  return (
+  return (  
     <>
       <div className="container pt-4 pb-4">
         <div className="row">
