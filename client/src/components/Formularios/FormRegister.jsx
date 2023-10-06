@@ -8,20 +8,24 @@ import style from '../../../public/style/FormRegister.module.css'
 export const FormRegister = () => {
 
   const [formState, setFormState] = useState({
+    name: "",
+    last_name: "",
     username: "",
     email: "",
-    password: ""
+    password: "",
+    confirmarpassword: ""
   })
 
+  const [alertMessage, setAlertMessage] = useState('');
+
   const handleChange = (e) => {
-    console.log(formState);
-    setFormState(
-      {
-        ...formState,
-        [e.target.name]: e.target.value
-      }
-    )
-  }
+    const { name, value } = e.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -43,7 +47,27 @@ export const FormRegister = () => {
           <h2>Registro</h2>
 
           <div className={style.inputBox}>
-            <i class='bx bxs-user'></i>
+            <i className='bx bxs-user'></i>
+            <input type="text"
+              placeholder='Nombre'
+              name="name"
+              id='name'
+              value={formState.name}
+            />
+          </div>
+
+          <div className={style.inputBox}>
+            <i className='bx bxs-user'></i>
+            <input type="text"
+              placeholder='Apellido'
+              name="last_name"
+              id='last_name'
+              value={formState.last_name}
+            />
+          </div>
+
+          <div className={style.inputBox}>
+            <i className='bx bxs-user'></i>
             <input type="text"
               placeholder='Nombre de Usuario'
               name="username"
@@ -53,7 +77,7 @@ export const FormRegister = () => {
           </div>
 
           <div className={style.inputBox}>
-            <i class='bx bxs-envelope'></i>
+            <i className='bx bxs-envelope'></i>
             <input type="email"
               placeholder='Email'
               name="email"
@@ -63,7 +87,7 @@ export const FormRegister = () => {
           </div>
 
           <div className={style.inputBox}>
-            <i class='bx bxs-lock-alt'></i>
+            <i className='bx bxs-lock-alt'></i>
             <input type="password"
               placeholder='Contraseña'
               name="password"
@@ -73,11 +97,13 @@ export const FormRegister = () => {
           </div>
 
           <div className={style.inputBox}>
-            <i class='bx bxs-lock-alt'></i>
-            <input type="password"
-              placeholder='Confirmar Contraseña'
-              name="Password"
-              id='confirmarpassword'
+            <i className='bx bxs-lock-alt'></i>
+            <input
+              type="password"
+              placeholder="Confirmar Contraseña"
+              name="confirmarpassword"
+              id="confirmarpassword"
+              value={formState.confirmarpassword}
             />
           </div>
 
@@ -89,7 +115,6 @@ export const FormRegister = () => {
             <span><a href="#">Recuperar Contraseña</a></span>
             <span><a href="#">Inicia Sesion</a></span>
           </div>
-
         </form>
       </div>
     </div>

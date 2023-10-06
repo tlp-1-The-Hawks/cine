@@ -14,7 +14,7 @@ function App() {
       <main>
         <Filtros />
         {/* Sección de tarjetas */}
-        <Tarjetas />*{' '}
+        <Tarjetas />
       </main>
       {/* {/ Pie de página */}
       <Footer />

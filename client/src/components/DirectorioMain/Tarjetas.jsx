@@ -2,7 +2,7 @@ import React from 'react';
 import '../../../public/style/Tarjetas.css'
 export const Tarjetas = () => {
   return (
-    <section className=''>
+    <section>
       <div className="container">
         <div className="row d-flex">
           <div className="col-md-3 col-sm-12 d-flex justify-content-center">
