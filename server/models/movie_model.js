@@ -1,6 +1,7 @@
 import { sequelize } from '../config/database.js';
 import { DataTypes } from 'sequelize';
-
+import { movieCinemaModel } from './movieXcinema.js';
+import { cinemaModel } from './Cinema.models.js';
 export const MovieModel = sequelize.define(
   'Movie',
   {
@@ -40,10 +41,6 @@ export const MovieModel = sequelize.define(
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    country: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   },
   {
     timestamps: true,
@@ -52,14 +49,21 @@ export const MovieModel = sequelize.define(
 
 // Servicios
 
-export async function createMovie(movieData) {
-  const newMovie = await MovieModel.create(movieData);
+export async function createMovie(movie) {
+  const newMovie = await MovieModel.create(movie);
 
   return newMovie;
 }
 
 export async function getAllMovies() {
-  return (await MovieModel.findAll()) ?? null;
+  return await MovieModel.findAll({
+    include: [
+      {
+        model: cinemaModel,
+        as: "cine",
+      }
+    ]
+  }) ?? null;
 }
 
 export async function getMovieById(movieId) {

@@ -1,27 +1,22 @@
 import { sequelize } from '../config/database.js';
-import { DataTypes } from 'sequelize';
 
 export const movieCinemaModel = sequelize.define(
   'movie_cinema',
   {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false,
-    },
+
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 
+movieCinemaModel.removeAttribute('id')
 //services
 
-export async function addMovieCinema(movieId, cineId) {
+export async function addMovieCinema(MovieId, cinemaId) {
   const newMovieCinema = await movieCinemaModel.create({
-    movieId,
-    cineId,
+    MovieId: MovieId,
+    cinemaId: cinemaId
   });
 
   return newMovieCinema;

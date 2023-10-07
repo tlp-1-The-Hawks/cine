@@ -62,8 +62,17 @@ bookingModel.belongsTo(MovieModel, {
   targetKey: 'id',
 });
 
-MovieModel.belongsToMany(cinemaModel, { through: movieCinemaModel });
-cinemaModel.belongsToMany(MovieModel, { through: movieCinemaModel });
+MovieModel.belongsToMany(cinemaModel, {
+  through: movieCinemaModel,
+  as: 'cine', 
+});
+
+cinemaModel.belongsToMany(MovieModel, {
+  through: movieCinemaModel,
+  as: 'pelicula', 
+});
+
+
 
 UserModel.hasMany(ratingModel, {
   foreignKey: 'userId',

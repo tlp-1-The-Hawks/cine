@@ -57,10 +57,4 @@ export const createMovieValidation = [
     .exists()
     .isFloat({min: 0, max: 10})
     .withMessage('El puntaje debe ser un número entre 0 y 10'),
-  body('country')
-    .exists()
-    .notEmpty()
-    .withMessage('El país es requerido')
-    .isString()
-    .withMessage('El país debe ser una cadena de texto'),
 ];
