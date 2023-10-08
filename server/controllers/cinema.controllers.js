@@ -1,4 +1,8 @@
-import { addCinema, deleteCinema, getAllCinema, getCinemaById, updateCinema } from "../models/Cinema.models.js";
+import { addCinema, 
+    deleteCinema, 
+    getAllCinema, 
+    getCinemaById,
+    updateCinema } from "../models/Cinema.models.js";
 
 
 export const ctrlAddCinema = async (req, res) => {

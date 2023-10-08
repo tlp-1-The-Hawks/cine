@@ -5,7 +5,7 @@ import {createMovieValidation} from '../models/schemas/movie.shemas.js';
 
 const movieRouter = Router();
 
-movieRouter.post('/movies/:cinemaId', createMovieValidation, validador, ctrlCreateMovie);
+movieRouter.post('/movies', createMovieValidation, validador, ctrlCreateMovie);
 
 movieRouter.get('/movies', ctrlGetAllMovie)
 

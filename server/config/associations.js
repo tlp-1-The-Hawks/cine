@@ -6,6 +6,7 @@ import { UserModel } from '../models/user_model.js';
 import { MovieModel } from '../models/movie_model.js';
 import { movieCinemaModel } from '../models/movieXcinema.js';
 import { ratingModel } from '../models/Rating.models.js';
+import { infoMovieModel } from '../models/movie_information.model.js';
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -69,10 +70,18 @@ MovieModel.belongsToMany(cinemaModel, {
 
 cinemaModel.belongsToMany(MovieModel, {
   through: movieCinemaModel,
-  as: 'pelicula', 
+  as: 'movie', 
 });
 
+infoMovieModel.hasMany(movieCinemaModel, {
+  foreignKey: 'infomovieId',
+  sourceKey: 'id'
+})
 
+movieCinemaModel.belongsTo(infoMovieModel,{
+  foreignKey: 'infomovieId',
+  targetKey: 'id'
+})
 
 UserModel.hasMany(ratingModel, {
   foreignKey: 'userId',

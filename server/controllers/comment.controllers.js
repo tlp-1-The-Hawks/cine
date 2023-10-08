@@ -1,4 +1,8 @@
-import { addcomment, deleteComment, editComment, getAllComments, getCommentByid } from "../models/Comment.model.js";
+import { addcomment, 
+    deleteComment, 
+    editComment, 
+    getAllComments, 
+    getCommentByid } from "../models/Comment.model.js";
 
 export const ctrlAddcomment = async (req, res) => {
     try {

@@ -1,14 +1,8 @@
 import {createMovie, getAllMovies} from '../models/movie_model.js';
-import { addMovieCinema } from '../models/movieXcinema.js';
+
 export const ctrlCreateMovie = async (req, res) => {
   try {
     const movie = await createMovie(req.body);
-
-    const {cinemaId} = req.params
-    const MovieId = movie.id
-
-
-    const CinemaXmovie = await addMovieCinema(MovieId,cinemaId)
 
     res.status(201).json(movie);
   } catch (error) {

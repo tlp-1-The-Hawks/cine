@@ -1,4 +1,5 @@
 import { sequelize } from '../config/database.js';
+import { infoMovieModel } from './movie_information.model.js';
 
 export const movieCinemaModel = sequelize.define(
   'movie_cinema',
@@ -13,10 +14,11 @@ export const movieCinemaModel = sequelize.define(
 movieCinemaModel.removeAttribute('id')
 //services
 
-export async function addMovieCinema(MovieId, cinemaId) {
+export async function addMovieCinema(movieId, cinemaId, infomovieId) {
   const newMovieCinema = await movieCinemaModel.create({
-    MovieId: MovieId,
-    cinemaId: cinemaId
+    movieId: movieId,
+    cinemaId: cinemaId,
+    infomovieId: infomovieId
   });
 
   return newMovieCinema;
@@ -27,8 +29,18 @@ export async function getAllMovieCinema() {
   return movieXcinemas;
 }
 
-export async function getMovieCinemaById(id) {
-  const movieXcinema = await movieCinemaModel.findByPk(id);
+export async function getMovieCinemaById(movieId,cinemaId) {
+  const movieXcinema = await movieCinemaModel.findOne({
+    where: {
+      movieId: movieId,
+      cinemaId: cinemaId
+    },
+    include: {
+      model: infoMovieModel,
+      as: "infomovie"
+    }
+  }
+  );
   if (!movieXcinema) {
     return null;
   }

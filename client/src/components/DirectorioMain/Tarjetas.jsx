@@ -1,19 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import '../../../public/style/Tarjetas.css'
+import { Link } from 'react-router-dom'
 
 export const Tarjetas = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-
     fetch("http://localhost:4000/api/movies", {
       method: "GET",
     })
-    .then((response) => response.json())
-    .then((data) => setMovies(data))
-    .catch((error) => console.error('Error:', error));
+      .then((response) => response.json())
+      .then((data) => setMovies(data))
+      .catch((error) => console.error('Error:', error));
   }, []);
-  
+
+  const infoMovie = async (e) => {
+    const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
+    const movieId = e.currentTarget.getAttribute("data-movie-id");
+
+    const responses = await fetch(`http://localhost:4000/api/movie-cinema/${movieId}/${cinemaId}`,{
+      method: "GET"
+    })
+    console.log(responses)
+    
+  }
+
   return (
     <section>
       <div className="container">
@@ -24,10 +35,20 @@ export const Tarjetas = () => {
                 <img src="/img/image-example.png" className="card-img-top" alt="..." />
                 <div className="card-body">
                   <h5 className="card-title">{movie.title}</h5>
-                  <p className="card-text">Director: {movie.director}</p>
-                  <p className="card-text">Estreno: {movie.release_year}</p>
                   <p className="card-text">Cines disponibles:</p>
-                  <button type='button' className='btn btn-outline-dark'>{movie.cine[0].name}</button>
+                  {movie.cine.map((cine) => (
+                    <Link
+                      key={cine.id}
+                      to="#"
+                      data-cinema-id={cine.id}
+                      data-movie-id={movie.id}
+                      type='button'
+                      className='btn btn-outline-dark'
+                      onClick={infoMovie}
+                    >
+                      {cine.name}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
