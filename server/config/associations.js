@@ -9,7 +9,7 @@ import { ratingModel } from '../models/Rating.models.js';
 import { infoMovieModel } from '../models/movie_information.model.js';
 import { genreModel } from '../models/genre.models.js';
 import { movieInfoModel } from '../models/moviexinfo.model.js';
-import { infoCinemaModel } from '../models/infoxcinema.model.js';
+import { infoCinemaModel } from '../models/infoXcinema.model.js';
 
 
 //cinema and booking
@@ -80,7 +80,7 @@ MovieModel.hasMany(movieCinemaModel, {
 
 
 
-// Movie, cinema y infomovie
+// Movie, cinema and infomovie
 
 MovieModel.belongsToMany(cinemaModel, { through: movieCinemaModel });
 cinemaModel.belongsToMany(MovieModel, { through: movieCinemaModel });

@@ -37,22 +37,26 @@ export const infoMovieModel = sequelize.define(
 
 //services
 
-export async function addInfoMovie(director,
+export async function addInfor(
+  director,
   release_year,
-  genreId,
   synopsis,
   duration,
   rating,
   actors,
-  score) {
-  return await infoMovieModel.create({
-    director,
-    release_year: release_year,
-    genreId: genreId,
+  score,
+  genreId	
+  ) {
+  const newInfoMovie = await infoMovieModel.create({
+    director:director,
+    release_year:release_year,
     synopsis: synopsis,
     duration: duration,
     rating: rating,
     actors: actors,
-    score: score
+    score: score,
+    genreId	:genreId
   })
+  
+  return newInfoMovie
 } 

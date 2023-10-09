@@ -44,11 +44,11 @@ export async function getAllMovies() {
     include: [
       {
         model: cinemaModel,
-        as: "cine",
+    
       },
       {
         model: infoMovieModel,
-        as: 'infomovie'
+     
       }
     ]
   }) ?? null;

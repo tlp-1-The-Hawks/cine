@@ -8,3 +8,15 @@ export const infoCinemaModel = sequelize.define(
 })
 
 infoCinemaModel.removeAttribute('id')
+
+
+//services
+
+export async function addCinemaInfo(cinemaId, informationId) {
+    const NewCineInfo = await infoCinemaModel.create({
+        cinemaId: cinemaId,
+        informationId: informationId
+    })
+    
+    return NewCineInfo
+}
