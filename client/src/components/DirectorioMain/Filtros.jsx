@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../../public/style/Filtros.css';
+import '../../assets/style/Filtros.css';
 import { Tarjetas } from './Tarjetas';
 
 export const Filtros = () => {

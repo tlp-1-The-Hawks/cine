@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../public/style/Header.css';
+import '../../assets/style/Header.css';
 import { Login } from './ButtonLoginRegister.jsx';
 export const Header = () => {
   return (

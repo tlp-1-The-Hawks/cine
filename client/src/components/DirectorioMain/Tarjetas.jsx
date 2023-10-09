@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../public/style/Tarjetas.css'
+import '../../assets/style/Tarjetas.css'
 import { Link } from 'react-router-dom'
 
 export const Tarjetas = ({moviesWithCinemas}) => {
