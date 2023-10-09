@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import style from '../../../public/style/FormRegister.module.css'
+import style from '../../assets/style/FormRegister.module.css'
 
 
 
@@ -16,7 +16,6 @@ export const FormRegister = () => {
     confirmarpassword: ""
   })
 
-  const [alertMessage, setAlertMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -12,9 +12,13 @@ function App() {
       <Header />
       {/* Contenido principal */}
       <main>
-        <Filtros />
-        {/* Sección de tarjetas */}
-        <Tarjetas />
+        <div className="contenedorMain">
+          
+          <Filtros />
+
+          <Tarjetas />
+
+        </div>
       </main>
       {/* {/ Pie de página */}
       <Footer />

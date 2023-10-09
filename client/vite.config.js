@@ -7,25 +7,4 @@ export default defineConfig({
   server: {
     port: 3000
   },
-  publicDir: 'public'
 })
-
-// export default (args) => {
-//   const generatedScopedName = args.mode === 'production' ? 
-//   '[hash:base64:2]' :
-//   '[local]_[hash:base64:2]'
-
-//   return defineConfig({
-//     plugins: [react()],
-//     server:{
-//       port: 3000
-//     },
-//     css: {
-//       modules: {
-//         localsConvention: 'camelCase',
-//         generateScopedName: generatedScopedName
-//       }
-//     }
-//   })
-// } 
-  

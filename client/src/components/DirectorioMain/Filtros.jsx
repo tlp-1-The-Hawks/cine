@@ -1,10 +1,10 @@
   import React from 'react';
-  import '../../../public/style/Filtros.css'
+  import '../../assets/style/Filtros.css'
 
 export const Filtros = () => {
   return (  
     <>
-      <div className="container pt-4 pb-4">
+      <div className="contenedor pt-4 pb-4">
         <div className="row">
           <div className="col-sm-4 col-lg-6">
             <form>

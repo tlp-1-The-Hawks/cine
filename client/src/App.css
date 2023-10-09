@@ -10,6 +10,12 @@
 
 main {
   height: 100%;
-  margin-bottom: 50px;
   flex-grow: 1;
+  background: #d39655;
+}
+
+
+.contenedorMain {
+  margin-top: 10px;
+  margin-bottom: 50px;
 }

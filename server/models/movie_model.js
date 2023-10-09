@@ -12,7 +12,7 @@ export const MovieModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    release_year: {
+    release_date: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -34,14 +34,6 @@ export const MovieModel = sequelize.define(
     },
     actors: {
       type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    score: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    country: {
-      type: DataTypes.STRING,
       allowNull: false,
     },
   },

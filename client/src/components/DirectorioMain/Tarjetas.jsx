@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../../public/style/Tarjetas.css'
+import '../../assets/style/Tarjetas.css'
 export const Tarjetas = () => {
   return (
-    <section>
+    <section className=''>
       <div className="container">
         <div className="row d-flex">
           <div className="col-md-3 col-sm-12 d-flex justify-content-center">
