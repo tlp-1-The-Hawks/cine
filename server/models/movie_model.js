@@ -1,41 +1,15 @@
 import { sequelize } from '../config/database.js';
 import { DataTypes } from 'sequelize';
+import { cinemaModel } from './Cinema.models.js';
+import { infoMovieModel } from './movie_information.model.js';
 
 export const MovieModel = sequelize.define(
-  'Movie',
+  'movie',
   {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    director: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    release_date: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    genre: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    synopsis: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    duration: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    rating: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    actors: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
+    }
   },
   {
     timestamps: true,
@@ -44,14 +18,25 @@ export const MovieModel = sequelize.define(
 
 // Servicios
 
-export async function createMovie(movieData) {
-  const newMovie = await MovieModel.create(movieData);
+export async function createMovie(movie) {
+  const newMovie = await MovieModel.create(movie);
 
   return newMovie;
 }
 
 export async function getAllMovies() {
-  return (await MovieModel.findAll()) ?? null;
+  return await MovieModel.findAll({
+    include: [
+      {
+        model: cinemaModel,
+        as: "cine",
+      },
+      {
+        model: infoMovieModel,
+        as: 'infomovie'
+      }
+    ]
+  }) ?? null;
 }
 
 export async function getMovieById(movieId) {
@@ -86,4 +71,22 @@ export async function getMovieByTitle(title) {
   }
 
   return movie;
+}
+
+export async function getMovieByInfo(genreId){
+  return await MovieModel.findAll({
+    include: [
+      {
+        model: cinemaModel,
+        as: 'cine'
+      },
+      {
+        model: infoMovieModel,
+        as: 'infomovie',
+        where: {
+          genreId: genreId
+        }
+      }
+    ]
+  })
 }
