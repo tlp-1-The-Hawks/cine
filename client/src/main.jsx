@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Register } from './Pages/Register.jsx';
+import { FormLogin } from './components/Formularios/FormLogin.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
@@ -15,6 +16,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route
         path='/register'
         element={<Register />}
+      />
+      <Route 
+        path='/login'
+        element={<FormLogin />}
       />
     </Routes>
   </BrowserRouter>

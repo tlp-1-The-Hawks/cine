@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import style from '../../../public/style/FormRegister.module.css'
+import '../../assets/style/FormRegister.css'
 
 
 
@@ -16,8 +16,6 @@ export const FormRegister = () => {
     confirmarpassword: ""
   })
 
-  const [alertMessage, setAlertMessage] = useState('');
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormState({
@@ -30,7 +28,7 @@ export const FormRegister = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    fetch("http://localhost:4000/api/users", {
+    fetch("http://localhost:4000/auth/register", {
       method: "POST",
       body: JSON.stringify(formState),
       headers: {
@@ -41,12 +39,12 @@ export const FormRegister = () => {
   }
 
   return (
-    <div className={style.contenedor}>
-      <div className={style.formBox}>
+    <div className='contenedor'>
+      <div className='formBox'>
         <form name='formregister' onChange={handleChange} onSubmit={handleSubmit}>
           <h2>Registro</h2>
 
-          <div className={style.inputBox}>
+          <div className='inputBox'>
             <i className='bx bxs-user'></i>
             <input type="text"
               placeholder='Nombre'
@@ -56,7 +54,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className={style.inputBox}>
+          <div className='inputBox'>
             <i className='bx bxs-user'></i>
             <input type="text"
               placeholder='Apellido'
@@ -66,7 +64,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className={style.inputBox}>
+          <div className='inputBox'>
             <i className='bx bxs-user'></i>
             <input type="text"
               placeholder='Nombre de Usuario'
@@ -76,7 +74,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className={style.inputBox}>
+          <div className='inputBox'>
             <i className='bx bxs-envelope'></i>
             <input type="email"
               placeholder='Email'
@@ -86,7 +84,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className={style.inputBox}>
+          <div className='inputBox'>
             <i className='bx bxs-lock-alt'></i>
             <input type="password"
               placeholder='Contraseña'
@@ -96,7 +94,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className={style.inputBox}>
+          <div className='inputBox'>
             <i className='bx bxs-lock-alt'></i>
             <input
               type="password"
@@ -107,13 +105,13 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className={style.botn}>
-            <input type="submit" className={style.botn} value="Registro" />
+          <div className='botn'>
+            <input type="submit" className='botn' value="Registro" />
           </div>
 
-          <div className={style.group}>
+          <div className='group'>
             <span><a href="#">Recuperar Contraseña</a></span>
-            <span><a href="#">Inicia Sesion</a></span>
+            <span><a href="/login">Inicia Sesion</a></span>
           </div>
         </form>
       </div>
