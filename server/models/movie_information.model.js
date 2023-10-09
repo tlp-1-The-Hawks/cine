@@ -1,5 +1,7 @@
 import { sequelize } from "../config/database.js" 
 import { DataTypes } from "sequelize"
+import { cinemaModel } from "./Cinema.models.js"
+import { MovieModel } from "./movie_model.js"
 
 export const infoMovieModel = sequelize.define(
     'infomovie', {
@@ -9,10 +11,6 @@ export const infoMovieModel = sequelize.define(
     },
     release_year: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    genre: {
-      type: DataTypes.STRING,
       allowNull: false,
     },
     synopsis: {
@@ -41,7 +39,7 @@ export const infoMovieModel = sequelize.define(
 
 export async function addInfoMovie(  director,
         release_year,
-        genre,
+        genreId,
         synopsis,
         duration,
         rating,
@@ -49,11 +47,10 @@ export async function addInfoMovie(  director,
         score){
  return await infoMovieModel.create({  director,
             release_year :release_year,
-            genre  :genre,
+            genreId  :genreId,
             synopsis  :synopsis,
             duration  :duration,
             rating  :rating,
             actors :actors,
             score :score})
     } 
-

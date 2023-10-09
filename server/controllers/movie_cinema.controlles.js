@@ -1,4 +1,4 @@
-import { getMovieCinemaById } from "../models/movieXcinema.js"
+import { getAllMovieCinema, getMovieCinemaById } from "../models/movieXcinema.js"
 
 export const ctrlGetOneMovieCinema = async (req,res) => {
     try {
@@ -13,4 +13,17 @@ export const ctrlGetOneMovieCinema = async (req,res) => {
             message: 'Arror get one movie-cinema'
         })
     }
-}   
+}
+
+export const ctrlGetAllMovieCinema = async (req,res) => {
+    try {
+        const MovieCinema = await getAllMovieCinema()
+
+        res.status(200).json(MovieCinema)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: 'Error get alll movie-cinema'
+        })
+    }
+}

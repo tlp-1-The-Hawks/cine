@@ -5,9 +5,9 @@ export const ctrlAddInfoMovie = async (req, res) => {
     try {
         const {
             movieId,
+            genreId,
             director,
             release_year,
-            genre,
             synopsis,
             duration,
             rating,
@@ -19,7 +19,7 @@ export const ctrlAddInfoMovie = async (req, res) => {
 
         const AddInfo = await addInfoMovie(director,
             release_year,
-            genre,
+            genreId,
             synopsis,
             duration,
             rating,

@@ -1,5 +1,6 @@
 import { sequelize } from '../config/database.js';
 import { infoMovieModel } from './movie_information.model.js';
+import { cinemaModel } from './Cinema.models.js';
 
 export const movieCinemaModel = sequelize.define(
   'movie_cinema',
@@ -25,7 +26,14 @@ export async function addMovieCinema(movieId, cinemaId, infomovieId) {
 }
 
 export async function getAllMovieCinema() {
-  const movieXcinemas = await movieCinemaModel.findAll();
+  const movieXcinemas = await movieCinemaModel.findAll({
+    include: [
+      {
+        model: cinemaModel,
+        as: 'cinema'
+      }
+    ]
+  });
   return movieXcinemas;
 }
 
@@ -37,7 +45,7 @@ export async function getMovieCinemaById(movieId,cinemaId) {
     },
     include: {
       model: infoMovieModel,
-      as: "infomovie"
+      as: 'infomovie'
     }
   }
   );

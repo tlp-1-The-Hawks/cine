@@ -7,6 +7,7 @@ import { MovieModel } from '../models/movie_model.js';
 import { movieCinemaModel } from '../models/movieXcinema.js';
 import { ratingModel } from '../models/Rating.models.js';
 import { infoMovieModel } from '../models/movie_information.model.js';
+import { genreModel } from '../models/genre.models.js';
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -63,6 +64,7 @@ bookingModel.belongsTo(MovieModel, {
   targetKey: 'id',
 });
 
+// Movie, cinema y infomovie
 MovieModel.belongsToMany(cinemaModel, {
   through: movieCinemaModel,
   as: 'cine', 
@@ -72,6 +74,26 @@ cinemaModel.belongsToMany(MovieModel, {
   through: movieCinemaModel,
   as: 'movie', 
 });
+
+infoMovieModel.belongsToMany(MovieModel, {
+  through: movieCinemaModel,
+  as: 'movie'
+})
+
+infoMovieModel.belongsToMany(cinemaModel,{
+  through: movieCinemaModel,
+  as: 'cine'
+})
+
+MovieModel.belongsToMany(infoMovieModel, {
+  through: movieCinemaModel,
+  as:'infomovie'
+})
+
+cinemaModel.belongsToMany(infoMovieModel, {
+  through: movieCinemaModel,
+  as:'infomovie'
+})
 
 infoMovieModel.hasMany(movieCinemaModel, {
   foreignKey: 'infomovieId',
@@ -83,6 +105,15 @@ movieCinemaModel.belongsTo(infoMovieModel,{
   targetKey: 'id'
 })
 
+genreModel.hasMany(infoMovieModel,{
+  foreignKey: 'genreId',
+  sourceKey: 'id'
+})
+
+infoMovieModel.belongsTo(genreModel,{
+  foreignKey: 'genreId',
+  targetKey: 'id'
+})
 UserModel.hasMany(ratingModel, {
   foreignKey: 'userId',
   sourceKey: 'id',

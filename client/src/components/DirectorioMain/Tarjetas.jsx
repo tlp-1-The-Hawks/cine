@@ -1,40 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../../../public/style/Tarjetas.css'
 import { Link } from 'react-router-dom'
 
-export const Tarjetas = () => {
-  const [movies, setMovies] = useState([]);
+export const Tarjetas = ({moviesWithCinemas}) => {
 
-  useEffect(() => {
-    fetch("http://localhost:4000/api/movies", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => setMovies(data))
-      .catch((error) => console.error('Error:', error));
-  }, []);
+  // const infoMovie = async (e) => {
+  //   const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
+  //   const movieId = e.currentTarget.getAttribute("data-movie-id");
 
-  const infoMovie = async (e) => {
-    const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
-    const movieId = e.currentTarget.getAttribute("data-movie-id");
-
-    const responses = await fetch(`http://localhost:4000/api/movie-cinema/${movieId}/${cinemaId}`,{
-      method: "GET"
-    })
-    console.log(responses)
+  //   const responses = await fetch(`http://localhost:4000/api/movie-cinema/${movieId}/${cinemaId}`,{
+  //     method: "GET"
+  //   })
+  //   console.log(responses)
     
-  }
+  // }
+
+
+  const getGenreName = (genreId) => {
+    const genreMap = {
+      1: 'Acción',
+      2: 'Drama',
+      3: 'Familia',
+    };
+  
+    return genreMap[genreId] || 'Desconocido';
+  };
 
   return (
     <section>
       <div className="container">
         <div className="row d-flex">
-          {movies.map((movie) => (
+          {moviesWithCinemas.map((movie) => (
             <div key={movie.id} className="col-md-3 col-sm-12 d-flex justify-content-center">
               <div className="card">
                 <img src="/img/image-example.png" className="card-img-top" alt="..." />
                 <div className="card-body">
                   <h5 className="card-title">{movie.title}</h5>
+                  <p className="card-text">Género: {getGenreName(movie.infomovie[0].genreId)}</p>
                   <p className="card-text">Cines disponibles:</p>
                   {movie.cine.map((cine) => (
                     <Link
@@ -44,7 +46,6 @@ export const Tarjetas = () => {
                       data-movie-id={movie.id}
                       type='button'
                       className='btn btn-outline-dark'
-                      onClick={infoMovie}
                     >
                       {cine.name}
                     </Link>
@@ -57,4 +58,4 @@ export const Tarjetas = () => {
       </div>
     </section>
   );
-};
+}

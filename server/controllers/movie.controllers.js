@@ -1,4 +1,4 @@
-import {createMovie, getAllMovies} from '../models/movie_model.js';
+import {createMovie, getAllMovies, getMovieByInfo} from '../models/movie_model.js';
 
 export const ctrlCreateMovie = async (req, res) => {
   try {
@@ -20,6 +20,22 @@ export const ctrlGetAllMovie = async (req,res) => {
     console.log(error)
     res.status(500).json({
       message: "Error al obtener las peliculas"
+    })
+  }
+}
+
+export const ctrlGetMovieByInfo = async (req,res) => {
+  try {
+    const {
+      genreId
+    } = req.params
+
+    const movie = await getMovieByInfo(genreId)
+
+    res.status(200).json(movie)
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error get movie by Info'
     })
   }
 }

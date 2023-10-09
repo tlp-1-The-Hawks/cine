@@ -13,8 +13,6 @@ function App() {
       {/* Contenido principal */}
       <main>
         <Filtros />
-        {/* Sección de tarjetas */}
-        <Tarjetas />
       </main>
       {/* {/ Pie de página */}
       <Footer />
