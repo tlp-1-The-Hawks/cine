@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { ctrlAddcomment, ctrlDeleteComment, ctrlEditComment, ctrlGetAllcomment, ctrlGetCommentById } from "../controllers/comment.controllers.js";
+import { ctrlAddcomment, 
+    ctrlDeleteComment, 
+    ctrlEditComment, 
+    ctrlGetAllcomment, 
+    ctrlGetCommentById } from "../controllers/comment.controllers.js";
 
 
 const commentRouter = Router();

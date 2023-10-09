@@ -1,5 +1,7 @@
 import {Router} from 'express';
-import {ctrlCreateMovie, ctrlGetAllMovie, ctrlGetMovieByInfo} from '../controllers/movie.controllers.js';
+import {ctrlCreateMovie, 
+    ctrlGetAllMovie, 
+    ctrlGetMovieByInfo} from '../controllers/movie.controllers.js';
 import {validador} from '../middlewares/validator.js';
 import {createMovieValidation} from '../models/schemas/movie.shemas.js';
 

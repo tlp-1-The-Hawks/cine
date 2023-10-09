@@ -1,7 +1,5 @@
 import { sequelize } from "../config/database.js"
 import { DataTypes } from "sequelize"
-import { cinemaModel } from "./Cinema.models.js"
-import { MovieModel } from "./movie_model.js"
 
 export const infoMovieModel = sequelize.define(
   'information', {
