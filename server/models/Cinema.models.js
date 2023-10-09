@@ -1,5 +1,5 @@
 import { sequelize } from '../config/database.js';
-import { DataTypes,} from 'sequelize';
+import { DataTypes, } from 'sequelize';
 import { MovieModel } from './movie_model.js';
 import { movieCinemaModel } from './movieXcinema.js';
 
@@ -47,8 +47,13 @@ export async function getAllCinema() {
 }
 
 
-export async function getCinemaById(id) {
-  const cinema = await cinemaModel.findByPk(id);
+export async function getCinemaById(cinemaId) {
+  const cinema = await cinemaModel.findOne({
+    where: {
+      id: cinemaId
+    }
+  });
+
   if (!cinema) {
     return null;
   }

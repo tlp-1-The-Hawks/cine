@@ -8,6 +8,7 @@ export const movieCinemaModel = sequelize.define(
 
   },
   {
+    indexes: [],
     timestamps: false,
   }
 );
@@ -15,11 +16,10 @@ export const movieCinemaModel = sequelize.define(
 movieCinemaModel.removeAttribute('id')
 //services
 
-export async function addMovieCinema(movieId, cinemaId, infomovieId) {
+export async function addMovieCinema(movieId, cinemaId) {
   const newMovieCinema = await movieCinemaModel.create({
     movieId: movieId,
-    cinemaId: cinemaId,
-    infomovieId: infomovieId
+    cinemaId: cinemaId
   });
 
   return newMovieCinema;
@@ -37,7 +37,7 @@ export async function getAllMovieCinema() {
   return movieXcinemas;
 }
 
-export async function getMovieCinemaById(movieId,cinemaId) {
+export async function getMovieCinemaById(movieId, cinemaId) {
   const movieXcinema = await movieCinemaModel.findOne({
     where: {
       movieId: movieId,

@@ -8,6 +8,9 @@ import { movieCinemaModel } from '../models/movieXcinema.js';
 import { ratingModel } from '../models/Rating.models.js';
 import { infoMovieModel } from '../models/movie_information.model.js';
 import { genreModel } from '../models/genre.models.js';
+import { movieInfoModel } from '../models/moviexinfo.model.js';
+import { infoCinemaModel } from '../models/infoxcinema.model.js';
+
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -64,53 +67,36 @@ bookingModel.belongsTo(MovieModel, {
   targetKey: 'id',
 });
 
-// Movie, cinema y infomovie
-MovieModel.belongsToMany(cinemaModel, {
-  through: movieCinemaModel,
-  as: 'cine', 
-});
-
-cinemaModel.belongsToMany(MovieModel, {
-  through: movieCinemaModel,
-  as: 'movie', 
-});
-
-infoMovieModel.belongsToMany(MovieModel, {
-  through: movieCinemaModel,
-  as: 'movie'
+//uno a muchos 
+movieCinemaModel.belongsTo(MovieModel, {
+  foreignKey: 'movieId',
+  targetKey: 'id',
 })
 
-infoMovieModel.belongsToMany(cinemaModel,{
-  through: movieCinemaModel,
-  as: 'cine'
-})
-
-MovieModel.belongsToMany(infoMovieModel, {
-  through: movieCinemaModel,
-  as:'infomovie'
-})
-
-cinemaModel.belongsToMany(infoMovieModel, {
-  through: movieCinemaModel,
-  as:'infomovie'
-})
-
-infoMovieModel.hasMany(movieCinemaModel, {
-  foreignKey: 'infomovieId',
+MovieModel.hasMany(movieCinemaModel, {
+  foreignKey: 'movieId',
   sourceKey: 'id'
 })
 
-movieCinemaModel.belongsTo(infoMovieModel,{
-  foreignKey: 'infomovieId',
-  targetKey: 'id'
-})
 
-genreModel.hasMany(infoMovieModel,{
+
+// Movie, cinema y infomovie
+
+MovieModel.belongsToMany(cinemaModel, { through: movieCinemaModel });
+cinemaModel.belongsToMany(MovieModel, { through: movieCinemaModel });
+
+MovieModel.belongsToMany(infoMovieModel, { through: movieInfoModel });
+infoMovieModel.belongsToMany(MovieModel, { through: movieInfoModel });
+
+cinemaModel.belongsToMany(infoMovieModel, { through: infoCinemaModel });
+infoMovieModel.belongsToMany(cinemaModel, { through: infoCinemaModel })
+
+genreModel.hasMany(infoMovieModel, {
   foreignKey: 'genreId',
   sourceKey: 'id'
 })
 
-infoMovieModel.belongsTo(genreModel,{
+infoMovieModel.belongsTo(genreModel, {
   foreignKey: 'genreId',
   targetKey: 'id'
 })
