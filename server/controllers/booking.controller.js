@@ -1,4 +1,4 @@
-import { addBooking, getAllBooking } from "../models/Booking.models.js"
+import { addBooking, getAllBooking, getBookingById } from "../models/Booking.models.js"
 
 export const ctrlAddBooking = async (req,res) => {
     try {
@@ -30,11 +30,11 @@ export const ctrlAddBooking = async (req,res) => {
     }
 }
 
-export const ctrlGetAllBooking = async (req, res )=> {
+export const ctrlGetAllBooking = async (req, res ) => {
     try {
-        const booking = await getAllBooking()
+        const bookings = await getAllBooking()
 
-        res.status(200).json(booking)
+        res.status(200).json(bookings)
     } catch (error) {
         console.log(error)
         res.status(500).json({
@@ -42,4 +42,21 @@ export const ctrlGetAllBooking = async (req, res )=> {
         })
     }
 
+}
+
+export const ctrlGetOneBooking = async (req,res) => {
+    try {
+        const {
+            bookingId
+        } = req.params
+
+        const booking = await getBookingById(bookingId)
+
+        res.status(200).json(booking)
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error get booking by id'
+        })
+        
+    }
 }
