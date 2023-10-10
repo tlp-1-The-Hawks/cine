@@ -18,10 +18,25 @@ export const MovieModel = sequelize.define(
 
 // Servicios
 
-export async function createMovie(movie) {
-  const newMovie = await MovieModel.create(movie);
+export async function createMovie(title) {
 
-  return newMovie;
+  let shearchMovie = await MovieModel.findOne({
+    where: {
+      title: title,
+    }
+  }) ?? null
+
+
+  if (shearchMovie === null) {
+    const newMovie = await MovieModel.create({
+      title: title
+    });
+
+
+    return newMovie
+  } else {
+    return shearchMovie
+  }
 }
 
 export async function getAllMovies() {
@@ -29,18 +44,32 @@ export async function getAllMovies() {
     include: [
       {
         model: cinemaModel,
-        as: "cine",
+    
       },
       {
         model: infoMovieModel,
-        as: 'infomovie'
+     
       }
     ]
   }) ?? null;
 }
 
-export async function getMovieById(movieId) {
-  const movie = await MovieModel.findByPk(movieId);
+export async function getMovieById(movieId,cinemaId) {
+  const movie = await MovieModel.findOne({
+    where: {
+      id: movieId
+    },
+    include: [
+      {
+        model: cinemaModel,
+        where: {
+          id: cinemaId
+        }
+      }
+    ]
+  });
+
+
   if (!movie) {
     return null;
   }
@@ -73,7 +102,7 @@ export async function getMovieByTitle(title) {
   return movie;
 }
 
-export async function getMovieByInfo(genreId){
+export async function getMovieByInfo(genreId) {
   return await MovieModel.findAll({
     include: [
       {

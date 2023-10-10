@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { ctrlAddCinema, ctrlGetCinemaById, ctrlgetAllCinema, ctrlDeleteCinema, ctrlEditCinema } from "../controllers/cinema.controllers.js";
+import { ctrlAddCinema, 
+    ctrlGetCinemaById, 
+    ctrlgetAllCinema, 
+    ctrlDeleteCinema, 
+    ctrlEditCinema } from "../controllers/cinema.controllers.js";
 
 const cinemaRouter = Router();
 

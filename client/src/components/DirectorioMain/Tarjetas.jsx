@@ -18,8 +18,8 @@ export const Tarjetas = ({moviesWithCinemas}) => {
 
   const getGenreName = (genreId) => {
     const genreMap = {
-      1: 'Acción',
-      2: 'Drama',
+      1: 'Drama',
+      2: 'Acción',
       3: 'Familia',
     };
   
@@ -36,9 +36,9 @@ export const Tarjetas = ({moviesWithCinemas}) => {
                 <img src="/img/image-example.png" className="card-img-top" alt="..." />
                 <div className="card-body">
                   <h5 className="card-title">{movie.title}</h5>
-                  <p className="card-text">Género: {getGenreName(movie.infomovie[0].genreId)}</p>
+                  <p className="card-text">Género: {getGenreName(movie.information[0].genreId)}</p>
                   <p className="card-text">Cines disponibles:</p>
-                  {movie.cine.map((cine) => (
+                  {movie.cinemas.map((cine) => (
                     <Link
                       key={cine.id}
                       to="#"

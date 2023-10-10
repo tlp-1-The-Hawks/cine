@@ -1,39 +1,52 @@
-import { addInfoMovie } from "../models/movie_information.model.js";
+import { addCinemaInfo } from "../models/infoXcinema.model.js";
+import { createMovie } from "../models/movie_model.js";
 import { addMovieCinema } from '../models/movieXcinema.js';
+import { addMovieInfo } from "../models/moviexinfo.model.js";
+import { addInfor } from "../models/movie_information.model.js";
 
 export const ctrlAddInfoMovie = async (req, res) => {
     try {
         const {
-            movieId,
-            genreId,
+            title,
             director,
             release_year,
             synopsis,
             duration,
             rating,
             actors,
-            score
+            score,
+            genreId	 
         } = req.body
 
-        const {cinemaId} = req.params
+      
+        const { cinemaId } = req.params
 
-        const AddInfo = await addInfoMovie(director,
+        const NewMovie = await createMovie(title)
+
+        const addInfo = await addInfor(
+            director,
             release_year,
-            genreId,
             synopsis,
             duration,
             rating,
             actors,
-            score)
-
-        const infomovieId = AddInfo.id
+            score,
+            genreId)
         
-        const CinemaXmovie = await addMovieCinema(movieId,cinemaId,infomovieId)
+        const movieId = NewMovie.id
+        const informationId = addInfo.id
 
+
+        const MovieCinema = await addMovieCinema(movieId, cinemaId)
+
+        const CinemaInfo = await  addCinemaInfo(cinemaId, informationId)
+        
+        const newMovieInfo = await addMovieInfo(movieId, informationId)
+        
         res.status(200).json({
-            message:'information added'
+            message: 'Created'
         })
-            
+
     } catch (error) {
         console.log(error)
         res.status(500).json({

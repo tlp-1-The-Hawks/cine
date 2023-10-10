@@ -1,13 +1,12 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/database.js';
+import { UserModel } from './user_model.js';
+import { cinemaModel } from './Cinema.models.js';
+import { MovieModel } from './movie_model.js';
 
 export const bookingModel = sequelize.define(
   'booking',
   {
-    date_booking: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
     tikets: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -20,11 +19,12 @@ export const bookingModel = sequelize.define(
 
 //services
 
-export async function addBooking(booking, userId, movieId) {
+export async function addBooking(tikets, cinemaId, userId, movieId) {
   const newBooking = await bookingModel.create({
-    ...booking,
-    userId,
-    movieId,
+    tikets: tikets,
+    cinemaId: cinemaId,
+    userId: userId,
+    movieId: movieId
   });
 
   return newBooking;
@@ -37,8 +37,23 @@ export async function getAllBooking() {
 
 }
 
-export async function getBookingById(id) {
-  const booking = await bookingModel.findByPk(id);
+export async function getBookingById(bookingId) {
+  const booking = await bookingModel.findOne({
+    where: {
+      id: bookingId
+    },
+    include: [
+      {
+        model: UserModel
+      },
+      {
+        model: MovieModel
+      },
+      {
+        model: cinemaModel
+      }
+    ]
+  });
   if (!booking) {
     return null;
   }

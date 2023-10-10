@@ -3,7 +3,7 @@ import { ctrlAddInfoMovie} from '../controllers/infomovie.controllers.js'
 
 const infoMovierouter = Router()
 
-infoMovierouter.post('/infomovie/:cinemaId', ctrlAddInfoMovie)
+infoMovierouter.post('/information/:cinemaId', ctrlAddInfoMovie)
 
 
 export {infoMovierouter}
