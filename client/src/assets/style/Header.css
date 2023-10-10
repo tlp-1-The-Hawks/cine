@@ -3,6 +3,7 @@ nav {
   background-color: #001011;
   color: aliceblue;
   padding: 10px;
+  min-height: 70px;
 }
 
 header img {
@@ -31,4 +32,12 @@ header img {
 .color-fondo:hover {
   background-color: #e3a209;
   color: white;
+}
+
+.login-buttons {
+  visibility: hidden;
+}
+
+.login-buttons.visible {
+  visibility: visible;
 }

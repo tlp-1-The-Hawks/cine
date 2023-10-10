@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useEffect } from 'react'
 import '../../assets/style/FormLogin.css'
 
 export const FormLogin = () => {
@@ -27,9 +28,42 @@ export const FormLogin = () => {
       headers: {
         'content-type': 'application/json'
       }
-    }).then(res => res.json())
-      .then(res => console.log(res))
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error('Error en la solicitud');
+      }
+    })
+    .then(data => {
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        window.location.href = '/';
+      } else {
+        console.error('Error al iniciar sesión');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+    
   }
+    
+    useEffect(() => {
+    // Verificar si hay un token en el localStorage
+    const token = localStorage.getItem('token');
+    
+    const tokenExpirationTime = 1 * 60 * 1000; // 1 minuto en milisegundos
+    setTimeout(() => {
+      localStorage.removeItem('token'); // Eliminar el token del localStorage
+    }, tokenExpirationTime);
+
+    if (token) {
+      // Redirigir automáticamente a otra página (por ejemplo, '/dashboard')
+      window.location.href = '/';
+    }
+  }, []);
 
   return (
         <div className='contenedor'>

@@ -1,7 +1,13 @@
 import React from 'react';
 import '../../assets/style/Header.css';
-import { Login } from './ButtonLoginRegister.jsx';
+import { LoginButtons } from './ButtonLoginRegister.jsx';
+
 export const Header = () => {
+  const token = localStorage.getItem('token');
+
+  // Agregar o quitar la clase "visible" según la presencia del token
+  const loginButtonsClass = token ? 'login-buttons' : 'login-buttons visible';
+
   return (
     <header>
       <nav className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
@@ -31,8 +37,10 @@ export const Header = () => {
           </button>
         </form>
 
-        <Login />
-
+        {/* Aplicar la clase loginButtonsClass al componente LoginButtons */}
+        <div className={loginButtonsClass}>
+          <LoginButtons />
+        </div>
       </nav>
     </header>
   );
