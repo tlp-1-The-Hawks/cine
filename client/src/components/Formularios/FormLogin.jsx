@@ -51,16 +51,10 @@ export const FormLogin = () => {
   }
     
     useEffect(() => {
-    // Verificar si hay un token en el localStorage
+
     const token = localStorage.getItem('token');
-    
-    const tokenExpirationTime = 1 * 60 * 1000; // 1 minuto en milisegundos
-    setTimeout(() => {
-      localStorage.removeItem('token'); // Eliminar el token del localStorage
-    }, tokenExpirationTime);
 
     if (token) {
-      // Redirigir automáticamente a otra página (por ejemplo, '/dashboard')
       window.location.href = '/';
     }
   }, []);
@@ -68,7 +62,7 @@ export const FormLogin = () => {
   return (
         <div className='contenedor'>
       <div className='formBoxe'>
-        <form name='formlogin' onChange={handleChange} onSubmit={handleSubmit}>
+        <form name='formlogin' onSubmit={handleSubmit}>
           <h2>Inicio de Sesión</h2>
 
           <div className='inputBox'>
@@ -78,6 +72,7 @@ export const FormLogin = () => {
               name="email"
               id='email'
               value={formState.email}
+              onChange={handleChange}
             />
           </div>
 
@@ -88,6 +83,7 @@ export const FormLogin = () => {
               name="password"
               id='password'
               value={formState.password}
+              onChange={handleChange}
             />
           </div>
 

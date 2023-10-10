@@ -1,9 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import { useEffect } from 'react'
 import '../../assets/style/FormRegister.css'
-
-
-
 
 export const FormRegister = () => {
 
@@ -28,20 +26,47 @@ export const FormRegister = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+
     fetch("http://localhost:4000/auth/register", {
       method: "POST",
       body: JSON.stringify(formState),
       headers: {
         'content-type': 'application/json'
       }
-    }).then(res => res.json())
-      .then(res => console.log(res))
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error('Error en la solicitud');
+      }
+    })
+    .then(data => {
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        window.location.href = '/';
+      } else {
+        console.error('Error al iniciar sesión');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   }
+  
+  useEffect(() => {
+
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      window.location.href = '/';
+    }
+  }, []);
 
   return (
     <div className='contenedor'>
       <div className='formBox'>
-        <form name='formregister' onChange={handleChange} onSubmit={handleSubmit}>
+        <form name='formregister' onSubmit={handleSubmit}>
           <h2>Registro</h2>
 
           <div className='inputBox'>
@@ -51,6 +76,7 @@ export const FormRegister = () => {
               name="name"
               id='name'
               value={formState.name}
+              onChange={handleChange}
             />
           </div>
 
@@ -61,6 +87,7 @@ export const FormRegister = () => {
               name="last_name"
               id='last_name'
               value={formState.last_name}
+              onChange={handleChange}
             />
           </div>
 
@@ -71,6 +98,7 @@ export const FormRegister = () => {
               name="username"
               id='username'
               value={formState.username}
+              onChange={handleChange}
             />
           </div>
 
@@ -81,6 +109,7 @@ export const FormRegister = () => {
               name="email"
               id='email'
               value={formState.email}
+              onChange={handleChange}
             />
           </div>
 
@@ -91,6 +120,7 @@ export const FormRegister = () => {
               name="password"
               id='password'
               value={formState.password}
+              onChange={handleChange}
             />
           </div>
 
@@ -102,6 +132,7 @@ export const FormRegister = () => {
               name="confirmarpassword"
               id="confirmarpassword"
               value={formState.confirmarpassword}
+              onChange={handleChange}
             />
           </div>
 
