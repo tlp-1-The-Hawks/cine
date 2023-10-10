@@ -4,10 +4,6 @@ import { sequelize } from '../config/database.js';
 export const bookingModel = sequelize.define(
   'booking',
   {
-    date_booking: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
     tikets: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -20,11 +16,12 @@ export const bookingModel = sequelize.define(
 
 //services
 
-export async function addBooking(booking, userId, movieId) {
+export async function addBooking(tikets, cinemaId, userId, movieId) {
   const newBooking = await bookingModel.create({
-    ...booking,
-    userId,
-    movieId,
+    tikets: tikets,
+    cinemaId: cinemaId,
+    userId: userId,
+    movieId: movieId
   });
 
   return newBooking;

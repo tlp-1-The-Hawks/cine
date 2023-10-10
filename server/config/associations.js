@@ -14,12 +14,12 @@ import { infoCinemaModel } from '../models/infoXcinema.model.js';
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
-  foreignKey: 'cineId',
+  foreignKey: 'cinemaId',
   sourceKey: 'id',
 });
 
 bookingModel.belongsTo(cinemaModel, {
-  foreignKey: 'cineId',
+  foreignKey: 'cinemaId',
   targetKey: 'id',
 });
 

@@ -54,8 +54,22 @@ export async function getAllMovies() {
   }) ?? null;
 }
 
-export async function getMovieById(movieId) {
-  const movie = await MovieModel.findByPk(movieId);
+export async function getMovieById(movieId,cinemaId) {
+  const movie = await MovieModel.findOne({
+    where: {
+      id: movieId
+    },
+    include: [
+      {
+        model: cinemaModel,
+        where: {
+          id: cinemaId
+        }
+      }
+    ]
+  });
+
+
   if (!movie) {
     return null;
   }
