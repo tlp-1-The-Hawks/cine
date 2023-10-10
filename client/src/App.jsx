@@ -7,16 +7,14 @@ import './App.css';
 
 function App() {
   return (
-    <div className="wrapper">
-      {/* Encabezado */}
-      <Header />
-      {/* Contenido principal */}
-      <main>
+      <div className="wrapper">
+        <Header />
+        <main>
         <Filtros />
-      </main>
-      {/* {/ Pie de página */}
-      <Footer />
-    </div>
+
+        </main>
+        <Footer />
+      </div>
   );
 }
 

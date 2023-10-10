@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom'
 
 export const Tarjetas = ({moviesWithCinemas}) => {
 
-  // const infoMovie = async (e) => {
-  //   const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
-  //   const movieId = e.currentTarget.getAttribute("data-movie-id");
+  const infoMovie = async (e) => {
+    const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
+    const movieId = e.currentTarget.getAttribute("data-movie-id");
 
-  //   const responses = await fetch(`http://localhost:4000/api/movie-cinema/${movieId}/${cinemaId}`,{
-  //     method: "GET"
-  //   })
-  //   console.log(responses)
+    const responses = await fetch(`http://localhost:4000/api/movie-cinema/${movieId}/${cinemaId}`,{
+      method: "GET"
+    })
+    console.log(responses)
     
-  // }
+  }
 
 
   const getGenreName = (genreId) => {
