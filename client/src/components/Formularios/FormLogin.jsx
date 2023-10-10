@@ -34,7 +34,7 @@ export const FormLogin = () => {
   return (
         <div className='contenedor'>
       <div className='formBoxe'>
-        <form name='formregister' onChange={handleChange} onSubmit={handleSubmit}>
+        <form name='formlogin' onChange={handleChange} onSubmit={handleSubmit}>
           <h2>Inicio de Sesión</h2>
 
           <div className='inputBox'>
