@@ -9,31 +9,15 @@ export const FormReserva = () => {
           <h2>Reserva de Asientos de Cine</h2>
 
         <div className="inputBox">
-          <input
-            type="text"
-            placeholder='Nombre Completo'
-          />
-        </div>
-
-        <div className="inputBox">
-          <input
-            type="tel"
-            placeholder='Teléfono'
-          />
-        </div>
-
-        <div className="inputBox">
-          <label>Fecha y Hora</label>
-          <input
-            type="datetime-local"
-          />
-        </div>
-
-        <div className="inputBox">
           <label>Número de Boletos</label>
           <input
             type="number"
           />
+        </div>
+
+        <div className="inputBox">
+          <label>Precio Final</label>
+          <p>(Precio del cine)</p>
         </div>
         
         <div className='boton'>

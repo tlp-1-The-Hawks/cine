@@ -12,6 +12,7 @@ export const Tarjetas = ({moviesWithCinemas}) => {
       method: "GET"
     })
     console.log(responses)
+    console.log(cinemaId, movieId);
     
   }
 
@@ -46,6 +47,7 @@ export const Tarjetas = ({moviesWithCinemas}) => {
                       data-movie-id={movie.id}
                       type='button'
                       className='btn btn-outline-dark'
+                      onClick={infoMovie}
                     >
                       {cine.name}
                     </Link>
