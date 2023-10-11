@@ -2,7 +2,7 @@ import React from 'react';
 import '../../assets/style/Tarjetas.css'
 import { Link } from 'react-router-dom'
 
-export const Tarjetas = ({moviesWithCinemas}) => {
+export const Tarjetas = ({ moviesWithCinemas }) => {
 
   // const infoMovie = async (e) => {
   //   const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
@@ -12,19 +12,19 @@ export const Tarjetas = ({moviesWithCinemas}) => {
   //     method: "GET"
   //   })
   //   console.log(responses)
-    
+
   // }
 
 
-  const getGenreName = (genreId) => {
-    const genreMap = {
-      1: 'Drama',
-      2: 'Acción',
-      3: 'Familia',
-    };
-  
-    return genreMap[genreId] || 'Desconocido';
-  };
+  // const getGenreName = (genreId) => {
+  //   const genreMap = {
+  //     1: 'Drama',
+  //     2: 'Acción',
+  //     3: 'Familia',
+  //   };
+
+  //   return genreMap[genreId] || 'Desconocido';
+  // };
 
   return (
     <section>
@@ -36,7 +36,9 @@ export const Tarjetas = ({moviesWithCinemas}) => {
                 <img src="/img/image-example.png" className="card-img-top" alt="..." />
                 <div className="card-body">
                   <h5 className="card-title">{movie.title}</h5>
-                  <p className="card-text">Género: {getGenreName(movie.information[0].genreId)}</p>
+                  {movie.information.map((info) => (
+                    <p className="card-text">Género: {info.genre.genre}</p>
+                  ))}
                   <p className="card-text">Cines disponibles:</p>
                   {movie.cinemas.map((cine) => (
                     <Link

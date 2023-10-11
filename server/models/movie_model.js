@@ -2,6 +2,7 @@ import { sequelize } from '../config/database.js';
 import { DataTypes } from 'sequelize';
 import { cinemaModel } from './Cinema.models.js';
 import { infoMovieModel } from './movie_information.model.js';
+import { genreModel } from './genre.models.js';
 
 export const MovieModel = sequelize.define(
   'movie',
@@ -44,17 +45,19 @@ export async function getAllMovies() {
     include: [
       {
         model: cinemaModel,
-    
+
       },
       {
         model: infoMovieModel,
-     
+        include: {
+          model: genreModel
+        }
       }
     ]
   }) ?? null;
 }
 
-export async function getMovieById(movieId,cinemaId) {
+export async function getMovieById(movieId, cinemaId) {
   const movie = await MovieModel.findOne({
     where: {
       id: movieId
