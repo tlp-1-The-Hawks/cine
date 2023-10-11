@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movie, cinema } = params;
-console.log(movie, cinema)
 
 export const FormReserva = () => {
   const [info, setInfo] = useState({})
