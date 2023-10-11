@@ -15,17 +15,6 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
     // }
 
-
-    // const getGenreName = (genreId) => {
-    //   const genreMap = {
-    //     1: 'Drama',
-    //     2: 'Acción',
-    //     3: 'Familia',
-    //   };
-
-    //   return genreMap[genreId] || 'Desconocido';
-    // };
-
     return (
       <section className=''>
         <div className="container">
