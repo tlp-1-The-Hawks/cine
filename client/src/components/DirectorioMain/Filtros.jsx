@@ -15,21 +15,21 @@ export const Filtros = () => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  const filtrar = async (e)  => {
+  const filtrar = async (e) => {
     const { value } = e.target;
 
-    await fetch(`http://localhost:4000/api/movies/${value}`,{
+    await fetch(`http://localhost:4000/api/movies/${value}`, {
       method: "GET"
     })
-    .then((response) => response.json())
-    .then((data) => setFiltro(data))
-    .catch((error) => console.error('Error:', error));
-    
+      .then((response) => response.json())
+      .then((data) => setFiltro(data))
+      .catch((error) => console.error('Error:', error));
+
   }
 
   return (
     <>
-      <div className="container pt-4 pb-4">
+      <div className="filtro container pt-4 pb-4">
         <div className="row">
           <div className="col-sm-4 col-lg-6">
             <form>
