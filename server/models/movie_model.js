@@ -62,14 +62,16 @@ export async function getMovieById(movieId, cinemaId) {
     where: {
       id: movieId
     },
-    include: [
-      {
-        model: cinemaModel,
-        where: {
-          id: cinemaId
-        }
+    include:
+    {
+      model: cinemaModel,
+      where: {
+        id: cinemaId
+      },
+      include: {
+        model: infoMovieModel
       }
-    ]
+    }
   });
 
 

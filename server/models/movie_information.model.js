@@ -27,7 +27,7 @@ export const infoMovieModel = sequelize.define(
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  score: {
+  price: {
     type: DataTypes.FLOAT,
     allowNull: false,
   }
@@ -42,19 +42,19 @@ export async function addInfor(
   duration,
   rating,
   actors,
-  score,
-  genreId	
-  ) {
+  price,
+  genreId
+) {
   const newInfoMovie = await infoMovieModel.create({
-    director:director,
-    release_year:release_year,
+    director: director,
+    release_year: release_year,
     synopsis: synopsis,
     duration: duration,
     rating: rating,
     actors: actors,
-    score: score,
-    genreId	:genreId
+    price: price,
+    genreId: genreId
   })
-  
+
   return newInfoMovie
 } 

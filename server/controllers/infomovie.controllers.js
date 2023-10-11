@@ -14,11 +14,11 @@ export const ctrlAddInfoMovie = async (req, res) => {
             duration,
             rating,
             actors,
-            score,
-            genreId	 
+            price,
+            genreId
         } = req.body
 
-      
+
         const { cinemaId } = req.params
 
         const NewMovie = await createMovie(title)
@@ -30,19 +30,19 @@ export const ctrlAddInfoMovie = async (req, res) => {
             duration,
             rating,
             actors,
-            score,
+            price,
             genreId)
-        
+
         const movieId = NewMovie.id
         const informationId = addInfo.id
 
 
         const MovieCinema = await addMovieCinema(movieId, cinemaId)
 
-        const CinemaInfo = await  addCinemaInfo(cinemaId, informationId)
-        
+        const CinemaInfo = await addCinemaInfo(cinemaId, informationId)
+
         const newMovieInfo = await addMovieInfo(movieId, informationId)
-        
+
         res.status(200).json({
             message: 'Created'
         })
