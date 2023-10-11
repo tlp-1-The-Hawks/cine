@@ -60,13 +60,12 @@ export const FormLogin = () => {
   }, []);
 
   return (
-        <div className='contenedor'>
+    <div className='contenedor'>
       <div className='formBoxe'>
         <form name='formlogin' onSubmit={handleSubmit}>
           <h2>Inicio de Sesión</h2>
 
           <div className='inputBox'>
-            <i className='bx bxs-user'></i>
             <input type="text"
               placeholder='Email'
               name="email"

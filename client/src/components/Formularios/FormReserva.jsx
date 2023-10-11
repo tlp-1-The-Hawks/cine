@@ -1,28 +1,46 @@
-import React from "react";
 import '../../assets/style/FormReserva.css'
 
 export const FormReserva = () => {
 
   return (
-    <div className="contenedorReserva">
-      <div className="formboxes">
-        <form name="formreserva">
+    <div className="contenedor">
+      <div className="formBoxes">
+        <form name='formreserva'>
+          <h2>Reserva de Asientos de Cine</h2>
 
-          <h2>Reserva</h2>
+        <div className="inputBox">
+          <input
+            type="text"
+            placeholder='Nombre Completo'
+          />
+        </div>
 
-          <div className="inputBox">
-            <input type="number"
-            placeholder="Cantidad de personas" 
-            name="" 
-            id="" 
-            />
-          </div>
+        <div className="inputBox">
+          <input
+            type="tel"
+            placeholder='Teléfono'
+          />
+        </div>
 
-          <button id="checkout">
-            Pagar
-          </button>
+        <div className="inputBox">
+          <label>Fecha y Hora</label>
+          <input
+            type="datetime-local"
+          />
+        </div>
 
-        </form>
+        <div className="inputBox">
+          <label>Número de Boletos</label>
+          <input
+            type="number"
+          />
+        </div>
+        
+        <div className='boton'>
+            <input type="submit" className='boton' />
+        </div>
+
+      </form>
       </div>
     </div>
   )
