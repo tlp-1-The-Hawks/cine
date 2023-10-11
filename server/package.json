@@ -19,6 +19,7 @@
     "express-validator": "^7.0.1",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.2",
+    "mercadopago": "^1.5.16",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.0",
     "sequelize": "^6.32.1"

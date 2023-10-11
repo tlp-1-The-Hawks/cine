@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useEffect } from 'react'
 import '../../assets/style/FormLogin.css'
 
 export const FormLogin = () => {
@@ -27,23 +28,50 @@ export const FormLogin = () => {
       headers: {
         'content-type': 'application/json'
       }
-    }).then(res => res.json())
-      .then(res => console.log(res))
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error('Error en la solicitud');
+      }
+    })
+    .then(data => {
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        window.location.href = '/';
+      } else {
+        console.error('Error al iniciar sesión');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+    
   }
+    
+    useEffect(() => {
+
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      window.location.href = '/';
+    }
+  }, []);
 
   return (
-        <div className='contenedor'>
+    <div className='contenedor'>
       <div className='formBoxe'>
-        <form name='formregister' onChange={handleChange} onSubmit={handleSubmit}>
+        <form name='formlogin' onSubmit={handleSubmit}>
           <h2>Inicio de Sesión</h2>
 
           <div className='inputBox'>
-            <i className='bx bxs-user'></i>
             <input type="text"
               placeholder='Email'
               name="email"
               id='email'
               value={formState.email}
+              onChange={handleChange}
             />
           </div>
 
@@ -54,6 +82,7 @@ export const FormLogin = () => {
               name="password"
               id='password'
               value={formState.password}
+              onChange={handleChange}
             />
           </div>
 

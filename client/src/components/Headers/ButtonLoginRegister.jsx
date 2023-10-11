@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 
-export const Login = () => {
+export const LoginButtons = () => {
     return (
-        <div className="col-md-3 text-end">
+        <div>
             <Link to="/register" type="button" className="btn bg-dark text-white me-2">
                 Registrarse
             </Link>
