@@ -1,3 +1,5 @@
-.formMovie {
-    background-color: red;
+.formAddMovie {
+    background-image: url('../img/formMovie.jpg');
+    background-size: cover;
+    color: white;
 }

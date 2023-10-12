@@ -29,7 +29,7 @@ export const Filtros = () => {
 
   return (
     <>
-      <div className="filtro container pt-4 pb-4">
+      <div className="filtro bg-filtro-container container pt-4 pb-4">
         <div className="row">
           <div className="col-sm-4 col-lg-6">
             <form>
