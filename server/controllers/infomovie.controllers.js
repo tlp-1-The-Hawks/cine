@@ -59,3 +59,22 @@ export const ctrlAddInfoMovie = async (req, res) => {
         })
     }
 }
+
+export const ctrlUploadImgMovie = async (req, res) => {
+    try {   
+        const file = req.files.file; 
+        const fileName = file.name; 
+
+       
+        file.mv(`../client/public/movies_img/${fileName}`, (err) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ message: 'Error al guardar el archivo' });
+            }
+            res.status(200).json({ message: 'Imagen subida con éxito' });
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error al subir la imagen' });
+    }
+};

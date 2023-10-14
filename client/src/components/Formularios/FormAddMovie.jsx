@@ -19,7 +19,7 @@ export const FormAddMovie = () => {
         height: ""
     })
     const [imageState, setImageState] = useState(null)
-
+    const [sendImg, setSenImg] = useState(null)
 
 
     useEffect(()=> {
@@ -60,8 +60,9 @@ export const FormAddMovie = () => {
            };
            setFormMovie({
             ...formMovie,
-               rutaImage: `/movies_img/${imgName}`
+               rutaImage: `${imgName}`
            })
+           setSenImg(file)
            reader.readAsDataURL(file);
          } else {
            setImageState({
@@ -81,6 +82,8 @@ export const FormAddMovie = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        const formData = new FormData();
+        formData.append('file', sendImg);
 
         fetch(`http://localhost:4000/api/information/2`,{
             method: 'POST',
@@ -89,7 +92,16 @@ export const FormAddMovie = () => {
                 'content-type': 'application/json'
             }
         })
-        .then((res)=>res.json())
+        .then((res)=> {
+            if(res.status === 200){
+               
+             fetch('http://localhost:4000/api/upload-imgmovi',{
+                    method:'POST',
+                    body: formData
+                })
+            }
+            return res.json()
+        })
         .then((data)=> {
             console.log(data)
         })
@@ -103,7 +115,7 @@ export const FormAddMovie = () => {
             <div className='container w-75 h-75 d-flex'>
                 <div className="w-100">
                     <div className="d-flex justify-content-center">
-                        <form onSubmit={handleSubmit} action="#" id="" className="formAddmovie rounded-5 p-3 border w-100 ">
+                        <form onSubmit={handleSubmit} method='POST' action="http://localhost:4000/api/information/1" encType="multipart/form-data" className="formAddmovie rounded-5 p-3 border w-100 ">
                             <div className='d-flex justify-content-center text-center'>
                                 <h3 className="mb-3 text-center  text-light rounded-2 p-2">Agrega tu película</h3>
                             </div>

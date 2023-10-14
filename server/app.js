@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
-// import fileUpload from "express-fileupload";
+import fileUpload from "express-fileupload";
 import { environments } from './config/environments.js';
 import { startDb } from './config/associations.js';
 import { userRouter } from './routes/users.routes.js';
@@ -35,7 +35,7 @@ app.use(
   })
 );
 app.use(helmet({ contentSecurityPolicy: false }));
-// app.use(fileUpload());
+app.use(fileUpload());
 
 app.use('/api', cinemaRouter);
 app.use('/api', commentRouter);
