@@ -15,7 +15,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
   return (
     <section className='tarjetaaa'>
-      <div className="container-fluid">
+      <div className="container">
         <div className="row d-flex">
           {moviesWithCinemas.map((movie) => (
             <div key={movie.id} className="col-md-3 col-sm-12 d-flex justify-content-center">

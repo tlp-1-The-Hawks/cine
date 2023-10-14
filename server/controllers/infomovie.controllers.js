@@ -9,29 +9,34 @@ export const ctrlAddInfoMovie = async (req, res) => {
         const {
             title,
             director,
-            release_year,
-            synopsis,
+            description,
             duration,
             rating,
             actors,
             price,
-            genreId
+            genreId,
+            rutaImage,
+            date_issue
         } = req.body
-
-
         const { cinemaId } = req.params
 
-        const NewMovie = await createMovie(title)
-
-        const addInfo = await addInfor(
+        const newInfo = {
+            rutaImage,
             director,
-            release_year,
-            synopsis,
+            description,
             duration,
             rating,
             actors,
             price,
-            genreId)
+            genreId,
+            date_issue
+        }
+
+        const NewMovie = await createMovie(title)
+        const addInfo = await addInfor(newInfo)
+
+
+
 
         const movieId = NewMovie.id
         const informationId = addInfo.id

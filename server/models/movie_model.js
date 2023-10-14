@@ -10,6 +10,10 @@ export const MovieModel = sequelize.define(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    rating: {
+      type: DataTypes.STRING,
+      defaultValue: "0"
     }
   },
   {
