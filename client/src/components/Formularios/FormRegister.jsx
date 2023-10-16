@@ -21,7 +21,7 @@ export const FormRegister = () => {
       [name]: value,
     });
   };
-  
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -34,26 +34,26 @@ export const FormRegister = () => {
         'content-type': 'application/json'
       }
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error('Error en la solicitud');
-      }
-    })
-    .then(data => {
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        window.location.href = '/';
-      } else {
-        console.error('Error al iniciar sesión');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error('Error en la solicitud');
+        }
+      })
+      .then(data => {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          window.location.href = '/';
+        } else {
+          console.error('Error al iniciar sesión');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
-  
+
   useEffect(() => {
 
     const token = localStorage.getItem('token');
