@@ -85,10 +85,6 @@ export const FormAddMovie = () => {
                 setImageState({
                     image: null
                 });
-
-                setFondoState({
-                    height: ""
-                })
             }
         }
     }
