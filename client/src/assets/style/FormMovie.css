@@ -1,5 +1,5 @@
 .fondoformmovie {
-    background: linear-gradient(135deg, gray, black);
+    background:#DBCBCB;
     color: white;
 
 }
@@ -9,7 +9,7 @@
 }
 
 .formAddmovie {
-    background-color: #00000077;
+    background-color: #9E2A2A;
 }
 
 .imageFormMovie {

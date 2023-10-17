@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../../assets/style/FormMovie.css"
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 const token = localStorage.getItem('token');
 
 
@@ -110,6 +111,16 @@ export const FormAddMovie = () => {
                         method: 'POST',
                         body: formData
                     })
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text:'',
+                        icon: 'error',
+                        width: '50%',
+                        padding: '1rem',
+                        background: '#DBCBCB',
+                        grow: 'row'
+                    })
                 }
                 return res.json()
             })
@@ -128,7 +139,7 @@ export const FormAddMovie = () => {
                     <div className="d-flex justify-content-center">
                         <form onSubmit={handleSubmit} method='POST' action="http://localhost:4000/api/information/1" encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
                             <div className='d-flex justify-content-center text-center'>
-                                <h3 className="mb-3 text-center  text-light rounded-2 p-2">Agrega tu película</h3>
+                                <h3 className="mb-3 text-center bg-dark text-light rounded-5 p-2">Agrega tu película</h3>
                             </div>
                             <div className="row">
                                 <div className="mt-3 col-12 col-md-6 col-sm-12  mb-3">
@@ -209,10 +220,10 @@ export const FormAddMovie = () => {
                             </div>
                             <div className="row d-flex align-items-center justify-content-stard">
                                 <div className="mt-4 col-sm-12 col-md-12 col-lg-12 col-xl-2 col-12 mb-1">
-                                    <button type="submit" className="text-white w-100 btn btn-sm btn-outline-secondary">Guardar</button>
+                                    <button type="submit" className="text-white w-100 btn btn-sm btn-dark">Guardar</button>
                                 </div>
                                 <div className="mt-4 col-sm-12 col-md-12 col-lg-12 col-xl-2 col-12 mb-1">
-                                    <Link to="/" className="text-white btn-outline-danger w-100 btn btn-sm">Cancelar</Link>
+                                    <Link to="/" className="btn-light w-100 btn btn-sm">Cancelar</Link>
                                 </div>
                             </div>
                         </form>
