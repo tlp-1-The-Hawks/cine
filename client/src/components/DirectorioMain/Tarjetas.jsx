@@ -20,15 +20,10 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
           {moviesWithCinemas.map((movie) => (
             <div key={movie.id} className="col-md-3 col-sm-12 d-flex justify-content-center">
               <div className="card">
-              {movie.information.map((info) => (
-                    <img src={`/movies_img/${info.rutaImage}`} className="card-img-top" alt="..." />
-                  ))}
-                
+                <img src={`/movies_img/${movie.information[0].rutaImage}`} className="card-img-top" alt="..." />
                 <div className="card-body">
                   <h5 className="card-title">{movie.title}</h5>
-                  {movie.information.map((info) => (
-                    <p className="card-text">Género: {info.genre.genre}</p>
-                  ))}
+                  <p className="card-text">Género: {movie.information[0].genre.genre}</p>
                   <p className="card-text">Cines disponibles:</p>
                   {movie.cinemas.map((cine) => (
                     <Link

@@ -121,7 +121,7 @@ ratingModel.belongsTo(MovieModel, {
 
 
 //preloaded data
-async function dataPreloaded(){
+async function dataPreloaded() {
   await createGenre()
 }
 

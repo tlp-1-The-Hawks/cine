@@ -1,7 +1,7 @@
 .fondoformmovie {
     background: linear-gradient(135deg, gray, black);
     color: white;
-    height: 100vh;
+
 }
 
 #fondoformmovie {
@@ -12,24 +12,6 @@
     background-color: #00000077;
 }
 
-.imageFormMovie{
+.imageFormMovie {
     width: 250px;
-}
-
-@media (max-height: 647px) {
-    .fondoformmovie {
-        background: linear-gradient(135deg, gray, black);
-        color: white;
-        height: 100%;
-    }
-    
-}
-
-@media (max-width: 1000px) {
-    .fondoformmovie {
-        background: linear-gradient(135deg, gray, black);
-        color: white;
-        height: 100%;
-    }
-    
 }
