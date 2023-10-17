@@ -7,10 +7,9 @@ import { MovieModel } from '../models/movie_model.js';
 import { movieCinemaModel } from '../models/movieXcinema.js';
 import { ratingModel } from '../models/Rating.models.js';
 import { infoMovieModel } from '../models/movie_information.model.js';
-import { genreModel } from '../models/genre.models.js';
+import { createGenre, genreModel } from '../models/genre.models.js';
 import { movieInfoModel } from '../models/moviexinfo.model.js';
 import { infoCinemaModel } from '../models/infoXcinema.model.js';
-
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -120,9 +119,19 @@ ratingModel.belongsTo(MovieModel, {
   targetKey: 'id',
 });
 
+
+//preloaded data
+async function dataPreloaded() {
+  await createGenre()
+}
+
+
+
+
 export async function startDb() {
   try {
     await sequelize.sync({ force: false });
+    await dataPreloaded();
   } catch (error) {
     console.log(error);
   }
