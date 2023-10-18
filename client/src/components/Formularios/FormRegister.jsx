@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import '../../assets/style/FormRegister.css'
+import Swal from 'sweetalert2'
 
 export const FormRegister = () => {
 
@@ -21,7 +22,7 @@ export const FormRegister = () => {
       [name]: value,
     });
   };
-  
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -34,18 +35,44 @@ export const FormRegister = () => {
         'content-type': 'application/json'
       }
     })
-    .then(res => res.json()).then((data)=>{ console.log(data) })
-    .then(data => {
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        window.location.href = '/';
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+      .then(res => res.json())
+      .then(data => {
+        if (data.errors) {
+          Swal.fire({
+            title: 'Error',
+            text: data.errors[0].msg,
+            icon: 'error',
+            width: '50%',
+            padding: '1rem',
+            background: '#DBCBCB',
+            grow: 'row'
+          })
+        } else {
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+            Swal.fire({
+              title: 'Se registro correctamente',
+              icon: 'success',
+              confirmButtonText: 'ok',
+              width: '50%',
+              padding: '1rem',
+              background: '#DBCBCB',
+              grow: 'row'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = '/'
+              }
+            })
+          } else {
+            console.error('Error al iniciar sesión');
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
-  
+
   useEffect(() => {
 
     const token = localStorage.getItem('token');

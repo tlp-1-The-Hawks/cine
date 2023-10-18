@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import mercadopago from 'mercadopago';
 import { environments } from './config/environments.js';
 import { startDb } from './config/associations.js';
-import { userRouter } from './routes/users.routes.js';
+// import { userRouter } from './routes/users.routes.js';
 import { cinemaRouter } from './routes/cinema.routes.js';
 import { commentRouter } from './routes/comment.routes.js';
 import { authRouter } from './routes/auth.routes.js';
@@ -33,6 +33,7 @@ app.use(
   })
 );
 app.use(helmet({ contentSecurityPolicy: false }));
+app.use(fileUpload());
 
 mercadopago.configure({
   access_token: 'TEST-404212168429405-100814-c4e7626d78ec784ad54c9aa285cebe51-1500511378'
@@ -69,7 +70,7 @@ app.post('/create_preference',( req, res ) => {
 app.use('/api', cinemaRouter);
 app.use('/api', commentRouter);
 app.use('/api', movieRouter)
-app.use('/api', userRouter);
+// app.use('/api', userRouter);
 app.use('/api', infoMovierouter)
 app.use('/api', genrerouter);
 app.use('/api', movieCinemarouter)
