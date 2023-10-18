@@ -34,12 +34,14 @@ export async function addcomment(title, description, userId, movieId) {
 
 export async function getAllComments() {
   const comments = await CommentModel.findAll({
-    include: {
-      model: UserModel,
-      as: 'User',
-      model: MovieModel,
-      as: 'Movie',
-    },
+    include: [
+      {
+        model: MovieModel
+      },
+      {
+        model: UserModel
+      }
+    ],
   });
   return comments;
 }
