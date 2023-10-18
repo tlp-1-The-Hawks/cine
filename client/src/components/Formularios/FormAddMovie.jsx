@@ -153,7 +153,7 @@ export const FormAddMovie = () => {
             <div className='container w-75 h-75 d-flex'>
                 <div className="w-100">
                     <div className="d-flex justify-content-center">
-                        <form onSubmit={handleSubmit} method='POST' action="http://localhost:4000/api/information/1" encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
+                        <form onSubmit={handleSubmit} method='POST' encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
                             <div className='d-flex justify-content-center text-center'>
                                 <h3 className="mb-3 text-center bg-dark text-light rounded-5 p-2">Agrega tu película</h3>
                             </div>
