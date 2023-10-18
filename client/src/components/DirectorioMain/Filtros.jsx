@@ -5,7 +5,8 @@ import { Tarjetas } from './Tarjetas';
 export const Filtros = () => {
   const [movies, setMovies] = useState([]);
   const [filtro, setFiltro] = useState([]);
-
+  const [genreState, setGenreState] = useState([])
+  
   useEffect(() => {
     fetch("http://localhost:4000/api/movies", {
       method: "GET",
@@ -15,21 +16,32 @@ export const Filtros = () => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  const filtrar = async (e)  => {
+  useEffect(()=> {
+    fetch('http://localhost:4000/api/genre', {
+        method:'GET'
+    })
+    .then((res)=>res.json())
+    .then((data) => {
+        setGenreState(data)
+    })
+    .catch((error)=> console.log(error))
+},[])
+
+  const filtrar = async (e) => {
     const { value } = e.target;
 
-    await fetch(`http://localhost:4000/api/movies/${value}`,{
+    await fetch(`http://localhost:4000/api/movies/${value}`, {
       method: "GET"
     })
-    .then((response) => response.json())
-    .then((data) => setFiltro(data))
-    .catch((error) => console.error('Error:', error));
-    
-  }
+      .then((response) => response.json())
+      .then((data) => setFiltro(data))
+      .catch((error) => console.error('Error:', error));
 
+  }
+  
   return (
     <>
-      <div className="container pt-4 pb-4">
+      <div className="filtro bg-filtro-container container pt-4 pb-4">
         <div className="row">
           <div className="col-sm-4 col-lg-6">
             <form>
@@ -45,14 +57,15 @@ export const Filtros = () => {
                   </div>
                   <div className='col'>
                     <label htmlFor="">Género</label>
-                    <select className="form-control" id="exampleFormControlSelect1" onChange={filtrar}>
-                      <option value={0}>Todos</option>
-                      <option value={1}>Acción</option>
-                      <option value={2}>Drama</option>
-                      <option value={3}>Familia</option>
-                      <option value={4}>Aventura</option>
-                      <option value={5}>Ciencia Ficción</option>
-                      <option value={6}>Comedia</option>
+                    <select
+                    name="genreId"
+                    id="exampleFormControlSelect1"
+                    className="form-control">
+                      {genreState.map((genre) => (
+                      <option key={genre.id} value={genre.id}>
+                       {genre.genre}
+                      </option>
+                      ))}
                     </select>
                   </div>
                 </div>

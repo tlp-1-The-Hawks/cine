@@ -9,29 +9,34 @@ export const ctrlAddInfoMovie = async (req, res) => {
         const {
             title,
             director,
-            release_year,
-            synopsis,
+            description,
             duration,
             rating,
             actors,
             price,
-            genreId
+            genreId,
+            rutaImage,
+            date_issue
         } = req.body
-
-
         const { cinemaId } = req.params
 
-        const NewMovie = await createMovie(title)
-
-        const addInfo = await addInfor(
+        const newInfo = {
+            rutaImage,
             director,
-            release_year,
-            synopsis,
+            description,
             duration,
             rating,
             actors,
             price,
-            genreId)
+            genreId,
+            date_issue
+        }
+
+        const NewMovie = await createMovie(title)
+        const addInfo = await addInfor(newInfo)
+
+
+
 
         const movieId = NewMovie.id
         const informationId = addInfo.id
@@ -44,7 +49,7 @@ export const ctrlAddInfoMovie = async (req, res) => {
         const newMovieInfo = await addMovieInfo(movieId, informationId)
 
         res.status(200).json({
-            message: 'Created'
+            message: 'Movie and information added'
         })
 
     } catch (error) {
@@ -54,3 +59,22 @@ export const ctrlAddInfoMovie = async (req, res) => {
         })
     }
 }
+
+export const ctrlUploadImgMovie = async (req, res) => {
+    try {
+        const file = req.files.file;
+        const fileName = file.name;
+
+
+        file.mv(`../client/public/movies_img/${fileName}`, (err) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ message: 'Error save archive' });
+            }
+            res.status(200).json({ message: 'Image upload' });
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error upload image' });
+    }
+};

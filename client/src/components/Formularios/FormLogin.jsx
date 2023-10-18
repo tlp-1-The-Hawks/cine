@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import '../../assets/style/FormLogin.css'
+import Swal from 'sweetalert2'
 
 export const FormLogin = () => {
 
@@ -17,7 +18,7 @@ export const FormLogin = () => {
       [name]: value,
     });
   };
-  
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -29,28 +30,46 @@ export const FormLogin = () => {
         'content-type': 'application/json'
       }
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error('Error en la solicitud');
-      }
-    })
-    .then(data => {
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        window.location.href = '/';
-      } else {
-        console.error('Error al iniciar sesión');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-    
+      .then(res => res.json())
+      .then(data => {
+        if (data.errors) {
+          Swal.fire({
+            title: 'Error',
+            text: data.errors[0].msg,
+            icon: 'error',
+            width: '50%',
+            padding: '1rem',
+            background: '#DBCBCB',
+            grow: 'row'
+          })
+        } else {
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+            Swal.fire({
+              title: 'Inicio sesión correctamente',
+              icon: 'success',
+              confirmButtonText: 'ok',
+              width: '50%',
+              padding: '1rem',
+              background: '#DBCBCB',
+              grow: 'row'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = '/'
+              }
+            })
+          } else {
+            console.error('Error al iniciar sesión');
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
   }
-    
-    useEffect(() => {
+
+  useEffect(() => {
 
     const token = localStorage.getItem('token');
 

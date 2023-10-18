@@ -3,15 +3,19 @@ import { DataTypes } from "sequelize"
 
 export const infoMovieModel = sequelize.define(
   'information', {
+  rutaImage: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  date_issue: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
   director: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  release_year: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  synopsis: {
+  description: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -19,42 +23,19 @@ export const infoMovieModel = sequelize.define(
     type: DataTypes.STRING,
     allowNull: false,
   },
-  rating: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   actors: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: DataTypes.STRING,
   },
   price: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.STRING,
     allowNull: false,
   }
 })
 
 //services
-
-export async function addInfor(
-  director,
-  release_year,
-  synopsis,
-  duration,
-  rating,
-  actors,
-  price,
-  genreId
-) {
-  const newInfoMovie = await infoMovieModel.create({
-    director: director,
-    release_year: release_year,
-    synopsis: synopsis,
-    duration: duration,
-    rating: rating,
-    actors: actors,
-    price: price,
-    genreId: genreId
-  })
+ 
+export async function addInfor(newInfo) {
+  const newInfoMovie = await infoMovieModel.create(newInfo)
 
   return newInfoMovie
 } 
