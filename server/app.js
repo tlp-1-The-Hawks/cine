@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import fileUpload from "express-fileupload";
 import mercadopago from 'mercadopago';
 import { environments } from './config/environments.js';
 import { startDb } from './config/associations.js';
