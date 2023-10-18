@@ -8,7 +8,7 @@ const token = localStorage.getItem('token');
 export const FormAddMovie = () => {
     const [formMovie, setFormMovie] = useState({
         title: "",
-        genreId: "",
+        genreId: "1",
         description: "",
         duration: "",
         actors: "",
@@ -111,21 +111,37 @@ export const FormAddMovie = () => {
                         method: 'POST',
                         body: formData
                     })
-                } else {
+                }
+                return res.json()
+            })
+            .then((data) => {
+                console.log(data)
+                if (data.errors) {
                     Swal.fire({
                         title: 'Error',
-                        text:'',
+                        text: data.errors[0].msg,
                         icon: 'error',
                         width: '50%',
                         padding: '1rem',
                         background: '#DBCBCB',
                         grow: 'row'
                     })
+                } else {
+                    Swal.fire({
+                        title: 'Se guardo su película correctamente',
+                        icon: 'success',
+                        confirmButtonText: 'ok',
+                        width: '50%',
+                        padding: '1rem',
+                        background: '#DBCBCB',
+                        grow: 'row'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/'
+                        }
+                    })
+
                 }
-                return res.json()
-            })
-            .then((data) => {
-                console.log(data)
             })
             .catch((error) => {
                 console.log(error)
@@ -162,10 +178,11 @@ export const FormAddMovie = () => {
                                             name="genreId"
                                             id="genre"
                                             onChange={handleChange}
+                                            defaultValue={1}
                                             value={formMovie.genreId}
                                         >
                                             {genreState.map((genre) => (
-                                                <option key={genre.id} value={genre.id}>
+                                                <option defaultValue={1} key={genre.id} value={genre.id}>
                                                     {genre.genre}
                                                 </option>
                                             ))}
