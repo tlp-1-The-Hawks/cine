@@ -1,12 +1,10 @@
 import React from 'react';
 import '../../assets/style/Header.css';
 import { LoginButtons } from './ButtonLoginRegister.jsx';
+import { LogoutButton } from './LogoutButton.jsx';
 
 export const Header = () => {
   const token = localStorage.getItem('token');
-
-  // Agregar o quitar la clase "visible" según la presencia del token
-  const loginButtonsClass = token ? 'login-buttons' : 'login-buttons visible';
 
   return (
     <header>
@@ -37,9 +35,9 @@ export const Header = () => {
           </button>
         </form>
 
-        {/* Aplicar la clase loginButtonsClass al componente LoginButtons */}
-        <div className={loginButtonsClass}>
-          <LoginButtons />
+        <div className="buttons">
+        {token && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
+        {!token && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
         </div>
       </nav>
     </header>

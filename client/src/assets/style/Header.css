@@ -33,11 +33,3 @@ header img {
   background-color: #e3a209;
   color: white;
 }
-
-.login-buttons {
-  visibility: hidden;
-}
-
-.login-buttons.visible {
-  visibility: visible;
-}
