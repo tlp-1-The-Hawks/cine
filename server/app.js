@@ -6,7 +6,7 @@ import fileUpload from "express-fileupload";
 import mercadopago from 'mercadopago';
 import { environments } from './config/environments.js';
 import { startDb } from './config/associations.js';
-// import { userRouter } from './routes/users.routes.js';
+ import { userRouter } from './routes/users.routes.js';
 import { cinemaRouter } from './routes/cinema.routes.js';
 import { commentRouter } from './routes/comment.routes.js';
 import { authRouter } from './routes/auth.routes.js';
@@ -71,7 +71,7 @@ app.post('/create_preference',( req, res ) => {
 app.use('/api', cinemaRouter);
 app.use('/api', commentRouter);
 app.use('/api', movieRouter)
-// app.use('/api', userRouter);
+ app.use('/api', userRouter);
 app.use('/api', infoMovierouter)
 app.use('/api', genrerouter);
 app.use('/api', movieCinemarouter)

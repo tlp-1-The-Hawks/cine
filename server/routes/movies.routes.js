@@ -18,3 +18,4 @@ movieRouter.get('/movies/:movieId/:cinemaId', ctrlGetOneMovie)
 movieRouter.get('/movies/:genreId', ctrlGetMovieByInfo)
 
 export {movieRouter};
+
