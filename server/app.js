@@ -56,9 +56,12 @@ app.post('/create_preference',( req, res ) => {
     },
     auto_return: 'approved'
   }
+  console.log(preference)
   mercadopago.preferences
   .create(preference)
   .then(function (response) {
+    const id = response.body.id
+    console.log(id)
       res.json({ 
         id: response.body.id 
       });

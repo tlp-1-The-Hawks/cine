@@ -24,7 +24,7 @@
 
     const [preferenceId, setPreferenceId] = useState(null);
 
-    initMercadoPago("TEST-82fc2258-893e-4c80-b58f-2bcaa60fd171");
+    
   
     const createPreference = async () => {
       try {
@@ -35,19 +35,29 @@
         });
   
         const { id } = response.data;
+        console.log(id);
         return id;
       } catch (error) {
         console.log(error);
       }
     };
   
-    const handleBuy = async (e) => {
-      e.preventDefault();
+    const handleBuy = async () => {
       const id = await createPreference();
       if (id) {
+        initMercadoPago("TEST-82fc2258-893e-4c80-b58f-2bcaa60fd171");
         setPreferenceId(id);
       }
     };
+
+    useEffect(() => {
+
+      const token = localStorage.getItem('token');
+  
+      if (!token) {
+        window.location.href = '/';
+      }
+    }, []);
 
     return (
       < div className="contenedor" >
@@ -67,12 +77,16 @@
             </div>
 
             <div className="inputBox">
-            <p>{price}</p>
+            <p>
+              {price}
+            </p>
             </div>
 
             <div className='boton'>
-            <button onClick={handleBuy}>Buy</button>
-          {preferenceId && <Wallet initialization={{ preferenceId }} />}
+            <button type='button' onClick={handleBuy}>Buy</button>
+            {
+              preferenceId && <Wallet initialization={{ preferenceId }} />
+            }
             </div>
 
           </form>
