@@ -1,15 +1,16 @@
-  import '../../assets/style/FormReserva.css'
-  import { useState, useEffect } from 'react';
-  import {initMercadoPago, Wallet } from '@mercadopago/sdk-react';
-  import axios from 'axios';
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlSearchParams.entries());
-  const { movie, cinema } = params;
+import '../../assets/style/FormReserva.css'
+import { useState, useEffect } from 'react';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+import axios from 'axios';
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+const { movie, cinema } = params;
 
-  export const FormReserva = () => {
-    const [info, setInfo] = useState({})
-    const [price, setPrice] = useState("Cargando...");
-  
+export const FormReserva = () => {
+  const [info, setInfo] = useState({})
+  const [price, setPrice] = useState("Cargando...");
+
+  if (cinema) {
     useEffect(() => {
       fetch(`http://localhost:4000/api/movies/${movie}/${cinema}`, {
         method: 'GET'
@@ -17,67 +18,68 @@
         .then((res) => res.json())
         .then((data) => {
           setInfo(data)
-          setPrice(data.cinemas[0].information[0].price)
+          // setPrice(data.cinemas[0].information[0].price)
         })
         .catch((error) => console.log(error));
     }, [])
+  }
 
-    const [preferenceId, setPreferenceId] = useState(null);
+  const [preferenceId, setPreferenceId] = useState(null);
 
-    initMercadoPago("TEST-82fc2258-893e-4c80-b58f-2bcaa60fd171");
-  
-    const createPreference = async () => {
-      try {
-        const response = await axios.post("http://localhost:4000/create_preference", {
-          description: "Boleto de cine",
-          price: 1000,
-          quantity: 1,
-        });
-  
-        const { id } = response.data;
-        return id;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  
-    const handleBuy = async (e) => {
-      e.preventDefault();
-      const id = await createPreference();
-      if (id) {
-        setPreferenceId(id);
-      }
-    };
+  initMercadoPago("TEST-82fc2258-893e-4c80-b58f-2bcaa60fd171");
 
-    return (
-      < div className="contenedor" >
+  const createPreference = async () => {
+    try {
+      const response = await axios.post("http://localhost:4000/create_preference", {
+        description: "Boleto de cine",
+        price: 1000,
+        quantity: 1,
+      });
 
-        <div className="formBoxes">
-          <form>
-            <h2>Reserva de Asientos de Cine</h2>
+      const { id } = response.data;
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleBuy = async (e) => {
+    e.preventDefault();
+    const id = await createPreference();
+    if (id) {
+      setPreferenceId(id);
+    }
+  };
+
+  return (
+    < div className="contenedor" >
+
+      <div className="formBoxes">
+        <form>
+          <h2>Reserva de Asientos de Cine</h2>
 
 
-            <div className="inputBox">
-              <label>Número de Boletos</label>
-              <input
+          <div className="inputBox">
+            <label>Número de Boletos</label>
+            <input
               min={1}
               max={50}
-                type="number"
-              />
-            </div>
+              type="number"
+            />
+          </div>
 
-            <div className="inputBox">
-            <p>{price}</p>
-            </div>
+          <div className="inputBox">
+            {/* <p>{price}</p> */}
+          </div>
 
-            <div className='boton'>
+          <div className='boton'>
             <button onClick={handleBuy}>Buy</button>
-          {preferenceId && <Wallet initialization={{ preferenceId }} />}
-            </div>
+            {preferenceId && <Wallet initialization={{ preferenceId }} />}
+          </div>
 
-          </form>
-        </div>
+        </form>
+      </div>
 
-      </div >
-    )
-  }
+    </div >
+  )
+}
