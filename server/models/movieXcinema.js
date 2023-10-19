@@ -1,5 +1,5 @@
 import { sequelize } from '../config/database.js';
-import { infoMovieModel } from './movie_information.model.js';
+import { infoMovieModel } from './Information.model.js';
 import { cinemaModel } from './Cinema.models.js';
 
 export const movieCinemaModel = sequelize.define(

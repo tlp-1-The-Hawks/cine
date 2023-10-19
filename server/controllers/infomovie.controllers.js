@@ -2,7 +2,7 @@ import { addCinemaInfo } from "../models/infoXcinema.model.js";
 import { createMovie } from "../models/movie_model.js";
 import { addMovieCinema } from '../models/movieXcinema.js';
 import { addMovieInfo } from "../models/moviexinfo.model.js";
-import { addInfor } from "../models/movie_information.model.js";
+import { addInfor } from "../models/Information.model.js";
 
 export const ctrlAddInfoMovie = async (req, res) => {
     try {
