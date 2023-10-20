@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "../../assets/style/FormMovie.css"
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2'
-const token = localStorage.getItem('token');
+import { GenreSelect } from '../Selects/GenreSelect';
+import { TypeEmissionSelect } from '../Selects/TypeEmissionSelect';
+import { AddMovieSubmit } from '../Submits/AddMovieSubmit';
 
 
-export const FormAddMovie = () => {
+export const FormAddMovie = ({genreState,cinemaId,type_emission}) => {
     const [formMovie, setFormMovie] = useState({
         title: "",
         genreId: "1",
@@ -18,51 +18,10 @@ export const FormAddMovie = () => {
         date_issue: "",
         type_emissionId: "1"
     })
-    const [genreState, setGenreState] = useState([])
-    const [type_emission, setTypeEmission] = useState([])
     const [imageState, setImageState] = useState(null)
     const [sendImg, setSenImg] = useState(null)
-    const [cinemaId, setCinemaId] = useState(null)
+ 
 
-    useEffect(() => {
-        if (token) {
-            fetch('http://localhost:4000/auth/user', {
-                method: 'GET',
-                headers: {
-                    'content-type': 'application/json',
-                    'authorization': token
-                }
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.cinemaId === null) {
-                        window.location.href = '/'
-                    }
-                    else {
-                        return setCinemaId(data.cinemaId)
-                    }
-                })
-                .catch((error) => console.log(error))
-        } else {
-            window.location.href = '/'
-        }
-
-        fetch('http://localhost:4000/api/genre', {
-            method: 'GET'
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setGenreState(data)
-            })
-            .catch((error) => console.log(error))
-
-        fetch('http://localhost:4000/api/type-emission', {
-            method: 'GET',
-        })
-            .then((res) => res.json())
-            .then((data) => setTypeEmission(data))
-            .catch((error) => console.log(error))
-    }, [])
 
     const handleChange = (e) => {
         const {
@@ -101,68 +60,14 @@ export const FormAddMovie = () => {
 
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const formData = new FormData();
-        formData.append('file', sendImg);
 
-        fetch(`http://localhost:4000/api/information/${cinemaId}`, {
-            method: 'POST',
-            body: JSON.stringify(formMovie),
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-            .then((res) => {
-                if (res.status === 200) {
-
-                    fetch('http://localhost:4000/api/upload-imgmovi', {
-                        method: 'POST',
-                        body: formData
-                    })
-                }
-                return res.json()
-            })
-            .then((data) => {
-                console.log(data)
-                if (data.errors) {
-                    Swal.fire({
-                        title: 'Error',
-                        text: data.errors[0].msg,
-                        icon: 'error',
-                        width: '50%',
-                        padding: '1rem',
-                        background: '#DBCBCB',
-                        grow: 'row'
-                    })
-                } else {
-                    Swal.fire({
-                        title: 'Se guardo su película correctamente',
-                        icon: 'success',
-                        confirmButtonText: 'ok',
-                        width: '50%',
-                        padding: '1rem',
-                        background: '#DBCBCB',
-                        grow: 'row'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = '/'
-                        }
-                    })
-
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
     return (
 
         <div onChange={handleChange} className="fondoformmovie w-100 d-flex justify-content-center align-items-center" >
             <div className='container w-75 h-75 d-flex'>
                 <div className="w-100">
                     <div className="d-flex justify-content-center">
-                        <form onSubmit={handleSubmit} method='POST' encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
+                        <form  method='POST' encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
                             <div className='d-flex justify-content-center text-center'>
                                 <h3 className="mb-3 text-center bg-dark text-light rounded-5 p-2">Agrega tu película</h3>
                             </div>
@@ -180,42 +85,16 @@ export const FormAddMovie = () => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="mt-3 col col-sm-12 col-md-6 mb-3">
-                                    <div className="row">
-                                        <label htmlFor="type_emission" className="form-label">Tipo de emisión</label>
-                                        <select
-                                            name="type_emissionId"
-                                            id="type_emission"
-                                            onChange={handleChange}
-                                            value={formMovie.type_emissionId}
-                                        >
-                                            {
-                                                type_emission.map((emission) => (
-                                                    <option key={emission.id} value={emission.id}>
-                                                        {emission.type_emission}
-                                                    </option>
-                                                ))}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="mt-3 col col-sm-12 col-md-6 mb-3">
-                                    <div className="row">
-                                        <label htmlFor="genre" className="form-label">Género</label>
-                                        <select
-                                            name="genreId"
-                                            id="genre"
-                                            onChange={handleChange}
-                                            defaultValue={1}
-                                            value={formMovie.genreId}
-                                        >
-                                            {genreState.map((genre) => (
-                                                <option defaultValue={1} key={genre.id} value={genre.id}>
-                                                    {genre.genre}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                </div>
+                                <TypeEmissionSelect
+                                    type_emission={type_emission}
+                                    formMovie={formMovie}
+                                    handleChange={handleChange}
+                                />
+                                <GenreSelect
+                                    genreState={genreState}
+                                    formMovie={formMovie}
+                                    handleChange={handleChange}
+                                />
                             </div>
                             <div className="row align-items-center">
                                 <div className="mt-3 col-12 col-sm-12 col-md-6 mb-3">
@@ -262,14 +141,11 @@ export const FormAddMovie = () => {
                                         name="price" />
                                 </div>
                             </div>
-                            <div className="row d-flex align-items-center justify-content-stard">
-                                <div className="mt-4 col-sm-12 col-md-12 col-lg-12 col-xl-2 col-12 mb-1">
-                                    <button type="submit" className="text-white w-100 btn btn-sm btn-dark">Guardar</button>
-                                </div>
-                                <div className="mt-4 col-sm-12 col-md-12 col-lg-12 col-xl-2 col-12 mb-1">
-                                    <Link to="/" className="btn-light w-100 btn btn-sm">Cancelar</Link>
-                                </div>
-                            </div>
+                            <AddMovieSubmit
+                            formMovie={formMovie}
+                            sendImg={sendImg}
+                            cinemaId={cinemaId}
+                            />
                         </form>
                     </div>
                 </div>
