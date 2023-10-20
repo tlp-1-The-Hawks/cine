@@ -35,7 +35,6 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
     const movieId = e.currentTarget.getAttribute("data-movie-id");
 
 
-
     window.location.href = `/informacion-pelicula?movie=${movieId}&cinema=${cinemaId}`;
 
   }

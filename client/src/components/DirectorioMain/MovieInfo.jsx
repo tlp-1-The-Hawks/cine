@@ -1,16 +1,31 @@
+import { useEffect, useState } from "react";
+
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movie, cinema } = params;
 
 
 export const MovieInfo = () => {
-    cosnole.log(movie)
+    const [info, setInfo] = useState({})
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/api/movies/${movie}/${cinema}`, {
+            method: 'GET'
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setInfo({ data })
+            })
+            .catch((error) => console.log(error));
+    }, [])
+
     return (
         <div className="bgInfoMovie">
             <div className="infomovie container rounded-4">
                 <div className="row">
                     <div className="col-md-4">
-                        <img className="imgInfoMovie" src="" alt="" />
+                        <img className="imgInfoMovie" src={`/movies_img/${info.cinemas[0].information[0].rutaImage}`} alt="" />
                     </div>
                     <div className="col-md-6">
                         <div className="descripcion">
