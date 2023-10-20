@@ -36,7 +36,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
 
 
-    window.location.href = `/reserva?movie=${movieId}&cinema=${cinemaId}`;
+    window.location.href = `/informacion-pelicula?movie=${movieId}&cinema=${cinemaId}`;
 
   }
 

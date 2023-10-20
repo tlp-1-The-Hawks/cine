@@ -6,7 +6,7 @@ import { Register } from './Pages/Register.jsx';
 import { Reserva } from './Pages/Reserva.jsx'
 import { FormLogin } from './components/Formularios/FormLogin.jsx';
 import { AddMovie } from './Pages/AddMovie.jsx';
-
+import { InfoMovie } from './Pages/InfoMovie.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
@@ -31,6 +31,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route
         path='/agregar-pelicula'
         element={<AddMovie />}
+      />
+      <Route
+        path='/informacion-pelicula'
+        element={<InfoMovie />}
       />
     </Routes>
   </BrowserRouter>

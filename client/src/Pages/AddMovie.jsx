@@ -5,7 +5,6 @@ export const AddMovie = () => {
     return (
         <>
             <FormAddMovie />
-
         </>
     )
 

@@ -15,15 +15,17 @@ export const FormAddMovie = () => {
         director: "",
         price: "",
         rutaImage: "",
-        date_issue: ""
+        date_issue: "",
+        type_emissionId: "1"
     })
     const [genreState, setGenreState] = useState([])
+    const [type_emission, setTypeEmission] = useState([])
     const [imageState, setImageState] = useState(null)
     const [sendImg, setSenImg] = useState(null)
     const [cinemaId, setCinemaId] = useState(null)
 
     useEffect(() => {
-        if(token){
+        if (token) {
             fetch('http://localhost:4000/auth/user', {
                 method: 'GET',
                 headers: {
@@ -41,14 +43,10 @@ export const FormAddMovie = () => {
                     }
                 })
                 .catch((error) => console.log(error))
-        }else {
+        } else {
             window.location.href = '/'
         }
 
-    }, [])
-
-
-    useEffect(() => {
         fetch('http://localhost:4000/api/genre', {
             method: 'GET'
         })
@@ -57,20 +55,26 @@ export const FormAddMovie = () => {
                 setGenreState(data)
             })
             .catch((error) => console.log(error))
+
+        fetch('http://localhost:4000/api/type-emission', {
+            method: 'GET',
+        })
+            .then((res) => res.json())
+            .then((data) => setTypeEmission(data))
+            .catch((error) => console.log(error))
     }, [])
-
-
 
     const handleChange = (e) => {
         const {
             name, value
         } = e.target
 
-        setFormMovie({
+        const newFormData = {
             ...formMovie,
             [name]: value,
-
-        })
+        }
+        console.log(newFormData)
+        setFormMovie(newFormData)
         if (name === 'rutaImage') {
             const file = e.target.files[0]
             if (file) {
@@ -176,6 +180,24 @@ export const FormAddMovie = () => {
                                 </div>
                             </div>
                             <div className="row">
+                                <div className="mt-3 col col-sm-12 col-md-6 mb-3">
+                                    <div className="row">
+                                        <label htmlFor="type_emission" className="form-label">Tipo de emisión</label>
+                                        <select
+                                            name="type_emissionId"
+                                            id="type_emission"
+                                            onChange={handleChange}
+                                            value={formMovie.type_emissionId}
+                                        >
+                                            {
+                                                type_emission.map((emission) => (
+                                                    <option key={emission.id} value={emission.id}>
+                                                        {emission.type_emission}
+                                                    </option>
+                                                ))}
+                                        </select>
+                                    </div>
+                                </div>
                                 <div className="mt-3 col col-sm-12 col-md-6 mb-3">
                                     <div className="row">
                                         <label htmlFor="genre" className="form-label">Género</label>

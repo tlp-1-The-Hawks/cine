@@ -1,20 +1,20 @@
 import { sequelize } from "../config/database.js";
 import { DataTypes } from "sequelize";
 
-export const TypeEmissionModel = sequelize.define('type_emission',{
-    type_emission: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
+export const TypeEmissionModel = sequelize.define('type_emission', {
+  type_emission: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
 },
-{
+  {
     timestamps: false
-})
+  })
 
 //services
 
 export async function addTypeEmission() {
-    const typeEmissionToCreate =
+  const typeEmissionToCreate =
     [
       {
         "id": 1,
@@ -31,10 +31,16 @@ export async function addTypeEmission() {
     ]
 
   for (const typeEmissionData of typeEmissionToCreate) {
-    const existinTypeEmission = await TypeEmissionModel.findOne({ where: { type_emission: typeEmissionData.type_emission } });
+    const existinTypeEmission = await TypeEmissionModel.findOne({
+      where: { type_emission: typeEmissionData.type_emission }
+    });
 
     if (!existinTypeEmission) {
       await TypeEmissionModel.create(typeEmissionData);
     }
   }
+}
+
+export async function getAllTypesEmissions() {
+  return await TypeEmissionModel.findAll();
 }

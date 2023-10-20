@@ -16,7 +16,8 @@ export const ctrlAddInfoMovie = async (req, res) => {
             price,
             genreId,
             rutaImage,
-            date_issue
+            date_issue,
+            type_emissionId
         } = req.body
         const { cinemaId } = req.params
 
@@ -29,7 +30,8 @@ export const ctrlAddInfoMovie = async (req, res) => {
             actors,
             price,
             genreId,
-            date_issue
+            date_issue,
+            type_emissionId
         }
 
         const NewMovie = await createMovie(title)
