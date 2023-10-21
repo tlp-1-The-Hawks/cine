@@ -1,54 +1,36 @@
-import { useEffect, useState } from "react";
-
-const urlSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
-const { movie, cinema } = params;
-
-
-export const MovieInfo = () => {
-    const [info, setInfo] = useState({})
-
-    useEffect(() => {
-        fetch(`http://localhost:4000/api/movies/${movie}/${cinema}`, {
-            method: 'GET'
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setInfo({ data })
-            })
-            .catch((error) => console.log(error));
-    }, [])
-
+export const MovieInfo = ({info}) => {
+    
     return (
         <div className="bgInfoMovie">
             <div className="infomovie container rounded-4">
                 <div className="row">
-                    <div className="col-md-4">
-                        <img className="imgInfoMovie" src={`/movies_img/${info.cinemas[0].information[0].rutaImage}`} alt="" />
-                    </div>
+                <div className="col-md-4">
+                 {info && info.cinemas && info.cinemas[0] && info.cinemas[0].information && info.cinemas[0].information[0] && (
+                     <img className="imgInfoMovie" src={`/movies_img/${info.cinemas[0].information[0].rutaImage}`} alt="" />
+                    )}
+                    
+                </div>
                     <div className="col-md-6">
                         <div className="descripcion">
-                            <h1 className="">Título de la Película</h1>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                                officia voluptates odit et odio quasi veritatis, facere quis nihil
-                                consequatur vitae ipsa impedit beatae? Quaerat saepe quasi neque
-                                repellendus debitis? Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Voluptatum error dolorum totam autem illo
-                                exercitationem soluta tempore, ad similique voluptatibus dicta,
-                                ducimus iste reprehenderit aliquid, at perferendis atque commodi!
-                                Tempora!
-                            </p>
+                            <h1 className="">{info===undefined ? "":info.title}</h1>
+                           
+                            {info && info.cinemas && info.cinemas[0] && info.cinemas[0].information && info.cinemas[0].information[0] && (
+                                <p>{info.cinemas[0].information[0].description}</p>
+                            )}
+                            
                             <div>
                                 <ul className="movie-info">
                                     <li>
                                         <span className="lista">Precio:</span>
-                                        $10.00
+                                        {info && info.cinemas && info.cinemas[0] && info.cinemas[0].information && info.cinemas[0].information[0] && (
+                                          <span>{info.cinemas[0].information[0].price}</span>
+                                      )}
                                     </li>
                                     <li>
                                         <span className="lista">Cine:</span>
-                                        Cineplex
+                                        {info && info.cinemas && info.cinemas[0] && info.cinemas[0].information && info.cinemas[0].information[0] && (
+                                          <span>{info.cinemas[0].name}</span>
+                                      )}
                                     </li>
                                     <li>
                                         <span className="lista">Lugar:</span>
@@ -56,29 +38,27 @@ export const MovieInfo = () => {
                                     </li>
                                     <li>
                                         <span className="lista">Formato:</span>
-                                        2D
+                                        {info && info.cinemas && info.cinemas[0] && info.cinemas[0].information && info.cinemas[0].information[0] && (
+                                          <span>{info.cinemas[0].information[0].type_emissionId}</span>
+                                          )}
                                     </li>
                                     <li>
                                         <span className="lista">Duración:</span>
-                                        2 horas
+                                        {info && info.cinemas && info.cinemas[0] && info.cinemas[0].information && info.cinemas[0].information[0] && (
+                                          <span>{info.cinemas[0].information[0].duration}</span>
+                                          )}
                                     </li>
                                     <li>
                                         <span className="lista">Director:</span>
-                                        Nolan
+                                        {info && info.cinemas && info.cinemas[0] && info.cinemas[0].information && info.cinemas[0].information[0] && (
+                                          <span>{info.cinemas[0].information[0].director}</span>
+                                          )}
                                     </li>
                                 </ul>
                             </div>
 
                             {/* <!-- Enlace para mostrar el formulario de reserva con Bootstrap Collapse --> */}
-                            <p className="d-inline-flex gap-1">
-                                <a className="reserva" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-                                    aria-controls="collapseExample">
-                                    Reserva
-                                </a>
-                                <a className="trailer" href="https://www.youtube.com/watch?v=YrbdN5zaouU" role="button" target="_blank">
-                                    Ver Tráiler
-                                </a>
-                            </p>
+                           
                             {/* <!-- <div className="collapse" id="collapseExample">
                             <div className="card card-body">
                                 <h2>Reserva de Tickets</h2>
@@ -100,6 +80,17 @@ export const MovieInfo = () => {
                         </div> --> */}
                         </div>
                     </div>
+                </div>
+                <div className="text-end">
+                     <p className="d-inline-flex gap-1">
+                        <a className="reserva" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                            aria-controls="collapseExample">
+                                Reservar
+                        </a>
+                        <a className="trailer" href="https://www.youtube.com/watch?v=YrbdN5zaouU" role="button" target="_blank">
+                                Ver Tráiler
+                        </a>
+                      </p>
                 </div>
             </div>
         </div>
