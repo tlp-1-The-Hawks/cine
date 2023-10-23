@@ -1,21 +1,9 @@
-/* header /
-    / Estilo base para el contenedor del menú */
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  /* Estable3ce la altura mínima del viewport */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 
 main {
-  height: 100%;
-  flex-grow: 1;
-  background: #DBCBCB;
-}
-
-
-.contenedorMain {
-  margin-top: 10px;
-  margin-bottom: 50px;
+  background: #242222;
 }

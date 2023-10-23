@@ -9,6 +9,7 @@
   export const FormReserva = () => {
     const [info, setInfo] = useState({})
     const [price, setPrice] = useState("Cargando...");
+    const [quantity, setQuantity] = useState(1); // Estado para la cantidad de boletos
   
     useEffect(() => {
       fetch(`http://localhost:4000/api/movies/${movie}/${cinema}`, {
@@ -31,7 +32,7 @@
     try {
       const response = await axios.post("http://localhost:4000/create_preference", {
         description: "Boleto de cine",
-        price: 1000,
+        price: price,
         quantity: 1,
       });
 
@@ -51,6 +52,14 @@
     }
   };
 
+  // Función para actualizar la cantidad de boletos y precio cuando cambia el input
+  const handleQuantityChange = (event) => {
+    const newQuantity = parseInt(event.target.value, 10); // Parsea el valor del input a un número entero
+    setQuantity(newQuantity);
+    const newPrice = newQuantity * info.cinemas[0].information[0].price;
+    setPrice(newPrice);
+  };
+
     useEffect(() => {
 
       const token = localStorage.getItem('token');
@@ -61,27 +70,29 @@
     }, []);
 
   return (
-    < div className="contenedor" >
+    < div className="contenedorReserva" >
 
-      <div className="formBoxes">
+      <div className="formBoxReserva">
         <h2>Reserva de Asientos de Cine</h2>
 
 
-        <div className="inputBox">
+        <div className="inputBoxReserva">
           <label>Número de Boletos</label>
           <input
             min={1}
             max={50}
             type="number"
+            value={quantity} // Asigna el estado 'quantity' al valor del input
+            onChange={handleQuantityChange} // Maneja el cambio en el input
           />
         </div>
-        <div className="inputBox">
+        <div className="inputBoxReserva">
           <p>
-            {price}
+            $ {price}
           </p>
         </div>
 
-        <button className='boton' type='button' onClick={handleBuy}>Buy</button>
+        <button className='botonReserva' type='button' onClick={handleBuy}>Pagar Mi Boleto</button>
         {
           preferenceId && <Wallet initialization={{ preferenceId }} />
         }
