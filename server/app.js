@@ -37,7 +37,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use(fileUpload());
 
 mercadopago.configure({
-  access_token: 'TEST-404212168429405-100814-c4e7626d78ec784ad54c9aa285cebe51-1500511378'
+  access_token: 'APP_USR-404212168429405-100814-0deccd0b6f09ee5ef36fe7e6a21b05f8-1500511378'
 })
 
 app.post('/create_preference',( req, res ) => {

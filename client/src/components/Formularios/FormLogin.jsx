@@ -79,12 +79,12 @@ export const FormLogin = () => {
   }, []);
 
   return (
-    <div className='contenedor'>
-      <div className='formBoxe'>
+    <div className='contenedorLogin'>
+      <div className='formBoxLogin'>
         <form name='formlogin' onSubmit={handleSubmit}>
           <h2>Inicio de Sesión</h2>
 
-          <div className='inputBox'>
+          <div className='inputBoxLogin'>
             <input type="text"
               placeholder='Email'
               name="email"
@@ -94,8 +94,7 @@ export const FormLogin = () => {
             />
           </div>
 
-          <div className='inputBox'>
-            <i className='bx bxs-user'></i>
+          <div className='inputBoxLogin'>
             <input type="password"
               placeholder='Contraseña'
               name="password"
@@ -105,11 +104,11 @@ export const FormLogin = () => {
             />
           </div>
 
-          <div className='botn'>
-            <input type="submit" className='botn' value="Registro" />
+          <div className='botonLogin'>
+            <input type="submit" className='botonLogin' value="Registro" />
           </div>
 
-          <div className='group'>
+          <div className='groupLogin'>
             <span><a href="#">Recuperar Contraseña</a></span>
             <span><a href="/register">Registro</a></span>
           </div>

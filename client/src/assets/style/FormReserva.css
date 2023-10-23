@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.contenedor {
+.contenedroReserva {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@
   background-image: url('../img/backgroundRegister.png');
 }
 
-.formBoxes {
+.formBoxReserva {
   position: relative;
   width: 400px;
   height: 70vh;
@@ -26,20 +26,20 @@
   align-items: center;
 }
 
-.formBoxes h2 {
+.formBoxReserva h2 {
   color: #fff;
   text-align: center;
   font-size: 32px;
 }
 
-.formBoxes .inputBox {
+.formBoxReserva .inputBoxReserva {
   position: relative;
   margin: 30px;
   width: 310px;
   border-bottom: 2px solid #fff;
 }
 
-.formBoxes .inputBox input {
+.formBoxReserva .inputBoxReserva input {
   width: 100%;
   height: 45px;
   background: transparent;
@@ -50,26 +50,19 @@
   font-size: 16px;
 }
 
-.formBoxes .inputBox label {
+.formBoxReserva .inputBoxReserva label {
   color: #fff;
 }
 
-.formBoxes .inputBox p {
+.formBoxReserva .inputBoxReserva p {
   color: #fff;
-}
-
-i {
-  position: absolute;
-  color: #fff;
-  top: 13px;
-  right: 0;
 }
 
 input::placeholder {
   color: #fff;
 }
 
-.boton {
+.botonReserva {
   color: #fff;
   background: blue;
   width: 100%;
@@ -79,22 +72,7 @@ input::placeholder {
   border: none;
   font-size: 17px;
   cursor: pointer;
-  box-shadow: 3px 0 10px rgba(0, 0, 0, .5);
-}
-
-.group {
-  display: flex;
-  justify-content: space-between;
-}
-
-.group span a {
-  color: #fff;
-  position: relative;
-  top: 10px;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.group a:focus {
-  text-decoration: underline;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+  /* Espacio entre el último elemento y el botón */
 }

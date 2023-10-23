@@ -83,13 +83,12 @@ export const FormRegister = () => {
   }, []);
 
   return (
-    <div className='contenedor'>
-      <div className='formBox'>
+    <div className='contenedorRegister'>
+      <div className='formBoxRegister'>
         <form name='formregister' onSubmit={handleSubmit}>
           <h2>Registro</h2>
 
-          <div className='inputBox'>
-            <i className='bx bxs-user'></i>
+          <div className='inputBoxRegister'>
             <input type="text"
               placeholder='Nombre'
               name="name"
@@ -99,8 +98,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className='inputBox'>
-            <i className='bx bxs-user'></i>
+          <div className='inputBoxRegister'>
             <input type="text"
               placeholder='Apellido'
               name="last_name"
@@ -110,8 +108,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className='inputBox'>
-            <i className='bx bxs-user'></i>
+          <div className='inputBoxRegister'>
             <input type="text"
               placeholder='Nombre de Usuario'
               name="username"
@@ -121,8 +118,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className='inputBox'>
-            <i className='bx bxs-envelope'></i>
+          <div className='inputBoxRegister'>
             <input type="email"
               placeholder='Email'
               name="email"
@@ -132,8 +128,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className='inputBox'>
-            <i className='bx bxs-lock-alt'></i>
+          <div className='inputBoxRegister'>
             <input type="password"
               placeholder='Contraseña'
               name="password"
@@ -143,8 +138,7 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className='inputBox'>
-            <i className='bx bxs-lock-alt'></i>
+          <div className='inputBoxRegister'>
             <input
               type="password"
               placeholder="Confirmar Contraseña"
@@ -155,11 +149,11 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className='botn'>
-            <input type="submit" className='botn' value="Registro" />
+          <div className='botonRegister'>
+            <input type="submit" className='botonRegister' value="Registro" />
           </div>
 
-          <div className='group'>
+          <div className='groupRegister'>
             <span><a href="#">Recuperar Contraseña</a></span>
             <span><a href="/login">Inicia Sesion</a></span>
           </div>
