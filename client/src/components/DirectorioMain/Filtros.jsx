@@ -14,10 +14,8 @@ export const Filtros = () => {
       .then((response) => response.json())
       .then((data) => setMovies(data))
       .catch((error) => console.error('Error:', error));
-  }, []);
 
-  useEffect(()=> {
-    fetch('http://localhost:4000/api/genre', {
+      fetch('http://localhost:4000/api/genre', {
         method:'GET'
     })
     .then((res)=>res.json())
@@ -25,7 +23,8 @@ export const Filtros = () => {
         setGenreState(data)
     })
     .catch((error)=> console.log(error))
-},[])
+  }, []);
+
 
   const filtrar = async (e) => {
     const { value } = e.target;
