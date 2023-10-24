@@ -4,20 +4,21 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import axios from 'axios';
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
-const { movie, cinema } = params;
+const { movieId, cinemaId } = params;
 
-export const FormReserva = () => {
-  const [info, setInfo] = useState({})
-  const [price, setPrice] = useState("Cargando...");
-
-  useEffect(() => {
-    fetch(`http://localhost:4000/api/movies/${movie}/${cinema}`, {
-      method: 'GET'
-    })
+  export const FormReserva = () => {
+    const [info, setInfo] = useState({})
+    const [price, setPrice] = useState("Cargando...");
+    const [quantity, setQuantity] = useState(1);
+  
+    useEffect(() => {
+      fetch(`http://localhost:4000/api/movies/${movieId}/${cinemaId}`, {
+        method: 'GET'
+      })
       .then((res) => res.json())
       .then((data) => {
         setInfo(data)
-        setPrice(data.cinemas[0].information[0].price)
+        console.log(info);
       })
       .catch((error) => console.log(error));
   }, [])
@@ -31,7 +32,7 @@ export const FormReserva = () => {
     try {
       const response = await axios.post("http://localhost:4000/create_preference", {
         description: "Boleto de cine",
-        price: 1000,
+        price: price,
         quantity: 1,
       });
 
@@ -51,42 +52,51 @@ export const FormReserva = () => {
     }
   };
 
-  useEffect(() => {
+  const handleQuantityChange = (event) => {
+    const newQuantity = parseInt(event.target.value, 10);
+    setQuantity(newQuantity);
+    const newPrice = newQuantity * info.cinemas[0].information[0].price;
+    setPrice(newPrice);
+    console.log(price)
+  };
 
-    const token = localStorage.getItem('token');
+    useEffect(() => {
 
-    if (!token) {
-      window.location.href = '/';
-    }
-  }, []);
+      const token = localStorage.getItem('token');
+  
+      if (!token) {
+        window.location.href = '/';
+      }
+    }, []);
 
   return (
-    < div className="contenedor" >
+    < div className="contenedorReserva" >
 
-      <div className="formBoxes">
+      <div className="formBoxReserva">
         <h2>Reserva de Asientos de Cine</h2>
 
 
-        <div className="inputBox">
+        <div className="inputBoxReserva">
           <label>Número de Boletos</label>
           <input
             min={1}
             max={50}
             type="number"
+            value={quantity} // Asigna el estado 'quantity' al valor del input
+            onChange={handleQuantityChange} // Maneja el cambio en el input
           />
         </div>
-        <div className="inputBox">
+        <div className="inputBoxReserva">
           <p>
-            {price}
+            $ {price}
           </p>
         </div>
 
-        <button className='boton' type='button' onClick={handleBuy}>Buy</button>
+        <button className='botonReserva' type='button' onClick={handleBuy}>Pagar Mi Boleto</button>
         {
           preferenceId && <Wallet initialization={{ preferenceId }} />
         }
       </div>
-
-    </div >
+      </div>
   )
 }

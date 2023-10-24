@@ -40,8 +40,12 @@ export const Filtros = () => {
 
   return (
     <>
-      <div className="filtro bg-filtro-container container pt-4 pb-4">
+      <div className="filtro bg-filtro-container container">
         <div className="row">
+        <div className="col-sm-8 col-lg-6">
+            <h1>Películas Estrenos:</h1>
+            <br />
+          </div>
           <div className="col-sm-4 col-lg-6">
             <form>
               <div className="form-group">
@@ -52,6 +56,7 @@ export const Filtros = () => {
                     <select className="form-control" id="exampleFormControlSelect1">
                       <option>Todos</option>
                       <option>Mejores calificados</option>
+                      <option>Orden Alfabetico</option>
                     </select>
                   </div>
                   <div className='col'>
@@ -61,18 +66,15 @@ export const Filtros = () => {
                       id="exampleFormControlSelect1"
                       className="form-control">
                       {genreState.map((genre) => (
-                        <option key={genre.id} value={genre.id}>
-                          {genre.genre}
-                        </option>
+                      <option key={genre.id} value={genre.id}>
+                      {genre.genre}
+                      </option>
                       ))}
                     </select>
                   </div>
                 </div>
               </div>
             </form>
-          </div>
-          <div className="col-sm-8 col-lg-6">
-            <h1>Películas Estrenos</h1>
           </div>
         </div>
       </div>

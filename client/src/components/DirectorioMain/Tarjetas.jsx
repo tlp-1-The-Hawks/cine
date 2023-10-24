@@ -20,7 +20,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
         .then((data) => {
           if (data.cinemaId != null) {
             setBtnAddMovie(
-              <Link to='/agregar-pelicula' className='m-5 btn btn-outline-dark'>Agregar película</Link>
+              <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>
             )
           }
         })
@@ -41,7 +41,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
   return (
     <div>
-      <section className='tarjetaaa'>
+      <section className='tarjetaContenedor'>
         <div className="container">
           <div className="row d-flex">
             {moviesWithCinemas.map((movie) => (
@@ -59,7 +59,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                         data-cinema-id={cine.id}
                         data-movie-id={movie.id}
                         type='button'
-                        className='btn btn-outline-dark'
+                        className='btn btn-outline-dark tageta'
                         onClick={infoMovie}
                       >
                         {cine.name}

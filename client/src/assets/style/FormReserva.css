@@ -1,22 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.contenedor {
+.contenedorReserva {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url('../img/backgroundRegister.png');
+  background: url('../img/formReserva.jpg') no-repeat;
+  background-size: cover;
 }
 
-.formBoxes {
+.formBoxReserva {
   position: relative;
   width: 400px;
+  height: 65vh;
+  border: 5px solid rgba(0, 0, 0, 0.5);
   height: 70vh;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
@@ -28,23 +25,24 @@
   /* Añadido para apilar elementos verticalmente */
 }
 
-.formBoxes h2 {
-  color: #fff;
+.formBoxReserva h2 {
+  color: #FF2C25;
   text-align: center;
   font-size: 32px;
 }
 
-.formBoxes .inputBox {
+.formBoxReserva .inputBoxReserva {
   position: relative;
   margin: 30px;
   width: 310px;
+  border-bottom: 2px solid #FF2C25;
   border-bottom: 2px solid #fff;
   display: flex;
   flex-direction: column;
   /* Añadido para apilar elementos verticalmente */
 }
 
-.formBoxes .inputBox input {
+.formBoxReserva .inputBoxReserva input {
   width: 100%;
   height: 45px;
   background: transparent;
@@ -55,34 +53,24 @@
   font-size: 16px;
 }
 
-.formBoxes .inputBox label {
-  color: #fff;
+.formBoxReserva .inputBoxReserva label {
+  color: #FF2C25;
   margin-bottom: 10px;
   /* Espacio entre etiqueta y campo de entrada */
 }
 
-.formBoxes .inputBox p {
-  color: #fff;
+.formBoxReserva .inputBoxReserva p {
+  color: #ffffff;
   margin-top: 10px;
   /* Espacio entre campo de entrada y párrafo */
 }
 
-i {
-  position: absolute;
+.botonReserva {
   color: #fff;
-  top: 13px;
-  right: 0;
-}
-
-input::placeholder {
-  color: #fff;
-}
-
-.boton {
-  color: #fff;
-  background: blue;
-  width: 100%;
+  background: #FF2C25;
+  width: 75%;
   height: 50px;
+  border-radius: 20px;
   border: none;
   outline: none;
   font-size: 17px;
@@ -90,24 +78,4 @@ input::placeholder {
   box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
   margin-top: 20px;
   /* Espacio entre el último elemento y el botón */
-}
-
-.group {
-  display: flex;
-  flex-direction: column;
-  /* Añadido para apilar elementos verticalmente */
-  align-items: center;
-  /* Centrar elementos verticalmente */
-}
-
-.group span a {
-  color: #fff;
-  position: relative;
-  top: 10px;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.group a:focus {
-  text-decoration: underline;
 }

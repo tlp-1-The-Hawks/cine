@@ -22,13 +22,14 @@ export const Header = () => {
 
         <form className="d-flex prueba" role="search">
           <input
-            className="form-control me-2 borde-naranja color-fondo"
+            className="form-control me-2 borde-colorBusqueda color-fondo"
+            id='buscador'
             type="search"
             placeholder="Busca tu pelicula"
             aria-label="Search"
           />
           <button
-            className="btn btn-outline-secondar borde-naranja color-fondo"
+            className="btn btn-outline-secondar borde-colorBusqueda color-fondo"
             type="submit"
           >
             Buscar
