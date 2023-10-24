@@ -7,6 +7,7 @@ import mercadopago from 'mercadopago';
 import { environments } from './config/environments.js';
 import { startDb } from './config/associations.js';
 // import { userRouter } from './routes/users.routes.js';
+import { type_emissionRouter } from './routes/type_emission.routes.js';
 import { cinemaRouter } from './routes/cinema.routes.js';
 import { commentRouter } from './routes/comment.routes.js';
 import { authRouter } from './routes/auth.routes.js';
@@ -40,13 +41,13 @@ mercadopago.configure({
   access_token: 'APP_USR-404212168429405-100814-0deccd0b6f09ee5ef36fe7e6a21b05f8-1500511378'
 })
 
-app.post('/create_preference',( req, res ) => {
+app.post('/create_preference', (req, res) => {
   let preference = {
     items: [
       {
-      title: req.body.description,
-      unit_price: Number(req.body.price),
-      quantity: Number(req.body.quantity)
+        title: req.body.description,
+        unit_price: Number(req.body.price),
+        quantity: Number(req.body.quantity)
       }
     ],
     back_urls: {
@@ -58,12 +59,12 @@ app.post('/create_preference',( req, res ) => {
   }
   console.log(preference)
   mercadopago.preferences
-  .create(preference)
-  .then(function (response) {
-    const id = response.body.id
-    console.log(id)
-      res.json({ 
-        id: response.body.id 
+    .create(preference)
+    .then(function (response) {
+      const id = response.body.id
+      console.log(id)
+      res.json({
+        id: response.body.id
       });
     })
     .catch(function (error) {
@@ -79,6 +80,7 @@ app.use('/api', infoMovierouter)
 app.use('/api', genrerouter);
 app.use('/api', movieCinemarouter)
 app.use('/api', bookingRouter)
+app.use('/api', type_emissionRouter)
 app.use('/auth', authRouter);
 app.use(handleErrors);
 

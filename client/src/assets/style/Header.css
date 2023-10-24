@@ -41,11 +41,3 @@ header img {
   background-color: #000000;
   color: white;
 }
-
-.login-buttons {
-  visibility: hidden;
-}
-
-.login-buttons.visible {
-  visibility: visible;
-}

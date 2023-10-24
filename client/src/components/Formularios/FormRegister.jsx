@@ -26,7 +26,18 @@ export const FormRegister = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    if (formState.password != formState.confirmarpassword) {
+      const alertpassword = Swal.fire({
+        title: 'Error',
+        text: 'Las contraseñas no coinciden',
+        icon: 'error',
+        width: '50%',
+        padding: '1rem',
+        background: '#DBCBCB',
+        grow: 'row'
+      })
+      return alertpassword
+    }
 
     fetch("http://localhost:4000/auth/register", {
       method: "POST",

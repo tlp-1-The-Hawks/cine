@@ -1,7 +1,7 @@
 import { sequelize } from "../config/database.js"
 import { DataTypes } from "sequelize"
 
-export const infoMovieModel = sequelize.define(
+export const informationModel = sequelize.define(
   'information', {
   rutaImage: {
     type: DataTypes.STRING,
@@ -33,9 +33,9 @@ export const infoMovieModel = sequelize.define(
 })
 
 //services
- 
+
 export async function addInfor(newInfo) {
-  const newInfoMovie = await infoMovieModel.create(newInfo)
+  const newInfoMovie = await informationModel.create(newInfo)
 
   return newInfoMovie
 } 

@@ -1,0 +1,51 @@
+.imgInfoMovie {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    /* Asegura que la imagen mantenga su proporción */
+}
+
+.bgInfoMovie {
+    padding: 50px;
+    background-color: #242222;
+    color: white;
+}
+
+
+.infomovie {
+    border: 2px solid;
+    background-color: #000000;
+}
+
+.reserva {
+    background-color: #ff0000;
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.trailer {
+    background-color: #73ff00;
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+
+.movie-info {
+    list-style: none;
+    padding: 0;
+}
+
+.movie-info li {
+    margin-bottom: 10px;
+}
+
+.lista {
+    color: lightblue;
+    margin-right: 5px;
+}

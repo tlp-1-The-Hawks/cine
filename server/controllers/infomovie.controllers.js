@@ -2,7 +2,7 @@ import { addCinemaInfo } from "../models/infoXcinema.model.js";
 import { createMovie } from "../models/movie_model.js";
 import { addMovieCinema } from '../models/movieXcinema.js';
 import { addMovieInfo } from "../models/moviexinfo.model.js";
-import { addInfor } from "../models/movie_information.model.js";
+import { addInfor } from "../models/Information.model.js";
 
 export const ctrlAddInfoMovie = async (req, res) => {
     try {
@@ -16,7 +16,8 @@ export const ctrlAddInfoMovie = async (req, res) => {
             price,
             genreId,
             rutaImage,
-            date_issue
+            date_issue,
+            type_emissionId
         } = req.body
         const { cinemaId } = req.params
 
@@ -29,7 +30,8 @@ export const ctrlAddInfoMovie = async (req, res) => {
             actors,
             price,
             genreId,
-            date_issue
+            date_issue,
+            type_emissionId
         }
 
         const NewMovie = await createMovie(title)

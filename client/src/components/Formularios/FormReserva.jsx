@@ -1,29 +1,29 @@
-  import '../../assets/style/FormReserva.css'
-  import { useState, useEffect } from 'react';
-  import {initMercadoPago, Wallet } from '@mercadopago/sdk-react';
-  import axios from 'axios';
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlSearchParams.entries());
-  const { movie, cinema } = params;
+import '../../assets/style/FormReserva.css'
+import { useState, useEffect } from 'react';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+import axios from 'axios';
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+const { movieId, cinemaId } = params;
 
   export const FormReserva = () => {
     const [info, setInfo] = useState({})
     const [price, setPrice] = useState("Cargando...");
-    const [quantity, setQuantity] = useState(1); // Estado para la cantidad de boletos
+    const [quantity, setQuantity] = useState(1);
   
     useEffect(() => {
-      fetch(`http://localhost:4000/api/movies/${movie}/${cinema}`, {
+      fetch(`http://localhost:4000/api/movies/${movieId}/${cinemaId}`, {
         method: 'GET'
       })
-        .then((res) => res.json())
-        .then((data) => {
-          setInfo(data)
-          setPrice(data.cinemas[0].information[0].price)
-        })
-        .catch((error) => console.log(error));
-    }, [])
+      .then((res) => res.json())
+      .then((data) => {
+        setInfo(data)
+        console.log(info);
+      })
+      .catch((error) => console.log(error));
+  }, [])
 
-    const [preferenceId, setPreferenceId] = useState(null);
+  const [preferenceId, setPreferenceId] = useState(null);
 
   initMercadoPago("TEST-82fc2258-893e-4c80-b58f-2bcaa60fd171");
 
@@ -52,12 +52,12 @@
     }
   };
 
-  // Función para actualizar la cantidad de boletos y precio cuando cambia el input
   const handleQuantityChange = (event) => {
-    const newQuantity = parseInt(event.target.value, 10); // Parsea el valor del input a un número entero
+    const newQuantity = parseInt(event.target.value, 10);
     setQuantity(newQuantity);
     const newPrice = newQuantity * info.cinemas[0].information[0].price;
     setPrice(newPrice);
+    console.log(price)
   };
 
     useEffect(() => {
@@ -97,7 +97,6 @@
           preferenceId && <Wallet initialization={{ preferenceId }} />
         }
       </div>
-
-      </div >
-    )
-  }
+      </div>
+  )
+}

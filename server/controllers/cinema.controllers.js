@@ -9,7 +9,6 @@ import {
 
 export const ctrlAddCinema = async (req, res) => {
     try {
-
         const cinema = await addCinema(req.body)
 
         return res.status(200).json({
