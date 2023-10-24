@@ -95,6 +95,7 @@ export const FormRegister = () => {
   }, []);
 
   return (
+
     <div className='contenedorRegister'>
       <div className='formBoxRegister'>
         <form name='formregister' onSubmit={handleSubmit}>
@@ -139,16 +140,8 @@ export const FormRegister = () => {
               onChange={handleChange}
             />
           </div>
-<div>
 
-<<<<<<< HEAD
-
-</div>
-          <div className='inputBox'>
-            <i className='bx bxs-lock-alt'></i>
-=======
           <div className='inputBoxRegister'>
->>>>>>> main
             <input type="password"
               placeholder='Contraseña'
               name="password"
@@ -169,25 +162,16 @@ export const FormRegister = () => {
             />
           </div>
 
-<<<<<<< HEAD
-          <div className='botn'>
-            <input type="submit" className='botn' value="Registro" aria-label=''/>
-          </div>
-
-          <div className='group'>
-        
-=======
           <div className='botonRegister'>
             <input type="submit" className='botonRegister' value="Registro" />
           </div>
 
           <div className='groupRegister'>
             <span><a href="#">Recuperar Contraseña</a></span>
->>>>>>> main
             <span><a href="/login">Inicia Sesion</a></span>
           </div>
         </form>
-      </div>
+    </div>
     </div>
   )
-}
+  }

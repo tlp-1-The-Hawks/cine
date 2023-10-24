@@ -6,7 +6,7 @@
 
 main {
   flex: 1;
-  background: #242222;
+background-color: #222;
 }
 
 .wrapper {
@@ -15,25 +15,7 @@ main {
   min-height: 100vh;
 }
 
-<<<<<<< HEAD
-
-main {
-  height: 100%;
-  flex-grow: 1;
-  background: #DBCBCB;
-}
-
-
-.contenedorMain {
-  margin-top: 10px;
-  margin-bottom: 50px;
-}
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-=======
 Footer {
   margin-top: auto;
   /* Empuja el pie de página hacia abajo al final del contenedor */
 }
->>>>>>> main

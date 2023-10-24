@@ -1,8 +1,11 @@
 .tarjeta {
   width: 18rem;
+ 
 }
 
 .card {
   margin: 10px;
-
+  background-color: #202529;
+  color: #fff;
+  border: solid 1px #df1414;
 }
