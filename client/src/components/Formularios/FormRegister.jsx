@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import '../../assets/style/FormRegister.css'
 import Swal from 'sweetalert2'
 
+
 export const FormRegister = () => {
 
   const [formState, setFormState] = useState({
@@ -142,7 +143,10 @@ export const FormRegister = () => {
               onChange={handleChange}
             />
           </div>
+<div>
 
+
+</div>
           <div className='inputBox'>
             <i className='bx bxs-lock-alt'></i>
             <input type="password"
@@ -167,11 +171,11 @@ export const FormRegister = () => {
           </div>
 
           <div className='botn'>
-            <input type="submit" className='botn' value="Registro" />
+            <input type="submit" className='botn' value="Registro" aria-label=''/>
           </div>
 
           <div className='group'>
-            <span><a href="#">Recuperar Contraseña</a></span>
+        
             <span><a href="/login">Inicia Sesion</a></span>
           </div>
         </form>
