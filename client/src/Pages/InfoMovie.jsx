@@ -18,7 +18,6 @@ export const InfoMovie = () => {
             .then((data) => {
 
                 setInfo(data)
-                console.log(info)
             })
             .catch((error) => console.log(error));
     }, [])

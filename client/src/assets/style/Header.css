@@ -1,6 +1,6 @@
 nav {
   font-family: sans-serif;
-  background-color: #DC3545;
+  background-color: #FF2C25;
   color: aliceblue;
   padding: 10px;
   min-height: 70px;
@@ -9,6 +9,7 @@ nav {
 header img {
   width: 50px;
 }
+
 
 .contimgtitu {
   background-color: #001011;
@@ -20,16 +21,23 @@ header img {
   width: 100px;
 }
 
-.borde-naranja {
+.borde-colorBusqueda {
   border: 2px solid black;
 }
 
 .color-fondo {
-  background-color: grey;
+  background-color: #c9d2d4;
+}
+
+#buscador::placeholder {
   color: black;
 }
 
+#buscador:hover::placeholder {
+  color: white;
+}
+
 .color-fondo:hover {
-  background-color: #e3a209;
+  background-color: #000000;
   color: white;
 }

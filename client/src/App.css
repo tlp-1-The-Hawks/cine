@@ -1,12 +1,21 @@
-/* header /
-    / Estilo base para el contenedor del menú */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  flex: 1;
+  background: #242222;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* Estable3ce la altura mínima del viewport */
 }
 
+<<<<<<< HEAD
 
 main {
   height: 100%;
@@ -22,3 +31,9 @@ main {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+=======
+Footer {
+  margin-top: auto;
+  /* Empuja el pie de página hacia abajo al final del contenedor */
+}
+>>>>>>> main
