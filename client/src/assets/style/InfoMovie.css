@@ -2,7 +2,8 @@
     max-width: 100%;
     width: 100%;
     height: auto;
-    /* Asegura que la imagen mantenga su proporción */
+    margin-top: 5px;
+        /* Asegura que la imagen mantenga su proporción */
 }
 
 .bgInfoMovie {
@@ -13,8 +14,8 @@
 
 
 .infomovie {
-    border: 2px solid;
-    background-color: #000000;
+    /* border: 2px solid; */
+    background-color: #424242
 }
 
 .reserva {

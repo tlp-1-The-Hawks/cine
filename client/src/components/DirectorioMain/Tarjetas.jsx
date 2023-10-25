@@ -54,6 +54,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                     <p className="card-text">Cines disponibles:</p>
                     {movie.cinemas.map((cine) => (
                       <Link
+                      id='cineName'
                         key={cine.id}
                         to="#"
                         data-cinema-id={cine.id}
