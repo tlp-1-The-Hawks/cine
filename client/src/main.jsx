@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import { Context } from './context/UserContext.jsx';
+import { UserCtxt } from './context/UserContext.jsx';
 import { AppRouter } from './routers/App.routers.jsx';
+import { AuthCtxt } from './context/AuthContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Context>
-    <AppRouter>
-      <App />
-    </AppRouter>
-  </Context>
+  <AuthCtxt>
+    <UserCtxt>
+      <AppRouter>
+        <App />
+      </AppRouter>
+    </UserCtxt>
+  </AuthCtxt>
 );
