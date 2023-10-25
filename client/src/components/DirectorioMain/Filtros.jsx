@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../assets/style/Filtros.css';
 import { Tarjetas } from './Tarjetas';
 import { FindGenre } from '../../hooks/useEffects/FindGenres.js';
-import { FindMovies } from '../../hooks/FindMovies.js';
+import { FindMovies } from '../../hooks/useEffects/FindMovies.js';
 
 
 export const Filtros = () => {

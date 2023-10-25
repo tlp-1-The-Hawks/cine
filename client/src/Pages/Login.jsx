@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormLogin } from '../components/Formularios/FormLogin.jsx'
 
-export const Register = () => {
+export const Login = () => {
   return (
     <FormLogin />
   )
