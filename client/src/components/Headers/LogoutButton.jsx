@@ -21,7 +21,7 @@ export const LogoutButton = () => {
       };
 
   return (
-    <button onClick={handleLogout} className="btn bg-dark text-white me-2">Cerrar Sesión</button>
+    <button onClick={handleLogout} className="btn bg-dark text-white me-2" > <box-icon name='log-out' type='solid' color='#fffcfc' ></box-icon>      Cerrar Sesión </button>
   );
 };
 

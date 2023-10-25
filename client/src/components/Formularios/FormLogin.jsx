@@ -45,7 +45,7 @@ export const FormLogin = () => {
     <div className='contenedorLogin'>
       <div className='formBoxLogin'>
         <form name='formlogin' onSubmit={handleSubmit}>
-          <h2>Inicio de Sesión</h2>
+          <h2> Inicio de Sesión</h2>
 
           <div className='inputBoxLogin'>
             <input type="text"

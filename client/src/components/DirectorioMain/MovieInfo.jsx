@@ -9,7 +9,7 @@ export const MovieInfo = ({ info }) => {
               info.information[0] && (
                 <img
                   className="imgInfoMovie"
-                  src={`/movies_img/${info.information[0].rutaImage}`}
+                  src={`/movies_img/${info.cinemas[0].information[0].rutaImage}`}
                   alt=""
                 />
               )}

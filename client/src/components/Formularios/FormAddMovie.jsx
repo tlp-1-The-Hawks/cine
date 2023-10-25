@@ -129,7 +129,15 @@ export const FormAddMovie = ({genreState,cinemaId,type_emission}) => {
                                         name="director" />
                                 </div>
                             </div>
+                         
+                                                                <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="Url" className="form-label">link del trailer</label>
+                                    <input type="text" className="form-control" id="Url"
+                                        name="Url" />
+                        
+                            </div>
                             <div className="row">
+                                
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <label htmlFor="actors" className="form-label">Actores</label>
                                     <input onChange={handleChange} value={formMovie.actors} type="text" className="form-control" id=""

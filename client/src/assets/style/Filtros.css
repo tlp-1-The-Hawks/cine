@@ -1,16 +1,30 @@
 .bg-filtro-container {
-  background-color: #030303;
+  background-color: #202529;
   padding: 20px;
   border-radius: 10px;
 }
 
 label {
-  color: #FF2C25;
+  color: #ffffff;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 2px;
 }
 
 h1 {
   padding-top: 40px;
-  color: #FF2C25;
-  border-bottom: 1px solid #FF2C25;
+  color:  #ffffff;
+  border-bottom: 1px solid #e21515;
   width: 53%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+X
 }
+/* Negro: #000000
+Rojo oscuro: #8B0000
+Plata: #C0C0C0
+Dorado: #FFD700
+Azul oscuro: #00008B
+Blanco: #FFFFFF
+Rojo carmesí: #DC143C
+Amarillo oscuro: #FFD700
+Gris oscuro: #555555
+Azul marino: #000080 */

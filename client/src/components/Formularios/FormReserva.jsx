@@ -92,7 +92,10 @@ const { movieId, cinemaId } = params;
           </p>
         </div>
 
-        <button className='botonReserva' type='button' onClick={handleBuy}>Pagar Mi Boleto</button>
+        <button className='botonReserva d-flex justify-content-center pt-2' type='button' onClick={handleBuy}>
+          <box-icon name='cart-add' color='#ffffff' ></box-icon>
+          <p>Pagar Mi Boleto</p>
+        </button>
         {
           preferenceId && <Wallet initialization={{ preferenceId }} />
         }
