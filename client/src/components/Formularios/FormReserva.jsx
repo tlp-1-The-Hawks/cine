@@ -2,6 +2,7 @@ import '../../assets/style/FormReserva.css'
 import { useState, useEffect } from 'react';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import axios from 'axios';
+import { Seat } from '../otros/seats';
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movieId, cinemaId } = params;
@@ -73,10 +74,11 @@ const { movieId, cinemaId } = params;
     < div className="contenedorReserva" >
 
       <div className="formBoxReserva">
-        <h2>Reserva de Asientos de Cine</h2>
 
+      <h2>Reserva de Asientos de Cine</h2>
+<div className='datos'> <div >
+<div className="inputBoxReserva">
 
-        <div className="inputBoxReserva">
           <label>Número de Boletos</label>
           <input
             min={1}
@@ -91,14 +93,20 @@ const { movieId, cinemaId } = params;
             $ {price}
           </p>
         </div>
-
-        <button className='botonReserva d-flex justify-content-center pt-2' type='button' onClick={handleBuy}>
-          <box-icon name='cart-add' color='#ffffff' ></box-icon>
-          <p>Pagar Mi Boleto</p>
-        </button>
+     
         {
           preferenceId && <Wallet initialization={{ preferenceId }} />
         }
+</div>
+<Seat/></div>
+<button className='botonReserva d-flex justify-content-center pt-2' type='button' onClick={handleBuy}>
+          <box-icon name='cart-add' color='#ffffff' ></box-icon>
+          <p>Pagar Mi Boleto</p>
+        </button>
+
+
+
+  
       </div>
       </div>
   )
