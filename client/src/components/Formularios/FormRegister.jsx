@@ -168,12 +168,8 @@ export const FormRegister = () => {
             <span><a href="/login">Inicia Sesion</a></span>
           </div>
         </form>
-    </div>
+      </div>
     </div>
   )
-<<<<<<< HEAD
-  }
-=======
 }
 
->>>>>>> 750b2a311faa8834ba4d8f3353c4ca7afef603bf
