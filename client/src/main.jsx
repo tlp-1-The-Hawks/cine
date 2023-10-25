@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import {NextUIProvider} from '@nextui-org/react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Register } from './Pages/Register.jsx';
 import { Reserva } from './Pages/Reserva.jsx'

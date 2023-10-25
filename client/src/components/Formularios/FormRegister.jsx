@@ -168,7 +168,7 @@ export const FormRegister = () => {
             <span><a href="/login">Inicia Sesion</a></span>
           </div>
         </form>
-    </div>
+      </div>
     </div>
   )
 }

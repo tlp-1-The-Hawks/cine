@@ -5,13 +5,11 @@ export const MovieInfo = ({ info }) => {
         <div className="row">
           <div className="col-md-4">
             {info &&
-              info.cinemas &&
-              info.cinemas[0] &&
-              info.cinemas[0].information &&
-              info.cinemas[0].information[0] && (
+              info.information &&
+              info.information[0] && (
                 <img
-                  className="imgInfoMovie "
-                  src={`/movies_img/${info.cinemas[0].information[0].rutaImage}`}
+                  className="imgInfoMovie"
+                  src={`/movies_img/${info.information[0].rutaImage}`}
                   alt=""
                 />
               )}
@@ -21,11 +19,9 @@ export const MovieInfo = ({ info }) => {
               <h1 className="">{info === undefined ? '' : info.title}</h1>
 
               {info &&
-                info.cinemas &&
-                info.cinemas[0] &&
-                info.cinemas[0].information &&
-                info.cinemas[0].information[0] && (
-                  <p>{info.cinemas[0].information[0].description}</p>
+                info.information &&
+                info.information[0] && (
+                  <p>{info.information[0].description}</p>
                 )}
 
               <div>
@@ -33,20 +29,16 @@ export const MovieInfo = ({ info }) => {
                   <li>
                     <span className="lista">Precio:</span>
                     {info &&
-                      info.cinemas &&
-                      info.cinemas[0] &&
-                      info.cinemas[0].information &&
-                      info.cinemas[0].information[0] && (
-                        <span>{info.cinemas[0].information[0].price}</span>
+                      info.information &&
+                      info.information[0] && (
+                        <span>{info.information[0].price}</span>
                       )}
                   </li>
                   <li>
                     <span className="lista">Cine:</span>
                     {info &&
                       info.cinemas &&
-                      info.cinemas[0] &&
-                      info.cinemas[0].information &&
-                      info.cinemas[0].information[0] && (
+                      info.cinemas[0] && (
                         <span>{info.cinemas[0].name}</span>
                       )}
                   </li>
@@ -56,34 +48,29 @@ export const MovieInfo = ({ info }) => {
                   </li>
                   <li>
                     <span className="lista">Formato:</span>
-                    {info &&
-                      info.cinemas &&
-                      info.cinemas[0] &&
-                      info.cinemas[0].information &&
-                      info.cinemas[0].information[0] && (
+                    {
+                      info &&
+                      info.information &&
+                      info.information[0] && (
                         <span>
-                          {info.cinemas[0].information[0].type_emissionId}
+                          {info.information[0].type_emissionId}
                         </span>
                       )}
                   </li>
                   <li>
                     <span className="lista">Duración:</span>
                     {info &&
-                      info.cinemas &&
-                      info.cinemas[0] &&
-                      info.cinemas[0].information &&
-                      info.cinemas[0].information[0] && (
-                        <span>{info.cinemas[0].information[0].duration}</span>
+                      info.information &&
+                      info.information[0] && (
+                        <span>{info.information[0].duration}</span>
                       )}
                   </li>
                   <li>
                     <span className="lista">Director:</span>
                     {info &&
-                      info.cinemas &&
-                      info.cinemas[0] &&
-                      info.cinemas[0].information &&
-                      info.cinemas[0].information[0] && (
-                        <span>{info.cinemas[0].information[0].director}</span>
+                      info.information &&
+                      info.information[0] && (
+                        <span>{info.information[0].director}</span>
                       )}
                   </li>
                 </ul>
