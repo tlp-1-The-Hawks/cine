@@ -1,10 +1,12 @@
 import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { type } from '../../types/types.js'
+import { useState, useEffect, useContext } from 'react'
+import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormLogin.css'
-import Swal from 'sweetalert2'
 
 export const FormLogin = () => {
+
+  const { state, dispatch } = useContext(UserContext)
 
   const [formState, setFormState] = useState({
     email: "",
@@ -23,49 +25,10 @@ export const FormLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    fetch("http://localhost:4000/auth/login", {
-      method: "POST",
-      body: JSON.stringify(formState),
-      headers: {
-        'content-type': 'application/json'
-      }
+    dispatch({
+      type: type.USER_FIND_ONE,
+      payload: formState
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.errors) {
-          Swal.fire({
-            title: 'Error',
-            text: data.errors[0].msg,
-            icon: 'error',
-            width: '50%',
-            padding: '1rem',
-            background: '#DBCBCB',
-            grow: 'row'
-          })
-        } else {
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            Swal.fire({
-              title: 'Inicio sesión correctamente',
-              icon: 'success',
-              confirmButtonText: 'ok',
-              width: '50%',
-              padding: '1rem',
-              background: '#DBCBCB',
-              grow: 'row'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                window.location.href = '/'
-              }
-            })
-          } else {
-            console.error('Error al iniciar sesión');
-          }
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
 
   }
 

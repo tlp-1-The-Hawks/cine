@@ -3,6 +3,7 @@ import { DataTypes } from 'sequelize';
 import { cinemaModel } from './Cinema.models.js';
 import { informationModel } from './Information.model.js';
 import { genreModel } from './genre.models.js';
+import { movieCinemaModel } from './movieXcinema.js';
 
 export const MovieModel = sequelize.define(
   'movie',
@@ -66,16 +67,17 @@ export async function getMovieById(movieId, cinemaId) {
     where: {
       id: movieId
     },
-    include:
-    {
-      model: cinemaModel,
-      where: {
-        id: cinemaId
+    include: [
+      {
+        model: cinemaModel,
+        where: {
+          id: cinemaId
+        }
       },
-      include: {
+      {
         model: informationModel
       }
-    }
+    ]
   });
 
 

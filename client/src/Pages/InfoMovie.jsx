@@ -1,7 +1,7 @@
 import { Header } from '../components/Headers/Header.jsx'
 import { MovieInfo } from '../components/DirectorioMain/MovieInfo.jsx'
 import { Footer } from '../components/Footers/Footer.jsx'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movie, cinema } = params;
@@ -16,7 +16,7 @@ export const InfoMovie = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-
+                console.log(data);
                 setInfo(data)
             })
             .catch((error) => console.log(error));
@@ -25,8 +25,8 @@ export const InfoMovie = () => {
     return (
         <>
             <Header />
-            <MovieInfo 
-            info={info}
+            <MovieInfo
+                info={info}
             />
             <Footer />
         </>
