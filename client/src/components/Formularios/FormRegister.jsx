@@ -94,7 +94,7 @@ export const FormRegister = () => {
     <div className='contenedorRegister'>
       <div className='formBoxRegister'>
         <form name='formregister' onSubmit={handleSubmit}>
-          <h2>Registro</h2>
+          <h2 className='mt-2'>Registro</h2>
 
           <div className='inputBoxRegister'>
             <input type="text"

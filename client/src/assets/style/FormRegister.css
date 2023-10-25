@@ -11,7 +11,6 @@
 .formBoxRegister {
   position: relative;
   width: 400px;
-  height: 85vh;
   border: 2px solid rgba(255, 255, 2550.5);
   border-radius: 20px;
   backdrop-filter: blur(15px);
@@ -69,14 +68,14 @@ input::placeholder {
 }
 
 .groupRegister {
+  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
 }
 
 .groupRegister span a {
   color: #fff;
-  position: relative;
-  top: 10px;
   text-decoration: none;
   font-weight: 500;
 }

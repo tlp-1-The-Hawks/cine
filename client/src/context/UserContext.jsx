@@ -12,18 +12,17 @@ const init = () => {
 export const Context = ({ children }) => {
     const [state, dispatch] = useReducer(userReducer, [], init)
 
-    const handleSubmit = (user) => {
-        dispatch({
-            type: type.USER_ADD,
-            payload: user
-        })
-    }
+    // const handleSubmit = (user) => {
+    //     dispatch({
+    //         type: type.USER_ADD,
+    //         payload: user
+    //     })
+    // }
 
     return (
         <UserContext.Provider value={{
             dispatch,
             state,
-            handleSubmit
         }}>
             {children}
         </UserContext.Provider>
