@@ -1,11 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { type } from '../../types/types.js'
+import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormRegister.css'
-import Swal from 'sweetalert2'
+
 
 
 export const FormRegister = () => {
+
+  const { state, dispatch } = useContext(UserContext)
 
   const [formState, setFormState] = useState({
     name: "",
@@ -27,63 +30,57 @@ export const FormRegister = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (formState.password != formState.confirmarpassword) {
-      const alertpassword = Swal.fire({
-        title: 'Error',
-        text: 'Las contraseñas no coinciden',
-        icon: 'error',
-        width: '50%',
-        padding: '1rem',
-        background: '#DBCBCB',
-        grow: 'row'
-      })
-      return alertpassword
-    }
 
-    fetch("http://localhost:4000/auth/register", {
-      method: "POST",
-      body: JSON.stringify(formState),
-      headers: {
-        'content-type': 'application/json'
-      }
+    dispatch({
+      type: type.USER_ADD,
+      payload: formState
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.errors) {
-          Swal.fire({
-            title: 'Error',
-            text: data.errors[0].msg,
-            icon: 'error',
-            width: '50%',
-            padding: '1rem',
-            background: '#DBCBCB',
-            grow: 'row'
-          })
-        } else {
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            Swal.fire({
-              title: 'Se registro correctamente',
-              icon: 'success',
-              confirmButtonText: 'ok',
-              width: '50%',
-              padding: '1rem',
-              background: '#DBCBCB',
-              grow: 'row'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                window.location.href = '/'
-              }
-            })
-          } else {
-            console.error('Error al iniciar sesión');
-          }
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
   }
+
+  // fetch("http://localhost:4000/auth/register", {
+  //   method: "POST",
+  //   body: JSON.stringify(formState),
+  //   headers: {
+  //     'content-type': 'application/json'
+  //   }
+  // })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     if (data.errors) {
+  //       Swal.fire({
+  //         title: 'Error',
+  //         text: data.errors[0].msg,
+  //         icon: 'error',
+  //         width: '50%',
+  //         padding: '1rem',
+  //         background: '#DBCBCB',
+  //         grow: 'row'
+  //       })
+  //     } else {
+  //       if (data.token) {
+  //         localStorage.setItem('token', data.token);
+  //         Swal.fire({
+  //           title: 'Se registro correctamente',
+  //           icon: 'success',
+  //           confirmButtonText: 'ok',
+  //           width: '50%',
+  //           padding: '1rem',
+  //           background: '#DBCBCB',
+  //           grow: 'row'
+  //         }).then((result) => {
+  //           if (result.isConfirmed) {
+  //             window.location.href = '/'
+  //           }
+  //         })
+  //       } else {
+  //         console.error('Error al iniciar sesión');
+  //       }
+  //     }
+  //   })
+  //   .catch(error => {
+  //     console.error('Error:', error);
+  //   });
+
 
   useEffect(() => {
 
@@ -99,7 +96,7 @@ export const FormRegister = () => {
     <div className='contenedorRegister'>
       <div className='formBoxRegister'>
         <form name='formregister' onSubmit={handleSubmit}>
-          <h2>Registro</h2>
+          <h2 className='mt-2'>Registro</h2>
 
           <div className='inputBoxRegister'>
             <input type="text"
@@ -174,4 +171,9 @@ export const FormRegister = () => {
     </div>
     </div>
   )
+<<<<<<< HEAD
   }
+=======
+}
+
+>>>>>>> 750b2a311faa8834ba4d8f3353c4ca7afef603bf
