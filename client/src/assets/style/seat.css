@@ -8,6 +8,7 @@ color: white;
 }
     #selectedSeats{
         color: aliceblue;
+        border-bottom: 2px solid #fff;
     }
     
     .seating-plan {
@@ -19,7 +20,7 @@ color: white;
     .seat {
       width: 35px;
       height: 30px;
-      background-color: green;
+      background-color: rgb(255, 9, 9);
       border: 1px solid black;
       cursor: pointer;
       justify-content: center;
@@ -27,14 +28,18 @@ color: white;
       padding-left: 4px;
       
     }
+    .seat:hover {
+      transform: scale(1.10); /* Aumenta el tamaño en un 10% en el hover */
+      transition: transform 0.5s; /* Agrega una transición suave */
+    }
     
     .seat.occupied {
-      background-color: red;
+      background-color: rgb(94, 91, 91);
       cursor: not-allowed;
     }
     
     .seat.selected {
-      background-color: rgb(30, 19, 180);
+      background-color: rgb(19, 142, 180);
     }
     
     .ejemplos{
@@ -50,7 +55,7 @@ color: white;
     .ejemplos1{
         width: 30px;
         height: 30px;
-        background-color: green;
+        background-color: rgb(255, 0, 0);
         border: 1px solid black;
         cursor: pointer;
         justify-content: center;
@@ -63,7 +68,7 @@ color: white;
     .ejemplos2 {    
         width: 30px;
         height: 30px;
-        background-color: red;
+        background-color:  rgb(94, 91, 91);
         border: 1px solid black;
         cursor: not-allowed;
         justify-content: center;
@@ -75,7 +80,7 @@ color: white;
       .ejemplos3{
         width: 30px;
         height: 30px;
-        background-color: rgb(30, 19, 180);
+        background-color: rgb(19, 142, 180);
         border: 1px solid black;
         cursor: not-allowed;
         justify-content: center;

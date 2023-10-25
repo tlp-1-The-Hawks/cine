@@ -81,7 +81,11 @@
   font-size: 17px;
   cursor: pointer;
   box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
-  margin-top: 20px;
+  margin-top: 30px;
   
   /* Espacio entre el último elemento y el botón */
+}
+.botonReserva:hover {
+  transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
+  transition: transform 0.3s; /* Agrega una transición suave */
 }
