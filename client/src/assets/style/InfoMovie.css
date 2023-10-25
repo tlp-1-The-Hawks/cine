@@ -2,8 +2,11 @@
     max-width: 100%;
     width: 100%;
     height: auto;
-    /* Asegura que la imagen mantenga su proporción */
+    margin-top: 30px;
+        /* Asegura que la imagen mantenga su proporción */
 }
+
+
 
 .bgInfoMovie {
     padding: 50px;
@@ -13,8 +16,8 @@
 
 
 .infomovie {
-    border: 2px solid;
-    background-color: #000000;
+    /* border: 2px solid; */
+    background-color: #424242
 }
 
 .reserva {
@@ -25,15 +28,30 @@
     padding: 5px 15px;
     border-radius: 5px;
 }
+.reserva:hover {
+    transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
+    transition: transform 0.3s; /* Agrega una transición suave */
+  }.seat:hover {
+    transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
+    transition: transform 0.3s; /* Agrega una transición suave */
+  }
+  
+  
 
 .trailer {
-    background-color: #73ff00;
+    background-color: #ff0000;
     color: #fff;
     display: inline-block;
     text-decoration: none;
     padding: 5px 15px;
     border-radius: 5px;
+    margin-left: 5px;
 }
+.trailer:hover {
+    transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
+    transition: transform 0.3s; /* Agrega una transición suave */
+  }
+  
 
 
 .movie-info {
@@ -46,6 +64,6 @@
 }
 
 .lista {
-    color: lightblue;
+    color: #2199a1;
     margin-right: 5px;
 }

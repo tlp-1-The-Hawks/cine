@@ -12,7 +12,8 @@ header img {
 
 
 .contimgtitu {
-  background-color: #001011;
+  background-color: #202529;
+  margin-right: 50px;
 }
 
 
@@ -22,15 +23,15 @@ header img {
 }
 
 .borde-colorBusqueda {
-  border: 2px solid black;
+  border: 2px solid #202529;
 }
 
 .color-fondo {
-  background-color: #c9d2d4;
+  background-color: #202529;
 }
 
 #buscador::placeholder {
-  color: black;
+  color: #ffffff;
 }
 
 #buscador:hover::placeholder {
@@ -40,4 +41,12 @@ header img {
 .color-fondo:hover {
   background-color: #000000;
   color: white;
+}
+#lupa{
+  color: #FF2C25;
+}
+#Buscador{
+  background-color: #202529;
+  border: 2px solid #202529;
+  border-radius: 10px;
 }

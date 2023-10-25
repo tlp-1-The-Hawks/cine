@@ -6,6 +6,7 @@ import fileUpload from "express-fileupload";
 import { environments } from './config/environments.js';
 import { startDb } from './config/associations.js';
 // import { userRouter } from './routes/users.routes.js';
+import { hallrouter } from './routes/hall.routes.js';
 import { type_emissionRouter } from './routes/type_emission.routes.js';
 import { cinemaRouter } from './routes/cinema.routes.js';
 import { commentRouter } from './routes/comment.routes.js';
@@ -41,7 +42,8 @@ app.use('/api', cinemaRouter);
 app.use('/api', commentRouter);
 app.use('/api', movieRouter)
 // app.use('/api', userRouter);
-app.use('/api', infoMovierouter)
+app.use('/api', hallrouter);
+app.use('/api', infoMovierouter);
 app.use('/api', genrerouter);
 app.use('/api', movieCinemarouter)
 app.use('/api', bookingRouter)

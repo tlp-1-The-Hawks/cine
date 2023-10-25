@@ -4,7 +4,7 @@ import { DataTypes } from "sequelize"
 export const hallModel = sequelize.define(
     'hall',
     {
-        hall: {
+        nr_hall: {
             type: DataTypes.INTEGER
         },
         capacity: {
@@ -13,4 +13,9 @@ export const hallModel = sequelize.define(
         },
 
     }
-) 
+)
+
+//services 
+export async function addCreateHall(hall) {
+    return await hallModel.create(hall)
+}

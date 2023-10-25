@@ -20,7 +20,7 @@ export const Header = () => {
           </a>
         </div>
 
-        <form className="d-flex prueba" role="search">
+        <form className="d-flex prueba" id='Buscador' role="search">
           <input
             className="form-control me-2 borde-colorBusqueda color-fondo"
             id='buscador'
@@ -32,7 +32,7 @@ export const Header = () => {
             className="btn btn-outline-secondar borde-colorBusqueda color-fondo"
             type="submit"
           >
-            Buscar
+<box-icon name='search-alt' color='#ffffff' ></box-icon>
           </button>
         </form>
 

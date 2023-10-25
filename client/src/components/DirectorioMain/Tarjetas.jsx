@@ -34,7 +34,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
     const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
     const movieId = e.currentTarget.getAttribute("data-movie-id");
 
-
+    console.log(cinemaId, movieId)
     window.location.href = `/informacion-pelicula?movie=${movieId}&cinema=${cinemaId}`;
 
   }
@@ -54,6 +54,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                     <p className="card-text">Cines disponibles:</p>
                     {movie.cinemas.map((cine) => (
                       <Link
+                      id='cineName'
                         key={cine.id}
                         to="#"
                         data-cinema-id={cine.id}

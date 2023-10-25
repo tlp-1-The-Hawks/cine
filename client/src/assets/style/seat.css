@@ -1,0 +1,92 @@
+
+
+.seats{
+    /* background-color: #424242; */
+    height: 250px;
+width: 550px;
+color: white;
+}
+    #selectedSeats{
+        color: aliceblue;
+        border-bottom: 2px solid #fff;
+    }
+    
+    .seating-plan {
+      display: grid;
+      grid-template-columns: repeat(10, 28px);
+      grid-gap: 15px;
+    }
+    
+    .seat {
+      width: 35px;
+      height: 30px;
+      background-color: rgb(255, 9, 9);
+      border: 1px solid black;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      padding-left: 4px;
+      
+    }
+    .seat:hover {
+      transform: scale(1.10); /* Aumenta el tamaño en un 10% en el hover */
+      transition: transform 0.5s; /* Agrega una transición suave */
+    }
+    
+    .seat.occupied {
+      background-color: rgb(94, 91, 91);
+      cursor: not-allowed;
+    }
+    
+    .seat.selected {
+      background-color: rgb(19, 142, 180);
+    }
+    
+    .ejemplos{
+        display:flex;
+        flex-direction: row;
+           
+    }
+    .ejemplos p{
+        margin-right: 5px;
+        margin-left: 5px;   
+    }
+
+    .ejemplos1{
+        width: 30px;
+        height: 30px;
+        background-color: rgb(255, 0, 0);
+        border: 1px solid black;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        padding-left: 4px;
+        color: white;
+
+    }
+
+    .ejemplos2 {    
+        width: 30px;
+        height: 30px;
+        background-color:  rgb(94, 91, 91);
+        border: 1px solid black;
+        cursor: not-allowed;
+        justify-content: center;
+        align-items: center;
+        padding-left: 4px;
+        color: white;
+
+      }
+      .ejemplos3{
+        width: 30px;
+        height: 30px;
+        background-color: rgb(19, 142, 180);
+        border: 1px solid black;
+        cursor: not-allowed;
+        justify-content: center;
+        align-items: center;
+        padding-left: 4px;
+        color: white;
+
+      }
+    
