@@ -18,7 +18,7 @@ const { movieId, cinemaId } = params;
       .then((res) => res.json())
       .then((data) => {
         setInfo(data)
-        console.log(info);
+        setPrice(data.cinemas[0].information[0].price)
       })
       .catch((error) => console.log(error));
   }, [])
@@ -30,14 +30,13 @@ const { movieId, cinemaId } = params;
 
   const createPreference = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/create_preference", {
+      const response = await axios.post("http://localhost:4000/api/create-order", {
         description: "Boleto de cine",
         price: price,
         quantity: 1,
       });
 
       const { id } = response.data;
-      console.log(id);
 
       return id;
     } catch (error) {
@@ -57,7 +56,6 @@ const { movieId, cinemaId } = params;
     setQuantity(newQuantity);
     const newPrice = newQuantity * info.cinemas[0].information[0].price;
     setPrice(newPrice);
-    console.log(price)
   };
 
     useEffect(() => {
