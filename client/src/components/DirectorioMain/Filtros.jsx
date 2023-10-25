@@ -6,7 +6,7 @@ export const Filtros = () => {
   const [movies, setMovies] = useState([]);
   const [filtro, setFiltro] = useState([]);
   const [genreState, setGenreState] = useState([])
-  
+
   useEffect(() => {
     fetch("http://localhost:4000/api/movies", {
       method: "GET",
@@ -14,18 +14,17 @@ export const Filtros = () => {
       .then((response) => response.json())
       .then((data) => setMovies(data))
       .catch((error) => console.error('Error:', error));
+
+    fetch('http://localhost:4000/api/genre', {
+      method: 'GET'
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setGenreState(data)
+      })
+      .catch((error) => console.log(error))
   }, []);
 
-  useEffect(()=> {
-    fetch('http://localhost:4000/api/genre', {
-        method:'GET'
-    })
-    .then((res)=>res.json())
-    .then((data) => {
-        setGenreState(data)
-    })
-    .catch((error)=> console.log(error))
-},[])
 
   const filtrar = async (e) => {
     const { value } = e.target;
@@ -38,11 +37,15 @@ export const Filtros = () => {
       .catch((error) => console.error('Error:', error));
 
   }
-  
+
   return (
     <>
-      <div className="filtro bg-filtro-container container pt-4 pb-4">
+      <div className="filtro bg-filtro-container container">
         <div className="row">
+        <div className="col-sm-8 col-lg-6">
+            <h1>Películas Estrenos:</h1>
+            <br />
+          </div>
           <div className="col-sm-4 col-lg-6">
             <form>
               <div className="form-group">
@@ -53,17 +56,18 @@ export const Filtros = () => {
                     <select className="form-control" id="exampleFormControlSelect1">
                       <option>Todos</option>
                       <option>Mejores calificados</option>
+                      <option>Orden Alfabetico</option>
                     </select>
                   </div>
                   <div className='col'>
                     <label htmlFor="">Género</label>
                     <select
-                    name="genreId"
-                    id="exampleFormControlSelect1"
-                    className="form-control">
+                      name="genreId"
+                      id="exampleFormControlSelect1"
+                      className="form-control">
                       {genreState.map((genre) => (
                       <option key={genre.id} value={genre.id}>
-                       {genre.genre}
+                      {genre.genre}
                       </option>
                       ))}
                     </select>
@@ -72,9 +76,6 @@ export const Filtros = () => {
               </div>
             </form>
           </div>
-          <div className="col-sm-8 col-lg-6">
-            <h1>Películas Estrenos</h1>
-          </div>
         </div>
       </div>
       <Tarjetas
@@ -82,4 +83,4 @@ export const Filtros = () => {
       />
     </>
   );
-};
+}

@@ -1,15 +1,18 @@
-import { addcomment, 
-    deleteComment, 
-    editComment, 
-    getAllComments, 
-    getCommentByid } from "../models/Comment.model.js";
+import {
+    addcomment,
+    deleteComment,
+    editComment,
+    getAllComments,
+    getCommentByid
+} from "../models/Comment.model.js";
 
 export const ctrlAddcomment = async (req, res) => {
     try {
-        const { userId } = req.params
-        const { description } = req.body
+        const { movieId, userId } = req.params
 
-        const newcomment = await addcomment(description, userId)
+        const { description, title } = req.body
+
+        const newcomment = await addcomment(title, description, userId, movieId)
 
         return res.status(200).json({
             message: 'Comment added successfully'
@@ -68,15 +71,15 @@ export const ctrlEditComment = async (req, res) => {
 }
 
 export const ctrlDeleteComment = async (req, res) => {
-    try{
-        const {id} = req.params
+    try {
+        const { id } = req.params
 
         const deletedComment = await deleteComment(id)
 
         return res.status(200).json({
             message: 'Comment deleted'
         })
-    }catch(error){
+    } catch (error) {
         console.log(error)
         res.status(500).json({
             message: 'Error when deleting comment'

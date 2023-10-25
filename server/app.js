@@ -6,7 +6,13 @@ import fileUpload from "express-fileupload";
 import mercadopago from 'mercadopago';
 import { environments } from './config/environments.js';
 import { startDb } from './config/associations.js';
+<<<<<<< HEAD
 //  import { userRouter } from './routes/users.routes.js';
+=======
+// import { userRouter } from './routes/users.routes.js';
+import { hallrouter } from './routes/hall.routes.js';
+import { type_emissionRouter } from './routes/type_emission.routes.js';
+>>>>>>> main
 import { cinemaRouter } from './routes/cinema.routes.js';
 import { commentRouter } from './routes/comment.routes.js';
 import { authRouter } from './routes/auth.routes.js';
@@ -37,16 +43,16 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use(fileUpload());
 
 mercadopago.configure({
-  access_token: 'TEST-404212168429405-100814-c4e7626d78ec784ad54c9aa285cebe51-1500511378'
+  access_token: 'APP_USR-404212168429405-100814-0deccd0b6f09ee5ef36fe7e6a21b05f8-1500511378'
 })
 
-app.post('/create_preference',( req, res ) => {
+app.post('/create_preference', (req, res) => {
   let preference = {
     items: [
       {
-      title: req.body.description,
-      unit_price: Number(req.body.price),
-      quantity: Number(req.body.quantity)
+        title: req.body.description,
+        unit_price: Number(req.body.price),
+        quantity: Number(req.body.quantity)
       }
     ],
     back_urls: {
@@ -56,11 +62,14 @@ app.post('/create_preference',( req, res ) => {
     },
     auto_return: 'approved'
   }
+  console.log(preference)
   mercadopago.preferences
-  .create(preference)
-  .then(function (response) {
-      res.json({ 
-        id: response.body.id 
+    .create(preference)
+    .then(function (response) {
+      const id = response.body.id
+      console.log(id)
+      res.json({
+        id: response.body.id
       });
     })
     .catch(function (error) {
@@ -71,11 +80,18 @@ app.post('/create_preference',( req, res ) => {
 app.use('/api', cinemaRouter);
 app.use('/api', commentRouter);
 app.use('/api', movieRouter)
+<<<<<<< HEAD
 //  app.use('/api', userRouter);
 app.use('/api', infoMovierouter)
+=======
+// app.use('/api', userRouter);
+app.use('/api', hallrouter);
+app.use('/api', infoMovierouter);
+>>>>>>> main
 app.use('/api', genrerouter);
-app.use('/api', movieCinemarouter)
-app.use('/api', bookingRouter)
+app.use('/api', movieCinemarouter);
+app.use('/api', bookingRouter);
+app.use('/api', type_emissionRouter);
 app.use('/auth', authRouter);
 app.use(handleErrors);
 

@@ -1,10 +1,12 @@
 import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { type } from '../../types/types.js'
+import { useState, useEffect, useContext } from 'react'
+import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormLogin.css'
-import Swal from 'sweetalert2'
 
 export const FormLogin = () => {
+
+  const { state, dispatch } = useContext(UserContext)
 
   const [formState, setFormState] = useState({
     email: "",
@@ -23,49 +25,10 @@ export const FormLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    fetch("http://localhost:4000/auth/login", {
-      method: "POST",
-      body: JSON.stringify(formState),
-      headers: {
-        'content-type': 'application/json'
-      }
+    dispatch({
+      type: type.USER_FIND_ONE,
+      payload: formState
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.errors) {
-          Swal.fire({
-            title: 'Error',
-            text: data.errors[0].msg,
-            icon: 'error',
-            width: '50%',
-            padding: '1rem',
-            background: '#DBCBCB',
-            grow: 'row'
-          })
-        } else {
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            Swal.fire({
-              title: 'Inicio sesión correctamente',
-              icon: 'success',
-              confirmButtonText: 'ok',
-              width: '50%',
-              padding: '1rem',
-              background: '#DBCBCB',
-              grow: 'row'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                window.location.href = '/'
-              }
-            })
-          } else {
-            console.error('Error al iniciar sesión');
-          }
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
 
   }
 
@@ -79,12 +42,12 @@ export const FormLogin = () => {
   }, []);
 
   return (
-    <div className='contenedor'>
-      <div className='formBoxe'>
+    <div className='contenedorLogin'>
+      <div className='formBoxLogin'>
         <form name='formlogin' onSubmit={handleSubmit}>
-          <h2>Inicio de Sesión</h2>
+          <h2> Inicio de Sesión</h2>
 
-          <div className='inputBox'>
+          <div className='inputBoxLogin'>
             <input type="text"
               placeholder='Email'
               name="email"
@@ -94,8 +57,7 @@ export const FormLogin = () => {
             />
           </div>
 
-          <div className='inputBox'>
-            <i className='bx bxs-user'></i>
+          <div className='inputBoxLogin'>
             <input type="password"
               placeholder='Contraseña'
               name="password"
@@ -105,11 +67,11 @@ export const FormLogin = () => {
             />
           </div>
 
-          <div className='botn'>
-            <input type="submit" className='botn' value="Registro" />
+          <div className='botonLogin'>
+            <input type="submit" className='botonLogin' value="Registro" />
           </div>
 
-          <div className='group'>
+          <div className='groupLogin'>
             <span><a href="#">Recuperar Contraseña</a></span>
             <span><a href="/register">Registro</a></span>
           </div>

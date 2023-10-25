@@ -1,14 +1,16 @@
 import { Router } from "express";
-import { ctrlAddcomment, 
-    ctrlDeleteComment, 
-    ctrlEditComment, 
-    ctrlGetAllcomment, 
-    ctrlGetCommentById } from "../controllers/comment.controllers.js";
+import {
+    ctrlAddcomment,
+    ctrlDeleteComment,
+    ctrlEditComment,
+    ctrlGetAllcomment,
+    ctrlGetCommentById
+} from "../controllers/comment.controllers.js";
 
 
 const commentRouter = Router();
 
-commentRouter.post('/comment/:userId', ctrlAddcomment);
+commentRouter.post('/comment/:movieId/:userId', ctrlAddcomment);
 
 commentRouter.get('/comment/:id', ctrlGetCommentById);
 

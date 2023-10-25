@@ -1,12 +1,10 @@
 import React from 'react';
 import '../../assets/style/Header.css';
 import { LoginButtons } from './ButtonLoginRegister.jsx';
+import { LogoutButton } from './LogoutButton.jsx';
 
 export const Header = () => {
   const token = localStorage.getItem('token');
-
-  // Agregar o quitar la clase "visible" según la presencia del token
-  const loginButtonsClass = token ? 'login-buttons' : 'login-buttons visible';
 
   return (
     <header>
@@ -22,24 +20,25 @@ export const Header = () => {
           </a>
         </div>
 
-        <form className="d-flex prueba" role="search">
+        <form className="d-flex prueba" id='Buscador' role="search">
           <input
-            className="form-control me-2 borde-naranja color-fondo"
+            className="form-control me-2 borde-colorBusqueda color-fondo"
+            id='buscador'
             type="search"
             placeholder="Busca tu pelicula"
             aria-label="Search"
           />
           <button
-            className="btn btn-outline-secondar borde-naranja color-fondo"
+            className="btn btn-outline-secondar borde-colorBusqueda color-fondo"
             type="submit"
           >
-            Buscar
+<box-icon name='search-alt' color='#ffffff' ></box-icon>
           </button>
         </form>
 
-        {/* Aplicar la clase loginButtonsClass al componente LoginButtons */}
-        <div className={loginButtonsClass}>
-          <LoginButtons />
+        <div className="buttons">
+        {token && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
+        {!token && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
         </div>
       </nav>
     </header>
