@@ -1,6 +1,6 @@
 import React from 'react'
 import { types_user } from '../../types/types.user.js'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormLogin.css'
 
@@ -31,15 +31,6 @@ export const FormLogin = () => {
     })
 
   }
-
-  useEffect(() => {
-
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      window.location.href = '/';
-    }
-  }, []);
 
   return (
     <div className='contenedorLogin'>

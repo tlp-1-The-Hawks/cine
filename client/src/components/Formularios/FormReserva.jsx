@@ -6,15 +6,15 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movieId, cinemaId } = params;
 
-  export const FormReserva = () => {
-    const [info, setInfo] = useState({})
-    const [price, setPrice] = useState("Cargando...");
-    const [quantity, setQuantity] = useState(1);
-  
-    useEffect(() => {
-      fetch(`http://localhost:4000/api/movies/${movieId}/${cinemaId}`, {
-        method: 'GET'
-      })
+export const FormReserva = () => {
+  const [info, setInfo] = useState({})
+  const [price, setPrice] = useState("Cargando...");
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/api/movies/${movieId}/${cinemaId}`, {
+      method: 'GET'
+    })
       .then((res) => res.json())
       .then((data) => {
         setInfo(data)
@@ -60,14 +60,14 @@ const { movieId, cinemaId } = params;
     console.log(price)
   };
 
-    useEffect(() => {
+  useEffect(() => {
 
-      const token = localStorage.getItem('token');
-  
-      if (!token) {
-        window.location.href = '/';
-      }
-    }, []);
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      window.location.href = '/';
+    }
+  }, []);
 
   return (
     < div className="contenedorReserva" >
@@ -100,6 +100,6 @@ const { movieId, cinemaId } = params;
           preferenceId && <Wallet initialization={{ preferenceId }} />
         }
       </div>
-      </div>
+    </div>
   )
 }

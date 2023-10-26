@@ -5,7 +5,6 @@ import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormRegister.css'
 
 
-
 export const FormRegister = () => {
 
   const { state, dispatch } = useContext(UserContext)
@@ -36,16 +35,6 @@ export const FormRegister = () => {
       payload: formState
     })
   }
-
-
-  useEffect(() => {
-
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      window.location.href = '/';
-    }
-  }, []);
 
   return (
 

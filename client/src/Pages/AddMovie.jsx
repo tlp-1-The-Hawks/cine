@@ -2,12 +2,11 @@ import { FormAddMovie } from '../components/Formularios/FormAddMovie.jsx';
 import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.jsx';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 const token = localStorage.getItem('token');
 
 export const AddMovie = () => {
     const [cinemaId, setCinemaId] = useState(null)
-    const navigate = useNavigate()
 
     const { isLogged } = useContext(AuthContext)
 

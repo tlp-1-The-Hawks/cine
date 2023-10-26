@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../../assets/style/Tarjetas.css'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext.jsx';
-const token = localStorage.getItem('token');
 
 export const Tarjetas = ({ moviesWithCinemas }) => {
   const { rolCinema } = useContext(AuthContext)
@@ -12,7 +11,6 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
     const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
     const movieId = e.currentTarget.getAttribute("data-movie-id");
 
-    console.log(cinemaId, movieId)
     window.location.href = `/informacion-pelicula?movie=${movieId}&cinema=${cinemaId}`;
 
   }
