@@ -1,6 +1,6 @@
 import React from 'react'
-import { type } from '../../types/types.js'
-import { useState, useEffect, useContext } from 'react'
+import { types_user } from '../../types/types.user.js'
+import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormLogin.css'
 
@@ -26,20 +26,11 @@ export const FormLogin = () => {
     e.preventDefault()
 
     dispatch({
-      type: type.USER_FIND_ONE,
+      type: types_user.USER_FIND_ONE,
       payload: formState
     })
 
   }
-
-  useEffect(() => {
-
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      window.location.href = '/';
-    }
-  }, []);
 
   return (
     <div className='contenedorLogin'>

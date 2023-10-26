@@ -1,9 +1,8 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
-import { type } from '../../types/types.js'
+import { types_user } from '../../types/types.user.js'
 import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormRegister.css'
-
 
 
 export const FormRegister = () => {
@@ -32,64 +31,10 @@ export const FormRegister = () => {
     e.preventDefault()
 
     dispatch({
-      type: type.USER_ADD,
+      type: types_user.USER_ADD,
       payload: formState
     })
   }
-
-  // fetch("http://localhost:4000/auth/register", {
-  //   method: "POST",
-  //   body: JSON.stringify(formState),
-  //   headers: {
-  //     'content-type': 'application/json'
-  //   }
-  // })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     if (data.errors) {
-  //       Swal.fire({
-  //         title: 'Error',
-  //         text: data.errors[0].msg,
-  //         icon: 'error',
-  //         width: '50%',
-  //         padding: '1rem',
-  //         background: '#DBCBCB',
-  //         grow: 'row'
-  //       })
-  //     } else {
-  //       if (data.token) {
-  //         localStorage.setItem('token', data.token);
-  //         Swal.fire({
-  //           title: 'Se registro correctamente',
-  //           icon: 'success',
-  //           confirmButtonText: 'ok',
-  //           width: '50%',
-  //           padding: '1rem',
-  //           background: '#DBCBCB',
-  //           grow: 'row'
-  //         }).then((result) => {
-  //           if (result.isConfirmed) {
-  //             window.location.href = '/'
-  //           }
-  //         })
-  //       } else {
-  //         console.error('Error al iniciar sesión');
-  //       }
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.error('Error:', error);
-  //   });
-
-
-  useEffect(() => {
-
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      window.location.href = '/';
-    }
-  }, []);
 
   return (
 
