@@ -15,7 +15,7 @@ export const createOrder = async (req, res) => {
           quantity: Number(req.body.quantity),
         },
       ],
-      notification_url: "https://3884-138-121-113-14.ngrok.io/webhook",
+      notification_url: "https://c88c-138-121-113-14.ngrok.io/webhook",
       back_urls: {
         success: "http://localhost:3000/",
         // pending: "https://e720-190-237-16-208.sa.ngrok.io/pending",
