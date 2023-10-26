@@ -1,10 +1,10 @@
-import { type } from "../types/types.js";
+import { types_user } from "../types/types.user.js";
 import Swal from 'sweetalert2'
 
 export const userReducer = (state, action) => {
 
     switch (action.type) {
-        case type.USER_ADD:
+        case types_user.USER_ADD:
             if (action.payload.password != action.payload.confirmarpassword) {
                 const alertpassword = Swal.fire({
                     title: 'Error',
@@ -63,7 +63,7 @@ export const userReducer = (state, action) => {
                     });
 
             }
-        case type.USER_FIND_ONE:
+        case types_user.USER_FIND_ONE:
             fetch("http://localhost:4000/auth/login", {
                 method: "POST",
                 body: JSON.stringify(action.payload),

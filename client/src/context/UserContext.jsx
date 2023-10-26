@@ -11,12 +11,6 @@ const init = () => {
 export const UserCtxt = ({ children }) => {
     const [state, dispatch] = useReducer(userReducer, [], init)
 
-    // const handleSubmit = (user) => {
-    //     dispatch({
-    //         type: type.USER_ADD,
-    //         payload: user
-    //     })
-    // }
 
     return (
         <UserContext.Provider value={{

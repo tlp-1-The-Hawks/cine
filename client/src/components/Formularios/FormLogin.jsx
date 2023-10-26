@@ -1,5 +1,5 @@
 import React from 'react'
-import { type } from '../../types/types.js'
+import { types_user } from '../../types/types.user.js'
 import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormLogin.css'
@@ -26,7 +26,7 @@ export const FormLogin = () => {
     e.preventDefault()
 
     dispatch({
-      type: type.USER_FIND_ONE,
+      type: types_user.USER_FIND_ONE,
       payload: formState
     })
 
