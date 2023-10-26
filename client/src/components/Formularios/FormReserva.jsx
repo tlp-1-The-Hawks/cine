@@ -91,7 +91,7 @@ const { movieId, cinemaId } = params;
             $ {price}
           </p>
         </div>
-     
+    
         {
           preferenceId && <Wallet initialization={{ preferenceId }} />
         }
