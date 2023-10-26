@@ -5,7 +5,7 @@ import img from "./persona.jpg"
 
 function Perfil() {
     return (
-        <header className='header'>
+        <header className='perfil'>
             <img className='fotoUser' src={img} alt="axel" />
             <div className='userName'></div>
             <span className='nameUser'>{nameUser}</span>
