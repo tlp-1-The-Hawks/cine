@@ -8,6 +8,7 @@ import { FormLogin } from './components/Formularios/FormLogin.jsx';
 import { AddMovie } from './Pages/AddMovie.jsx';
 import { InfoMovie } from './Pages/InfoMovie.jsx';
 import { Context } from './context/UserContext.jsx';
+import Card from './components/comentarios/card.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Context>
@@ -36,6 +37,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route
           path='/informacion-pelicula'
           element={<InfoMovie />}
+        />
+        <Route
+          path='/comentario'
+          element={<Card />}
         />
       </Routes>
     </BrowserRouter>
