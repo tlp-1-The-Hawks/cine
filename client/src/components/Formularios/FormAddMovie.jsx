@@ -15,7 +15,8 @@ export const FormAddMovie = ({ cinemaId }) => {
         price: "",
         rutaImage: "",
         date_issue: "",
-        type_emissionId: "1"
+        type_emissionId: "1",
+        url_trailer: ""
     })
     const [imageState, setImageState] = useState(null)
     const [sendImg, setSenImg] = useState(null)
@@ -113,32 +114,33 @@ export const FormAddMovie = ({ cinemaId }) => {
                             </div>
                             <div className="row">
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="url_trailer" className="form-label">Url del trailer</label>
+                                    <input onChange={handleChange} value={formMovie.url_trailer} type="text" className="form-control" id="url_trailer"
+                                        name="url_trailer" />
+                                </div>
+                                <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <div className="row">
                                         <label htmlFor="director" className="form-label">Fecha de emisión</label>
                                         <input onChange={handleChange} value={formMovie.date_issue} type="datetime-local" id="datetime" name="date_issue" />
 
                                     </div>
                                 </div>
+
+                            </div>
+                            <div className="row">
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <label htmlFor="director" className="form-label">Director</label>
                                     <input type="text" className="form-control" id="director"
                                         name="director" />
                                 </div>
-                            </div>
-
-                            <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
-                                <label htmlFor="Url" className="form-label">link del trailer</label>
-                                <input type="text" className="form-control" id="Url"
-                                    name="Url" />
-
-                            </div>
-                            <div className="row">
 
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <label htmlFor="actors" className="form-label">Actores</label>
                                     <input onChange={handleChange} value={formMovie.actors} type="text" className="form-control" id=""
                                         name="actors" />
                                 </div>
+                            </div>
+                            <div className="row">
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <label htmlFor="Precio" className="form-label">Precio</label>
                                     <input onChange={handleChange} value={formMovie.price} type="number" className="form-control" id=""

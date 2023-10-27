@@ -31,6 +31,10 @@ export const informationModel = sequelize.define(
   price: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  url_trailer: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 })
 
