@@ -67,8 +67,7 @@ export const ctrlAddInfoMovie = async (req, res) => {
 export const ctrlUploadImgMovie = async (req, res) => {
     try {
         const file = req.files.file;
-        const fileName = file.name;
-
+        const fileName = req.file.name
 
         file.mv(`../client/public/movies_img/${fileName}`, (err) => {
             if (err) {

@@ -143,6 +143,17 @@ infoCinemaModel.belongsTo(TypeEmissionModel, {
   targetKey: 'id'
 })
 
+//Hall and information 
+hallModel.hasMany(informationModel, {
+  foreignKey: 'hallId',
+  sourceKey: 'id'
+})
+
+informationModel.belongsTo(hallModel, {
+  foreignKey: 'hallId',
+  targetKey: 'id'
+})
+
 //preloaded data
 async function dataPreloaded() {
   await createGenre()
