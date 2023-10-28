@@ -19,12 +19,10 @@ export const FormReserva = () => {
       .then((res) => res.json())
       .then((data) => {
         setInfo(data)
-        setPrice(data.cinemas[0].information[0].price)
+        setPrice(data.information[0].price)
       })
       .catch((error) => console.log(error));
   }, [])
-
-  const [preferenceId, setPreferenceId] = useState(null);
 
   initMercadoPago("TEST-82fc2258-893e-4c80-b58f-2bcaa60fd171");
 
@@ -36,26 +34,17 @@ export const FormReserva = () => {
         price: price,
         quantity: 1,
       });
-
-      const { id } = response.data;
-
-      return id;
+      const link = response.data.init_point;
+      window.location.href = response.data.init_point
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleBuy = async () => {
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
     }
   };
 
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value, 10);
     setQuantity(newQuantity);
-    const newPrice = newQuantity * info.cinemas[0].information[0].price;
+    const newPrice = newQuantity * info.information[0].price;
     setPrice(newPrice);
   };
 
@@ -92,19 +81,14 @@ export const FormReserva = () => {
           </p>
         </div>
     
-        {
-          preferenceId && <Wallet initialization={{ preferenceId }} />
-        }
-</div>
-<Seat/></div>
-<button className='botonReserva d-flex justify-content-center pt-2' type='button' onClick={handleBuy}>
+
+        </div>
+          <Seat/> 
+        </div>
+        <button className='botonReserva d-flex justify-content-center pt-2' onClick={()=> createPreference()}>
           <box-icon name='cart-add' color='#ffffff' ></box-icon>
           <p>Pagar Mi Boleto</p>
         </button>
-
-
-
-  
       </div>
     </div>
   )

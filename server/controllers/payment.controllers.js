@@ -15,7 +15,7 @@ export const createOrder = async (req, res) => {
           quantity: Number(req.body.quantity),
         },
       ],
-      notification_url: "https://c88c-138-121-113-14.ngrok.io/webhook",
+      notification_url: "https://5f28-186-139-130-198.ngrok.io/api/webhook",
       back_urls: {
         success: "http://localhost:3000/",
         // pending: "https://e720-190-237-16-208.sa.ngrok.io/pending",
@@ -35,10 +35,10 @@ export const createOrder = async (req, res) => {
 
 export const receiveWebhook = async (req, res) => {
   try {
-    const paymentId = req.query.id; // Obten el ID del pago directamente desde la cadena de consulta
-    if (paymentId) {
-      // Realiza operaciones con paymentId
-      console.log('Payment ID:', paymentId);
+    const payment = req.query;
+    if (payment.type === 'payment') {
+      const paymentId = payment['data.id']
+      console.log(paymentId);
     }
 
     res.sendStatus(204);
