@@ -4,7 +4,7 @@ import { GenreSelect } from '../Selects/GenreSelect';
 import { TypeEmissionSelect } from '../Selects/TypeEmissionSelect';
 import { AddMovieSubmit } from '../Submits/AddMovieSubmit';
 import { HallSelect } from '../Selects/HallSelect.jsx';
-
+//traer los halls  y pasarle los datos a hallsSelect
 export const FormAddMovie = ({ cinemaId }) => {
     const [formMovie, setFormMovie] = useState({
         title: "",
@@ -18,10 +18,11 @@ export const FormAddMovie = ({ cinemaId }) => {
         date_issue: "",
         type_emissionId: "1",
         url_trailer: "",
-        hall: ""
+        hallId: ""
     })
     const [imageState, setImageState] = useState(null)
     const [sendImg, setSenImg] = useState(null)
+
 
     const handleChange = (e) => {
         const {
@@ -32,8 +33,8 @@ export const FormAddMovie = ({ cinemaId }) => {
             ...formMovie,
             [name]: value,
         }
-        console.log(newFormData)
         setFormMovie(newFormData)
+
         if (name === 'rutaImage') {
             const file = e.target.files[0]
             if (file) {
@@ -57,7 +58,6 @@ export const FormAddMovie = ({ cinemaId }) => {
             }
         }
     }
-
 
 
 
@@ -151,7 +151,6 @@ export const FormAddMovie = ({ cinemaId }) => {
                                     formMovie={formMovie}
                                     handleChange={handleChange}
                                     cinemaId={cinemaId}
-                                    setFormMovie={setFormMovie}
                                 />
                             </div>
                             <AddMovieSubmit

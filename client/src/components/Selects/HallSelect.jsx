@@ -1,17 +1,34 @@
-import { useState } from 'react';
-import { findHall } from '../../hooks/datePreloads/FindHall.js';
-export const HallSelect = ({ formMovie, cinemaId, setFormMovie }) => {
-    const hallState = findHall(cinemaId);
-    const [selectedHall, setSelectedHall] = useState('');
+import { useState, useEffect } from 'react';
+import { findHall } from '../../hooks/datePreloads/FindHall';
 
-    const handleHallChange = (e) => {
-        const newHallValue = e.target.value;
-        setSelectedHall(newHallValue);
-        setFormMovie({
-            ...formMovie,
-            hall: ""
-        })
-    };
+const obtenerHalls = async (cinemaId) => {
+    const resp = await fetch(`http://localhost:4000/api/hall/${cinemaId}`)
+    const data = await resp.json();
+    return data;
+}
+
+export const HallSelect = ({ formMovie, cinemaId, handleChange }) => {
+
+    const [hallState = [], setHallState] = useState([])
+
+    console.log(hallState)
+
+    useEffect(() => {
+
+        if (hallState && hallState.length > 0) {
+            return;
+        }
+
+        (
+            async () => {
+                const data = await obtenerHalls(cinemaId);
+                console.log(data.halls)
+                setHallState(data.halls)
+            }
+
+        )();
+
+    }, [])
 
     return (
         <div className="mt-3 col col-sm-12 col-md-6 mb-3">
@@ -20,16 +37,22 @@ export const HallSelect = ({ formMovie, cinemaId, setFormMovie }) => {
                     Sala de emisión
                 </label>
 
-                <select name="hall" id="hall" onChange={handleHallChange} value={selectedHall}>
+                <select
+                    name="hallId"
+                    id="hall" onChange={handleChange}
+                    value={formMovie.hall}
+                >
                     {
-                        hallState.map((hall) => (
-                            <option key={hall.id} id={hall.id} value={hall.id}>
-                                {hall.nr_hall}
-                            </option>
-                        ))
+                        (hallState && hallState.length === 0)
+                            ? <option defaultValue={"Valor"}>--No hay opciones--</option>
+                            : hallState.map((hall) => (
+                                <option key={hall.id} id={hall.id} value={hall.id}>
+                                    {hall.nr_hall}
+                                </option>
+                            ))
                     }
                 </select>
             </div>
         </div>
     );
-};
+};  
