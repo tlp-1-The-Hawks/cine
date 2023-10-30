@@ -1,29 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../../assets/style/Filtros.css';
 import { Tarjetas } from './Tarjetas';
+import { FindGenre } from '../../hooks/useEffects/FindGenres.js';
+import { FindMovies } from '../../hooks/useEffects/FindMovies.js';
+
 
 export const Filtros = () => {
-  const [movies, setMovies] = useState([]);
   const [filtro, setFiltro] = useState([]);
-  const [genreState, setGenreState] = useState([])
+  const genreState = FindGenre()
+  const movies = FindMovies()
 
-  useEffect(() => {
-    fetch("http://localhost:4000/api/movies", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => setMovies(data))
-      .catch((error) => console.error('Error:', error));
-
-    fetch('http://localhost:4000/api/genre', {
-      method: 'GET'
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setGenreState(data)
-      })
-      .catch((error) => console.log(error))
-  }, []);
 
 
   const filtrar = async (e) => {
@@ -42,7 +28,7 @@ export const Filtros = () => {
     <>
       <div className="filtro bg-filtro-container container">
         <div className="row">
-        <div className="col-sm-8 col-lg-6">
+          <div className="col-sm-8 col-lg-6">
             <h1>Películas Estrenos:</h1>
             <br />
           </div>
@@ -66,9 +52,9 @@ export const Filtros = () => {
                       id="exampleFormControlSelect1"
                       className="form-control">
                       {genreState.map((genre) => (
-                      <option key={genre.id} value={genre.id}>
-                      {genre.genre}
-                      </option>
+                        <option key={genre.id} value={genre.id}>
+                          {genre.genre}
+                        </option>
                       ))}
                     </select>
                   </div>

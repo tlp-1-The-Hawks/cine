@@ -1,6 +1,8 @@
 import React from 'react';
+import { FindGenre } from '../../hooks/useEffects/FindGenres.js';
+export const GenreSelect = ({ formMovie, handleChange }) => {
+  const genreState = FindGenre()
 
-export const  GenreSelect = ({ genreState, formMovie, handleChange }) => {
   return (
     <div className="mt-3 col col-sm-12 col-md-6 mb-3">
       <div className="row">

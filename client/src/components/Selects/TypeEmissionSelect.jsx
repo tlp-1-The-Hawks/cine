@@ -1,6 +1,8 @@
 import React from 'react';
+import { FindTypeEmission } from '../../hooks/useEffects/FindTypeEmission.js';
+export const TypeEmissionSelect = ({ formMovie, handleChange }) => {
+  const type_emission = FindTypeEmission()
 
-export const TypeEmissionSelect = ({ type_emission, formMovie, handleChange }) => {
   return (
     <div className="mt-3 col col-sm-12 col-md-6 mb-3">
       <div className="row">

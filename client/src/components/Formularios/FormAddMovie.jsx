@@ -4,8 +4,7 @@ import { GenreSelect } from '../Selects/GenreSelect';
 import { TypeEmissionSelect } from '../Selects/TypeEmissionSelect';
 import { AddMovieSubmit } from '../Submits/AddMovieSubmit';
 
-
-export const FormAddMovie = ({genreState,cinemaId,type_emission}) => {
+export const FormAddMovie = ({ cinemaId }) => {
     const [formMovie, setFormMovie] = useState({
         title: "",
         genreId: "1",
@@ -20,7 +19,6 @@ export const FormAddMovie = ({genreState,cinemaId,type_emission}) => {
     })
     const [imageState, setImageState] = useState(null)
     const [sendImg, setSenImg] = useState(null)
- 
 
 
     const handleChange = (e) => {
@@ -67,7 +65,7 @@ export const FormAddMovie = ({genreState,cinemaId,type_emission}) => {
             <div className='container w-75 h-75 d-flex'>
                 <div className="w-100">
                     <div className="d-flex justify-content-center">
-                        <form  method='POST' encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
+                        <form method='POST' encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
                             <div className='d-flex justify-content-center text-center'>
                                 <h3 className="mb-3 text-center bg-dark text-light rounded-5 p-2">Agrega tu película</h3>
                             </div>
@@ -86,12 +84,10 @@ export const FormAddMovie = ({genreState,cinemaId,type_emission}) => {
                             </div>
                             <div className="row">
                                 <TypeEmissionSelect
-                                    type_emission={type_emission}
                                     formMovie={formMovie}
                                     handleChange={handleChange}
                                 />
                                 <GenreSelect
-                                    genreState={genreState}
                                     formMovie={formMovie}
                                     handleChange={handleChange}
                                 />
@@ -129,15 +125,15 @@ export const FormAddMovie = ({genreState,cinemaId,type_emission}) => {
                                         name="director" />
                                 </div>
                             </div>
-                         
-                                                                <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
-                                    <label htmlFor="Url" className="form-label">link del trailer</label>
-                                    <input type="text" className="form-control" id="Url"
-                                        name="Url" />
-                        
+
+                            <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
+                                <label htmlFor="Url" className="form-label">link del trailer</label>
+                                <input type="text" className="form-control" id="Url"
+                                    name="Url" />
+
                             </div>
                             <div className="row">
-                                
+
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <label htmlFor="actors" className="form-label">Actores</label>
                                     <input onChange={handleChange} value={formMovie.actors} type="text" className="form-control" id=""
@@ -150,9 +146,9 @@ export const FormAddMovie = ({genreState,cinemaId,type_emission}) => {
                                 </div>
                             </div>
                             <AddMovieSubmit
-                            formMovie={formMovie}
-                            sendImg={sendImg}
-                            cinemaId={cinemaId}
+                                formMovie={formMovie}
+                                sendImg={sendImg}
+                                cinemaId={cinemaId}
                             />
                         </form>
                     </div>

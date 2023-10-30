@@ -1,40 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../../assets/style/Tarjetas.css'
 import { Link } from 'react-router-dom'
-const token = localStorage.getItem('token');
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 export const Tarjetas = ({ moviesWithCinemas }) => {
-
-  const [btnAddMovie, setBtnAddMovie] = useState("")
-
-  useEffect(() => {
-    if (token) {
-      fetch('http://localhost:4000/auth/user', {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json',
-          'authorization': token
-        }
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.cinemaId != null) {
-            setBtnAddMovie(
-              <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>
-            )
-          }
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-  }, [])
+  const { rolCinema } = useContext(AuthContext)
 
   const infoMovie = async (e) => {
     const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
     const movieId = e.currentTarget.getAttribute("data-movie-id");
 
-    console.log(cinemaId, movieId)
     window.location.href = `/informacion-pelicula?movie=${movieId}&cinema=${cinemaId}`;
 
   }
@@ -54,7 +30,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                     <p className="card-text">Cines disponibles:</p>
                     {movie.cinemas.map((cine) => (
                       <Link
-                      id='cineName'
+                        id='cineName'
                         key={cine.id}
                         to="#"
                         data-cinema-id={cine.id}
@@ -75,7 +51,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
       </section>
       <div className='d-flex justify-content-end text-end'>
-        {btnAddMovie}
+        {rolCinema && <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>}
       </div>
     </div>
   );

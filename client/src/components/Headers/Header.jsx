@@ -2,9 +2,11 @@ import React from 'react';
 import '../../assets/style/Header.css';
 import { LoginButtons } from './ButtonLoginRegister.jsx';
 import { LogoutButton } from './LogoutButton.jsx';
+import { AuthContext } from '../../context/AuthContext.jsx';
+import { useContext } from 'react';
 
 export const Header = () => {
-  const token = localStorage.getItem('token');
+  const { isLogged } = useContext(AuthContext)
 
   return (
     <header>
@@ -32,13 +34,13 @@ export const Header = () => {
             className="btn btn-outline-secondar borde-colorBusqueda color-fondo"
             type="submit"
           >
-<box-icon name='search-alt' color='#ffffff' ></box-icon>
+            <box-icon name='search-alt' color='#ffffff' ></box-icon>
           </button>
         </form>
 
         <div className="buttons">
-        {token && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
-        {!token && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
+          {isLogged && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
+          {!isLogged && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
         </div>
       </nav>
     </header>
