@@ -1,6 +1,6 @@
 import '../../assets/style/FormReserva.css'
 import { useState, useEffect } from 'react';
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+import { initMercadoPago } from '@mercadopago/sdk-react';
 import axios from 'axios';
 import { Seat } from '../otros/seats';
 const urlSearchParams = new URLSearchParams(window.location.search);
@@ -34,7 +34,6 @@ export const FormReserva = () => {
         price: price,
         quantity: 1,
       });
-      const link = response.data.init_point;
       window.location.href = response.data.init_point
     } catch (error) {
       console.log(error);
@@ -71,8 +70,8 @@ export const FormReserva = () => {
             min={1}
             max={50}
             type="number"
-            value={quantity} // Asigna el estado 'quantity' al valor del input
-            onChange={handleQuantityChange} // Maneja el cambio en el input
+            value={quantity}
+            onChange={handleQuantityChange}
           />
         </div>
         <div className="inputBoxReserva">

@@ -36,10 +36,7 @@ export const createOrder = async (req, res) => {
 export const receiveWebhook = async (req, res) => {
   try {
     const payment = req.query;
-    if (payment.type === 'payment') {
-      const paymentId = payment['data.id']
-      console.log(paymentId);
-    }
+    console.log(payment);
 
     res.sendStatus(204);
   } catch (error) {
