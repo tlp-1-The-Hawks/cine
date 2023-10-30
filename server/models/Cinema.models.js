@@ -13,11 +13,7 @@ export const cinemaModel = sequelize.define(
     address: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    capacity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    }
   },
   {
     timestamps: true,

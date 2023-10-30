@@ -1,9 +1,12 @@
 import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { types_user } from '../../types/types.user.js'
+import { useState, useContext } from 'react'
+import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormLogin.css'
 
 export const FormLogin = () => {
+
+  const { state, dispatch } = useContext(UserContext)
 
   const [formState, setFormState] = useState({
     email: "",
@@ -17,55 +20,25 @@ export const FormLogin = () => {
       [name]: value,
     });
   };
-  
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    fetch("http://localhost:4000/auth/login", {
-      method: "POST",
-      body: JSON.stringify(formState),
-      headers: {
-        'content-type': 'application/json'
-      }
+    dispatch({
+      type: types_user.USER_FIND_ONE,
+      payload: formState
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error('Error en la solicitud');
-      }
-    })
-    .then(data => {
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        window.location.href = '/';
-      } else {
-        console.error('Error al iniciar sesión');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-    
+
   }
-    
-    useEffect(() => {
-
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      window.location.href = '/';
-    }
-  }, []);
 
   return (
-    <div className='contenedor'>
-      <div className='formBoxe'>
+    <div className='contenedorLogin'>
+      <div className='formBoxLogin'>
         <form name='formlogin' onSubmit={handleSubmit}>
-          <h2>Inicio de Sesión</h2>
+          <h2> Inicio de Sesión</h2>
 
-          <div className='inputBox'>
+          <div className='inputBoxLogin'>
             <input type="text"
               placeholder='Email'
               name="email"
@@ -75,8 +48,7 @@ export const FormLogin = () => {
             />
           </div>
 
-          <div className='inputBox'>
-            <i className='bx bxs-user'></i>
+          <div className='inputBoxLogin'>
             <input type="password"
               placeholder='Contraseña'
               name="password"
@@ -86,11 +58,11 @@ export const FormLogin = () => {
             />
           </div>
 
-          <div className='botn'>
-            <input type="submit" className='botn' value="Registro" />
+          <div className='botonLogin'>
+            <input type="submit" className='botonLogin' value="Registro" />
           </div>
 
-          <div className='group'>
+          <div className='groupLogin'>
             <span><a href="#">Recuperar Contraseña</a></span>
             <span><a href="/register">Registro</a></span>
           </div>

@@ -1,6 +1,6 @@
 nav {
   font-family: sans-serif;
-  background-color: #001011;
+  background-color: #FF2C25;
   color: aliceblue;
   padding: 10px;
   min-height: 70px;
@@ -10,8 +10,10 @@ header img {
   width: 50px;
 }
 
+
 .contimgtitu {
-  background-color: #001011;
+  background-color: #202529;
+  margin-right: 50px;
 }
 
 
@@ -20,24 +22,31 @@ header img {
   width: 100px;
 }
 
-.borde-naranja {
-  border: 2px solid orange;
+.borde-colorBusqueda {
+  border: 2px solid #202529;
 }
 
 .color-fondo {
-  background-color: grey;
+  background-color: #202529;
+}
+
+#buscador::placeholder {
+  color: #ffffff;
+}
+
+#buscador:hover::placeholder {
   color: white;
 }
 
 .color-fondo:hover {
-  background-color: #e3a209;
+  background-color: #000000;
   color: white;
 }
-
-.login-buttons {
-  visibility: hidden;
+#lupa{
+  color: #FF2C25;
 }
-
-.login-buttons.visible {
-  visibility: visible;
+#Buscador{
+  background-color: #202529;
+  border: 2px solid #202529;
+  border-radius: 10px;
 }

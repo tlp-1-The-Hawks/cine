@@ -1,45 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.contenedor {
+.contenedorReserva {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url('../img/backgroundRegister.png');
+  background: url('../img/formReserva.jpg') no-repeat;
+  background-size: cover;
 }
 
-.formBoxes {
+.formBoxReserva {
   position: relative;
-  width: 400px;
+
+  border: 5px solid rgba(0, 0, 0, 0.5);
   height: 70vh;
-  border: 2px solid rgba(255, 255, 2550.5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   backdrop-filter: blur(15px);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  /* Añadido para apilar elementos verticalmente */
 }
 
-.formBoxes h2 {
-  color: #fff;
+.datos {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.formBoxReserva h2 {
+  color: #FF2C25;
   text-align: center;
   font-size: 32px;
 }
 
-.formBoxes .inputBox {
+.formBoxReserva .inputBoxReserva {
   position: relative;
   margin: 30px;
   width: 310px;
+  border-bottom: 2px solid #FF2C25;
   border-bottom: 2px solid #fff;
+  display: flex;
+  flex-direction: column;
+  /* Añadido para apilar elementos verticalmente */
 }
 
-.formBoxes .inputBox input {
+.formBoxReserva .inputBoxReserva input {
   width: 100%;
   height: 45px;
   background: transparent;
@@ -50,51 +59,67 @@
   font-size: 16px;
 }
 
-.formBoxes .inputBox label {
-  color: #fff;
+.formBoxReserva .inputBoxReserva label {
+  color: #FF2C25;
+  margin-bottom: 10px;
+  /* Espacio entre etiqueta y campo de entrada */
 }
 
-.formBoxes .inputBox p {
-  color: #fff;
+.formBoxReserva .inputBoxReserva p {
+  color: #ffffff;
+  margin-top: 10px;
+  /* Espacio entre campo de entrada y párrafo */
 }
 
-i {
-  position: absolute;
+.botonReserva {
   color: #fff;
-  top: 13px;
-  right: 0;
-}
-
-input::placeholder {
-  color: #fff;
-}
-
-.boton {
-  color: #fff;
-  background: blue;
-  width: 100%;
+  background: #FF2C25;
+  width: 25%;
   height: 50px;
-  border: 5px;
-  outline: none;
+  border-radius: 20px;
   border: none;
+  outline: none;
   font-size: 17px;
   cursor: pointer;
-  box-shadow: 3px 0 10px rgba(0, 0, 0, .5);
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+  margin-top: 70px;
+
+  /* Espacio entre el último elemento y el botón */
 }
 
-.group {
-  display: flex;
-  justify-content: space-between;
+.botonReserva:hover {
+  transform: scale(1.1);
+  /* Aumenta el tamaño en un 10% en el hover */
+  transition: transform 0.3s;
+  /* Agrega una transición suave */
 }
 
-.group span a {
-  color: #fff;
+.mercado-pago-button {
+  /* Agrega estilos de posición, margen y alineación según tus necesidades */
   position: relative;
   top: 10px;
-  text-decoration: none;
-  font-weight: 500;
+  /* Ajusta la posición vertical */
+  left: 10px;
+  /* Ajusta la posición horizontal */
+  margin-right: 20px;
+  /* Añade margen derecho para separar el botón */
 }
 
-.group a:focus {
-  text-decoration: underline;
+/* Cambia el color de fondo y texto del botón */
+.mercado-pago-button button {
+  background-color: #1e4b7c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+/* Cambia el color de fondo del botón al pasar el cursor sobre él */
+.mercado-pago-button button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el ícono del carrito */
+.mercado-pago-button box-icon {
+  margin-right: 5px;
 }

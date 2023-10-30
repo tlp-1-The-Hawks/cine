@@ -1,5 +1,5 @@
 import { sequelize } from '../config/database.js';
-import { infoMovieModel } from './movie_information.model.js';
+import { informationModel } from './Information.model.js';
 import { cinemaModel } from './Cinema.models.js';
 
 export const movieCinemaModel = sequelize.define(
@@ -44,7 +44,7 @@ export async function getMovieCinemaById(movieId, cinemaId) {
       cinemaId: cinemaId
     },
     include: {
-      model: infoMovieModel,
+      model: informationModel,
       as: 'infomovie'
     }
   }

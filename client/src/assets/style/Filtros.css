@@ -1,9 +1,19 @@
-.container {
-  background-color: #C3C5C4;
+.bg-filtro-container {
+  background-color: #202529;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
-body {
-  background-color: black;
+label {
+  color: #ffffff;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 2px;
+}
+
+h1 {
+  padding-top: 40px;
+  color: #ffffff;
+  border-bottom: 1px solid #e21515;
+  width: 57%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

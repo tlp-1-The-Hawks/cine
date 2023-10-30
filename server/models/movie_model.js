@@ -1,8 +1,9 @@
 import { sequelize } from '../config/database.js';
 import { DataTypes } from 'sequelize';
 import { cinemaModel } from './Cinema.models.js';
-import { infoMovieModel } from './movie_information.model.js';
+import { informationModel } from './Information.model.js';
 import { genreModel } from './genre.models.js';
+import { movieCinemaModel } from './movieXcinema.js';
 
 export const MovieModel = sequelize.define(
   'movie',
@@ -10,6 +11,10 @@ export const MovieModel = sequelize.define(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    rating: {
+      type: DataTypes.STRING,
+      defaultValue: "0"
     }
   },
   {
@@ -48,7 +53,7 @@ export async function getAllMovies() {
 
       },
       {
-        model: infoMovieModel,
+        model: informationModel,
         include: {
           model: genreModel
         }
@@ -62,16 +67,17 @@ export async function getMovieById(movieId, cinemaId) {
     where: {
       id: movieId
     },
-    include:
-    {
-      model: cinemaModel,
-      where: {
-        id: cinemaId
+    include: [
+      {
+        model: cinemaModel,
+        where: {
+          id: cinemaId
+        }
       },
-      include: {
-        model: infoMovieModel
+      {
+        model: informationModel
       }
-    }
+    ]
   });
 
 
@@ -115,7 +121,7 @@ export async function getMovieByInfo(genreId) {
         as: 'cine'
       },
       {
-        model: infoMovieModel,
+        model: informationModel,
         as: 'infomovie',
         where: {
           genreId: genreId

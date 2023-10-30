@@ -7,8 +7,8 @@ import { MovieModel } from './movie_model.js';
 export const bookingModel = sequelize.define(
   'booking',
   {
-    tikets: {
-      type: DataTypes.INTEGER,
+    paymentId: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -19,9 +19,9 @@ export const bookingModel = sequelize.define(
 
 //services
 
-export async function addBooking(tikets, cinemaId, userId, movieId) {
+export async function addBooking(paymentId, cinemaId, userId, movieId) {
   const newBooking = await bookingModel.create({
-    tikets: tikets,
+    paymentId: paymentId,
     cinemaId: cinemaId,
     userId: userId,
     movieId: movieId

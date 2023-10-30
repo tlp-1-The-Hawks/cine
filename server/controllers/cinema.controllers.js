@@ -1,13 +1,14 @@
-import { addCinema, 
-    deleteCinema, 
-    getAllCinema, 
+import {
+    addCinema,
+    deleteCinema,
+    getAllCinema,
     getCinemaById,
-    updateCinema } from "../models/Cinema.models.js";
+    updateCinema
+} from "../models/Cinema.models.js";
 
 
 export const ctrlAddCinema = async (req, res) => {
     try {
-
         const cinema = await addCinema(req.body)
 
         return res.status(200).json({
@@ -29,7 +30,7 @@ export const ctrlgetAllCinema = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            message: 'Error when getall cinemas'
+            message: 'Error when get all cinemas'
         })
     }
 }
@@ -44,7 +45,7 @@ export const ctrlGetCinemaById = async (req, res) => {
     } catch (error) {
         console.log(error),
             res.status(500).json({
-                message: 'Error when getallbyid cinema'
+                message: 'Error when get all by id cinema'
             })
     }
 }

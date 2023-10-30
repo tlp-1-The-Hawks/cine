@@ -1,18 +1,16 @@
-.container {
-  background-color: #C3C5C4;
-  padding: 20px;
-  border-radius: 5px;
-}
-
-body {
-  background-color: white;
-}
-
 .tarjeta {
   width: 18rem;
+ 
 }
 
 .card {
   margin: 10px;
-
+  background-color: #202529;
+  color: #fff;
+  border: solid 1px #df1414;
+}
+#cineName{
+  color: whitesmoke;
+  background: rgb(255, 17, 0);
+  border: solid 1px ;
 }

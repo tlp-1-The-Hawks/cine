@@ -1,9 +1,13 @@
 import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { types_user } from '../../types/types.user.js'
+import { UserContext } from '../../context/UserContext.jsx'
 import '../../assets/style/FormRegister.css'
 
+
 export const FormRegister = () => {
+
+  const { state, dispatch } = useContext(UserContext)
 
   const [formState, setFormState] = useState({
     name: "",
@@ -26,14 +30,10 @@ export const FormRegister = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-
-    fetch("http://localhost:4000/auth/register", {
-      method: "POST",
-      body: JSON.stringify(formState),
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
+    dispatch({
+      type: types_user.USER_ADD,
+      payload: formState
+    }
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -63,89 +63,87 @@ export const FormRegister = () => {
     }
   }, []);
 
-  return (
-    <div className='contenedor'>
-      <div className='formBox'>
-        <form name='formregister' onSubmit={handleSubmit}>
-          <h2>Registro</h2>
-
-          <div className='inputBox'>
-            <i className='bx bxs-user'></i>
-            <input type="text"
-              placeholder='Nombre'
-              name="name"
-              id='name'
-              value={formState.name}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className='inputBox'>
-            <i className='bx bxs-user'></i>
-            <input type="text"
-              placeholder='Apellido'
-              name="last_name"
-              id='last_name'
-              value={formState.last_name}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className='inputBox'>
-            <i className='bx bxs-user'></i>
-            <input type="text"
-              placeholder='Nombre de Usuario'
-              name="username"
-              id='username'
-              value={formState.username}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className='inputBox'>
-            <i className='bx bxs-envelope'></i>
-            <input type="email"
-              placeholder='Email'
-              name="email"
-              id='email'
-              value={formState.email}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className='inputBox'>
-            <i className='bx bxs-lock-alt'></i>
-            <input type="password"
-              placeholder='Contraseña'
-              name="password"
-              id='password'
-              value={formState.password}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className='inputBox'>
-            <i className='bx bxs-lock-alt'></i>
-            <input
-              type="password"
-              placeholder="Confirmar Contraseña"
-              name="confirmarpassword"
-              id="confirmarpassword"
-              value={formState.confirmarpassword}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className='botn'>
-            <input type="submit" className='botn' value="Registro" />
-          </div>
-
-          <div className='group'>
-            <span><a href="#">Recuperar Contraseña</a></span>
-            <span><a href="/login">Inicia Sesion</a></span>
-          </div>
-        </form>
-      </div>
-    </div>
-  )
 }
+
+return (
+
+  <div className='contenedorRegister'>
+    <div className='formBoxRegister'>
+      <form name='formregister' onSubmit={handleSubmit}>
+        <h2 className='mt-2'>Registro</h2>
+
+        <div className='inputBoxRegister'>
+          <input type="text"
+            placeholder='Nombre'
+            name="name"
+            id='name'
+            value={formState.name}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className='inputBoxRegister'>
+          <input type="text"
+            placeholder='Apellido'
+            name="last_name"
+            id='last_name'
+            value={formState.last_name}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className='inputBoxRegister'>
+          <input type="text"
+            placeholder='Nombre de Usuario'
+            name="username"
+            id='username'
+            value={formState.username}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className='inputBoxRegister'>
+          <input type="email"
+            placeholder='Email'
+            name="email"
+            id='email'
+            value={formState.email}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className='inputBoxRegister'>
+          <input type="password"
+            placeholder='Contraseña'
+            name="password"
+            id='password'
+            value={formState.password}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className='inputBoxRegister'>
+          <input
+            type="password"
+            placeholder="Confirmar Contraseña"
+            name="confirmarpassword"
+            id="confirmarpassword"
+            value={formState.confirmarpassword}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className='botonRegister'>
+          <input type="submit" className='botonRegister' value="Registro" />
+        </div>
+
+        <div className='groupRegister'>
+          <span><a href="#">Recuperar Contraseña</a></span>
+          <span><a href="/login">Inicia Sesion</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+)
+}
+

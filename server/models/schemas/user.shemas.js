@@ -83,6 +83,19 @@ export const updateUserSchema = [
 ];
 
 export const loginUserSchema = [
-  body('email').exists().notEmpty().isEmail(),
-  body('password').exists().notEmpty().isString(),
+  body('email')
+    .exists()
+    .trim()
+    .notEmpty()
+    .withMessage('El email no debe estar vacio.')
+    .isEmail()
+    .withMessage('El email debe tener formato de correo valido.'),
+  body('password')
+    .exists()
+    .trim()
+    .notEmpty()
+    .withMessage('La contraseña no debe estar vacia.')
+    .isString()
+    .isLength({min: 8, max: 20})
+    .withMessage('Debe tener un mínimo de 8 caracteres y un máximo de 20.'),
 ];

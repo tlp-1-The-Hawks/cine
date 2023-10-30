@@ -1,23 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.contenedor {
+.contenedorRegister {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url('../img/backgroundRegister.png');
+  background-image: url('../img/formRegister.jpg');
 }
 
-.formBox {
+.formBoxRegister {
   position: relative;
   width: 400px;
-  height: 80vh;
   border: 2px solid rgba(255, 255, 2550.5);
   border-radius: 20px;
   backdrop-filter: blur(15px);
@@ -26,20 +19,20 @@
   align-items: center;
 }
 
-.formBox h2 {
+.formBoxRegister h2 {
   color: #fff;
   text-align: center;
   font-size: 32px;
 }
 
-.formBox .inputBox {
+.formBoxRegister .inputBoxRegister {
   position: relative;
   margin: 30px 0;
   width: 310px;
   border-bottom: 2px solid #fff;
 }
 
-.formBox .inputBox input {
+.formBoxRegister .inputBoxRegister input {
   width: 100%;
   height: 45px;
   background: transparent;
@@ -61,7 +54,7 @@ input::placeholder {
   color: #fff;
 }
 
-.botn {
+.botonRegister {
   color: #fff;
   background: blue;
   width: 100%;
@@ -74,19 +67,19 @@ input::placeholder {
   box-shadow: 3px 0 10px rgba(0, 0, 0, .5);
 }
 
-.group {
+.groupRegister {
+  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.group span a {
+.groupRegister span a {
   color: #fff;
-  position: relative;
-  top: 10px;
   text-decoration: none;
   font-weight: 500;
 }
 
-.group a:focus {
+.groupRegister a:focus {
   text-decoration: underline;
 }
