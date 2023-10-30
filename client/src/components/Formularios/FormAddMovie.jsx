@@ -3,6 +3,7 @@ import "../../assets/style/FormMovie.css"
 import { GenreSelect } from '../Selects/GenreSelect';
 import { TypeEmissionSelect } from '../Selects/TypeEmissionSelect';
 import { AddMovieSubmit } from '../Submits/AddMovieSubmit';
+import { HallSelect } from '../Selects/HallSelect.jsx';
 
 export const FormAddMovie = ({ cinemaId }) => {
     const [formMovie, setFormMovie] = useState({
@@ -16,11 +17,11 @@ export const FormAddMovie = ({ cinemaId }) => {
         rutaImage: "",
         date_issue: "",
         type_emissionId: "1",
-        url_trailer: ""
+        url_trailer: "",
+        hall: ""
     })
     const [imageState, setImageState] = useState(null)
     const [sendImg, setSenImg] = useState(null)
-
 
     const handleChange = (e) => {
         const {
@@ -146,6 +147,12 @@ export const FormAddMovie = ({ cinemaId }) => {
                                     <input onChange={handleChange} value={formMovie.price} type="number" className="form-control" id=""
                                         name="price" />
                                 </div>
+                                <HallSelect
+                                    formMovie={formMovie}
+                                    handleChange={handleChange}
+                                    cinemaId={cinemaId}
+                                    setFormMovie={setFormMovie}
+                                />
                             </div>
                             <AddMovieSubmit
                                 formMovie={formMovie}

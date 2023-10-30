@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../../assets/style/Filtros.css';
 import { Tarjetas } from './Tarjetas';
-import { FindGenre } from '../../hooks/useEffects/FindGenres.js';
-import { FindMovies } from '../../hooks/useEffects/FindMovies.js';
+import { FindGenre } from '../../hooks/datePreloads/FindGenres.js';
+import { FindMovies } from '../../hooks/datePreloads/FindMovies.js';
 
 
 export const Filtros = () => {

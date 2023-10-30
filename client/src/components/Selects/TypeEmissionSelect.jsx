@@ -1,5 +1,5 @@
 import React from 'react';
-import { FindTypeEmission } from '../../hooks/useEffects/FindTypeEmission.js';
+import { FindTypeEmission } from '../../hooks/datePreloads/FindTypeEmission.js';
 export const TypeEmissionSelect = ({ formMovie, handleChange }) => {
   const type_emission = FindTypeEmission()
 
