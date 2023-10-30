@@ -10,7 +10,7 @@ export const Seat = () => {
     if (selectedSeats.includes(seatNumber)) {
       // Si el asiento ya está seleccionado, quítalo de la lista de asientos seleccionados
       setSelectedSeats(selectedSeats.filter((seat) => seat !== seatNumber));
-    } else if (selectedSeats.length < 50) {
+    } else if (selectedSeats.length < availableSeats) {
       // Si el asiento no está seleccionado y hay menos de 50 asientos seleccionados, agrégalo
       setSelectedSeats([...selectedSeats, seatNumber]);
     }

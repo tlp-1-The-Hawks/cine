@@ -24,12 +24,13 @@
   /* Añadido para apilar elementos verticalmente */
 }
 
-.datos{
-  display:flex;
+.datos {
+  display: flex;
   flex-direction: row;
   margin-top: 10px;
-  margin-bottom:  15px;
+  margin-bottom: 15px;
 }
+
 .formBoxReserva h2 {
   color: #FF2C25;
   text-align: center;
@@ -81,11 +82,44 @@
   font-size: 17px;
   cursor: pointer;
   box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
-  margin-top: 30px;
-  
+  margin-top: 70px;
+
   /* Espacio entre el último elemento y el botón */
 }
+
 .botonReserva:hover {
-  transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
-  transition: transform 0.3s; /* Agrega una transición suave */
+  transform: scale(1.1);
+  /* Aumenta el tamaño en un 10% en el hover */
+  transition: transform 0.3s;
+  /* Agrega una transición suave */
+}
+
+.mercado-pago-button {
+  /* Agrega estilos de posición, margen y alineación según tus necesidades */
+  position: relative;
+  top: 10px;
+  /* Ajusta la posición vertical */
+  left: 10px;
+  /* Ajusta la posición horizontal */
+  margin-right: 20px;
+  /* Añade margen derecho para separar el botón */
+}
+
+/* Cambia el color de fondo y texto del botón */
+.mercado-pago-button button {
+  background-color: #1e4b7c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+/* Cambia el color de fondo del botón al pasar el cursor sobre él */
+.mercado-pago-button button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el ícono del carrito */
+.mercado-pago-button box-icon {
+  margin-right: 5px;
 }

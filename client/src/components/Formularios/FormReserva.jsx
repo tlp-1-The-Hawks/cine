@@ -1,6 +1,6 @@
 import '../../assets/style/FormReserva.css'
 import { useState, useEffect } from 'react';
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+import { initMercadoPago } from '@mercadopago/sdk-react';
 import axios from 'axios';
 import { Seat } from '../otros/seats';
 const urlSearchParams = new URLSearchParams(window.location.search);
@@ -19,46 +19,32 @@ export const FormReserva = () => {
       .then((res) => res.json())
       .then((data) => {
         setInfo(data)
-        console.log(info);
+        setPrice(data.information[0].price)
       })
       .catch((error) => console.log(error));
   }, [])
-
-  const [preferenceId, setPreferenceId] = useState(null);
 
   initMercadoPago("TEST-82fc2258-893e-4c80-b58f-2bcaa60fd171");
 
 
   const createPreference = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/create_preference", {
+      const response = await axios.post("http://localhost:4000/api/create-order", {
         description: "Boleto de cine",
         price: price,
         quantity: 1,
       });
-
-      const { id } = response.data;
-      console.log(id);
-
-      return id;
+      window.location.href = response.data.init_point
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleBuy = async () => {
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
     }
   };
 
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value, 10);
     setQuantity(newQuantity);
-    const newPrice = newQuantity * info.cinemas[0].information[0].price;
+    const newPrice = newQuantity * info.information[0].price;
     setPrice(newPrice);
-    console.log(price)
   };
 
   useEffect(() => {
@@ -84,8 +70,8 @@ export const FormReserva = () => {
             min={1}
             max={50}
             type="number"
-            value={quantity} // Asigna el estado 'quantity' al valor del input
-            onChange={handleQuantityChange} // Maneja el cambio en el input
+            value={quantity}
+            onChange={handleQuantityChange}
           />
         </div>
         <div className="inputBoxReserva">
@@ -93,20 +79,15 @@ export const FormReserva = () => {
             $ {price}
           </p>
         </div>
-     
-        {
-          preferenceId && <Wallet initialization={{ preferenceId }} />
-        }
-</div>
-<Seat/></div>
-<button className='botonReserva d-flex justify-content-center pt-2' type='button' onClick={handleBuy}>
+    
+
+        </div>
+          <Seat/> 
+        </div>
+        <button className='botonReserva d-flex justify-content-center pt-2' onClick={()=> createPreference()}>
           <box-icon name='cart-add' color='#ffffff' ></box-icon>
           <p>Pagar Mi Boleto</p>
         </button>
-
-
-
-  
       </div>
     </div>
   )
