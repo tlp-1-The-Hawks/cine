@@ -1,6 +1,15 @@
+import Swal from "sweetalert2";
+
 export const HallSelect = ({ formMovie, handleChange, hallState }) => {
 
 
+    const AddHall = (e) => {
+        e.preventDefault()
+
+        Swal.fire({
+            title: "Añade tu sala"
+        })
+    }
     return (
         <div className="mt-3 col col-sm-12 col-md-6 mb-3">
             <div className="row">
@@ -23,6 +32,9 @@ export const HallSelect = ({ formMovie, handleChange, hallState }) => {
                             ))
                     }
                 </select>
+                <div className="d-flex justify-content-center mt-1">
+                    <button onClick={AddHall} className="btn btn-outline-light">Añadir sala</button>
+                </div>
             </div>
         </div>
     );

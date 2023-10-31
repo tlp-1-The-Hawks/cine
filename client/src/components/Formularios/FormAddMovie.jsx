@@ -34,7 +34,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
             [name]: value,
         }
         setFormMovie(newFormData)
-
+        console.log(newFormData)
         if (name === 'rutaImage') {
             const file = e.target.files[0]
             if (file) {
