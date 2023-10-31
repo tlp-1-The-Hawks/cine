@@ -82,7 +82,8 @@
   font-size: 17px;
   cursor: pointer;
   box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
-  margin-top: 70px;
+  margin-top: 60px;
+  margin-bottom: 10px;
 
   /* Espacio entre el último elemento y el botón */
 }

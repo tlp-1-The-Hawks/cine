@@ -72,12 +72,12 @@ export const FormAddMovie = ({ cinemaId }) => {
                             <div className="row">
                                 <div className="mt-3 col-12 col-md-6 col-sm-12  mb-3">
                                     <label htmlFor="titulo" className="form-label">Titulo</label>
-                                    <input onChange={handleChange} value={formMovie.title} type="text" className="form-control" id="" name="title" />
+                                    <input onChange={handleChange} value={formMovie.title} type="text" aria-label='' className="form-control" id="" name="title" />
                                 </div>
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <div className='row align-items-center justify-content-center'>
                                         <label htmlFor="">Imagen de portada</label>
-                                        <input type="file" name='rutaImage' onChange={handleChange} accept="image/*" />
+                                        <input type="file"  aria-label='' name='rutaImage' onChange={handleChange} accept="image/*" />
                                         {imageState && <img className='imageFormMovie' src={imageState.image} alt="" />}
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@ export const FormAddMovie = ({ cinemaId }) => {
                             <div className="row align-items-center">
                                 <div className="mt-3 col-12 col-sm-12 col-md-6 mb-3">
                                     <label htmlFor="description" className="form-label">Descripción</label>
-                                    <input onChange={handleChange} value={formMovie.description} type="text" className="form-control" id="" name="description" />
+                                    <input onChange={handleChange} value={formMovie.description} type="text" aria-label='' className="form-control" id="" name="description" />
                                 </div>
                                 <div className="mt-3 col-12 col-sm-12 col-md-6 mb-3">
                                     <div className="row m-1">
@@ -115,7 +115,7 @@ export const FormAddMovie = ({ cinemaId }) => {
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <div className="row">
                                         <label htmlFor="director" className="form-label">Fecha de emisión</label>
-                                        <input onChange={handleChange} value={formMovie.date_issue} type="datetime-local" id="datetime" name="date_issue" />
+                                        <input onChange={handleChange} value={formMovie.date_issue} type="datetime-local" aria-label='' id="datetime" name="date_issue" />
 
                                     </div>
                                 </div>
@@ -124,14 +124,15 @@ export const FormAddMovie = ({ cinemaId }) => {
                                     <input type="text" className="form-control" id="director"
                                         name="director" />
                                 </div>
-                            </div>
-
-                            <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
+                                <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                 <label htmlFor="Url" className="form-label">link del trailer</label>
                                 <input type="text" className="form-control" id="Url"
                                     name="Url" />
 
                             </div>
+                            </div>
+
+
                             <div className="row">
 
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">

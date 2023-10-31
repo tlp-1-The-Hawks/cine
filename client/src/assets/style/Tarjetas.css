@@ -14,3 +14,7 @@
   background: rgb(255, 17, 0);
   border: solid 1px ;
 }
+#cineName:hover {
+  transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
+  transition: transform 0.3s; /* Agrega una transición suave */
+}
