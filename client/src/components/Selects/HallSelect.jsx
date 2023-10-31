@@ -1,34 +1,5 @@
-import { useState, useEffect } from 'react';
-import { findHall } from '../../hooks/datePreloads/FindHall';
+export const HallSelect = ({ formMovie, handleChange, hallState }) => {
 
-const obtenerHalls = async (cinemaId) => {
-    const resp = await fetch(`http://localhost:4000/api/hall/${cinemaId}`)
-    const data = await resp.json();
-    return data;
-}
-
-export const HallSelect = ({ formMovie, cinemaId, handleChange }) => {
-
-    const [hallState = [], setHallState] = useState([])
-
-    console.log(hallState)
-
-    useEffect(() => {
-
-        if (hallState && hallState.length > 0) {
-            return;
-        }
-
-        (
-            async () => {
-                const data = await obtenerHalls(cinemaId);
-                console.log(data.halls)
-                setHallState(data.halls)
-            }
-
-        )();
-
-    }, [])
 
     return (
         <div className="mt-3 col col-sm-12 col-md-6 mb-3">

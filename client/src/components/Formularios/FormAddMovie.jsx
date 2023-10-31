@@ -5,7 +5,7 @@ import { TypeEmissionSelect } from '../Selects/TypeEmissionSelect';
 import { AddMovieSubmit } from '../Submits/AddMovieSubmit';
 import { HallSelect } from '../Selects/HallSelect.jsx';
 //traer los halls  y pasarle los datos a hallsSelect
-export const FormAddMovie = ({ cinemaId }) => {
+export const FormAddMovie = ({ cinemaId, hallState }) => {
     const [formMovie, setFormMovie] = useState({
         title: "",
         genreId: "1",
@@ -150,7 +150,7 @@ export const FormAddMovie = ({ cinemaId }) => {
                                 <HallSelect
                                     formMovie={formMovie}
                                     handleChange={handleChange}
-                                    cinemaId={cinemaId}
+                                    hallState={hallState}
                                 />
                             </div>
                             <AddMovieSubmit

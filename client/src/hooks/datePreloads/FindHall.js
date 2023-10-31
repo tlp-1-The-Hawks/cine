@@ -1,20 +1,16 @@
-import { useState, useEffect } from "react";
-
-export function findHall(cinemaId) {
-    const [hallState, setHallState] = useState([]);
-
-    useEffect(() => {
-        fetch(`http://localhost:4000/api/hall/${cinemaId}`, {
-            method: 'GET'
-        }).then((res) => res.json())
-            .then((data) => {
-                setHallState(data.halls);
-            })
-            .catch((error) => console.log(error))
-
-    }, [])
 
 
+export async function findHall(cinemaId) {
 
-    return hallState
+    const response = await fetch(`http://localhost:4000/api/hall/${cinemaId}`, {
+        method: 'GET'
+    })
+
+    const data = await response.json()
+
+
+    const hall = data.halls
+
+
+    return hall
 }
