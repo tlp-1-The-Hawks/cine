@@ -8,11 +8,14 @@
   background-color: #202529;
   color: #fff;
   border: solid 1px #df1414;
+  min-height: 100px;
+  min-width: 100px;
 }
 #cineName{
   color: whitesmoke;
   background: rgb(255, 17, 0);
-  border: solid 1px ;
+  margin: 4px;
+  border: solid 1px rgb(255, 17, 0) ;
 }
 #cineName:hover {
   transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
