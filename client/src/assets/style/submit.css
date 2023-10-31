@@ -1,17 +1,17 @@
 .guardarBoton{
-background-color: #ff0000;
+background-color: #252222;
 color: white;
 width: 200px;
 height: 30px;
-border: 1px solid #ff0000;
+border: 1px solid #252222;
 
 }
 .cancelarBoton{
-background-color: #ff0000;
+background-color: #252222;
 color: white;
 width: 200px;
 height: 30px;
-border: 1px solid #ff0000;
+border: 1px solid #252222;
 }
 
 .guardarBoton:hover {

@@ -67,7 +67,7 @@ export const FormAddMovie = ({ cinemaId }) => {
                     <div className="d-flex justify-content-center">
                         <form method='POST' encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
                             <div className='d-flex justify-content-center text-center'>
-                                <h3 className="mb-3 text-center bg-dark text-light rounded-5 p-2">Agrega tu película</h3>
+                                <h3  id='titulo' >Agrega tu película</h3>
                             </div>
                             <div className="row">
                                 <div className="mt-3 col-12 col-md-6 col-sm-12  mb-3">
