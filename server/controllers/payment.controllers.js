@@ -1,3 +1,4 @@
+import { bookingModel } from '../models/Booking.models.js'
 import mercadopago from "mercadopago";
 
 export const createOrder = async (req, res) => {
@@ -15,7 +16,7 @@ export const createOrder = async (req, res) => {
           quantity: Number(req.body.quantity),
         },
       ],
-      notification_url: "https://b98e-138-121-113-13.ngrok.io/api/webhook",
+      notification_url: "https://8e74-138-121-113-14.ngrok.io/api/webhook",
       back_urls: {
         success: "http://localhost:3000/",
         // pending: "https://e720-190-237-16-208.sa.ngrok.io/pending",
@@ -36,7 +37,11 @@ export const createOrder = async (req, res) => {
 export const receiveWebhook = async (req, res) => {
   try {
     const payment = req.query;
-    console.log(payment);
+    if (payment.type === 'payment') {
+      const paymentId = payment['data.id']
+      console.log(paymentId);
+      await bookingModel.create({ paymentId });
+    }
 
     res.sendStatus(204);
   } catch (error) {

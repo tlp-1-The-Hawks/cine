@@ -27,7 +27,7 @@ export const MovieInfo = ({ info }) => {
               <div>
                 <ul className="movie-info">
                   <li>
-                    <span className="lista">Precio:</span>
+                    <span className="lista">Precio:</span>$
                     {info &&
                       info.information &&
                       info.information[0] && (
