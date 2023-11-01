@@ -23,7 +23,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
             {moviesWithCinemas.map((movie) => (
               <div key={movie.id} className="col-md-3 col-sm-12 d-flex justify-content-center">
                 <div className="card">
-                  <img src={`/movies_img/${movie.information[0].rutaImage}`} className="card-img-top" alt="..." />
+                          <img src={`/movies_img/${movie.information[0].rutaImage}`} className="card-img-top" alt="" />
                   <div className="card-body">
                     <h5 className="card-title">{movie.title}</h5>
                     <p className="card-text">Género: {movie.information[0].genre.genre}</p>
@@ -42,6 +42,15 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                         {cine.name}
                       </Link>
                     ))}
+                    <div className='crud'>
+                      <div  className='crudBoton' data-tooltip="editar">
+                      <box-icon name='edit-alt'  type='solid' color='#ffffff' ></box-icon>
+                      </div>
+                      <div  className='crudBoton' data-tooltip="eliminar">
+                      <box-icon name='x-circle' color='#ffffff' ></box-icon>
+                      </div>
+
+                    </div>
                   </div>
                 </div>
               </div>
