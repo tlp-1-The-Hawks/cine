@@ -16,14 +16,13 @@ export const InfoMovie = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setInfo(data)
             })
             .catch((error) => console.log(error));
     }, [])
 
     return (
-        <>
+        <>  
             <Header />
             <MovieInfo
                 info={info}
