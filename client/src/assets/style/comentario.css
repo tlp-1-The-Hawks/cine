@@ -1,0 +1,67 @@
+.usuario {
+    border: 3px solid fuchsia;
+    margin: 10px;
+    padding: 7px;
+    background-color: black;
+    color: azure;
+    text-align: center;
+}
+
+body {
+    background-color: rgb(200, 202, 52);
+}
+
+.Contenedor_comentario {
+    align-items: center;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr auto;
+    grid-gap: 2px;
+}
+
+@media (min-width: 768px) {
+    .Contenedor_comentario {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.perfil {
+    border: 1px solid black;
+    background-color: rgb(191, 204, 16);
+    width: 100%;
+
+}
+
+.card {
+    border: 2px solid black;
+    background-color: rgb(215, 230, 17);
+    border-radius: 30px;
+    margin: 10px;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card img {
+    height: 55px;
+    border-radius: 100px;
+}
+
+.agregarComentario {
+    display: contents;
+    justify-content: center;
+}
+
+.agregarComentario h3 {
+    font-size: large;
+    color: rgb(134, 134, 134);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.agregarComentario .boton_comentario {
+    background-color: rgb(0, 136, 255);
+}

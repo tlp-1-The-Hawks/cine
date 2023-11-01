@@ -33,117 +33,88 @@ export const FormRegister = () => {
     dispatch({
       type: types_user.USER_ADD,
       payload: formState
-    }
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error('Error en la solicitud');
-        }
-      })
-      .then(data => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-          window.location.href = '/';
-        } else {
-          console.error('Error al iniciar sesión');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    })
   }
 
-  useEffect(() => {
+  return (
 
-    const token = localStorage.getItem('token');
+    <div className='contenedorRegister'>
+      <div className='formBoxRegister'>
+        <form name='formregister' onSubmit={handleSubmit}>
+          <h2 className='mt-2'>Registro</h2>
 
-    if (token) {
-      window.location.href = '/';
-    }
-  }, []);
+          <div className='inputBoxRegister'>
+            <input type="text"
+              placeholder='Nombre'
+              name="name"
+              id='name'
+              value={formState.name}
+              onChange={handleChange}
+            />
+          </div>
 
-}
+          <div className='inputBoxRegister'>
+            <input type="text"
+              placeholder='Apellido'
+              name="last_name"
+              id='last_name'
+              value={formState.last_name}
+              onChange={handleChange}
+            />
+          </div>
 
-return (
+          <div className='inputBoxRegister'>
+            <input type="text"
+              placeholder='Nombre de Usuario'
+              name="username"
+              id='username'
+              value={formState.username}
+              onChange={handleChange}
+            />
+          </div>
 
-  <div className='contenedorRegister'>
-    <div className='formBoxRegister'>
-      <form name='formregister' onSubmit={handleSubmit}>
-        <h2 className='mt-2'>Registro</h2>
+          <div className='inputBoxRegister'>
+            <input type="email"
+              placeholder='Email'
+              name="email"
+              id='email'
+              value={formState.email}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className='inputBoxRegister'>
-          <input type="text"
-            placeholder='Nombre'
-            name="name"
-            id='name'
-            value={formState.name}
-            onChange={handleChange}
-          />
-        </div>
+          <div className='inputBoxRegister'>
+            <input type="password"
+              placeholder='Contraseña'
+              name="password"
+              id='password'
+              value={formState.password}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className='inputBoxRegister'>
-          <input type="text"
-            placeholder='Apellido'
-            name="last_name"
-            id='last_name'
-            value={formState.last_name}
-            onChange={handleChange}
-          />
-        </div>
+          <div className='inputBoxRegister'>
+            <input
+              type="password"
+              placeholder="Confirmar Contraseña"
+              name="confirmarpassword"
+              id="confirmarpassword"
+              value={formState.confirmarpassword}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className='inputBoxRegister'>
-          <input type="text"
-            placeholder='Nombre de Usuario'
-            name="username"
-            id='username'
-            value={formState.username}
-            onChange={handleChange}
-          />
-        </div>
+          <div className='botonRegister'>
+            <input type="submit" className='botonRegister' value="Registro" />
+          </div>
 
-        <div className='inputBoxRegister'>
-          <input type="email"
-            placeholder='Email'
-            name="email"
-            id='email'
-            value={formState.email}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className='inputBoxRegister'>
-          <input type="password"
-            placeholder='Contraseña'
-            name="password"
-            id='password'
-            value={formState.password}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className='inputBoxRegister'>
-          <input
-            type="password"
-            placeholder="Confirmar Contraseña"
-            name="confirmarpassword"
-            id="confirmarpassword"
-            value={formState.confirmarpassword}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className='botonRegister'>
-          <input type="submit" className='botonRegister' value="Registro" />
-        </div>
-
-        <div className='groupRegister'>
-          <span><a href="#">Recuperar Contraseña</a></span>
-          <span><a href="/login">Inicia Sesion</a></span>
-        </div>
-      </form>
+          <div className='groupRegister'>
+            <span><a href="#">Recuperar Contraseña</a></span>
+            <span><a href="/login">Inicia Sesion</a></span>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-)
+  )
 }
 
