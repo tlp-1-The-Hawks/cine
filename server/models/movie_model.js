@@ -63,7 +63,7 @@ export async function getAllMovies() {
 }
 
 export async function getMovieById(movieId, cinemaId) {
-  const movie = await MovieModel.findOne({
+  return await MovieModel.findOne({
     where: {
       id: movieId
     },
@@ -72,21 +72,18 @@ export async function getMovieById(movieId, cinemaId) {
         model: cinemaModel,
         where: {
           id: cinemaId
-        },
-        include: {
-          model: informationModel
         }
       },
-
+      {
+        model: informationModel,
+        where: {
+          cinemaId: cinemaId
+        }
+      }
     ]
   });
-
-
-  if (!movie) {
-    return null;
-  }
-  return movie;
 }
+
 
 export async function deleteMovieById(movieId) {
   const movie = await MovieModel.findByPk(movieId);

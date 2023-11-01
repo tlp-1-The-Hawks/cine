@@ -9,7 +9,6 @@ import { ratingModel } from '../models/Rating.models.js';
 import { informationModel } from '../models/Information.model.js';
 import { createGenre, genreModel } from '../models/genre.models.js';
 import { movieInfoModel } from '../models/moviexinfo.model.js';
-import { infoCinemaModel } from '../models/infoXcinema.model.js';
 import { TypeEmissionModel, addTypeEmission } from '../models/TypeEmission.model.js';
 import { hallModel } from '../models/Hall.models.js';
 import { hallXcinemas } from '../models/hallXCinemas.js';
@@ -72,13 +71,13 @@ bookingModel.belongsTo(MovieModel, {
 });
 
 //uno a muchos 
-movieCinemaModel.belongsTo(MovieModel, {
-  foreignKey: 'movieId',
+informationModel.belongsTo(cinemaModel, {
+  foreignKey: 'cinemaId',
   targetKey: 'id',
 })
 
-MovieModel.hasMany(movieCinemaModel, {
-  foreignKey: 'movieId',
+cinemaModel.hasMany(informationModel, {
+  foreignKey: 'cinemaId',
   sourceKey: 'id'
 })
 
@@ -92,8 +91,9 @@ cinemaModel.belongsToMany(MovieModel, { through: movieCinemaModel });
 MovieModel.belongsToMany(informationModel, { through: movieInfoModel });
 informationModel.belongsToMany(MovieModel, { through: movieInfoModel });
 
-cinemaModel.belongsToMany(informationModel, { through: infoCinemaModel });
-informationModel.belongsToMany(cinemaModel, { through: infoCinemaModel })
+// cinemaModel.belongsToMany(informationModel, { through: infoCinemaModel });
+// informationModel.belongsToMany(cinemaModel, { through: infoCinemaModel })
+
 
 //genre and information
 genreModel.hasMany(informationModel, {
