@@ -18,18 +18,18 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
   return (
     <div>
       <section className='tarjetaContenedor'>
-        <div className="container">
-          <div className="row d-flex">
+        <div className="tarjetas">
+
             {moviesWithCinemas.map((movie) => (
               <div key={movie.id} className="col-md-3 col-sm-12 d-flex justify-content-center">
-                <div className="card">
-                          <img src={`/movies_img/${movie.information[0].rutaImage}`} className="card-img-top" alt="" />
-                  <div className="card-body">
-                    <h5 className="card-title">{movie.title}</h5>
-                    <p className="card-text">Género: {movie.information[0].genre.genre}</p>
-                    <p className="card-text">Cines disponibles:</p>
+                <div className="cards">
+                          <img src={`/movies_img/${movie.information[0].rutaImage}`} className="card-img" alt="" />
+                  <div>
+                    <h5 className='textoCard' >{movie.title}</h5>
+                    <p className='textoCard'>Género: {movie.information[0].genre.genre}</p>
+                    <p className='textoCard'>Cines disponibles:</p>
                     {movie.cinemas.map((cine) => (
-                      <Link
+                      <Link 
                         id='cineName'
                         key={cine.id}
                         to="#"
@@ -56,7 +56,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
               </div>
             ))}
           </div>
-        </div>
+
 
       </section>
       <div className='d-flex justify-content-end text-end'>

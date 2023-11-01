@@ -1,25 +1,32 @@
+#botones{
+  display: flex;
+  flex-direction: row;
+  
+  justify-content: space-between;
+}
 .guardarBoton{
-background-color: #252222;
-color: white;
-width: 200px;
-height: 30px;
-border: 1px solid #252222;
+  background-color: #ff0000;
+  color: white;
+  width: 200px;
+  height: 30px;
+  border: 1px solid #ff0000;
 
-}
-.cancelarBoton{
-background-color: #252222;
-color: white;
-width: 200px;
-height: 30px;
-border: 1px solid #252222;
-}
-
-.guardarBoton:hover {
-    transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
-    transition: transform 0.3s; /* Agrega una transición suave */
   }
-
-.cancelarBoton:hover {
-    transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
-    transition: transform 0.3s; /* Agrega una transición suave */
+  .cancelarBoton{
+  background-color: #ff0000;
+  color: white;
+  width: 200px;
+  height: 30px;
+  border: 1px solid #ff0000;
   }
+  
+  .guardarBoton:hover {
+      transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
+      transition: transform 0.3s; /* Agrega una transición suave */
+    }
+  
+  .cancelarBoton:hover {
+      transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
+      transition: transform 0.3s; /* Agrega una transición suave */
+    }
+    

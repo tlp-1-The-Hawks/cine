@@ -20,11 +20,11 @@ export const AddMovieSubmit = ({ formMovie, sendImg, cinemaId }) => {
     }
 
     return (
-        <div className="row d-flex align-items-center justify-content-stard">
-            <div className="mt-4 col-sm-12 col-md-12 col-lg-12 col-xl-2 col-12 mb-1">
+        <div  id="botones">
+            <div>
                 <button type="submit" className="guardarBoton" onClick={handleSubmit}>Guardar</button>
             </div>
-            <div className="mt-4 col-sm-12 col-md-12 col-lg-12 col-xl-2 col-12 mb-1">
+            <div >
                 <Link to="/" ><button className="cancelarBoton">Cancelar</button> </Link>
             </div>
         </div>
