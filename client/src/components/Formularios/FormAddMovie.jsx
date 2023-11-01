@@ -4,6 +4,7 @@ import { GenreSelect } from '../Selects/GenreSelect';
 import { TypeEmissionSelect } from '../Selects/TypeEmissionSelect';
 import { AddMovieSubmit } from '../Submits/AddMovieSubmit';
 import { HallSelect } from '../Selects/HallSelect.jsx';
+import { DateEmission } from '../DirectorioMain/DateEmission.jsx';
 //traer los halls  y pasarle los datos a hallsSelect
 export const FormAddMovie = ({ cinemaId, hallState }) => {
     const [formMovie, setFormMovie] = useState({
@@ -119,13 +120,12 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                     <input onChange={handleChange} value={formMovie.url_trailer} type="text" className="form-control" id="url_trailer"
                                         name="url_trailer" />
                                 </div>
-                                <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
-                                    <div className="row">
-                                        <label htmlFor="director" className="form-label">Fecha de emisión</label>
-                                        <input onChange={handleChange} value={formMovie.date_issue} type="datetime-local" aria-label='' id="datetime" name="date_issue" />
 
-                                    </div>
-                                </div>
+                                <DateEmission
+                                    onChange={handleChange}
+                                    formMovie={formMovie}
+                                />
+
 
                             </div>
                             <div className="row">
@@ -151,6 +151,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                     formMovie={formMovie}
                                     handleChange={handleChange}
                                     hallState={hallState}
+                                    cinemaId={cinemaId}
                                 />
                             </div>
                             <AddMovieSubmit
