@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 
 export function FindGenre() {
     const [genreState, setGenreState] = useState([])
@@ -12,9 +12,7 @@ export function FindGenre() {
                 setGenreState(data)
             })
             .catch((error) => console.log(error))
-    }, []
 
-    )
-
+    }, [])
     return genreState
 }

@@ -1,4 +1,3 @@
-import { addCinemaInfo } from "../models/infoXcinema.model.js";
 import { createMovie } from "../models/movie_model.js";
 import { addMovieCinema } from '../models/movieXcinema.js';
 import { addMovieInfo } from "../models/moviexinfo.model.js";
@@ -17,7 +16,9 @@ export const ctrlAddInfoMovie = async (req, res) => {
             genreId,
             rutaImage,
             date_issue,
-            type_emissionId
+            type_emissionId,
+            url_trailer,
+            hallId
         } = req.body
         const { cinemaId } = req.params
 
@@ -31,7 +32,10 @@ export const ctrlAddInfoMovie = async (req, res) => {
             price,
             genreId,
             date_issue,
-            type_emissionId
+            type_emissionId,
+            url_trailer,
+            hallId,
+            cinemaId
         }
 
         const NewMovie = await createMovie(title)
@@ -46,7 +50,6 @@ export const ctrlAddInfoMovie = async (req, res) => {
 
         const MovieCinema = await addMovieCinema(movieId, cinemaId)
 
-        const CinemaInfo = await addCinemaInfo(cinemaId, informationId)
 
         const newMovieInfo = await addMovieInfo(movieId, informationId)
 
@@ -65,8 +68,7 @@ export const ctrlAddInfoMovie = async (req, res) => {
 export const ctrlUploadImgMovie = async (req, res) => {
     try {
         const file = req.files.file;
-        const fileName = file.name;
-
+        const fileName = req.file.name
 
         file.mv(`../client/public/movies_img/${fileName}`, (err) => {
             if (err) {

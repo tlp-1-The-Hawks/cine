@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../../assets/style/Filtros.css';
 import { Tarjetas } from './Tarjetas';
-import { FindGenre } from '../../hooks/useEffects/FindGenres.js';
-import { FindMovies } from '../../hooks/useEffects/FindMovies.js';
+import { FindGenre } from '../../hooks/datePreloads/FindGenres.js';
+import { FindMovies } from '../../hooks/datePreloads/FindMovies.js';
 
 
 export const Filtros = () => {
@@ -36,9 +36,9 @@ export const Filtros = () => {
             <form>
               <div className="form-group">
                 <div className="row">
-                  <label htmlFor="exampleFormControlSelect1">Filtrar por</label>
+                  <label className='filtro-label' htmlFor="exampleFormControlSelect1">Filtrar por</label>
                   <div className='col'>
-                    <label htmlFor="">Calificación</label>
+                    <label className='filtro-label' htmlFor="">Calificación</label>
                     <select className="form-control" id="exampleFormControlSelect1">
                       <option>Todos</option>
                       <option>Mejores calificados</option>
@@ -46,7 +46,7 @@ export const Filtros = () => {
                     </select>
                   </div>
                   <div className='col'>
-                    <label htmlFor="">Género</label>
+                    <label className='filtro-label' htmlFor="">Género</label>
                     <select
                       name="genreId"
                       id="exampleFormControlSelect1"

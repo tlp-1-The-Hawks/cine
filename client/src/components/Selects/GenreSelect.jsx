@@ -1,5 +1,5 @@
 import React from 'react';
-import { FindGenre } from '../../hooks/useEffects/FindGenres.js';
+import { FindGenre } from '../../hooks/datePreloads/FindGenres.js';
 export const GenreSelect = ({ formMovie, handleChange }) => {
   const genreState = FindGenre()
 

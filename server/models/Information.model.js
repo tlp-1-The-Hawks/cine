@@ -1,8 +1,6 @@
 import { sequelize } from "../config/database.js"
 import { DataTypes } from "sequelize"
-import { cinemaModel } from "./Cinema.models.js"
-import { MovieModel } from "./movie_model.js"
-import { movieInfoModel } from "./moviexinfo.model.js"
+
 export const informationModel = sequelize.define(
   'information', {
   rutaImage: {
@@ -31,6 +29,10 @@ export const informationModel = sequelize.define(
   price: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  url_trailer: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 })
 

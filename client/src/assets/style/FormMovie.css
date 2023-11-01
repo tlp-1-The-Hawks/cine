@@ -1,19 +1,19 @@
 .fondoformmovie {
-    background: #252222;
-    color: white;
+  background: #252222;
+  color: white;
 }
 
 #titulo {
-    background-color: #252222;
-    border: solid 1px #252222;
-    border-radius: 8px;
-    padding: 10px;
+  background-color: #252222;
+  border: solid 1px #252222;
+  border-radius: 8px;
+  padding: 10px;
 }
 
 .formAddmovie {
-    background-color: #ff0000;
+  background-color: #ff0000;
 }
 
 .imageFormMovie {
-    width: 250px;
+  width: 250px;
 }
