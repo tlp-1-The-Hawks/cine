@@ -18,6 +18,7 @@ export const FormReserva = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setInfo(data)
         setPrice(data.information[0].price)
       })
@@ -62,8 +63,9 @@ export const FormReserva = () => {
       <div className="formBoxReserva">
 
       <h2>Reserva de Asientos de Cine</h2>
-<div className='datos'> <div >
-<div className="inputBoxReserva">
+      <div className='datos'> 
+      <div >
+      <div className="inputBoxReserva">
 
           <label>Número de Boletos</label>
           <input

@@ -1,6 +1,6 @@
 .tarjeta {
   width: 18rem;
- 
+
 }
 
 .card {
@@ -8,9 +8,16 @@
   background-color: #202529;
   color: #fff;
   border: solid 1px #df1414;
-  min-height: 100px;
-  min-width: 100px;
+  min-height: 150px;
+  min-width: 200px;
 }
+.card:hover {
+  transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
+  transition: transform 0.3s; /* Agrega una transición suave */
+  background: #39474f;
+  border:solid 1px #e4dbdb;
+}
+
 #cineName{
   color: whitesmoke;
   background: rgb(255, 17, 0);
@@ -20,4 +27,29 @@
 #cineName:hover {
   transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
   transition: transform 0.3s; /* Agrega una transición suave */
+}
+
+.crud{
+margin-top:15px;
+margin-left: 10px;
+display: flex;
+justify-content: space-between;
+}
+.crudBoton {
+  position: relative;
+}
+
+.crudBoton:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -35px; /* Ajusta la posición vertical según sea necesario */
+  left: 32%;
+  transform: translateX(-50%);
+  background-color: #1f1b1b;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0.9;
+  visibility: visible;
 }
