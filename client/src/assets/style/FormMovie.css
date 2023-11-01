@@ -1,5 +1,5 @@
 .fondoformmovie {
-    background:#DBCBCB;
+    background: #DBCBCB;
     color: white;
 
 }
@@ -14,4 +14,8 @@
 
 .imageFormMovie {
     width: 250px;
+}
+
+.hallForm {
+    display: flex;
 }

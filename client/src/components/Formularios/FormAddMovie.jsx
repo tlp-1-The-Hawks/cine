@@ -18,7 +18,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
         date_issue: "",
         type_emissionId: "1",
         url_trailer: "",
-        hallId: ""
+        hallId: "1"
     })
     const [imageState, setImageState] = useState(null)
     const [sendImg, setSenImg] = useState(null)

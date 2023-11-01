@@ -138,7 +138,7 @@ TypeEmissionModel.hasMany(informationModel, {
   sourceKey: 'id'
 })
 
-infoCinemaModel.belongsTo(TypeEmissionModel, {
+informationModel.belongsTo(TypeEmissionModel, {
   foreignKey: 'type_emissionId',
   targetKey: 'id'
 })

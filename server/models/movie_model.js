@@ -72,11 +72,12 @@ export async function getMovieById(movieId, cinemaId) {
         model: cinemaModel,
         where: {
           id: cinemaId
+        },
+        include: {
+          model: informationModel
         }
       },
-      {
-        model: informationModel
-      }
+
     ]
   });
 

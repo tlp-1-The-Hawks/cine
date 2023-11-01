@@ -7,7 +7,26 @@ export const HallSelect = ({ formMovie, handleChange, hallState }) => {
         e.preventDefault()
 
         Swal.fire({
-            title: "Añade tu sala"
+            title: "Añade tu sala",
+            html:
+
+                `<form>
+                    <div className="hallForm">
+                        <label htmlFor="">Ingresa el numero de sala</label>  
+                        <input type="number" id="login" class="swal2-input" placeholder="">
+                        <label htmlFor="">Ingresa la capacidad de la sala</label> 
+                        <input type="number" id="password" class="swal2-input" placeholder="">
+                    </div>
+                 </form>
+                 `,
+            confirmButtonText: 'Enviar',
+            width: '50%',
+            padding: '1rem',
+            background: '#DBCBCB',
+            grow: 'row',
+            customClass: {
+                htmlContainer: 'hallForm'
+            }
         })
     }
     return (
@@ -20,7 +39,7 @@ export const HallSelect = ({ formMovie, handleChange, hallState }) => {
                 <select
                     name="hallId"
                     id="hall" onChange={handleChange}
-                    value={formMovie.hall}
+                    value={formMovie.hallId}
                 >
                     {
                         (hallState && hallState.length === 0)
