@@ -6,7 +6,8 @@ export const DateEmissionSelect = ({ handleChange, formMovie }) => {
                 <label htmlFor="" className="form-label">
                     Fechas de emisión
                 </label>
-                <select onChange={handleChange} value={formMovie.date_issue} name="date_issue" id="">
+                <select onChange={handleChange} value={formMovie.date_issue} defaultValue={"Indique la cantidad de fechas"} name="date_issue" id="">
+                    <option value={0}>Indique la cantidad de fechas</option>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>

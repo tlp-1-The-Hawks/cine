@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { movieContext } from "../../context/MovieContext.jsx"
 import { type_movie } from "../../types/types.movie.js"
 
-export const AddMovieSubmit = ({ formMovie, sendImg, cinemaId }) => {
+export const AddMovieSubmit = ({ formMovie, sendImg, cinemaId, arrayForDates }) => {
     const { state, dispatch } = useContext(movieContext)
 
 
@@ -14,7 +14,8 @@ export const AddMovieSubmit = ({ formMovie, sendImg, cinemaId }) => {
             payload: {
                 formMovie: formMovie,
                 sendImg: sendImg,
-                cinemaId: cinemaId
+                cinemaId: cinemaId,
+                avents: arrayForDates
             }
         })
     }

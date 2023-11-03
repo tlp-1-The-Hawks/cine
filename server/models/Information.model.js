@@ -33,6 +33,10 @@ export const informationModel = sequelize.define(
   url_trailer: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  avents: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 })
 
