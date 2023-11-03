@@ -92,6 +92,17 @@ export const MovieInfo = ({ info }) => {
               Reservar
             </a>
             <a
+              className="reserva"
+              role="button"
+              onClick={() => {
+                const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
+                const movieId = info.id; // Obtén el ID de la película
+                window.location.href = `/comentario?movieId=${movieId}&cinemaId=${cinemaId}`;
+              }}
+            >
+              Comentar
+            </a>
+            <a
               className="trailer"
               href="https://www.youtube.com/watch?v=YrbdN5zaouU"
               role="button"
