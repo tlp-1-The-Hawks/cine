@@ -45,8 +45,15 @@ export const MovieInfo = ({ info }) => {
                       )}
                   </li>
                   <li>
-                    <span className="lista">Lugar:</span>
-                    Sala 3
+                    <span className="lista">SALA:</span>
+                    {
+                      info &&
+                      info.information &&
+                      info.information[0] && (
+                        <span>
+                          {info.information[0].hallId}
+                        </span>
+                      )}
                   </li>
                   <li>
                     <span className="lista">Formato:</span>
@@ -64,7 +71,7 @@ export const MovieInfo = ({ info }) => {
                     {info &&
                       info.information &&
                       info.information[0] && (
-                        <span>{info.information[0].duration}</span>
+                        <span>{info.information[0].duration} Minutos</span>
                       )}
                   </li>
                   <li>
