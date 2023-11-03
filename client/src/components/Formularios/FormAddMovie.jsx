@@ -4,8 +4,8 @@ import { GenreSelect } from '../Selects/GenreSelect';
 import { TypeEmissionSelect } from '../Selects/TypeEmissionSelect';
 import { AddMovieSubmit } from '../Submits/AddMovieSubmit';
 import { HallSelect } from '../Selects/HallSelect.jsx';
-import { DateEmission } from '../DirectorioMain/DateEmission.jsx';
-//traer los halls  y pasarle los datos a hallsSelect
+import { DateEmissionSelect } from '../Selects/DateEmissionSelect.jsx';
+
 export const FormAddMovie = ({ cinemaId, hallState }) => {
     const [formMovie, setFormMovie] = useState({
         title: "",
@@ -16,30 +16,37 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
         director: "",
         price: "",
         rutaImage: "",
-        date_issue: "",
-        type_emissionId: "1",
+        date_issue: 1,
+        type_emissionId: 1,
         url_trailer: "",
         hallId: "1"
-    })
-    const [imageState, setImageState] = useState(null)
-    const [sendImg, setSenImg] = useState(null)
+    });
 
+    const [imageState, setImageState] = useState(null);
+    const [sendImg, setSendImg] = useState(null);
+    const [dateArray, setDateArray] = useState([
+        <div className='col-6'>
+            <div key={0} className='row'>
+                <label htmlFor="">1° Fecha</label>
+                <input className='' type="datetime-local" />
+            </div>
+        </div>
+    ]);
 
     const handleChange = (e) => {
-        const {
-            name, value
-        } = e.target
+        const { name, value } = e.target;
 
         const newFormData = {
             ...formMovie,
             [name]: value,
-        }
-        setFormMovie(newFormData)
-        console.log(newFormData)
+        };
+        setFormMovie(newFormData);
+        console.log(newFormData);
+
         if (name === 'rutaImage') {
-            const file = e.target.files[0]
+            const file = e.target.files[0];
             if (file) {
-                const imgName = file.name
+                const imgName = file.name;
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     setImageState({
@@ -49,8 +56,8 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                 setFormMovie({
                     ...formMovie,
                     rutaImage: `${imgName}`
-                })
-                setSenImg(file)
+                });
+                setSendImg(file);
                 reader.readAsDataURL(file);
             } else {
                 setImageState({
@@ -58,15 +65,33 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                 });
             }
         }
-    }
+
+        if (name === 'date_issue') {
+            const numDates = parseInt(value);
+            const newDateArray = [];
+            let currentNumber = 1;
+            for (let index = 0; index < numDates; index++) {
+                newDateArray.push(
+                    <div className='col-6'>
+                        <div key={index} className='row'>
+                            <label htmlFor="">{currentNumber++}° Fecha</label>
+                            <input type="datetime-local" />
+                        </div>
+                    </div>
+                );
+            }
+            setDateArray(newDateArray);
+        }
+
+    };
 
 
 
     return (
 
         <div onChange={handleChange} className="fondoformmovie w-100 d-flex justify-content-center align-items-center" >
-            <div className='container w-75 h-75 d-flex'>
-                <div className="w-100">
+            <div className='row container w-75 h-75 d-flex'>
+                <div className="col-12 col-md-12 col-sm-12">
                     <div className="d-flex justify-content-center">
                         <form method='POST' encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
                             <div className='d-flex justify-content-center text-center'>
@@ -120,39 +145,44 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                     <input onChange={handleChange} value={formMovie.url_trailer} type="text" className="form-control" id="url_trailer"
                                         name="url_trailer" />
                                 </div>
-
-                                <DateEmission
-                                    onChange={handleChange}
-                                    formMovie={formMovie}
-                                />
-
-
-                            </div>
-                            <div className="row">
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <label htmlFor="director" className="form-label">Director</label>
                                     <input type="text" className="form-control" id="director"
                                         name="director" />
                                 </div>
 
+
+
+                            </div>
+                            <div className="row">
+
+
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <label htmlFor="actors" className="form-label">Actores</label>
                                     <input onChange={handleChange} value={formMovie.actors} type="text" className="form-control" id=""
                                         name="actors" />
                                 </div>
-                            </div>
-                            <div className="row">
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <label htmlFor="Precio" className="form-label">Precio</label>
                                     <input onChange={handleChange} value={formMovie.price} type="number" className="form-control" id=""
                                         name="price" />
                                 </div>
+                            </div>
+                            <div className="row">
+
                                 <HallSelect
                                     formMovie={formMovie}
                                     handleChange={handleChange}
                                     hallState={hallState}
                                     cinemaId={cinemaId}
                                 />
+                                <DateEmissionSelect
+                                    onChange={handleChange}
+                                    formMovie={formMovie}
+                                />
+                            </div>
+                            <div className='row'>
+                                {dateArray}
                             </div>
                             <AddMovieSubmit
                                 formMovie={formMovie}
@@ -162,6 +192,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
 

@@ -1,7 +1,6 @@
 .fondoformmovie {
-    background: #DBCBCB;
     color: white;
-
+    background-color: #202529;
 }
 
 #titulo {
@@ -32,4 +31,18 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.guardarBoton:hover {
+    transform: scale(1.1);
+    /* Aumenta el tamaño en un 10% en el hover */
+    transition: transform 0.3s;
+    /* Agrega una transición suave */
+}
+
+.cancelarBoton:hover {
+    transform: scale(1.1);
+    /* Aumenta el tamaño en un 10% en el hover */
+    transition: transform 0.3s;
+    /* Agrega una transición suave */
 }
