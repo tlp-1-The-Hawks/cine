@@ -60,3 +60,7 @@ justify-content: space-between;
   opacity: 0.9;
   visibility: visible;
 }
+.crudButton{
+  background: none;
+  border: none;
+}

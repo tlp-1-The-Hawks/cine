@@ -71,7 +71,7 @@ export const MovieInfo = ({ info }) => {
                     {info &&
                       info.information &&
                       info.information[0] && (
-                        <span>{info.information[0].duration}</span>
+                        <span>{info.information[0].duration} Minutos</span>
                       )}
                   </li>
                   <li>

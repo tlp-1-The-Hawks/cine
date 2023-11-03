@@ -43,11 +43,11 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                       </Link>
                     ))}
                     <div className='crud'>
-                      <div  className='crudBoton' data-tooltip="editar">
-                      <box-icon name='edit-alt'  type='solid' color='#ffffff' ></box-icon>
+                      <div  className='crudBoton' data-tooltip="editar"><button className='crudButton'>                      <box-icon name='edit-alt'  type='solid' color='#ffffff' ></box-icon></button>
+
                       </div>
-                      <div  className='crudBoton' data-tooltip="eliminar">
-                      <box-icon name='x-circle' color='#ffffff' ></box-icon>
+                      <div  className='crudBoton' data-tooltip="eliminar"><button className='crudButton'>               <box-icon name='x-circle' color='#ffffff' ></box-icon></button>
+       
                       </div>
 
                     </div>
