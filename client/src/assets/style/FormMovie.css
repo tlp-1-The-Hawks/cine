@@ -1,19 +1,36 @@
-.fondoformmovie {
-  background: #252222;
-  color: white;
+#agregar {
+  border: solid 1px #dd1616;
 }
 
 #titulo {
-  background-color: #252222;
-  border: solid 1px #252222;
+  background-color: #f71a1a;
+  border: solid 1px #dd1616;
   border-radius: 8px;
   padding: 10px;
 }
 
+#fondoformmovie {
+  height: 100%;
+}
+
+.fondoformmovie {
+  background: #252222;
+  color: white;
+
+}
+
+#fondoformmovie {
+  height: 100%;
+}
+
 .formAddmovie {
-  background-color: #ff0000;
+  background-color: #424242;
 }
 
 .imageFormMovie {
   width: 250px;
+}
+
+.hallForm {
+  display: flex;
 }

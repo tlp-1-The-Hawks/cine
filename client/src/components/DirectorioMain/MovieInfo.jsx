@@ -1,4 +1,6 @@
 export const MovieInfo = ({ info }) => {
+  const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
+
   return (
     <div className="bgInfoMovie">
       <div className="infomovie container rounded-4">
@@ -91,14 +93,16 @@ export const MovieInfo = ({ info }) => {
             >
               Reservar
             </a>
-            <a
-              className="trailer"
-              href="https://www.youtube.com/watch?v=YrbdN5zaouU"
-              role="button"
-              target="_blank"
-            >
-              Ver Tráiler
-            </a>
+            {trailerURL && (
+              <a
+                className="trailer"
+                href={trailerURL}
+                role="button"
+                target="_blank"
+              >
+                Ver Tráiler
+              </a>
+            )}
           </p>
         </div>
       </div>

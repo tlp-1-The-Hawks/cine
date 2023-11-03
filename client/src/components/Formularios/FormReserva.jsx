@@ -6,11 +6,30 @@ import { Seat } from '../otros/seats';
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movieId, cinemaId } = params;
-
+const token = localStorage.getItem('token');
 export const FormReserva = () => {
   const [info, setInfo] = useState({})
   const [price, setPrice] = useState("Cargando...");
   const [quantity, setQuantity] = useState(1);
+  const [idUser, setIdUser] = useState('')
+  useEffect(() => {
+
+        fetch('http://localhost:4000/auth/user', {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': token
+            }
+        })
+            .then((res) => res.json())
+            .then((data) => {
+              setIdUser(data.id)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+})
+
 
   useEffect(() => {
     fetch(`http://localhost:4000/api/movies/${movieId}/${cinemaId}`, {
@@ -18,7 +37,6 @@ export const FormReserva = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setInfo(data)
         setPrice(data.information[0].price)
       })
@@ -30,7 +48,7 @@ export const FormReserva = () => {
 
   const createPreference = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/api/create-order", {
+      const response = await axios.post(`http://localhost:4000/api/create-order/${cinemaId}/${movieId}/${idUser}`, {
         description: "Boleto de cine",
         price: price,
         quantity: 1,
