@@ -45,13 +45,14 @@ export const MovieInfo = ({ info }) => {
                       )}
                   </li>
                   <li>
-                    <span className="lista">SALA:</span>
+                    <span className="lista">N° Sala:</span>
                     {
                       info &&
                       info.information &&
-                      info.information[0] && (
+                      info.information[0] && 
+                      info.information[0].hall && (
                         <span>
-                          {info.information[0].hallId}
+                          {info.information[0].hall.nr_hall}
                         </span>
                       )}
                   </li>
@@ -60,9 +61,10 @@ export const MovieInfo = ({ info }) => {
                     {
                       info &&
                       info.information &&
-                      info.information[0] && (
+                      info.information[0] &&
+                      info.information[0].type_emission &&  (
                         <span>
-                          {info.information[0].type_emissionId}
+                          {info.information[0].type_emission.type_emission}
                         </span>
                       )}
                   </li>
