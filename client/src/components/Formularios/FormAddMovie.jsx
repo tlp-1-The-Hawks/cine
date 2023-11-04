@@ -192,7 +192,6 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                 />
                             </div>
                             <div className='row'>
-                                {/* {dateArray} */}
                                 {
                                     numberDates > 0 ? (handleInputsCreate(numberDates)).map(number => (
                                         <div className='col-6' key={number}>
