@@ -103,7 +103,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
             <div className='row container w-75 h-75 d-flex'>
                 <div className="col-12 col-md-12 col-sm-12">
                     <div className="d-flex justify-content-center">
-                        <form method='POST' encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3 border w-100 ">
+                        <form method='POST' encType="multipart/form-data" className="mt-5 mb-5 formAddmovie rounded-5 p-3  "  id='agregar'>
                             <div className='d-flex justify-content-center text-center'>
                                 <h3 id='titulo' >Agrega tu película</h3>
                             </div>
@@ -210,11 +210,14 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                     )) : null
                                 }
                             </div>
+
                             <AddMovieSubmit
                                 formMovie={formMovie}
                                 sendImg={sendImg}
                                 cinemaId={cinemaId}
                             />
+
+
                         </form>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
 export const MovieInfo = ({ info }) => {
+  const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
+
   return (
     <div className="bgInfoMovie">
       <div className="infomovie container rounded-4">
@@ -43,8 +45,15 @@ export const MovieInfo = ({ info }) => {
                       )}
                   </li>
                   <li>
-                    <span className="lista">Lugar:</span>
-                    Sala 3
+                    <span className="lista">SALA:</span>
+                    {
+                      info &&
+                      info.information &&
+                      info.information[0] && (
+                        <span>
+                          {info.information[0].hallId}
+                        </span>
+                      )}
                   </li>
                   <li>
                     <span className="lista">Formato:</span>
@@ -62,7 +71,7 @@ export const MovieInfo = ({ info }) => {
                     {info &&
                       info.information &&
                       info.information[0] && (
-                        <span>{info.information[0].duration}</span>
+                        <span>{info.information[0].duration} Minutos</span>
                       )}
                   </li>
                   <li>
@@ -91,14 +100,16 @@ export const MovieInfo = ({ info }) => {
             >
               Reservar
             </a>
-            <a
-              className="trailer"
-              href="https://www.youtube.com/watch?v=YrbdN5zaouU"
-              role="button"
-              target="_blank"
-            >
-              Ver Tráiler
-            </a>
+            {trailerURL && (
+              <a
+                className="trailer"
+                href={trailerURL}
+                role="button"
+                target="_blank"
+              >
+                Ver Tráiler
+              </a>
+            )}
           </p>
         </div>
       </div>

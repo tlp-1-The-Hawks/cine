@@ -1,17 +1,26 @@
-.tarjeta {
-  width: 18rem;
+.tarjetas{
+  display: flex;
+  
+  flex-direction: row;
+  margin: 50px;
+}
+.card-img{
+height: 400px; 
 
 }
-
-.card {
+.cards {
   margin: 10px;
   background-color: #202529;
   color: #fff;
   border: solid 1px #df1414;
-  min-height: 150px;
-  min-width: 200px;
+  height: 590px;
+  width:400px;  
 }
-.card:hover {
+.textoCard{
+margin: 8px;
+
+}
+.cards:hover {
   transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
   transition: transform 0.3s; /* Agrega una transición suave */
   background: #39474f;
@@ -28,17 +37,15 @@
   transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
   transition: transform 0.3s; /* Agrega una transición suave */
 }
-
 .crud{
-margin-top:15px;
-margin-left: 10px;
+margin: 5px;
 display: flex;
 justify-content: space-between;
+
 }
 .crudBoton {
   position: relative;
 }
-
 .crudBoton:hover::before {
   content: attr(data-tooltip);
   position: absolute;
@@ -52,4 +59,8 @@ justify-content: space-between;
   white-space: nowrap;
   opacity: 0.9;
   visibility: visible;
+}
+.crudButton{
+  background: none;
+  border: none;
 }
