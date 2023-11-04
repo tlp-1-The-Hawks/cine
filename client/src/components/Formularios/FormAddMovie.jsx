@@ -20,36 +20,19 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
         type_emissionId: 1,
         url_trailer: "",
         hallId: "1",
-        events: ""
+        events: []
     });
 
     const [imageState, setImageState] = useState(null);
     const [sendImg, setSendImg] = useState(null);
-    const [dateArray, setDateArray] = useState([]);
     const [numberDates, setNumberDates] = useState(0);
     const [arrayForDates, setArrayForDates] = useState([]);
 
 
-    const handleDatesChange = (e) => {
 
-        const { name } = e.target
-        const index = parseInt(name.split("_")[0])
-        const newArrayDates = [
-            ...arrayForDates
-        ]
-
-        newArrayDates[index - 1] = e.target.value
-
-        console.log(newArrayDates);
-        setArrayForDates(newArrayDates);
-
-        setFormMovie(
-            ...formMovie
-        )
-    }
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value,id } = e.target;
 
         const newFormData = {
             ...formMovie,
@@ -85,28 +68,25 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
             const newNumber = e.target.value
             setNumberDates(newNumber)
         }
-        // if (name === 'date_issue') {
-        //     const numDates = parseInt(value);
-        //     const newDateArray = [];
-        //     for (let index = 1; index <= numDates; index++) {
-        //         newDateArray.push(
-        //             <div className='col-6' key={index}>
-        //                 <div className='row'>
-        //                     <label htmlFor="">{index}° Fecha</label>
-        //                     <input
-        //                         name={`${index}_date`}
-        //                         type="datetime-local"
-        //                         onChange={handleDatesChange}
-        //                     />
-        //                 </div>
-        //             </div>
-        //         );
-        //     }
-        //     setDateArray(newDateArray);
-        // }
-
-
+        if (id === 'events') {
+            const { name } = e.target
+            const index = parseInt(name.split("_")[0])
+            const newArrayDates = [
+                ...arrayForDates
+        ]
+    
+            newArrayDates[index - 1] = e.target.value
+    
+            console.log(newArrayDates);
+        
+            setFormMovie({
+                ...formMovie,
+                events: newArrayDates,
+             });
+             setArrayForDates(newArrayDates);
+        }   
     };
+
 
     const handleInputsCreate = (number) => {
         const numbers = []
@@ -219,9 +199,10 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                             <div className='row'>
                                                 <label htmlFor="">{number}° Fecha</label>
                                                 <input
+                                                    id='events'
                                                     name={`${number}_date`}
                                                     type="datetime-local"
-                                                    onChange={handleDatesChange}
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                         </div>
@@ -233,7 +214,6 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                 formMovie={formMovie}
                                 sendImg={sendImg}
                                 cinemaId={cinemaId}
-                                arrayForDates={arrayForDates.join(" - ")}
                             />
                         </form>
                     </div>

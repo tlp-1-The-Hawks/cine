@@ -7,10 +7,6 @@ export const informationModel = sequelize.define(
     type: DataTypes.STRING,
     allowNull: false
   },
-  date_issue: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
   director: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -31,10 +27,6 @@ export const informationModel = sequelize.define(
     allowNull: false,
   },
   url_trailer: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  avents: {
     type: DataTypes.STRING,
     allowNull: false
   }

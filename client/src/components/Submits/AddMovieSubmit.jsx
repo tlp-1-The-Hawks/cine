@@ -3,19 +3,20 @@ import { useContext } from "react"
 import { movieContext } from "../../context/MovieContext.jsx"
 import { type_movie } from "../../types/types.movie.js"
 
-export const AddMovieSubmit = ({ formMovie, sendImg, cinemaId, arrayForDates }) => {
+export const AddMovieSubmit = ({ formMovie, sendImg, cinemaId, arrayForDatesa, setFormMovie }) => {
+
     const { state, dispatch } = useContext(movieContext)
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
         dispatch({
             type: type_movie.MOVIE_ADD,
             payload: {
                 formMovie: formMovie,
                 sendImg: sendImg,
                 cinemaId: cinemaId,
-                avents: arrayForDates
             }
         })
     }

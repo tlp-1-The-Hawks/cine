@@ -4,17 +4,14 @@ import Swal from 'sweetalert2'
 export const movieReducer = (state, action) => {
     switch (action.type) {
         case type_movie.MOVIE_ADD:
-            const { sendImg, cinemaId, formMovie, events } = action.payload
+            const { sendImg, cinemaId, formMovie} = action.payload
 
             const formData = new FormData();
             formData.append('file', sendImg);
 
             fetch(`http://localhost:4000/api/information/${cinemaId}`, {
                 method: 'POST',
-                body: JSON.stringify({
-                    ...formMovie,
-                    events: events
-                }),
+                body: JSON.stringify(formMovie),
                 headers: {
                     'content-type': 'application/json'
                 }
@@ -52,7 +49,7 @@ export const movieReducer = (state, action) => {
                             grow: 'row'
                         }).then((result) => {
                             if (result.isConfirmed) {
-
+                                window.location.href = '/'
                             }
                         })
 
