@@ -82,6 +82,28 @@ export const MovieInfo = ({ info }) => {
                         <span>{info.information[0].director}</span>
                       )}
                   </li>
+                  <li>
+                    <span className="lista">Fechas de emisión:</span>
+                      <div className="row">
+                      {info &&
+                            info.information &&
+                            info.information[0].date_emissions &&
+                            info.information[0].date_emissions.map((date) => {
+                              const formattedDate = new Date(date.date);
+                              const month = formattedDate.toLocaleString('default', { month: 'short' });
+                              const day = formattedDate.getDate();
+                              const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
+                              
+                              return (
+                                <div className="col">
+                                    <p className="text-center bg-dark p-1 rounded" key={date.id} id={date.id}>
+                                      {month} {day}, {hour}
+                                    </p>
+                                </div>
+                              );
+                            })}
+                        </div>
+                    </li>
                 </ul>
               </div>
             </div>

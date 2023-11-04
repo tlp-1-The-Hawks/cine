@@ -2,7 +2,7 @@ import { sequelize } from "../config/database.js";
 import { DataTypes} from "sequelize";
 import { addInfoXdateEmissions } from "./InfoXDateEmissions.js";
 
-export const DateEmissionsModel = sequelize.define(
+export const dateEmissionsModel = sequelize.define(
     'date_emission',
 {
     date: {
@@ -13,7 +13,7 @@ export const DateEmissionsModel = sequelize.define(
 
 export async function addDateEmissions(events, informationId){
     for (let index = 0; index < events.length; index++) {
-       const newDateEmissions = await DateEmissionsModel.create({
+       const newDateEmissions = await dateEmissionsModel.create({
         date: events[index]
        }) 
 

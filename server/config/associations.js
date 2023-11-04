@@ -12,7 +12,7 @@ import { movieInfoModel } from '../models/moviexinfo.model.js';
 import { TypeEmissionModel, addTypeEmission } from '../models/TypeEmission.model.js';
 import { hallModel } from '../models/Hall.models.js';
 import { hallXcinemas } from '../models/hallXCinemas.js';
-import { DateEmissionsModel } from '../models/DateEmissions.js';
+import { dateEmissionsModel } from '../models/DateEmissions.js';
 import { infoXdateEmissions } from '../models/InfoXDateEmissions.js';
 
 //cinema and booking
@@ -152,8 +152,8 @@ informationModel.belongsTo(hallModel, {
 })
 
 //info and dateEmissions
-informationModel.belongsToMany(DateEmissionsModel, {through: infoXdateEmissions})
-DateEmissionsModel.belongsToMany(informationModel, {through: infoXdateEmissions})
+informationModel.belongsToMany(dateEmissionsModel, {through: infoXdateEmissions})
+dateEmissionsModel.belongsToMany(informationModel, {through: infoXdateEmissions})
 
 
 //preloaded data
