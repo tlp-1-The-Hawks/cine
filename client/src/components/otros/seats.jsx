@@ -36,7 +36,7 @@ export const Seat = () => {
 
   return (
     <div className="seats">
-      <div className='ejemplos'><p>Asientos : </p> <p>Disponible</p><button className='ejemplos1'>A1</button> <p>Ocupado</p> <button className='ejemplos2'>A1</button> <p>selecionado</p> <button className='ejemplos3'>A1</button></div>
+      <div className='ejemplos'><p>Asientos:</p> <p>Disponible</p><button className='ejemplos1'>A1</button> <p>Ocupado</p> <button className='ejemplos2'>A1</button> <p>selecionado</p> <button className='ejemplos3'>A1</button></div>
 
       <div className="seating-plan">{seatingPlan}</div>
       <div id="selectedSeats">Asientos seleccionados: {selectedSeats.map(seatNumber => String.fromCharCode(65 + Math.floor((seatNumber - 1) / 10)) + (seatNumber % 10)).join(', ')}</div>
