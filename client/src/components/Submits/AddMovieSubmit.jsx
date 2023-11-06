@@ -4,7 +4,7 @@ import { movieContext } from "../../context/MovieContext.jsx"
 import { type_movie } from "../../types/types.movie.js"
 
 
-export const AddMovieSubmit = ({ formMovie, sendImg, cinemaId, arrayForDatesa, setFormMovie }) => {
+export const AddMovieSubmit = ({ formMovie, sendImg, cinemaId }) => {
 
     const { state, dispatch } = useContext(movieContext)
 
