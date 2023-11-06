@@ -60,37 +60,39 @@ export const FormReserva = () => {
     < div className="contenedorReserva" >
 
       <div className="formBoxReserva">
-          <div className='container'>
+        <div className='container'>
           <h2>Reserva de Asientos de Cine</h2>
-              <div className="row">
-                <div className='col'>
-                        <div className='datos row d-flex justify-content-center'>
-                            <div className="inputBoxReserva">
+          <div className="row">
+            <div className='col'>
+              <div className='datos row d-flex justify-content-center'>
+                <div className="inputBoxReserva">
 
-                                <label>Número de Boletos</label>
-                                <input
-                                  min={1}
-                                  max={50}
-                                  type="number"
-                                  value={quantity}
-                                  onChange={handleQuantityChange}
-                                />
-                          </div>
-                        <div className="inputBoxReserva">
-                          <p>
-                                $ {price}
-                          </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col d-flex justify-content-center">
-                      <Seat/> 
-                  </div>
+                  <label>Número de Boletos</label>
+                  <input
+                    min={1}
+                    max={50}
+                    type="number"
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                  />
+                </div>
+                <div className="inputBoxReserva">
+                  <p>
+                    $ {price}
+                  </p>
+                </div>
               </div>
+            </div>
+            <div className="col d-flex justify-content-center">
+              <Seat />
+            </div>
           </div>
-        <button className='botonReserva d-flex justify-content-center pt-2' onClick={()=> createPreference()}>
-          <box-icon name='cart-add' color='#ffffff' ></box-icon>
-          <p>Pagar Mi Boleto</p>
+        </div>
+        <button className='botonReserva d-flex justify-content-center pt-2' onClick={() => createPreference()}>
+          <div className='mt-1'>
+            <box-icon name='cart-add' color='#ffffff' ></box-icon>
+          </div>
+          <p className='p-1'>Pagar Mi Boleto</p>
         </button>
       </div>
     </div>
