@@ -12,8 +12,8 @@ import { movieInfoModel } from '../models/moviexinfo.model.js';
 import { TypeEmissionModel, addTypeEmission } from '../models/TypeEmission.model.js';
 import { hallModel } from '../models/Hall.models.js';
 import { hallXcinemas } from '../models/hallXCinemas.js';
-
-
+import { dateEmissionsModel } from '../models/DateEmissions.js';
+import { infoXdateEmissions } from '../models/InfoXDateEmissions.js';
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -91,9 +91,6 @@ cinemaModel.belongsToMany(MovieModel, { through: movieCinemaModel });
 MovieModel.belongsToMany(informationModel, { through: movieInfoModel });
 informationModel.belongsToMany(MovieModel, { through: movieInfoModel });
 
-// cinemaModel.belongsToMany(informationModel, { through: infoCinemaModel });
-// informationModel.belongsToMany(cinemaModel, { through: infoCinemaModel })
-
 
 //genre and information
 genreModel.hasMany(informationModel, {
@@ -153,6 +150,11 @@ informationModel.belongsTo(hallModel, {
   foreignKey: 'hallId',
   targetKey: 'id'
 })
+
+//info and dateEmissions
+informationModel.belongsToMany(dateEmissionsModel, {through: infoXdateEmissions})
+dateEmissionsModel.belongsToMany(informationModel, {through: infoXdateEmissions})
+
 
 //preloaded data
 async function dataPreloaded() {

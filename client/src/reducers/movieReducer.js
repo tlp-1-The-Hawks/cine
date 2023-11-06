@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 export const movieReducer = (state, action) => {
     switch (action.type) {
         case type_movie.MOVIE_ADD:
-            const { sendImg, cinemaId, formMovie } = action.payload
+            const { sendImg, cinemaId, formMovie} = action.payload
 
             const formData = new FormData();
             formData.append('file', sendImg);

@@ -3,15 +3,16 @@
 .seats{
     /* background-color: #424242; */
     height: 250px;
-width: 550px;
-color: white;
-}
+    width: 550px;
+    color: white;
+    }
     #selectedSeats{
         color: aliceblue;
         border-bottom: 2px solid #fff;
     }
     
     .seating-plan {
+      justify-content: center;
       display: grid;
       grid-template-columns: repeat(10, 28px);
       grid-gap: 15px;

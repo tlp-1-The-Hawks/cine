@@ -11,9 +11,7 @@
 
 .formBoxReserva {
   position: relative;
-
   border: 5px solid rgba(0, 0, 0, 0.5);
-  height: 70vh;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   backdrop-filter: blur(15px);
@@ -40,7 +38,6 @@
 .formBoxReserva .inputBoxReserva {
   position: relative;
   margin: 30px;
-  width: 310px;
   border-bottom: 2px solid #FF2C25;
   border-bottom: 2px solid #fff;
   display: flex;
