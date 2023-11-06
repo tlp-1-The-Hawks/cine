@@ -75,6 +75,7 @@ export const MovieInfo = ({ info }) => {
                         <span>{info.information[0].director}</span>
                       )}
                   </li>
+                  <StarRating/>
                 </ul>
               </div>
             </div>
