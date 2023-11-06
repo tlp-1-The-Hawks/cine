@@ -48,7 +48,7 @@ export const FormReserva = () => {
 
   const createPreference = async () => {
     try {
-      const response = await axios.post(`http://localhost:4000/api/create-order/${cinemaId}/${movieId}/${idUser}`, {
+      const response = await axios.post(`http://localhost:4000/api/create-order/${cinemaId}/${movieId}/${idUser}/${price}`, {
         description: "Boleto de cine",
         price: price,
         quantity: 1,
