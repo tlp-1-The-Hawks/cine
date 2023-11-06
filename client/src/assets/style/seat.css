@@ -12,7 +12,7 @@
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(10, 28px);
-  grid-gap: 15px;
+  grid-gap: 10px;
 }
 
 .seat {
