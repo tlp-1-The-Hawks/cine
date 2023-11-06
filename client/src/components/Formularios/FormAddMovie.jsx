@@ -88,14 +88,31 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
     };
 
 
-    const handleInputsCreate = (number) => {
-        const numbers = []
-        for (let i = 1; i <= number; i++) {
-            numbers.push(i)
-        }
-        return numbers
-    }
-
+                            // Función para generar un arreglo de números del 1 al número especificado
+                            const handleInputsCreate = (number) => {
+                                const numbers = [];
+                                for (let i = 1; i <= number; i++) {
+                                  numbers.push(i);
+                                }
+                                return numbers;
+                              }
+                              
+                              // Función para agregar una hora a una fecha específica
+                              const handleAddTime = (dateIndex) => {
+                                const updatedEvents = [...formMovie.events];
+                                if (!updatedEvents[dateIndex]) {
+                                  // Si la fecha no existe en el arreglo, se crea un objeto para esa fecha
+                                  updatedEvents[dateIndex] = {
+                                    date: formMovie[`date_${dateIndex}`], // Fecha seleccionada
+                                    hours: [], // Arreglo de horas
+                                  };
+                                }
+                                updatedEvents[dateIndex].hours.push(""); // Se agrega una hora en blanco
+                                setFormMovie({ ...formMovie, events: updatedEvents });
+                              }
+                              
+                              // Renderiza el formulario
+                              
 
     return (
 
@@ -191,25 +208,77 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                     formMovie={formMovie}
                                 />
                             </div>
-                            <div className='row'>
-                                {/* {dateArray} */}
-                                {
-                                    numberDates > 0 ? (handleInputsCreate(numberDates)).map(number => (
-                                        <div className='col-6' key={number}>
-                                            <div className='row'>
-                                                <label htmlFor="">{number}° Fecha</label>
-                                                <input
-                                                    id='events'
-                                                    name={`${number}_date`}
-                                                    type="datetime-local"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
 
-                                    )) : null
-                                }
-                            </div>
+  <div className='row'>
+    {numberDates > 0 ? (handleInputsCreate(numberDates)).map(number => (
+      <div className='col-6' key={number}>
+        <div className='row'>
+          <label htmlFor={`date_${number}`}>{number}° Fecha</label>
+          <input
+            id={`date_${number}`}
+            name={`date_${number}`}
+            type="date"
+            onChange={handleChange}
+          />
+          {/* Botón "Añadir Horario" para agregar horas a esta fecha */}
+          <button
+            onClick={() => handleAddTime(number - 1)}
+            className="btn btn-primary"
+          >
+            Añadir Horario
+          </button>
+        </div>
+        {/* Renderiza los horarios para esta fecha, si existen */}
+        {formMovie.events[number - 1] && formMovie.events[number - 1].hours.map((hour, hourIndex) => (
+          <div className='row' key={`hour_${number}_${hourIndex}`}>
+            <label htmlFor={`hour_${number}_${hourIndex}`}>{hourIndex + 1}° Hora</label>
+            <input
+              id={`hour_${number}_${hourIndex}`}
+              name={`hour_${number}_${hourIndex}`}
+              type="time"
+              onChange={handleChange}
+            />
+          </div>
+        ))}
+      </div>
+    )) : null}
+  </div>
+);
+
+<div className='row'>
+  {numberDates > 0 ? (handleInputsCreate(numberDates)).map(number => (
+    <div className='col-6' key={number}>
+      <div className='row'>
+        <label htmlFor={`date_${number}`}>{number}° Fecha</label>
+        <input
+          id={`date_${number}`}
+          name={`date_${number}`}
+          type="date"
+          onChange={handleChange}
+        />
+        <button
+          onClick={() => handleAddTime(number - 1)}
+          className="btn btn-primary"
+        >
+          Añadir Horario
+        </button>
+      </div>
+      {/* Renderiza los horarios para esta fecha */}
+      {formMovie.events[number - 1] && formMovie.events[number - 1].hours.map((hour, hourIndex) => (
+        <div className='row' key={`hour_${number}_${hourIndex}`}>
+          <label htmlFor={`hour_${number}_${hourIndex}`}>{hourIndex + 1}° Hora</label>
+          <input
+            id={`hour_${number}_${hourIndex}`}
+            name={`hour_${number}_${hourIndex}`}
+            type="time"
+            onChange={handleChange}
+          />
+        </div>
+      ))}
+    </div>
+  )) : null}
+</div>
+
                             <AddMovieSubmit
                                 formMovie={formMovie}
                                 sendImg={sendImg}
