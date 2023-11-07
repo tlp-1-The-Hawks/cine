@@ -1,0 +1,39 @@
+.titleForm{
+    text-align: center;
+}
+body{background-color: #222222;
+color:white;}
+.formulario{
+border: solid 1px ;
+margin: 40px;
+}
+.formularioItems{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.formularioItems input{
+    border: solid 1px orange;
+    background: none;
+    color: white
+}
+.formularioItems textarea{
+    border: solid 1px orange;
+    background: none;
+    color: white
+}
+.formularioItems button{
+    border: solid 1px orange;
+ background: none;   
+ color: white;
+}
+.formularioItems button:hover {
+    transform: scale(1.10);
+    background-color: white;
+    color: #222222;
+    /* Aumenta el tamaño en un 10% en el hover */
+    transition: transform 0.5s;
+    /* Agrega una transición suave */
+  }

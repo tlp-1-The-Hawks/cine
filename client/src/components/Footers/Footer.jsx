@@ -31,6 +31,6 @@ export const Footer = () => {
         </li>
       </ul> */}
       <p className="text-center text-white">© 2023 Cines Formosa</p>
-    </footer>
+        </footer>
   );
 };
