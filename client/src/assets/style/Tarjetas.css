@@ -1,53 +1,75 @@
-.tarjetas{
-  display: flex;
-  flex-direction: row;
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajusta el ancho mínimo de las tarjetas */
+  grid-gap: 20px;
   margin: 50px;
+  align-content: flex-start;  /* Alinea las tarjetas en la parte superior del contenedor */
 }
-.card-img{
-height: 400px; 
-}
+
 .cards {
-  margin: 10px;
   background-color: #202529;
   color: #fff;
   border: solid 1px #df1414;
-  height: 590px;
-  width:400px;  
-}
-.textoCard{
-margin: 8px;
-}
-.cards:hover {
-  transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
-  transition: transform 0.3s; /* Agrega una transición suave */
-  background: #39474f;
-  border:solid 1px #e4dbdb;
+  height: 560px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
-#cineName{
+.cards {
+  background-color: #202529;
+  color: #fff;
+  border: solid 1px #df1414;
+  height: 560px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.textoCard {
+  margin: 8px;
+}
+
+.cards:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+  background: #39474f;
+  border: solid 1px #e4dbdb;
+}
+
+#cineName {
   color: whitesmoke;
   background: rgb(255, 17, 0);
   margin: 4px;
-  border: solid 1px rgb(255, 17, 0) ;
+  border: solid 1px rgb(255, 17, 0);
 }
-#cineName:hover {
-  transform: scale(1.1); /* Aumenta el tamaño en un 10% en el hover */
-  transition: transform 0.3s; /* Agrega una transición suave */
-}
-.crud{
-margin: 5px;
-display: flex;
-justify-content: space-between;
 
+#cineName:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s;
 }
+
+.crud {
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .crudBoton {
   position: relative;
 }
+
 .crudBoton:hover::before {
   content: attr(data-tooltip);
   position: absolute;
-  top: -35px; /* Ajusta la posición vertical según sea necesario */
-  left: 32%;
+  top: -35px;
+  left: 50%;
   transform: translateX(-50%);
   background-color: #1f1b1b;
   color: #fff;
@@ -57,7 +79,8 @@ justify-content: space-between;
   opacity: 0.9;
   visibility: visible;
 }
-.crudButton{
+
+.crudButton {
   background: none;
   border: none;
 }
