@@ -1,6 +1,5 @@
 export const MovieInfo = ({ info }) => {
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
-
   return (
     <div className="bgInfoMovie">
       <div className="infomovie container rounded-4">
@@ -45,13 +44,14 @@ export const MovieInfo = ({ info }) => {
                       )}
                   </li>
                   <li>
-                    <span className="lista">SALA:</span>
+                    <span className="lista">N° Sala:</span>
                     {
                       info &&
                       info.information &&
-                      info.information[0] && (
+                      info.information[0] &&
+                      info.information[0].hall && (
                         <span>
-                          {info.information[0].hallId}
+                          {info.information[0].hall.nr_hall}
                         </span>
                       )}
                   </li>
@@ -60,9 +60,10 @@ export const MovieInfo = ({ info }) => {
                     {
                       info &&
                       info.information &&
-                      info.information[0] && (
+                      info.information[0] &&
+                      info.information[0].type_emission && (
                         <span>
-                          {info.information[0].type_emissionId}
+                          {info.information[0].type_emission.type_emission}
                         </span>
                       )}
                   </li>
@@ -81,6 +82,28 @@ export const MovieInfo = ({ info }) => {
                       info.information[0] && (
                         <span>{info.information[0].director}</span>
                       )}
+                  </li>
+                  <li>
+                    <span className="lista">Fechas de emisión:</span>
+                    <div className="row">
+                      {info &&
+                        info.information &&
+                        info.information[0].date_emissions &&
+                        info.information[0].date_emissions.map((date) => {
+                          const formattedDate = new Date(date.date);
+                          const month = formattedDate.toLocaleString('default', { month: 'short' });
+                          const day = formattedDate.getDate();
+                          const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
+
+                          return (
+                            <div className="col">
+                              <p className="text-center bg-dark p-1 rounded" key={date.id} id={date.id}>
+                                {month} {day}, {hour}
+                              </p>
+                            </div>
+                          );
+                        })}
+                    </div>
                   </li>
                 </ul>
               </div>

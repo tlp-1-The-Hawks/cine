@@ -22,7 +22,7 @@ export const InfoMovie = () => {
     }, [])
 
     return (
-        <>  
+        <>
             <Header />
             <MovieInfo
                 info={info}

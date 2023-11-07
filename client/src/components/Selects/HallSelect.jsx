@@ -1,34 +1,56 @@
+
+
 import Swal from "sweetalert2";
+export const HallSelect = ({ formMovie, handleChange, hallState, cinemaId }) => {
 
-export const HallSelect = ({ formMovie, handleChange, hallState }) => {
 
 
-    const AddHall = (e) => {
+    const addHall = async (e) => {
         e.preventDefault()
 
         Swal.fire({
-            title: "Añade tu sala",
-            html:
-
-                `<form>
-                    <div className="hallForm">
-                        <label htmlFor="">Ingresa el numero de sala</label>  
-                        <input type="number" id="login" class="swal2-input" placeholder="">
-                        <label htmlFor="">Ingresa la capacidad de la sala</label> 
-                        <input type="number" id="password" class="swal2-input" placeholder="">
-                    </div>
-                 </form>
-                 `,
-            confirmButtonText: 'Enviar',
+            title: 'Formulario de ejemplo',
+            html: `<form class="container" action="">
+            <div class="row justify-content-center">
+                <label htmlFor="">Ingresa el número de sala</label>
+                <input id="nr_hall" class="w-50" type="text" />
+            </div>
+            <div class="row justify-content-center">
+            <label htmlFor="">Ingresa la capacidad de la sala</label>
+            <input id="capacity" class="w-50" type="text" />
+        </div>
+        </form>`,
+            showCancelButton: true,
+            confirmButtonText: 'Añadir',
             width: '50%',
             padding: '1rem',
             background: '#DBCBCB',
             grow: 'row',
-            customClass: {
-                htmlContainer: 'hallForm'
+            preConfirm: async () => {
+                const nr_hall = Swal.getPopup().querySelector('#nr_hall').value;
+                const capacity = Swal.getPopup().querySelector('#capacity').value;
+
+                const hall = {
+                    nr_hall,
+                    capacity
+                }
+
+                const response = await fetch(`http://localhost:4000/api/hall/${cinemaId}`, {
+                    method: 'POST',
+                    body: JSON.stringify(hall),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                })
+
+                const data = await response.json()
+
+                console.log(data)
             }
         })
     }
+
+
     return (
         <div className="mt-3 col col-sm-12 col-md-6 mb-3">
             <div className="row">
@@ -52,7 +74,7 @@ export const HallSelect = ({ formMovie, handleChange, hallState }) => {
                     }
                 </select>
                 <div className="d-flex justify-content-center mt-1">
-                    <button onClick={AddHall} className="btn btn-outline-light">Añadir sala</button>
+                    <button onClick={addHall} className="btn btn-outline-light">Añadir sala</button>
                 </div>
             </div>
         </div>

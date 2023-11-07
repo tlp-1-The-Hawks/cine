@@ -7,10 +7,6 @@ export const informationModel = sequelize.define(
     type: DataTypes.STRING,
     allowNull: false
   },
-  date_issue: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
   director: {
     type: DataTypes.STRING,
     allowNull: false,

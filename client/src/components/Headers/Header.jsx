@@ -4,7 +4,7 @@ import { LoginButtons } from './ButtonLoginRegister.jsx';
 import { LogoutButton } from './LogoutButton.jsx';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import { useContext } from 'react';
-
+import { ButtonSuport } from './ButtonSuport.jsx';
 export const Header = () => {
   const { isLogged } = useContext(AuthContext)
 
@@ -39,6 +39,7 @@ export const Header = () => {
         </form>
 
         <div className="buttons">
+          {isLogged && <ButtonSuport/>}
           {isLogged && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
           {!isLogged && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
         </div>

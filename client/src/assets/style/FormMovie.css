@@ -1,10 +1,11 @@
-#agregar {
-  border: solid 1px #dd1616;
+.fondoformmovie {
+  color: white;
+  background-color: #202529;
 }
 
 #titulo {
-  background-color: #f71a1a;
-  border: solid 1px #dd1616;
+  background-color: #252222;
+  border: solid 1px #252222;
   border-radius: 8px;
   padding: 10px;
 }
@@ -13,24 +14,35 @@
   height: 100%;
 }
 
-.fondoformmovie {
-  background: #252222;
-  color: white;
-
-}
-
-#fondoformmovie {
-  height: 100%;
-}
-
 .formAddmovie {
-  background-color: #424242;
+  background-color: #ff0000;
 }
 
 .imageFormMovie {
   width: 250px;
 }
 
-.hallForm {
-  display: flex;
+.mi-texto-personalizado {
+  font-size: 18px;
+  color: #007bff;
+  /* Color azul */
+  background-color: #f2f2f2;
+  /* Color de fondo gris claro */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.guardarBoton:hover {
+  transform: scale(1.1);
+  /* Aumenta el tamaño en un 10% en el hover */
+  transition: transform 0.3s;
+  /* Agrega una transición suave */
+}
+
+.cancelarBoton:hover {
+  transform: scale(1.1);
+  /* Aumenta el tamaño en un 10% en el hover */
+  transition: transform 0.3s;
+  /* Agrega una transición suave */
 }
