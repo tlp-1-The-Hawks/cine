@@ -21,7 +21,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
         <div className="tarjetas">
 
             {moviesWithCinemas.map((movie) => (
-              <div key={movie.id} className="col-md-3 col-sm-12 d-flex justify-content-center">
+              <div key={movie.id} className="col-md-3 col-sm-12 ">
                 <div className="cards">
                           <img src={`/movies_img/${movie.information[0].rutaImage}`} className="card-img" alt="" />
                   <div>
