@@ -2,6 +2,8 @@ import { Header } from '../components/Headers/Header.jsx'
 import { MovieInfo } from '../components/DirectorioMain/MovieInfo.jsx'
 import { Footer } from '../components/Footers/Footer.jsx'
 import { useState, useEffect } from 'react'
+import { CommentBox } from '../components/DirectorioMain/comment_box.jsx'
+
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movie, cinema } = params;
@@ -28,6 +30,7 @@ export const InfoMovie = () => {
             <MovieInfo
                 info={info}
             />
+            <CommentBox />
             <Footer />
         </>
     )
