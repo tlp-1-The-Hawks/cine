@@ -39,7 +39,6 @@ export const AddComment = ({ movie }) => {
             }
         })
 
-        window.location.reload()
     };
     return (
 

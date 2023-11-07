@@ -18,6 +18,8 @@ import { movieRouter } from './routes/movies.routes.js';
 import { handleErrors } from './middlewares/handleError.js';
 import { createLogs } from './helpers/createLogs.js';
 import paymentsRoutes from './routes/payment.routes.js';
+import { Server } from 'socket.io';
+import { createServer } from 'node:http'
 
 const app = express();
 
@@ -48,7 +50,19 @@ app.use('/api', paymentsRoutes)
 app.use('/auth', authRouter);
 app.use(handleErrors);
 
-app.listen(environments.PORT, () => {
+const server = createServer(app)
+
+const io = new Server(server)
+
+io.on('connection', (socket) => {
+  console.log('user connecting')
+
+  socket.on('comment', (socket) => {
+    console.log('user comment')
+  })
+})
+
+server.listen(environments.PORT, () => {
   console.log(`Server on http://localhost:${environments.PORT}`);
   startDb();
 });

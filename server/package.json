@@ -23,7 +23,8 @@
     "mercadopago": "^1.5.16",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.0",
-    "sequelize": "^6.32.1"
+    "sequelize": "^6.32.1",
+    "socket.io": "^4.7.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
