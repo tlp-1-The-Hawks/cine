@@ -42,9 +42,9 @@ export async function createMovie(title) {
 
 
     return newMovie
-  } else {
-    return shearchMovie
   }
+  return shearchMovie
+
 }
 
 export async function getAllMovies() {
@@ -91,7 +91,7 @@ export async function getMovieById(movieId, cinemaId) {
           {
             model: TypeEmissionModel
           }
-      ]
+        ]
       }
     ]
   });

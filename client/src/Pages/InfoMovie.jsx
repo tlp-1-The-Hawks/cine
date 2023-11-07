@@ -3,11 +3,12 @@ import { MovieInfo } from '../components/DirectorioMain/MovieInfo.jsx'
 import { Footer } from '../components/Footers/Footer.jsx'
 import { useState, useEffect } from 'react'
 import { CommentBox } from '../components/DirectorioMain/comment_box.jsx'
+import '../assets/style/InfoMovie.css'
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movie, cinema } = params;
-import '../assets/style/InfoMovie.css'
+
 
 export const InfoMovie = () => {
     const [info, setInfo] = useState([])
@@ -30,7 +31,7 @@ export const InfoMovie = () => {
             <MovieInfo
                 info={info}
             />
-            <CommentBox />
+            <CommentBox movie={movie} />
             <Footer />
         </>
     )

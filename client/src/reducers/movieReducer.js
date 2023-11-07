@@ -1,10 +1,12 @@
+import { AddComment } from "../hooks/FetchPost/Comment.js";
 import { type_movie } from "../types/types.movie.js";
 import Swal from 'sweetalert2'
+
 
 export const movieReducer = (state, action) => {
     switch (action.type) {
         case type_movie.MOVIE_ADD:
-            const { sendImg, cinemaId, formMovie} = action.payload
+            const { sendImg, cinemaId, formMovie } = action.payload
 
             const formData = new FormData();
             formData.append('file', sendImg);
@@ -58,6 +60,31 @@ export const movieReducer = (state, action) => {
                 .catch((error) => {
                     console.log(error)
                 })
+
+        case type_movie.ADD_COMMENT_MOVIE:
+            const { comment, userId, movieId } = action.payload
+
+            AddComment(comment, userId, movieId).then((data) => {
+                console.log(data)
+            })
+        // (
+        //     async () => {
+        //         const data = await AddComment(comment, userId, movieId)
+        //         console.log(data)
+        //     }
+
+        // )()
+        // fetch(`http://localhost:4000/api/comment/${movieId}/${userId}`, {
+        //     method: 'POST',
+        //     body: JSON.stringify(comment),
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     }
+        // }).then((data) => {
+        //     console.log(data)
+        // })
+
+
     }
 
     return state

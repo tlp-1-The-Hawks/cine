@@ -47,10 +47,9 @@ export const ctrlAddInfoMovie = async (req, res) => {
         const movieId = NewMovie.id
         const informationId = addInfo.id
 
-        const newInfoXdateEmissions = await addDateEmissions(events,informationId)
+        const newInfoXdateEmissions = await addDateEmissions(events, informationId)
 
         const MovieCinema = await addMovieCinema(movieId, cinemaId)
-
 
         const newMovieInfo = await addMovieInfo(movieId, informationId)
 

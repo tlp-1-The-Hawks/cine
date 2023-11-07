@@ -17,7 +17,7 @@
 
 .infomovie {
     /* border: 2px solid; */
-    background-color: #424242
+    background-color: #424242;
 }
 
 .reserva {
@@ -85,7 +85,7 @@
     border: 3px solid fuchsia;
     margin: 10px;
     padding: 7px;
-    background-color: black;
+    background-color: #424242;
     color: azure;
     text-align: center;
 }
@@ -94,28 +94,22 @@
     align-items: center;
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    background-color: #242222;
     grid-template-rows: 1fr auto;
     grid-gap: 2px;
 }
 
-@media (min-width: 768px) {
-    .Contenedor_comentario {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 .perfil {
-    border: 1px solid black;
-    background-color: rgb(191, 204, 16);
     width: 100%;
 
 }
 
 .card {
     border: 2px solid black;
-    background-color: rgb(215, 230, 17);
+    background-color: #424242;
     border-radius: 30px;
+    color: white;
     margin: 10px;
     padding: 10px;
     align-items: center;
@@ -130,10 +124,6 @@
     border-radius: 100px;
 }
 
-.agregarComentario {
-    display: contents;
-    justify-content: center;
-}
 
 .agregarComentario h3 {
     font-size: large;
@@ -142,5 +132,6 @@
 }
 
 .agregarComentario .boton_comentario {
-    background-color: rgb(0, 136, 255);
+    background-color: #424242;
+    color: white;
 }

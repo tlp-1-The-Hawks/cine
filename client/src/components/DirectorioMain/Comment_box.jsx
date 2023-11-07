@@ -1,27 +1,44 @@
 import { AddComment } from "./AddComment.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LikeAndDisLike } from "./LikeAndDisLike.jsx";
-import { UserPerfil } from "./UserPerfil.jsx";
-export const CommentBox = () => {
-    const [cards, setCards] = useState([]);
+import { FindComments } from "../../hooks/datePreloads/FindComments.js";
 
-    const addCard = (comment) => {
-        const newCard = (
-            <div key={cards.length} className="card">
-                <UserPerfil />
-                <p>{comment}</p>
-                <LikeAndDisLike />
-            </div>
-        );
+export const CommentBox = ({ movie }) => {
+    const [comments, setComments] = useState([]);
 
+    useEffect(() => {
+        (
+            async () => {
+                const data = await FindComments()
 
-        setCards([...cards, newCard]);
-    };
+                setComments(data)
+            }
+        )()
+    }, [])
+
 
     return (
         <div className="Contenedor_comentario">
-            <AddComment addCard={addCard} />
-            {cards}
-        </div>
+            <AddComment movie={movie} />
+            <div className="container">
+                <div className="row justify-content-center">
+
+                    {
+                        comments.map((comment) => (
+                            < div key={comment.id} className="col-12 col-md-5 col-sm-12 card">
+                                <div className='perfil'>
+                                    <img className='fotoUser' src="/img/userImg.png" />
+                                    <div className='userName'>{comment.User.username}</div>
+                                    <span className='nameUser'></span>
+                                    <span className='timeUser'></span>
+                                </div>
+                                <p>{comment.description}</p>
+                                <LikeAndDisLike />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div >
     );
 }

@@ -152,8 +152,8 @@ informationModel.belongsTo(hallModel, {
 })
 
 //info and dateEmissions
-informationModel.belongsToMany(dateEmissionsModel, {through: infoXdateEmissions})
-dateEmissionsModel.belongsToMany(informationModel, {through: infoXdateEmissions})
+informationModel.belongsToMany(dateEmissionsModel, { through: infoXdateEmissions })
+dateEmissionsModel.belongsToMany(informationModel, { through: infoXdateEmissions })
 
 
 //preloaded data
