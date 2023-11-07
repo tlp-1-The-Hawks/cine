@@ -8,9 +8,7 @@ const token = localStorage.getItem("token");
 export const AddComment = ({ movie }) => {
     const { state, dispatch } = useContext(movieContext)
     const [userId, setUserId] = useState('')
-    const [nuevoComentario, setNuevoComentario] = useState(''/* {
-        comment: ''
-    } */);
+    const [nuevoComentario, setNuevoComentario] = useState('');
 
     useEffect(() => {
         (
@@ -23,12 +21,9 @@ export const AddComment = ({ movie }) => {
     }, [])
 
     const handleChange = (e) => {
-        const { name, value } = e.target
+        const { value } = e.target
 
-        setNuevoComentario(value/* {
-            ...nuevoComentario,
-            [name]: value
-        } */)
+        setNuevoComentario(value)
 
     }
 
@@ -43,9 +38,8 @@ export const AddComment = ({ movie }) => {
                 movieId: movie
             }
         })
-        // addCard(comentario);
-        // setNuevoComentario('');
 
+        window.location.reload()
     };
     return (
 
@@ -58,7 +52,7 @@ export const AddComment = ({ movie }) => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-10">
                         <input
                             className='boton_comentario w-100 rounded p-1'
                             name='comment'
