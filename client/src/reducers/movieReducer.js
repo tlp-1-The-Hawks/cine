@@ -60,13 +60,14 @@ export const movieReducer = (state, action) => {
                 .catch((error) => {
                     console.log(error)
                 })
-
+            break;
         case type_movie.ADD_COMMENT_MOVIE:
             const { comment, userId, movieId } = action.payload
 
             AddComment(comment, userId, movieId).then((data) => {
                 console.log(data)
             })
+            break
 
     }
 

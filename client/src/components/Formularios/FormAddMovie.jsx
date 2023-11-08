@@ -85,6 +85,8 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
             });
             setArrayForDates(newArrayDates);
         }
+
+        console.log(sendImg)
     };
 
 
