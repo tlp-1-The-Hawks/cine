@@ -6,6 +6,10 @@ import { Login } from '../Pages/Login.jsx';
 import { AddMovie } from '../Pages/AddMovie.jsx';
 import { Support } from '../Pages/support.jsx';
 import { InfoMovie } from '../Pages/InfoMovie.jsx';
+
+import io from 'socket.io-client'
+const socket = io("http://localhost:4000")
+
 export const AppRouter = () => {
     return (
         <BrowserRouter>
@@ -32,7 +36,9 @@ export const AppRouter = () => {
                 />
                 <Route
                     path='/informacion-pelicula'
-                    element={<InfoMovie />}
+                    element={<InfoMovie
+                        socket={socket}
+                        />}
                 />
                 <Route
                 path='/soporte'

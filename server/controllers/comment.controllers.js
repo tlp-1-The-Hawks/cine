@@ -10,9 +10,9 @@ export const ctrlAddcomment = async (req, res) => {
     try {
         const { movieId, userId } = req.params
 
-        const { description, title } = req.body
+        const { comment } = req.body
 
-        const newcomment = await addcomment(title, description, userId, movieId)
+        const newcomment = await addcomment(comment, userId, movieId)
 
         return res.status(200).json({
             message: 'Comment added successfully'
