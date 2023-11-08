@@ -1,4 +1,4 @@
-import { AddComment } from "./AddComment.jsx";
+import { AddComment } from "../Submits/AddComment.jsx";
 import { useEffect, useState } from "react";
 import { LikeAndDisLike } from "./LikeAndDisLike.jsx";
 import { FindComments } from "../../hooks/datePreloads/FindComments.js";
