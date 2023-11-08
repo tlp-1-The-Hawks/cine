@@ -67,23 +67,6 @@ export const movieReducer = (state, action) => {
             AddComment(comment, userId, movieId).then((data) => {
                 console.log(data)
             })
-        // (
-        //     async () => {
-        //         const data = await AddComment(comment, userId, movieId)
-        //         console.log(data)
-        //     }
-
-        // )()
-        // fetch(`http://localhost:4000/api/comment/${movieId}/${userId}`, {
-        //     method: 'POST',
-        //     body: JSON.stringify(comment),
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     }
-        // }).then((data) => {
-        //     console.log(data)
-        // })
-
 
     }
 

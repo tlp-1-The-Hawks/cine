@@ -28,18 +28,7 @@ export async function addCinema(cinema) {
 }
 
 export async function getAllCinema() {
-  const cinemas = await cinemaModel.findAll({
-    include: [
-      {
-        model: MovieModel,
-        as: 'movie',
-        through: {
-          model: movieCinemaModel,
-        },
-      },
-    ]
-  });
-  return cinemas;
+  return await cinemaModel.findAll() ?? null;
 }
 
 

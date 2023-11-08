@@ -42,6 +42,9 @@ export async function getCommentByid(movieId) {
   const comment = await CommentModel.findAll({
     where: {
       movieId: movieId
+    },
+    include: {
+      model: UserModel
     }
   });
   if (!comment) {

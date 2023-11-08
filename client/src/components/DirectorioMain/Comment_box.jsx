@@ -25,7 +25,7 @@ export const CommentBox = ({ movie, socket, comments }) => {
                             < div key={comment.id} className="col-12 col-md-5 col-sm-12 card">
                                 <div className='perfil'>
                                     <img className='fotoUser' src="/img/userImg.png" />
-
+                                    <p>{comment.User.username}</p>
                                     <span className='nameUser'></span>
                                     <span className='timeUser'></span>
                                 </div>

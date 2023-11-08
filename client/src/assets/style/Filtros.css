@@ -17,3 +17,7 @@ h1 {
   width: 57%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.filtrobuttons {
+  background-color: #FF2C25;
+}
