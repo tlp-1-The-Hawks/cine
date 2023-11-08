@@ -5,16 +5,16 @@ import { useContext } from "react";
 import { FindOneUser } from "../../hooks/datePreloads/FindOneUser.js";
 const token = localStorage.getItem("token");
 
-export const AddComment = ({ movie }) => {
+export const AddComment = ({ movie, socket}) => {
     const { state, dispatch } = useContext(movieContext)
-    const [userId, setUserId] = useState('')
+    const [user, setUser] = useState('')
     const [nuevoComentario, setNuevoComentario] = useState('');
 
     useEffect(() => {
         (
             async () => {
                 const user = await FindOneUser(token)
-                setUserId(user.id)
+                setUser(user)
             }
         )()
 
@@ -25,19 +25,28 @@ export const AddComment = ({ movie }) => {
 
         setNuevoComentario(value)
 
+        console.log(nuevoComentario)
     }
 
     const agregarComentario = (e) => {
         e.preventDefault()
-
+        console.log(user.username)
         dispatch({
             type: type_movie.ADD_COMMENT_MOVIE,
             payload: {
                 comment: nuevoComentario,
-                userId: userId,
+                userId: user.id,
                 movieId: movie
             }
         })
+   
+    const comment = {
+        description: nuevoComentario,
+        User: {
+            username: user.username
+        }
+    }
+       socket.emit('comment', comment)
 
     };
     return (

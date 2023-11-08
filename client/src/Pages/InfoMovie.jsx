@@ -10,7 +10,7 @@ const params = Object.fromEntries(urlSearchParams.entries());
 const { movie, cinema } = params;
 
 
-export const InfoMovie = () => {
+export const InfoMovie = ({socket}) => {
     const [info, setInfo] = useState([])
 
     useEffect(() => {
@@ -25,13 +25,19 @@ export const InfoMovie = () => {
             .catch((error) => console.log(error));
     }, [])
 
+    useEffect(() => {
+        socket.on('connect', () => {
+            console.log("El usuario se ha conectado al servidor Socket.io");
+          });
+      }, [socket]);
+      
     return (
         <>
             <Header />
             <MovieInfo
                 info={info}
             />
-            <CommentBox movie={movie} />
+            <CommentBox socket={socket} movie={movie} />
             <Footer />
         </>
     )

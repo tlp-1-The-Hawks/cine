@@ -50,15 +50,24 @@ app.use('/api', paymentsRoutes)
 app.use('/auth', authRouter);
 app.use(handleErrors);
 
-const server = createServer(app)
+const server = createServer(app, {
+  cors: {
+    origin: "*",
+  },
+});
 
-const io = new Server(server)
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
 
-io.on('connection', (socket) => {
+io.on('connect', (socket) => {
   console.log('user connecting')
 
-  socket.on('comment', (socket) => {
-    console.log('user comment')
+  socket.on('comment', (comment) => {
+    console.log('comment',comment)
+    io.emit('comment',comment)
   })
 })
 
@@ -66,3 +75,7 @@ server.listen(environments.PORT, () => {
   console.log(`Server on http://localhost:${environments.PORT}`);
   startDb();
 });
+
+
+ 
+

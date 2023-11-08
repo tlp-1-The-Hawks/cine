@@ -3,23 +3,29 @@ import { useEffect, useState } from "react";
 import { LikeAndDisLike } from "./LikeAndDisLike.jsx";
 import { FindComments } from "../../hooks/datePreloads/FindComments.js";
 
-export const CommentBox = ({ movie }) => {
+export const CommentBox = ({ movie, socket }) => {
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        (
-            async () => {
-                const data = await FindComments()
-
-                setComments(data)
-            }
-        )()
+                (
+                async () => {
+                    const data = await FindComments()
+    
+                    setComments(data)
+                }
+            )()
+           
     }, [])
 
+    useEffect(() => {
+        socket.on('comment', (comment) => {
+            setComments((comments) => [...comments, comment])
+        })
+    }, [socket])
 
     return (
         <div className="Contenedor_comentario">
-            <AddComment movie={movie} />
+            <AddComment socket={socket} movie={movie} comments={comments} />
             <div className="container">
                 <div className="row justify-content-center">
 
