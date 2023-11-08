@@ -63,6 +63,7 @@ export const userReducer = (state, action) => {
                     });
 
             }
+            break;
         case types_user.USER_FIND_ONE:
             fetch("http://localhost:4000/auth/login", {
                 method: "POST",
@@ -107,7 +108,9 @@ export const userReducer = (state, action) => {
                 .catch(error => {
                     console.error('Error:', error);
                 });
+                break;
     }
+
 
 
     return state
