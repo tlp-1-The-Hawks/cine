@@ -40,8 +40,8 @@ export const ctrlGetAllcomment = async (req, res) => {
 
 export const ctrlGetCommentById = async (req, res) => {
     try {
-        const { id } = req.params
-        const comment = await getCommentByid(id)
+        const { movieId } = req.params
+        const comment = await getCommentByid(movieId)
         return res.status(200).json(comment)
 
     } catch (error) {

@@ -32,7 +32,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
 
 
     const handleChange = (e) => {
-        const { name, value,id } = e.target;
+        const { name, value, id } = e.target;
 
         const newFormData = {
             ...formMovie,
@@ -73,18 +73,18 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
             const index = parseInt(name.split("_")[0])
             const newArrayDates = [
                 ...arrayForDates
-        ]
-    
+            ]
+
             newArrayDates[index - 1] = e.target.value
-    
+
             console.log(newArrayDates);
-        
+
             setFormMovie({
                 ...formMovie,
                 events: newArrayDates,
-             });
-             setArrayForDates(newArrayDates);
-        }   
+            });
+            setArrayForDates(newArrayDates);
+        }
     };
 
 
@@ -200,7 +200,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                                 <input
                                                     id='events'
                                                     name={`${number}_date`}
-                                                    type="date"
+                                                    type="datetime-local"
                                                     onChange={handleChange}
                                                 />
                                             </div>

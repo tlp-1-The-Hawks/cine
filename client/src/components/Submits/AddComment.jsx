@@ -3,9 +3,10 @@ import { movieContext } from "../../context/MovieContext.jsx";
 import { type_movie } from "../../types/types.movie.js";
 import { useContext } from "react";
 import { FindOneUser } from "../../hooks/datePreloads/FindOneUser.js";
+import Swal from "sweetalert2";
 const token = localStorage.getItem("token");
 
-export const AddComment = ({ movie, socket}) => {
+export const AddComment = ({ movie, socket }) => {
     const { state, dispatch } = useContext(movieContext)
     const [user, setUser] = useState('')
     const [nuevoComentario, setNuevoComentario] = useState('');
@@ -30,24 +31,32 @@ export const AddComment = ({ movie, socket}) => {
 
     const agregarComentario = (e) => {
         e.preventDefault()
-        console.log(user.username)
-        dispatch({
-            type: type_movie.ADD_COMMENT_MOVIE,
-            payload: {
-                comment: nuevoComentario,
-                userId: user.id,
-                movieId: movie
-            }
-        })
-   
-    const comment = {
-        description: nuevoComentario,
-        User: {
-            username: user.username
-        }
-    }
-       socket.emit('comment', comment)
 
+        if (nuevoComentario.length > 0) {
+            dispatch({
+                type: type_movie.ADD_COMMENT_MOVIE,
+                payload: {
+                    comment: nuevoComentario,
+                    userId: user.id,
+                    movieId: movie
+                }
+            })
+
+            const comment = {
+                description: nuevoComentario,
+                User: {
+                    username: user.username
+                }
+            }
+            socket.emit('comment', comment)
+
+            setNuevoComentario('')
+        } else {
+            Swal.fire({
+                title: '¡Debes escribir algo!',
+                icon: 'error'
+            })
+        }
     };
     return (
 
@@ -62,6 +71,7 @@ export const AddComment = ({ movie, socket}) => {
                 <div className="row">
                     <div className="col-10">
                         <input
+                            autoComplete="off"
                             className='boton_comentario w-100 rounded p-1'
                             name='comment'
                             type="text"

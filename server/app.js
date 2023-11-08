@@ -66,8 +66,7 @@ io.on('connect', (socket) => {
   console.log('user connecting')
 
   socket.on('comment', (comment) => {
-    console.log('comment',comment)
-    io.emit('comment',comment)
+    io.emit('comment', comment)
   })
 })
 
@@ -77,5 +76,5 @@ server.listen(environments.PORT, () => {
 });
 
 
- 
+
 

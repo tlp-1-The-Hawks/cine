@@ -156,6 +156,7 @@ informationModel.belongsToMany(dateEmissionsModel, { through: infoXdateEmissions
 dateEmissionsModel.belongsToMany(informationModel, { through: infoXdateEmissions })
 
 
+
 //preloaded data
 async function dataPreloaded() {
   await createGenre()

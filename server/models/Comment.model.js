@@ -38,8 +38,12 @@ export async function getAllComments() {
   return comments;
 }
 
-export async function getCommentByid(id) {
-  const comment = await CommentModel.findByPk(id);
+export async function getCommentByid(movieId) {
+  const comment = await CommentModel.findAll({
+    where: {
+      movieId: movieId
+    }
+  });
   if (!comment) {
     return null;
   }

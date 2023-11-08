@@ -4,14 +4,16 @@ import { Footer } from '../components/Footers/Footer.jsx'
 import { useState, useEffect } from 'react'
 import { CommentBox } from '../components/DirectorioMain/comment_box.jsx'
 import '../assets/style/InfoMovie.css'
+import { FindComments } from '../hooks/datePreloads/FindComments.js'
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movie, cinema } = params;
 
 
-export const InfoMovie = ({socket}) => {
+export const InfoMovie = ({ socket }) => {
     const [info, setInfo] = useState([])
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:4000/api/movies/${movie}/${cinema}`, {
@@ -19,8 +21,13 @@ export const InfoMovie = ({socket}) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setInfo(data)
+            })
+            .then(async () => {
+
+                const data = await FindComments(movie)
+
+                setComments(data)
             })
             .catch((error) => console.log(error));
     }, [])
@@ -28,16 +35,16 @@ export const InfoMovie = ({socket}) => {
     useEffect(() => {
         socket.on('connect', () => {
             console.log("El usuario se ha conectado al servidor Socket.io");
-          });
-      }, [socket]);
-      
+        });
+    }, [socket]);
+
     return (
         <>
             <Header />
             <MovieInfo
                 info={info}
             />
-            <CommentBox socket={socket} movie={movie} />
+            <CommentBox socket={socket} movie={movie} comments={comments} />
             <Footer />
         </>
     )
