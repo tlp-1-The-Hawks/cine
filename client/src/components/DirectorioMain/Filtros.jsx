@@ -6,6 +6,7 @@ export const Filtros = ({ movies, cinemas, searchBar, setSearchBar }) => {
   const [selectedCinemaId, setSelectedCinemaId] = useState(null);
   const [cineName, setCineName] = useState('')
   const [search, setSearch] = useState([])
+  const [filteredMovies, setfilteredMovies] = useState([])
 
   const handleFiltro = (e) => {
     setSearchBar('')
@@ -15,17 +16,26 @@ export const Filtros = ({ movies, cinemas, searchBar, setSearchBar }) => {
   }
 
 
-  let filteredMovies = selectedCinemaId
-    ? movies.filter((movie) => {
-      return movie.cinemas.some((cinema) => cinema.id === selectedCinemaId);
-    })
-    : movies;
+  useEffect(() => {
+    setfilteredMovies(movies)
+  }, [movies])
+
+  useEffect(() => {
+    setSearch([])
+    let filtro = selectedCinemaId
+      ? movies.filter((movie) => {
+        return movie.cinemas.some((cinema) => cinema.id === selectedCinemaId);
+      })
+      : movies;
+
+    setfilteredMovies(filtro)
+  }, [selectedCinemaId])
 
   useEffect(() => {
 
     (
       () => {
-        console.log(searchBar)
+        setSelectedCinemaId(null)
         let title = searchBar
         let data = movies.filter(movie => movie.title.toLowerCase().includes(title.toLowerCase()));
 
@@ -34,6 +44,7 @@ export const Filtros = ({ movies, cinemas, searchBar, setSearchBar }) => {
     )()
 
   }, [searchBar])
+
   return (
     <>
       <div className="filtro bg-filtro-container container mb-5">
