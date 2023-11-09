@@ -1,6 +1,6 @@
-import { addBooking, getAllBooking, getBookingById } from "../models/Booking.models.js"
+import { addBooking, getAllBooking, getAllBookingByMovieIdAndCinemaId, getBookingById } from "../models/Booking.models.js"
 
-export const ctrlAddBooking = async (req,res) => {
+export const ctrlAddBooking = async (req, res) => {
     try {
         const {
             userId,
@@ -17,7 +17,7 @@ export const ctrlAddBooking = async (req,res) => {
             movieId,
             cinemaId,
             tikets
-            )
+        )
 
         res.status(200).json({
             message: 'Booking created'
@@ -30,7 +30,7 @@ export const ctrlAddBooking = async (req,res) => {
     }
 }
 
-export const ctrlGetAllBooking = async (req, res ) => {
+export const ctrlGetAllBooking = async (req, res) => {
     try {
         const bookings = await getAllBooking()
 
@@ -44,7 +44,7 @@ export const ctrlGetAllBooking = async (req, res ) => {
 
 }
 
-export const ctrlGetOneBooking = async (req,res) => {
+export const ctrlGetOneBooking = async (req, res) => {
     try {
         const {
             bookingId
@@ -57,6 +57,22 @@ export const ctrlGetOneBooking = async (req,res) => {
         res.status(500).json({
             message: 'Error get booking by id'
         })
-        
+
+    }
+}
+
+export const ctrlGetAllBookingsByMovieIdAndCinemaId = async (req, res) => {
+    try {
+        const { movieId, cinemaId } = req.params
+
+        const bookings = await getAllBookingByMovieIdAndCinemaId(movieId, cinemaId)
+
+        res.status(200).json(bookings)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+
+            message: 'error get all bookings by movieId and cinemId'
+        })
     }
 }

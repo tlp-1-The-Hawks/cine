@@ -88,14 +88,21 @@ export async function getBookingByUserId(userId) {
   return booking;
 }
 
-export async function getBookingByMovieId(movieId) {
+export async function getAllBookingByMovieIdAndCinemaId(movieId, cinemaId) {
   const booking = await bookingModel.findAll({
     where: {
-      movieId,
+      movieId: movieId,
+      cinemaId: cinemaId
     },
+    include: [
+      {
+        model: UserModel
+      }
+    ]
   });
   if (!booking) {
     return null;
   }
   return booking;
 }
+

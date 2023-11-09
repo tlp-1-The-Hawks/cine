@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
     ctrlAddBooking,
     ctrlGetAllBooking,
+    ctrlGetAllBookingsByMovieIdAndCinemaId,
     ctrlGetOneBooking
 } from "../controllers/booking.controllers.js";
 
@@ -12,5 +13,7 @@ bookingRouter.get('/booking', ctrlGetAllBooking)
 bookingRouter.get('/booking/:bookingId', ctrlGetOneBooking)
 
 bookingRouter.post('/booking/:userId/:movieId/:cinemaId', ctrlAddBooking)
+
+bookingRouter.get('/booking/:movieId/:cinemaId', ctrlGetAllBookingsByMovieIdAndCinemaId)
 
 export { bookingRouter }
