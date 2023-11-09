@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react"
-
-export const ReservationsBox = ({ movies }) => {
+import { FindBookings } from "../../hooks/datePreloads/FindBookings.js"
+export const ReservationsBox = ({ movies, cinemaId }) => {
     const [titleMovie, setTitleMovi] = useState('')
-
+    const [bookings, setBookings] = useState([])
     const [cartelera, setCartelera] = useState([])
+
     useEffect(() => {
-        console.log(movies)
         setCartelera(movies)
     }, [movies])
 
-    const handleMovie = (e) => {
-        setTitleMovi(e.target.name)
+    const handleMovie = async (e) => {
+        const data = await FindBookings(e.target.id, cinemaId)
+
+        setBookings(data)
     }
     return (
         <div className="reservationsBox container mt-3">
@@ -21,7 +23,7 @@ export const ReservationsBox = ({ movies }) => {
                         {
                             cartelera.map((movies) => (
                                 <div className="miCartelera mt-1 mb-1">
-                                    <button onClick={handleMovie} key={cartelera.id} name={movies.title} className="w-100 btn btn-danger">{movies.title}</button>
+                                    <button onClick={handleMovie} key={movies.id} id={movies.id} name={movies.title} className="w-100 btn btn-danger">{movies.title}</button>
                                 </div>
 
                             ))
@@ -30,6 +32,13 @@ export const ReservationsBox = ({ movies }) => {
                 </div>
                 <div className="col-8">
                     <h1 className="text-center">Reservas: {titleMovie}</h1>
+                    <div className="d-flex justify-content-center">
+                        {
+                            bookings.map((bookings) => (
+                                <p>{bookings.paymentId}</p>
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         </div>
