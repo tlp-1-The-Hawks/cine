@@ -141,3 +141,16 @@ export async function getMovieByInfo(genreId) {
     ]
   })
 }
+
+export async function getMovieByCinemaId(cinemaId) {
+  return await MovieModel.findAll({
+    include: [
+      {
+        model: informationModel,
+        where: {
+          cinemaId: cinemaId
+        }
+      }
+    ]
+  })
+}

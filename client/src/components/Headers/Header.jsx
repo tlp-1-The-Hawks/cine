@@ -7,7 +7,9 @@ import { AuthContext } from '../../context/AuthContext.jsx';
 import { useContext } from 'react';
 
 export const Header = ({ setSearchBar }) => {
-  const { isLogged } = useContext(AuthContext)
+  const { isLogged, rolCinema } = useContext(AuthContext)
+
+
   const [shearchValue, setSearchValue] = useState('')
 
   const handleShear = (e) => {
@@ -42,6 +44,9 @@ export const Header = ({ setSearchBar }) => {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link to={'/'} className="nav-link text-white" aria-current="page" href="#">Inicio</Link>
+                </li>
+                <li className="nav-item">
+                  {rolCinema && <Link className='nav-link text-white' to={'/reservaciones'}>Reservaciones</Link>}
                 </li>
                 <li className="nav-item">
                   {isLogged && <Link className='nav-link text-white' to={'/soporte'}>Contacto</Link>}

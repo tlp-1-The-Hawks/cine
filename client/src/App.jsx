@@ -11,14 +11,19 @@ import './App.css';
 function App() {
   const [cinemas, setCinemas] = useState([]);
   const [searchBar, setSearchBar] = useState('');
-  const movies = FindMovies()
+  const [movies, setMovies] = useState([]);
+  // const movies = FindMovies()
 
 
   useEffect(() => {
     (
       async () => {
         const data = await FindCinemas()
+        const dataMovies = await FindMovies()
+
         setCinemas(data)
+
+        setMovies(dataMovies)
       }
     )()
   }, [])
