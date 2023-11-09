@@ -10,6 +10,7 @@ import './App.css';
 
 function App() {
   const [cinemas, setCinemas] = useState([]);
+  const [searchBar, setSearchBar] = useState('');
   const movies = FindMovies()
 
 
@@ -24,9 +25,13 @@ function App() {
 
   return (
     <div className="wrapper">
-      <Header />
+      <Header
+        setSearchBar={setSearchBar}
+      />
       <main>
         <Filtros
+          setSearchBar={setSearchBar}
+          searchBar={searchBar}
           movies={movies}
           cinemas={cinemas}
         />
