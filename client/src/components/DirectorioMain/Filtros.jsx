@@ -24,14 +24,16 @@ export const Filtros = ({ movies, cinemas }) => {
         <div className="row">
           <h1 className='text-center'>Cartelera: {cineName}</h1>
           <div className="row justify-content-center">
-                <div className="col filtrobuttons text-center rounded">
-                     <button  type="button"  className="filtro1 btn w-100 text-white" onClick={handleFiltro} id="all">
+                <div className="col text-center">
+                  <div className='filtrobuttons rounded'>
+                  <button  type="button"  className="btn w-100 text-white" onClick={handleFiltro} id="all">
                          TODAS
                           </button>
+                  </div>
                     </div>
                   <div className='col'>
-                    <div className="filtrobuttons dropdawn text-center rounded">
-                        <button className="dropdown-toggle filtro2 btn text-white w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div className="filtrobuttons dropdawn rounded">
+                        <button className="dropdown-toggle btn text-white w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         SELECCIONAR CINE
                       </button>
                        

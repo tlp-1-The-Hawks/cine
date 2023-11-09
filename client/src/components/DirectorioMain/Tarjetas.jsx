@@ -16,12 +16,12 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
   }
 
   return (
-    <div>
+    <div className='mb-5'>
       <section className='tarjetaContenedor container'>
         <div className="row">
 
           {moviesWithCinemas.map((movie) => (
-            <div key={movie.id} className="col d-flex justify-content-center">
+            <div key={movie.id} className="col d-flex justify-content-center mt-2 mb-2">
               <div className="cards text-center">
                 <img src={`/movies_img/${movie.information[0].rutaImage}`} className="card-img" alt="" />
                 <div>
@@ -55,8 +55,6 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
               </div>
             </div>
           ))}
-
-
         </div>
 
 
