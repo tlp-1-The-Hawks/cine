@@ -3,7 +3,7 @@ import { sequelize } from '../config/database.js';
 import { UserModel } from './user_model.js';
 import { cinemaModel } from './Cinema.models.js';
 import { MovieModel } from './movie_model.js';
-
+import { dateEmissionsModel } from './DateEmissions.js';
 export const bookingModel = sequelize.define(
   'booking',
   {
@@ -24,8 +24,7 @@ export async function addBooking(paymentId, cinemaId, userId, movieId) {
     paymentId: paymentId,
     cinemaId: cinemaId,
     userId: userId,
-    movieId: movieId
-  });
+    movieId: movieId});
 
   return newBooking;
 
@@ -37,27 +36,19 @@ export async function getAllBooking() {
 
 }
 
-export async function getBookingById(bookingId) {
-  const booking = await bookingModel.findOne({
+export async function getBookingById(movieId,cinemaId,userId) {
+ return await bookingModel.findOne({
     where: {
-      id: bookingId
+      movieId:movieId,
+      cinemaId:cinemaId,
+      userId: userId
     },
     include: [
-      {
-        model: UserModel
-      },
-      {
-        model: MovieModel
-      },
-      {
-        model: cinemaModel
-      }
+    {
+      model: dateEmissionsModel
+    }
     ]
-  });
-  if (!booking) {
-    return null;
-  }
-  return booking;
+  }) ?? null
 }
 
 export async function deleteBooking(id) {

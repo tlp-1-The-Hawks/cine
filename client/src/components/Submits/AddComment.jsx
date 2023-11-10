@@ -60,7 +60,7 @@ export const AddComment = ({ movie, socket }) => {
     };
     return (
 
-        <div className='agregarComentario container mb-2'>
+        <div className='agregarComentario container mb-2'> 
             <form action="" onChange={handleChange}>
                 <div className="row">
                     <div className="row">

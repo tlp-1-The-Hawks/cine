@@ -155,7 +155,9 @@ informationModel.belongsTo(hallModel, {
 informationModel.belongsToMany(dateEmissionsModel, { through: infoXdateEmissions })
 dateEmissionsModel.belongsToMany(informationModel, { through: infoXdateEmissions })
 
-
+//booking and date emission
+dateEmissionsModel.hasMany(bookingModel)
+bookingModel.belongsTo(dateEmissionsModel)
 
 //preloaded data
 async function dataPreloaded() {

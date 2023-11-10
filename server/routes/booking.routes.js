@@ -10,7 +10,7 @@ const bookingRouter = Router()
 
 bookingRouter.get('/booking', ctrlGetAllBooking)
 
-bookingRouter.get('/booking/:bookingId', ctrlGetOneBooking)
+bookingRouter.get('/booking/:movieId/:cinemaId/:userId', ctrlGetOneBooking)
 
 bookingRouter.post('/booking/:userId/:movieId/:cinemaId', ctrlAddBooking)
 

@@ -12,6 +12,7 @@ export const ReservationsBox = ({ movies, cinemaId }) => {
     const handleMovie = async (e) => {
         const data = await FindBookings(e.target.id, cinemaId)
 
+        setTitleMovi(e.target.name)
         setBookings(data)
     }
     return (

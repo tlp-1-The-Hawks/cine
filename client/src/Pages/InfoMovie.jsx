@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react'
 import { CommentBox } from '../components/DirectorioMain/comment_box.jsx'
 import '../assets/style/InfoMovie.css'
 import { FindComments } from '../hooks/datePreloads/FindComments.js'
+import { FindInformation } from '../hooks/datePreloads/FindInformation.js'
+import { FindOneUser } from '../hooks/datePreloads/FindOneUser.js'
+import { FindOneBookings } from '../hooks/datePreloads/FindBookings.js'
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -12,24 +15,28 @@ const { movie, cinema } = params;
 
 
 export const InfoMovie = ({ socket }) => {
+    const token = localStorage.getItem('token')
     const [info, setInfo] = useState([])
     const [comments, setComments] = useState([]);
+    const [authReserva, setAuthReserva] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/api/movies/${movie}/${cinema}`, {
-            method: 'GET'
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setInfo(data)
-            })
-            .then(async () => {
+        (
+            async () => {
+                const dataInfo = await FindInformation(movie, cinema)
+                const dataComments = await FindComments(movie)
 
-                const data = await FindComments(movie)
+                setInfo(dataInfo)
+                setComments(dataComments)
 
-                setComments(data)
-            })
-            .catch((error) => console.log(error));
+                if(token) {
+                    const user = await FindOneUser(token)    
+                    const databooking = await FindOneBookings(user.id, movie, cinema)
+                    
+                    setAuthReserva(databooking)
+                }
+            }
+        )()
     }, [])
 
     useEffect(() => {
@@ -43,8 +50,13 @@ export const InfoMovie = ({ socket }) => {
             <Header />
             <MovieInfo
                 info={info}
+                authReserva={authReserva}
             />
-            <CommentBox socket={socket} movie={movie} comments={comments} />
+            <CommentBox
+                authReserva={authReserva}    
+                socket={socket}
+                movie={movie}
+               comments={comments} />
             <Footer />
         </>
     )

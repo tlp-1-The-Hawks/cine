@@ -47,10 +47,15 @@ export const ctrlGetAllBooking = async (req, res) => {
 export const ctrlGetOneBooking = async (req, res) => {
     try {
         const {
-            bookingId
+            movieId,
+            cinemaId,
+            userId
         } = req.params
 
-        const booking = await getBookingById(bookingId)
+        const booking = await getBookingById(
+            movieId,
+            cinemaId,
+            userId)
 
         res.status(200).json(booking)
     } catch (error) {

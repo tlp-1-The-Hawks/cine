@@ -1,4 +1,4 @@
-export const MovieInfo = ({ info }) => {
+export const MovieInfo = ({ info, authReserva }) => {
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
 
   return (
@@ -113,17 +113,29 @@ export const MovieInfo = ({ info }) => {
         </div>
         <div className="text-end">
           <p className="d-inline-flex gap-1">
-            <a
-              className="reserva"
+            {
+              authReserva !== null ? 
+                  
+              <button
+              className="reserva btn bg-primary"
               role="button"
-              onClick={() => {
-                const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
-                const movieId = info.id; // Obtén el ID de la película
-                window.location.href = `/reserva?movieId=${movieId}&cinemaId=${cinemaId}`;
-              }}
             >
-              Reservar
-            </a>
+              Reservado
+            </button>
+            :
+                  <a
+                  className="reserva"
+                  role="button"
+                  onClick={() => {
+                    const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
+                    const movieId = info.id; // Obtén el ID de la película
+                    window.location.href = `/reserva?movieId=${movieId}&cinemaId=${cinemaId}`;
+                  }}
+                >
+                  Reservar
+                </a>
+            }
+        
             {trailerURL && (
               <a
                 className="trailer"
