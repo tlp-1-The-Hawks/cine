@@ -10,11 +10,9 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
   const infoMovie = async (e) => {
     const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
     const movieId = e.currentTarget.getAttribute("data-movie-id");
-
     window.location.href = `/informacion-pelicula?movie=${movieId}&cinema=${cinemaId}`;
 
   }
-
   return (
     <div className='mb-5'>
       <section className='tarjetaContenedor container'>

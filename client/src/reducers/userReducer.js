@@ -100,15 +100,24 @@ export const userReducer = (state, action) => {
                                     window.location.href = '/'
                                 }
                             })
-                        } else {
-                            console.error('Error al iniciar sesión');
                         }
+
+
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
+                    Swal.fire({
+                        title: 'El correo o contraseña son invalidos',
+                        icon: 'error',
+                        confirmButtonText: 'ok',
+                        width: '50%',
+                        padding: '1rem',
+                        background: '#DBCBCB',
+                        grow: 'row'
+                    })
                 });
-                break;
+            break;
     }
 
 

@@ -13,7 +13,7 @@
   background-color: #202529;
   color: #fff;
   border: solid 1px #df1414;
-  height: 560px;
+  height: 600px;
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,8 @@
 }
 
 .card-img {
-  height: 400px;
+overflow: hidden;
+  height: 410px;
   object-fit: cover;
 }
 

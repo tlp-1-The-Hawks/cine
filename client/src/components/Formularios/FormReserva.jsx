@@ -6,11 +6,32 @@ import { Seat } from '../otros/seats';
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movieId, cinemaId } = params;
-
+const token = localStorage.getItem('token');
 export const FormReserva = () => {
   const [info, setInfo] = useState({})
   const [price, setPrice] = useState("Cargando...");
   const [quantity, setQuantity] = useState(1);
+  const [idUser, setIdUser] = useState('')
+  const [infoDate, setInfoDate] = useState([]);
+
+  useEffect(() => {
+
+    fetch('http://localhost:4000/auth/user', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': token
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setIdUser(data.id)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  })
+
 
   useEffect(() => {
     fetch(`http://localhost:4000/api/movies/${movieId}/${cinemaId}`, {
@@ -19,6 +40,7 @@ export const FormReserva = () => {
       .then((res) => res.json())
       .then((data) => {
         setInfo(data)
+        setInfoDate(data.information[0].date_emissions);
         setPrice(data.information[0].price)
       })
       .catch((error) => console.log(error));
@@ -29,7 +51,7 @@ export const FormReserva = () => {
 
   const createPreference = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/api/create-order", {
+      const response = await axios.post(`http://localhost:4000/api/create-order/${cinemaId}/${movieId}/${idUser}/${price}`, {
         description: "Boleto de cine",
         price: price,
         quantity: 1,
@@ -82,9 +104,26 @@ export const FormReserva = () => {
                   </p>
                 </div>
               </div>
+              <div>
+                {
+                  infoDate.map((date) => {
+                    const formattedDate = new Date(date.date);
+                    const month = formattedDate.toLocaleString('default', { month: 'short' });
+                    const day = formattedDate.getDate();
+                    const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
+
+                    return (
+                      <div className="col">
+                        <button className="text-center text-white bg-dark p-1 rounded" key={date.id} id={date.id}>
+                          {month} {day}, {hour}
+                        </button>
+                      </div>
+                    )
+                  })}
+              </div>
             </div>
             <div className="col d-flex justify-content-center">
-              <Seat />
+              <Seat info={info} />
             </div>
           </div>
         </div>

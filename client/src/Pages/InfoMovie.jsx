@@ -29,10 +29,10 @@ export const InfoMovie = ({ socket }) => {
                 setInfo(dataInfo)
                 setComments(dataComments)
 
-                if(token) {
-                    const user = await FindOneUser(token)    
+                if (token) {
+                    const user = await FindOneUser(token)
                     const databooking = await FindOneBookings(user.id, movie, cinema)
-                    
+
                     setAuthReserva(databooking)
                 }
             }
@@ -53,10 +53,10 @@ export const InfoMovie = ({ socket }) => {
                 authReserva={authReserva}
             />
             <CommentBox
-                authReserva={authReserva}    
+                authReserva={authReserva}
                 socket={socket}
                 movie={movie}
-               comments={comments} />
+                comments={comments} />
             <Footer />
         </>
     )
