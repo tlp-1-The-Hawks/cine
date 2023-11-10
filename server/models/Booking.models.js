@@ -11,6 +11,10 @@ export const bookingModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    price: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   },
   {
     timestamps: true,
@@ -19,7 +23,7 @@ export const bookingModel = sequelize.define(
 
 //services
 
-export async function addBooking(paymentId, cinemaId, userId, movieId) {
+export async function addBooking(paymentId, cinemaId, userId, movieId, price) {
   const newBooking = await bookingModel.create({
     paymentId: paymentId,
     cinemaId: cinemaId,
@@ -37,7 +41,7 @@ export async function getAllBooking() {
 }
 
 export async function getBookingById(movieId,cinemaId,userId) {
- return await bookingModel.findOne({
+return await bookingModel.findOne({
     where: {
       movieId:movieId,
       cinemaId:cinemaId,

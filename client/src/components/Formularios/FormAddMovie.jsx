@@ -33,13 +33,11 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
 
     const handleChange = (e) => {
         const { name, value, id } = e.target;
-
         const newFormData = {
             ...formMovie,
             [name]: value,
         };
         setFormMovie(newFormData);
-        console.log(newFormData);
 
         if (name === 'rutaImage') {
             const file = e.target.files[0];
@@ -51,12 +49,15 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                         image: e.target.result
                     });
                 };
+                reader.readAsDataURL(file);
                 setFormMovie({
                     ...formMovie,
                     rutaImage: `${imgName}`
+
                 });
                 setSendImg(file);
                 reader.readAsDataURL(file);
+                set
             } else {
                 setImageState({
                     image: null

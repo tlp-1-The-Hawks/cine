@@ -1,6 +1,12 @@
 export const MovieInfo = ({ info, authReserva }) => {
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
-
+  function convertirMinutosAHorasYMinutos(minutos) {
+    const horas = Math.floor(minutos / 60);
+    const minutosRestantes = minutos % 60;
+    const horaFormateada = horas < 10 ? `${horas}` : `${horas}`;
+    const minutosFormateados = minutosRestantes < 10 ? `0${minutosRestantes}` : `${minutosRestantes}`;
+    return `${horaFormateada}:${minutosFormateados}`;
+  }
   return (
     <div className="bgInfoMovie">
       <div className="infomovie container rounded-4">
@@ -29,8 +35,7 @@ export const MovieInfo = ({ info, authReserva }) => {
               <div>
                 <ul className="movie-info">
                   <li>
-                    <span className="lista">Precio:</span>
-                    {info &&
+                    <span className="lista">Precio:</span>${info &&
                       info.information &&
                       info.information[0] && (
                         <span>{info.information[0].price}</span>
@@ -46,8 +51,7 @@ export const MovieInfo = ({ info, authReserva }) => {
                   </li>
                   <li>
                     <span className="lista">N° Sala:</span>
-                    {
-                      info &&
+                    {info &&
                       info.information &&
                       info.information[0] &&
                       info.information[0].hall && (
@@ -58,8 +62,7 @@ export const MovieInfo = ({ info, authReserva }) => {
                   </li>
                   <li>
                     <span className="lista">Formato:</span>
-                    {
-                      info &&
+                    {info &&
                       info.information &&
                       info.information[0] &&
                       info.information[0].type_emission && (
@@ -73,7 +76,9 @@ export const MovieInfo = ({ info, authReserva }) => {
                     {info &&
                       info.information &&
                       info.information[0] && (
-                        <span>{info.information[0].duration} Minutos</span>
+                        <span>
+                          {convertirMinutosAHorasYMinutos(info.information[0].duration)} h
+                        </span>
                       )}
                   </li>
                   <li>
@@ -114,16 +119,16 @@ export const MovieInfo = ({ info, authReserva }) => {
         <div className="text-end">
           <p className="d-inline-flex gap-1">
             {
-              authReserva !== null ? 
-                  
-              <button
-              className="reserva btn bg-primary"
-              role="button"
-            >
-              Reservado
-            </button>
-            :
-                  <a
+              authReserva !== null ?
+
+                <button
+                  className="reserva btn bg-primary"
+                  role="button"
+                >
+                  Reservado
+                </button>
+                :
+                <a
                   className="reserva"
                   role="button"
                   onClick={() => {
@@ -135,7 +140,7 @@ export const MovieInfo = ({ info, authReserva }) => {
                   Reservar
                 </a>
             }
-        
+
             {trailerURL && (
               <a
                 className="trailer"

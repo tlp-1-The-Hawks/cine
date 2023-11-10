@@ -1,6 +1,9 @@
+import { bookingModel } from '../models/Booking.models.js'
 import mercadopago from "mercadopago";
 
 export const createOrder = async (req, res) => {
+  const {movieId, cinemaId, idUser, price} = req.params; 
+
   mercadopago.configure({
     access_token: 'APP_USR-404212168429405-100814-0deccd0b6f09ee5ef36fe7e6a21b05f8-1500511378',
   });
@@ -15,11 +18,11 @@ export const createOrder = async (req, res) => {
           quantity: Number(req.body.quantity),
         },
       ],
-      notification_url: "https://b98e-138-121-113-13.ngrok.io/api/webhook",
+      notification_url: `https://800d-138-121-113-14.ngrok.io/api/webhook/${movieId}/${cinemaId}/${idUser}/${price}`,
       back_urls: {
         success: "http://localhost:3000/",
         // pending: "https://e720-190-237-16-208.sa.ngrok.io/pending",
-        // failure: "https://e720-190-237-16-208.sa.ngrok.io/failure",
+        failure: "http://localhost:3000/",
       },
     });
 
@@ -35,8 +38,14 @@ export const createOrder = async (req, res) => {
 
 export const receiveWebhook = async (req, res) => {
   try {
+    const {movieId, cinemaId, userId, price} = req.params;
+    console.log(movieId, cinemaId, userId, price);
     const payment = req.query;
-    console.log(payment);
+    if (payment.type === 'payment') {
+      const paymentId = payment['data.id']
+      console.log(paymentId);
+      await bookingModel.create({ paymentId, movieId,cinemaId, userId, price });
+    }
 
     res.sendStatus(204);
   } catch (error) {
