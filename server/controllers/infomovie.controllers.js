@@ -47,10 +47,9 @@ export const ctrlAddInfoMovie = async (req, res) => {
         const movieId = NewMovie.id
         const informationId = addInfo.id
 
-        const newInfoXdateEmissions = await addDateEmissions(events,informationId)
+        const newInfoXdateEmissions = await addDateEmissions(events, informationId)
 
         const MovieCinema = await addMovieCinema(movieId, cinemaId)
-
 
         const newMovieInfo = await addMovieInfo(movieId, informationId)
 
@@ -68,8 +67,10 @@ export const ctrlAddInfoMovie = async (req, res) => {
 
 export const ctrlUploadImgMovie = async (req, res) => {
     try {
+
         const file = req.files.file;
-        const fileName = req.file.name
+
+        const fileName = file.name
 
         file.mv(`../client/public/movies_img/${fileName}`, (err) => {
             if (err) {

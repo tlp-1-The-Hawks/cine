@@ -12,7 +12,7 @@ const commentRouter = Router();
 
 commentRouter.post('/comment/:movieId/:userId', ctrlAddcomment);
 
-commentRouter.get('/comment/:id', ctrlGetCommentById);
+commentRouter.get('/comment/:movieId', ctrlGetCommentById);
 
 commentRouter.get('/comment', ctrlGetAllcomment);
 

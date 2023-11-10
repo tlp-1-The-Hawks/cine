@@ -1,7 +1,10 @@
-import {createMovie, 
-  getAllMovies, 
-  getMovieById, 
-  getMovieByInfo} from '../models/movie_model.js';
+import {
+  createMovie,
+  getAllMovies,
+  getMovieById,
+  getMovieByInfo,
+  getMovieByCinemaId
+} from '../models/movie_model.js';
 
 export const ctrlCreateMovie = async (req, res) => {
   try {
@@ -14,7 +17,7 @@ export const ctrlCreateMovie = async (req, res) => {
   }
 };
 
-export const ctrlGetAllMovie = async (req,res) => {
+export const ctrlGetAllMovie = async (req, res) => {
   try {
     const movies = await getAllMovies()
 
@@ -27,14 +30,14 @@ export const ctrlGetAllMovie = async (req,res) => {
   }
 }
 
-export const ctrlGetOneMovie = async (req,res) => {
+export const ctrlGetOneMovie = async (req, res) => {
   try {
     const {
       movieId,
       cinemaId
     } = req.params
 
-    const movie = await getMovieById(movieId,cinemaId)
+    const movie = await getMovieById(movieId, cinemaId)
 
     res.status(200).json(movie)
   } catch (error) {
@@ -44,7 +47,7 @@ export const ctrlGetOneMovie = async (req,res) => {
     })
   }
 }
-export const ctrlGetMovieByInfo = async (req,res) => {
+export const ctrlGetMovieByInfo = async (req, res) => {
   try {
     const {
       genreId
@@ -56,6 +59,21 @@ export const ctrlGetMovieByInfo = async (req,res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Error get movie by Info'
+    })
+  }
+}
+
+export const ctrlGetMovieByCinemaId = async (req, res) => {
+  try {
+    const { cinemaId } = req.params
+
+    const movies = await getMovieByCinemaId(cinemaId)
+
+    res.status(200).json(movies)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      message: 'error get movie by cinemaId'
     })
   }
 }

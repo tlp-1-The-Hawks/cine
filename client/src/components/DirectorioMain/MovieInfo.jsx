@@ -1,4 +1,4 @@
-export const MovieInfo = ({ info }) => {
+export const MovieInfo = ({ info, authReserva }) => {
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
 
   return (
@@ -49,7 +49,7 @@ export const MovieInfo = ({ info }) => {
                     {
                       info &&
                       info.information &&
-                      info.information[0] && 
+                      info.information[0] &&
                       info.information[0].hall && (
                         <span>
                           {info.information[0].hall.nr_hall}
@@ -62,7 +62,7 @@ export const MovieInfo = ({ info }) => {
                       info &&
                       info.information &&
                       info.information[0] &&
-                      info.information[0].type_emission &&  (
+                      info.information[0].type_emission && (
                         <span>
                           {info.information[0].type_emission.type_emission}
                         </span>
@@ -86,26 +86,26 @@ export const MovieInfo = ({ info }) => {
                   </li>
                   <li>
                     <span className="lista">Fechas de emisión:</span>
-                      <div className="row">
+                    <div className="row">
                       {info &&
-                            info.information &&
-                            info.information[0].date_emissions &&
-                            info.information[0].date_emissions.map((date) => {
-                              const formattedDate = new Date(date.date);
-                              const month = formattedDate.toLocaleString('default', { month: 'short' });
-                              const day = formattedDate.getDate();
-                              const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
-                              
-                              return (
-                                <div className="col">
-                                    <p className="text-center bg-dark p-1 rounded" key={date.id} id={date.id}>
-                                      {month} {day}, {hour}
-                                    </p>
-                                </div>
-                              );
-                            })}
-                        </div>
-                    </li>
+                        info.information &&
+                        info.information[0].date_emissions &&
+                        info.information[0].date_emissions.map((date) => {
+                          const formattedDate = new Date(date.date);
+                          const month = formattedDate.toLocaleString('default', { month: 'short' });
+                          const day = formattedDate.getDate();
+                          const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
+
+                          return (
+                            <div key={date.id} className="col">
+                              <p className="text-center bg-dark p-1 rounded" key={date.id} id={date.id}>
+                                {month} {day}, {hour}
+                              </p>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -113,17 +113,29 @@ export const MovieInfo = ({ info }) => {
         </div>
         <div className="text-end">
           <p className="d-inline-flex gap-1">
-            <a
-              className="reserva"
+            {
+              authReserva !== null ? 
+                  
+              <button
+              className="reserva btn bg-primary"
               role="button"
-              onClick={() => {
-                const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
-                const movieId = info.id; // Obtén el ID de la película
-                window.location.href = `/reserva?movieId=${movieId}&cinemaId=${cinemaId}`;
-              }}
             >
-              Reservar
-            </a>
+              Reservado
+            </button>
+            :
+                  <a
+                  className="reserva"
+                  role="button"
+                  onClick={() => {
+                    const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
+                    const movieId = info.id; // Obtén el ID de la película
+                    window.location.href = `/reserva?movieId=${movieId}&cinemaId=${cinemaId}`;
+                  }}
+                >
+                  Reservar
+                </a>
+            }
+        
             {trailerURL && (
               <a
                 className="trailer"

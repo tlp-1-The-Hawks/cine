@@ -1,0 +1,8 @@
+.reservationsBox {
+    min-height: 77vh;
+}
+
+.miCartelera:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}

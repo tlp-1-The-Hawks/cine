@@ -24,13 +24,14 @@ export const AuthCtxt = ({ children }) => {
                 .then((data) => {
                     if (data.cinemaId != null) {
                         setRol(true)
+                        localStorage.setItem('rol', true)
                     }
                 })
                 .catch((error) => {
                     console.log(error)
                 })
         }
-    })
+    }, [])
 
 
 
