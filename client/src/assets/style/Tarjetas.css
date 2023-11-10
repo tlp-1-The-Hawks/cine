@@ -21,7 +21,8 @@
 }
 
 .card-img {
-  height: 400px;
+overflow: hidden;
+  height: 410px;
   object-fit: cover;
 }
 

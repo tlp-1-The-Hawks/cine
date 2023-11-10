@@ -6,7 +6,7 @@ import { LogoutButton } from './LogoutButton.jsx';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import { useContext } from 'react';
 
-import { Menu } from './Menu.jsx';
+
 export const Header = ({ setSearchBar }) => {
   const { isLogged, rolCinema } = useContext(AuthContext)
 
