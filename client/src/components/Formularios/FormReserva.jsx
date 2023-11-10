@@ -13,6 +13,7 @@ export const FormReserva = () => {
   const [quantity, setQuantity] = useState(1);
   const [idUser, setIdUser] = useState('')
   const [infoDate, setInfoDate] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
 
@@ -78,6 +79,12 @@ export const FormReserva = () => {
     }
   }, []);
 
+  const handleDateClick = (dateId) => {
+    const selectedDateInfo = infoDate.find((date) => date.id === dateId);
+    setSelectedDate(selectedDateInfo);
+    console.log('Horario seleccionado:', selectedDateInfo.date);
+  };
+
   return (
     < div className="contenedorReserva" >
 
@@ -114,7 +121,12 @@ export const FormReserva = () => {
 
                     return (
                       <div className="col">
-                        <button className="text-center text-white bg-dark p-1 rounded" key={date.id} id={date.id}>
+                        <button
+                          className="text-center text-white bg-dark p-1 rounded"
+                          key={date.id}
+                          id={date.id}
+                          onClick={() => handleDateClick(date.id)}
+                        >
                           {month} {day}, {hour}
                         </button>
                       </div>
