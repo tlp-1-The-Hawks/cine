@@ -5,6 +5,7 @@ import { LogoutButton } from './LogoutButton.jsx';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import { useContext } from 'react';
 import { ButtonSuport } from './ButtonSuport.jsx';
+import { Menu } from './Menu.jsx';
 export const Header = () => {
   const { isLogged } = useContext(AuthContext)
 
@@ -21,7 +22,7 @@ export const Header = () => {
             </div>
           </a>
         </div>
-
+{/* <Menu/> */}
         <form className="d-flex prueba" id='Buscador' role="search">
           <input
             className="form-control me-2 borde-colorBusqueda color-fondo"
@@ -43,7 +44,9 @@ export const Header = () => {
           {isLogged && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
           {!isLogged && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
         </div>
+    
       </nav>
+
     </header>
   );
 };
