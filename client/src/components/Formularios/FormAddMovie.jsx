@@ -86,6 +86,8 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
             });
             setArrayForDates(newArrayDates);
         }
+
+        console.log(sendImg)
     };
 
 
@@ -201,7 +203,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                                 <input
                                                     id='events'
                                                     name={`${number}_date`}
-                                                    type="dateTime-local"
+                                                    type="datetime-local"
                                                     onChange={handleChange}
                                                 />
                                             </div>

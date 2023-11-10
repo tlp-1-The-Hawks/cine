@@ -14,13 +14,13 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
   }
   return (
-    <div>
-      <section className='tarjetaContenedor'>
-        <div className="tarjetas">
+    <div className='mb-5'>
+      <section className='tarjetaContenedor container'>
+        <div className="row">
 
           {moviesWithCinemas.map((movie) => (
-            <div key={movie.id} className="col-md-3 col-sm-12 ">
-              <div className="cards">
+            <div key={movie.id} className="col d-flex justify-content-center mt-2 mb-2">
+              <div className="cards text-center">
                 <img src={`/movies_img/${movie.information[0].rutaImage}`} className="card-img" alt="" />
                 <div>
                   <h5 className='textoCard' >{movie.title}</h5>
@@ -41,10 +41,10 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                     </Link>
                   ))}
                   <div className='crud'>
-                    <div className='crudBoton' data-tooltip="editar"><Link className='crudButton'><box-icon name='edit-alt' type='solid' color='#ffffff' ></box-icon></Link>
+                    <div className='crudBoton' data-tooltip="editar"><button className='crudButton'>                      <box-icon name='edit-alt' type='solid' color='#ffffff' ></box-icon></button>
 
                     </div>
-                    <div className='crudBoton' data-tooltip="eliminar"><Link className='crudButton'><box-icon name='x-circle' color='#ffffff' ></box-icon></Link>
+                    <div className='crudBoton' data-tooltip="eliminar"><button className='crudButton'>               <box-icon name='x-circle' color='#ffffff' ></box-icon></button>
 
                     </div>
 

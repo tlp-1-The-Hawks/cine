@@ -6,10 +6,6 @@ import { MovieModel } from './movie_model.js';
 export const CommentModel = sequelize.define(
   'Comment',
   {
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -21,12 +17,11 @@ export const CommentModel = sequelize.define(
 );
 
 //services
-export async function addcomment(title, description, userId, movieId) {
+export async function addcomment(comment, userId, movieId) {
   const newcomment = await CommentModel.create({
-    title,
-    description,
-    userId,
-    movieId,
+    description: comment,
+    userId: userId,
+    movieId: movieId,
   });
 
   return newcomment;
@@ -36,9 +31,6 @@ export async function getAllComments() {
   const comments = await CommentModel.findAll({
     include: [
       {
-        model: MovieModel
-      },
-      {
         model: UserModel
       }
     ],
@@ -46,8 +38,15 @@ export async function getAllComments() {
   return comments;
 }
 
-export async function getCommentByid(id) {
-  const comment = await CommentModel.findByPk(id);
+export async function getCommentByid(movieId) {
+  const comment = await CommentModel.findAll({
+    where: {
+      movieId: movieId
+    },
+    include: {
+      model: UserModel
+    }
+  });
   if (!comment) {
     return null;
   }

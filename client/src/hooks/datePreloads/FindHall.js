@@ -8,9 +8,5 @@ export async function findHall(cinemaId) {
 
     const data = await response.json()
 
-
-    const hall = data.halls
-
-
-    return hall
+    return data
 }

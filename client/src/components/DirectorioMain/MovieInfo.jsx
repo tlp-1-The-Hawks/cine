@@ -1,14 +1,4 @@
-import React from 'react';
-
-function convertirMinutosAHorasYMinutos(minutos) {
-  const horas = Math.floor(minutos / 60);
-  const minutosRestantes = minutos % 60;
-  const horaFormateada = horas < 10 ? `${horas}` : `${horas}`;
-  const minutosFormateados = minutosRestantes < 10 ? `0${minutosRestantes}` : `${minutosRestantes}`;
-  return `${horaFormateada}:${minutosFormateados}`;
-}
-
-export const MovieInfo = ({ info }) => {
+export const MovieInfo = ({ info, authReserva }) => {
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
 
   return (
@@ -106,8 +96,8 @@ export const MovieInfo = ({ info }) => {
                           const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
 
                           return (
-                            <div className="col" key={date.id} id={date.id}>
-                              <p className="text-center bg-dark p-1 rounded">
+                            <div key={date.id} className="col">
+                              <p className="text-center bg-dark p-1 rounded" key={date.id} id={date.id}>
                                 {month} {day}, {hour}
                               </p>
                             </div>
@@ -122,17 +112,29 @@ export const MovieInfo = ({ info }) => {
         </div>
         <div className="text-end">
           <p className="d-inline-flex gap-1">
-            <a
-              className="reserva"
-              role="button"
-              onClick={() => {
-                const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
-                const movieId = info.id; // Obtén el ID de la película
-                window.location.href = `/reserva?movieId=${movieId}&cinemaId=${cinemaId}`;
-              }}
-            >
-              Reservar
-            </a>
+            {
+              authReserva !== null ?
+
+                <button
+                  className="reserva btn bg-primary"
+                  role="button"
+                >
+                  Reservado
+                </button>
+                :
+                <a
+                  className="reserva"
+                  role="button"
+                  onClick={() => {
+                    const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
+                    const movieId = info.id; // Obtén el ID de la película
+                    window.location.href = `/reserva?movieId=${movieId}&cinemaId=${cinemaId}`;
+                  }}
+                >
+                  Reservar
+                </a>
+            }
+
             {trailerURL && (
               <a
                 className="trailer"

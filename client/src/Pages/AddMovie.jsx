@@ -4,6 +4,8 @@ import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.jsx';
 import { Navigate } from 'react-router-dom';
 import { findHall } from '../hooks/datePreloads/FindHall.js';
+import { FindOneUser } from '../hooks/datePreloads/FindOneUser.js';
+
 export const AddMovie = () => {
     const [cinemaId, setCinemaId] = useState(null)
     const [hallState, setHallState] = useState([]);
@@ -12,32 +14,22 @@ export const AddMovie = () => {
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        fetch('http://localhost:4000/auth/user', {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'authorization': token
-            }
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.cinemaId === null) {
+        (async () => {
+           
+                const user = await FindOneUser(token);
+                
+                if (user.cinemaId === null) {
                     return window.location.href = '/';
                 } else {
-                    setCinemaId(data.cinemaId);
-                    return data.cinemaId;
+                    setCinemaId(user.cinemaId);
+
+                    const halls = await findHall(user.cinemaId);
+                    setHallState(halls.halls);
+                    setCinemaId(user.cinemaId)
                 }
-            })
-            .then(
-                async (cinemaId) => {
-                    const halls = await findHall(cinemaId)
-                    setHallState(halls)
-                }
-            )
-            .catch((error) => console.log(error));
+           
+        })();
     }, []);
-
-
     return (
         <>
             <FormAddMovie

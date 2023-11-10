@@ -42,9 +42,9 @@ export async function createMovie(title) {
 
 
     return newMovie
-  } else {
-    return shearchMovie
   }
+  return shearchMovie
+
 }
 
 export async function getAllMovies() {
@@ -91,7 +91,7 @@ export async function getMovieById(movieId, cinemaId) {
           {
             model: TypeEmissionModel
           }
-      ]
+        ]
       }
     ]
   });
@@ -136,6 +136,19 @@ export async function getMovieByInfo(genreId) {
         as: 'infomovie',
         where: {
           genreId: genreId
+        }
+      }
+    ]
+  })
+}
+
+export async function getMovieByCinemaId(cinemaId) {
+  return await MovieModel.findAll({
+    include: [
+      {
+        model: informationModel,
+        where: {
+          cinemaId: cinemaId
         }
       }
     ]

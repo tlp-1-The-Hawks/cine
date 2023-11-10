@@ -1,8 +1,9 @@
 .imgInfoMovie {
     max-width: 100%;
     width: 100%;
-    height: 80vh;
-    border-radius: 20px;
+    height: auto;
+    margin-top: 30px;
+    /* Asegura que la imagen mantenga su proporción */
 }
 
 .bgInfoMovie {
@@ -12,8 +13,7 @@
 }
 
 .infomovie {
-    border: 2px solid #242222;
-    padding-top: 20px;
+    /* border: 2px solid; */
     background-color: #424242;
 }
 
@@ -73,4 +73,62 @@
 .lista {
     color: #2199a1;
     margin-right: 5px;
+}
+
+
+/* Comentarios */
+
+.usuario {
+    border: 3px solid fuchsia;
+    margin: 10px;
+    padding: 7px;
+    background-color: #424242;
+    color: azure;
+    text-align: center;
+}
+
+.Contenedor_comentario {
+    align-items: center;
+    text-align: center;
+    display: grid;
+    background-color: #242222;
+    grid-template-rows: 1fr auto;
+    grid-gap: 2px;
+}
+
+
+.perfil {
+    width: 100%;
+
+}
+
+.card {
+    border: 2px solid black;
+    background-color: #424242;
+    border-radius: 30px;
+    color: white;
+    margin: 10px;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card img {
+    height: 55px;
+    border-radius: 100px;
+}
+
+
+.agregarComentario h3 {
+    font-size: large;
+    color: rgb(134, 134, 134);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.agregarComentario .boton_comentario {
+    background-color: #424242;
+    color: white;
 }

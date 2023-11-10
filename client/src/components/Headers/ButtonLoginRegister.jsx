@@ -7,7 +7,7 @@ export const LoginButtons = () => {
              Registrarse
             </Link>
             <Link to='/login' type="button" className="btn bg-dark text-white">
-        Iniciar sesión
+                Iniciar sesión
             </Link>
         </div>
     )
