@@ -33,9 +33,6 @@ header img {
   color: #ffffff;
 }
 
-#buscador:hover::placeholder {
-  color: white;
-}
 
 .color-fondo:hover {
   background-color: #000000;
@@ -48,4 +45,7 @@ header img {
   background-color: #202529;
   border: 2px solid #202529;
   border-radius: 10px;
+}
+#Buscador:focus{
+  color: white;
 }
