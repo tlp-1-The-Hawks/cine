@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../assets/style/seat.css';
 
-export const Seat = () => {
+export const Seat = ({ info }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const availableSeats = 50;
+  const [capacity, setCapacity] = useState(0);
   const occupiedSeats = [];
+
+  useEffect(() => {
+    if (info && info.information && info.information.length > 0) {
+      setCapacity(info.information[0].hall.capacity);
+    }
+  }, [info]);
 
   const selectSeat = (seatNumber) => {
     if (selectedSeats.includes(seatNumber)) {
-      // Si el asiento ya está seleccionado, quítalo de la lista de asientos seleccionados
       setSelectedSeats(selectedSeats.filter((seat) => seat !== seatNumber));
-    } else if (selectedSeats.length < availableSeats) {
-      // Si el asiento no está seleccionado y hay menos de 50 asientos seleccionados, agrégalo
+    } else if (selectedSeats.length < capacity) { // Utiliza la capacidad en lugar de availableSeats
       setSelectedSeats([...selectedSeats, seatNumber]);
     }
   };
@@ -38,7 +42,6 @@ export const Seat = () => {
     <div className="seats">
       <p>Asientos:</p>
       <div className='ejemplos container'>
-
         <div className="row">
           <div className="col-4 d-flex">
             <p>Disponible</p>
@@ -49,13 +52,10 @@ export const Seat = () => {
             <button className='ejemplos2'>A1</button>
           </div>
           <div className="col-4 d-flex">
-            <p>selecionado</p>
+            <p>Seleccionado</p>
             <button className='ejemplos3'>A1</button>
           </div>
         </div>
-
-
-
       </div>
       <div className="seating-plan">{seatingPlan}</div>
       <div id="selectedSeats">Asientos seleccionados: {selectedSeats.map(seatNumber => String.fromCharCode(65 + Math.floor((seatNumber - 1) / 10)) + (seatNumber % 10)).join(', ')}</div>

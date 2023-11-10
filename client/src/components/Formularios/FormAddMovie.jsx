@@ -201,7 +201,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                                 <input
                                                     id='events'
                                                     name={`${number}_date`}
-                                                    type="date"
+                                                    type="dateTime-local"
                                                     onChange={handleChange}
                                                 />
                                             </div>

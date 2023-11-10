@@ -1,5 +1,16 @@
+import React from 'react';
+
+function convertirMinutosAHorasYMinutos(minutos) {
+  const horas = Math.floor(minutos / 60);
+  const minutosRestantes = minutos % 60;
+  const horaFormateada = horas < 10 ? `${horas}` : `${horas}`;
+  const minutosFormateados = minutosRestantes < 10 ? `0${minutosRestantes}` : `${minutosRestantes}`;
+  return `${horaFormateada}:${minutosFormateados}`;
+}
+
 export const MovieInfo = ({ info }) => {
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
+
   return (
     <div className="bgInfoMovie">
       <div className="infomovie container rounded-4">
@@ -28,8 +39,7 @@ export const MovieInfo = ({ info }) => {
               <div>
                 <ul className="movie-info">
                   <li>
-                    <span className="lista">Precio:</span>$
-                    {info &&
+                    <span className="lista">Precio:</span>${info &&
                       info.information &&
                       info.information[0] && (
                         <span>{info.information[0].price}</span>
@@ -45,8 +55,7 @@ export const MovieInfo = ({ info }) => {
                   </li>
                   <li>
                     <span className="lista">N° Sala:</span>
-                    {
-                      info &&
+                    {info &&
                       info.information &&
                       info.information[0] &&
                       info.information[0].hall && (
@@ -57,8 +66,7 @@ export const MovieInfo = ({ info }) => {
                   </li>
                   <li>
                     <span className="lista">Formato:</span>
-                    {
-                      info &&
+                    {info &&
                       info.information &&
                       info.information[0] &&
                       info.information[0].type_emission && (
@@ -72,7 +80,9 @@ export const MovieInfo = ({ info }) => {
                     {info &&
                       info.information &&
                       info.information[0] && (
-                        <span>{info.information[0].duration} Minutos</span>
+                        <span>
+                          {convertirMinutosAHorasYMinutos(info.information[0].duration)} h
+                        </span>
                       )}
                   </li>
                   <li>
@@ -96,8 +106,8 @@ export const MovieInfo = ({ info }) => {
                           const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
 
                           return (
-                            <div className="col">
-                              <p className="text-center bg-dark p-1 rounded" key={date.id} id={date.id}>
+                            <div className="col" key={date.id} id={date.id}>
+                              <p className="text-center bg-dark p-1 rounded">
                                 {month} {day}, {hour}
                               </p>
                             </div>
