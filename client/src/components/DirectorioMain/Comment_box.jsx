@@ -48,7 +48,7 @@ export const CommentBox = ({ movie, socket, comments, authReserva}) => {
 
     return (
         <div className="Contenedor_comentario"> 
-             {authReserva === null ? <p>!Reseva la pelicula y luego dinos tu opinión¡</p> :
+             {authReserva === null ? <p>!Reseva la película y luego dinos tu opinión¡</p> :
               contComment === '0d 0h 0m 0s' ? <AddComment socket={socket} movie={movie} /> : 
               <p>Activación de comentario: { contComment}</p>
               }
