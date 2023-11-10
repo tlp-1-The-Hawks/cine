@@ -1,6 +1,12 @@
 export const MovieInfo = ({ info, authReserva }) => {
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
-
+  function convertirMinutosAHorasYMinutos(minutos) {
+    const horas = Math.floor(minutos / 60);
+    const minutosRestantes = minutos % 60;
+    const horaFormateada = horas < 10 ? `${horas}` : `${horas}`;
+    const minutosFormateados = minutosRestantes < 10 ? `0${minutosRestantes}` : `${minutosRestantes}`;
+    return `${horaFormateada}:${minutosFormateados}`;
+  }
   return (
     <div className="bgInfoMovie">
       <div className="infomovie container rounded-4">

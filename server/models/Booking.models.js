@@ -41,7 +41,7 @@ export async function getAllBooking() {
 }
 
 export async function getBookingById(movieId,cinemaId,userId) {
- return await bookingModel.findOne({
+return await bookingModel.findOne({
     where: {
       movieId:movieId,
       cinemaId:cinemaId,
