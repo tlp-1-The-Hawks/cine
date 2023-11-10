@@ -58,6 +58,7 @@ export const Header = ({ setSearchBar }) => {
               <div>
                 <form className="d-flex prueba" id='Buscador' role="search">
                   <input
+                    autoComplete='off'
                     className="form-control me-2 borde-colorBusqueda color-fondo"
                     id='buscador'
                     type="search"

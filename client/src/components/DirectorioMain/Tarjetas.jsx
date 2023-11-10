@@ -42,7 +42,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                       {cine.name}
                     </Link>
                   ))}
-                  <div className='crud'>
+                  {/* <div className='crud'>
                     <div className='crudBoton' data-tooltip="editar"><button className='crudButton'>                      <box-icon name='edit-alt' type='solid' color='#ffffff' ></box-icon></button>
 
                     </div>
@@ -50,7 +50,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
                     </div>
 
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
