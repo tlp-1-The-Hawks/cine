@@ -31,7 +31,6 @@ export const FormRegister = () => {
       <div className='formBoxRegister'>
         <form name='formregister'>
           <h2 className='mt-2'>Registro</h2>
-
           <div className='inputBoxRegister'>
             <input type="text"
               placeholder='Nombre'
