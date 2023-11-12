@@ -8,7 +8,7 @@ export const SoporteForm = () => {
     <div className='formularioSoporte'>
       <div className="container">
         <div className='row'>
-          <div className="col">
+          <div className="col-12 col-md-6 col-sm-12">
               <div className='mt-5'>
                     <h2 className='titleSupport text-center'>Soporte al Cliente</h2>
                     <p className='textos'>
@@ -56,7 +56,7 @@ export const SoporteForm = () => {
                   </div>
 
                 </div>
-                <div className='row'>
+                <div className='row justify-content-center'>
 
                   <div className='row'>
                     <label className='text-center'>Mensaje:</label>
@@ -65,7 +65,9 @@ export const SoporteForm = () => {
                       name=""
                       id=""
                       cols="30"
-                      rows="10"></textarea>
+                      rows="10">
+
+                      </textarea>
                   </div>
                 </div>
                 <div className="row">

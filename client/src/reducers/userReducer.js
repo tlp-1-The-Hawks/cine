@@ -1,4 +1,5 @@
 import { types_user } from "../types/types.user.js";
+import { AddRequestCine } from "../hooks/FetchPost/RequestCine.js";
 import Swal from 'sweetalert2'
 
 export const userReducer = (state, action) => {
@@ -118,6 +119,40 @@ export const userReducer = (state, action) => {
                     })
                 });
             break;
+
+            case types_user.CINE_REQUEST: 
+            console.log(action.payload)
+            AddRequestCine(action.payload)
+            .then((data) => {
+                if (data.errors) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: data.errors[0].msg,
+                        icon: 'error',
+                        width: '50%',
+                        padding: '1rem',
+                        background: '#DBCBCB',
+                        grow: 'row'
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Solicitud enviada',
+                        icon: 'success',
+                        confirmButtonText: 'ok',
+                        width: '50%',
+                        padding: '1rem',
+                        background: '#DBCBCB',
+                        grow: 'row'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/'
+                        }
+                    })
+                }
+            })
+
+            break
+
     }
 
 

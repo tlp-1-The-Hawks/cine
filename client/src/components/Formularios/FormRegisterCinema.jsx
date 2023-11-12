@@ -1,6 +1,51 @@
+import { useEffect, useState } from 'react'
 import '../../assets/style/FormRegisterCinema.css'
-import { Link } from 'react-router-dom'
-export const FormRegisterCinema = () => {
+import { RequestCineSubmit } from '../Submits/RequestCineSubmit.jsx'
+import { FindLocation } from '../../hooks/datePreloads/FindProvinceAndLocation.js'
+
+
+export const FormRegisterCinema = ({province}) => {
+    const [formState, setFormState] = useState({
+        name_cinema: '',
+        provinceId: '',
+        locationId: '', 
+        address: '',
+        email: '',
+        phone: '',
+        cuit: ''
+      });
+      const [provinces, setProvinces] = useState([]);
+      const [locations, setLocations] = useState([]);
+    
+      useEffect(() => {
+        setProvinces(province);
+      }, [province]);
+
+
+    
+      const handleChange = async (e) => {
+        const { name, value } = e.target;
+        
+        setFormState({
+          ...formState,
+          [name]: value,
+        });
+    
+        if (name === 'provinceId') {
+          try {
+            if (value >  0) {
+                const data = await FindLocation(value);
+                setLocations(data)
+                
+            }else{
+                setLocations([]); 
+            }       
+          } catch (error) {
+            console.error('Error fetching locations:', error);
+          }
+        }
+        console.log(formState)
+      };
 
     return(
         <>
@@ -12,58 +57,65 @@ export const FormRegisterCinema = () => {
                 <div className='row'>
                     <div className='col d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
-                        <input placeholder='Nombre del cine' type="text" /> 
+                        <input name='name_cinema' onChange={handleChange} value={formState.name_cinema}
+                         placeholder='Nombre del cine' type="text" autoComplete='off' /> 
                         </div>
                     </div>
                     <div className='col d-flex justify-content-center'>
-                        <div className="inputBoxRegister row">
-                            <label htmlFor="">Ubicación</label>
-                            <select className='w-50' name="" id="">
-                                <option value="">Provincia</option>
-                                <option value="">Formosa</option>
-                            </select>
-                            <select className='w-50' name="" id="">
-                                <option value="">Departamento</option>
-                            </select>
+                        <div className='inputBoxRegister row'>
+                        <label htmlFor=''>Ubicación</label>
+                        <select onChange={handleChange} name='provinceId' value={formState.provinceId} className='w-50' id=''>
+                            <option value=''>Seleccione una provincia</option>
+                            {provinces.map((province) => (
+                            <option name='provinceId' value={province.id} id={province.id} key={province.id}>
+                                {province.name}
+                            </option>
+                            ))}
+                        </select>
+                        <select
+                            onChange={(e) => setFormState({ ...formState, locationId: e.target.value })}
+                            name='locationId'
+                            value={formState.locationId}
+                            className='w-50'
+                            id=''
+                        >
+                            <option value=''>Seleccione una localidad</option>
+                            {locations.map((location) => (
+                            <option key={location.id} value={location.id}>
+                                {location.name}
+                            </option>
+                            ))}
+                        </select>
                         </div>
                     </div>
                 </div>
                 <div className='row'>
                     <div className='col d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
-                        <input placeholder='Dirección' type="text" /> 
+                            <input onChange={handleChange} name='address' value={formState.address} placeholder='Dirección' type="text" autoComplete='off' /> 
                         </div>
                     </div>
                     <div className='col d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
-                         <input placeholder='Email' type="text" /> 
+                             <input onChange={handleChange} name='email' value={formState.email} placeholder='Email' type="text" autoComplete='off' /> 
                         </div>
                     </div>
                 </div>
                 <div className='row'>
                     <div className='col d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
-                        <input placeholder='Teléfono' type="text" /> 
+                         <input onChange={handleChange} name='phone' value={formState.phone} placeholder='Teléfono' type="number" autoComplete='off' /> 
                         </div>
                     </div>
                     <div className='col d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
-                         <input placeholder='CUIT de la empresa' type="text" /> 
+                          <input onChange={handleChange} name='cuit' value={formState.cuit} placeholder='CUIT de la empresa' type="number" autoComplete='off' /> 
                         </div>
                     </div>
                 </div>
-                <div className='groupRegisterCine'>
-                    <div className='row'>
-                        <div className='col'>
-                        <button className='botonRegisterCine btn'>Enviar</button>
-                
-                        </div>
-                        <div className="col">
-                            <Link className='botonRegisterCine btn' to={'/soporte'}>Cancelar</Link>
-                        </div>
-                    </div>
-              
-             </div>
+                <RequestCineSubmit
+                    formState={formState}
+                />
          </form>
        </div>
      </div>
