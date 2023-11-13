@@ -1,0 +1,14 @@
+.requestsBox {
+    min-height: 80vh;
+    background-color: #202529;
+}
+
+.miCartelera:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+
+.requestsButton {
+    margin-right: 15px;
+    margin-bottom: 10px;
+}

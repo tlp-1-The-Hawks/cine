@@ -29,7 +29,7 @@
 .formularioItems input{
     border: solid 1px orange;
     background: none;
-    color: white
+    color: white;
 }
 .formularioItems textarea{
     border: solid 1px orange;

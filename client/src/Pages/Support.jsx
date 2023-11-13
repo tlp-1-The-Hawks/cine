@@ -7,7 +7,6 @@ export const Support = () => {
   return (
     <>
     <Header/>
-
     <SoporteForm/>
     <Footer/>
     </>

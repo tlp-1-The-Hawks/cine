@@ -9,6 +9,7 @@ export const AuthCtxt = ({ children }) => {
 
     const token = localStorage.getItem('token');
     const [rol, setRol] = useState(false)
+    const [admin, setAdmin] = useState(false)
 
     useEffect(() => {
         if (token) {
@@ -24,8 +25,8 @@ export const AuthCtxt = ({ children }) => {
                 .then((data) => {
                     if (data.cinemaId != null) {
                         setRol(true)
-                        localStorage.setItem('rol', true)
                     }
+                    setAdmin(data.admin)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -39,7 +40,8 @@ export const AuthCtxt = ({ children }) => {
         <AuthContext.Provider
             value={{
                 isLogged: token ? true : false,
-                rolCinema: rol
+                rolCinema: rol,
+                admin: admin
             }}
         >
             {children}

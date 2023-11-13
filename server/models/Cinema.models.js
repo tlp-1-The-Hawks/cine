@@ -1,7 +1,5 @@
 import { sequelize } from '../config/database.js';
 import { DataTypes, } from 'sequelize';
-import { MovieModel } from './movie_model.js';
-import { movieCinemaModel } from './movieXcinema.js';
 
 export const cinemaModel = sequelize.define(
   'cinema',
@@ -13,6 +11,14 @@ export const cinemaModel = sequelize.define(
     address: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    phone: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   },
   {

@@ -18,7 +18,6 @@ import { locationModel, createLocation } from '../models/location.model.js';
 import { provinceModel, createProvince } from '../models/Province.model.js';
 import { requestCinemaModel } from '../models/RequestCinema.js';
 
-
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
   foreignKey: 'cinemaId',
@@ -174,6 +173,14 @@ requestCinemaModel.belongsTo(provinceModel)
 
 locationModel.hasMany(requestCinemaModel)
 requestCinemaModel.belongsTo(locationModel)
+
+
+//cinema and privince/location
+provinceModel.hasMany(cinemaModel)
+cinemaModel.belongsTo(provinceModel)
+
+locationModel.hasMany(cinemaModel)
+cinemaModel.belongsTo(locationModel)
 
 //preloaded data
 async function dataPreloaded() {

@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 
 export const Header = ({ setSearchBar }) => {
-  const { isLogged, rolCinema } = useContext(AuthContext)
+  const { isLogged, rolCinema, admin } = useContext(AuthContext)
 
 
   const [shearchValue, setSearchValue] = useState('')
@@ -47,10 +47,13 @@ export const Header = ({ setSearchBar }) => {
                   <Link to={'/'} className="nav-link text-white" aria-current="page" href="#">Inicio</Link>
                 </li>
                 <li className="nav-item">
+                 {admin &&  <Link className='nav-link text-white' to={'/solicitudes'}>Solicitudes</Link>}
+                </li>
+                <li className="nav-item">
                   {rolCinema && <Link className='nav-link text-white' to={'/reservaciones'}>Reservaciones</Link>}
                 </li>
                 <li className="nav-item">
-                  {isLogged && <Link className='nav-link text-white' to={'/soporte'}>Contacto</Link>}
+                  <Link className='nav-link text-white' to={'/soporte'}>Contacto</Link>
                 </li>
               </ul>
             </div>

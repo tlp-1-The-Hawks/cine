@@ -30,7 +30,7 @@
 .formBoxRegisterCine .inputBoxRegister {
   position: relative;
   margin: 30px 0;
-  width: 310px;
+  width: 100%;
   border-bottom: 2px solid #fff;
 }
 

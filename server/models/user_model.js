@@ -31,6 +31,10 @@ export const UserModel = sequelize.define(
     cinemaId: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    admin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },
   {

@@ -53,15 +53,15 @@ export const FormRegisterCinema = ({province}) => {
        <div className='formBoxRegisterCine'>
          <form name='formregister'>
             <div className='container'></div>
-                <h2 className='mt-2'>Registro de Cines: Solicitud de aprobación</h2>
+                <h2 className='mt-2 text-center'>Registro de Cines: Solicitud de aprobación</h2>
                 <div className='row'>
-                    <div className='col d-flex justify-content-center'>
+                    <div className='col col-12 col-md-6 col-sm-12 d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
                         <input name='name_cinema' onChange={handleChange} value={formState.name_cinema}
                          placeholder='Nombre del cine' type="text" autoComplete='off' /> 
                         </div>
                     </div>
-                    <div className='col d-flex justify-content-center'>
+                    <div className='col col-12 col-md-6 col-sm-12 d-flex justify-content-center'>
                         <div className='inputBoxRegister row'>
                         <label htmlFor=''>Ubicación</label>
                         <select onChange={handleChange} name='provinceId' value={formState.provinceId} className='w-50' id=''>
@@ -90,24 +90,24 @@ export const FormRegisterCinema = ({province}) => {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col d-flex justify-content-center'>
+                    <div className='col col-12 col-md-6 col-sm-12 d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
                             <input onChange={handleChange} name='address' value={formState.address} placeholder='Dirección' type="text" autoComplete='off' /> 
                         </div>
                     </div>
-                    <div className='col d-flex justify-content-center'>
+                    <div className='col col-12 col-md-6 col-sm-12 d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
                              <input onChange={handleChange} name='email' value={formState.email} placeholder='Email' type="text" autoComplete='off' /> 
                         </div>
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col d-flex justify-content-center'>
+                    <div className='col col-12 col-md-6 d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
                          <input onChange={handleChange} name='phone' value={formState.phone} placeholder='Teléfono' type="number" autoComplete='off' /> 
                         </div>
                     </div>
-                    <div className='col d-flex justify-content-center'>
+                    <div className='col col-12 col-md-6 d-flex justify-content-center'>
                         <div className="inputBoxRegister row">
                           <input onChange={handleChange} name='cuit' value={formState.cuit} placeholder='CUIT de la empresa' type="number" autoComplete='off' /> 
                         </div>

@@ -1,12 +1,14 @@
-import {sequelize} from '../config/database.js'
+import { sequelize } from '../config/database.js'
 import { DataTypes } from 'sequelize'
+import { provinceModel } from './Province.model.js'
+import { locationModel } from './location.model.js'
 
 export const requestCinemaModel = sequelize.define(
     'requestCinema',
     {
         name_cinema: {
-           type: DataTypes.STRING,
-           allowNull: false 
+            type: DataTypes.STRING,
+            allowNull: false
         },
         address: {
             type: DataTypes.STRING,
@@ -28,6 +30,28 @@ export const requestCinemaModel = sequelize.define(
 )
 
 
-export async function addRequestCine(solicitud){
+export async function addRequestCine(solicitud) {
     return await requestCinemaModel.create(solicitud)
+}
+
+export async function getRequestCine() {
+    return await requestCinemaModel.findAll({
+        include: [
+            {
+                model: provinceModel
+            },
+            {
+                model: locationModel
+            }
+        ]
+    })
+}
+
+
+export async function deleteRequestCine(id) {
+    return await requestCinemaModel.destroy({
+        where: {
+            id: id
+        }
+    })
 }
