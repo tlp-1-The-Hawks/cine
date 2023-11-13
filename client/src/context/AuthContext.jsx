@@ -26,7 +26,11 @@ export const AuthCtxt = ({ children }) => {
                     if (data.cinemaId != null) {
                         setRol(true)
                     }
-                    setAdmin(data.admin)
+                    if (data.admin === true) {
+                        localStorage.setItem('admin', true)
+                    } else {
+                        localStorage.setItem('admin', false)
+                    }
                 })
                 .catch((error) => {
                     console.log(error)

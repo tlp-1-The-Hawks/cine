@@ -14,6 +14,7 @@ export const RequestsBox = ({ reqCine }) => {
             payload: e.target.id
         })
         setRequestCine(reqCine)
+        window.location.reload()
     }
 
 

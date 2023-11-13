@@ -1,29 +1,34 @@
 import { Header } from "../components/Headers/Header.jsx";
 import { Footer } from "../components/Footers/Footer.jsx";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext.jsx";
-import { Navigate } from "react-router-dom";
 import { RequestsBox } from "../components/DirectorioMain/RequestsBox.jsx";
 import '../assets/style/ManageRequests.css'
 import { useState, useEffect } from "react";
-import { FindRequestCine } from "../hooks/datePreloads/FindRequests.js";
+import { useNavigate } from "react-router-dom";
+import { CustomFetch } from "../api/customFetch.js";
 
 export const ManageRequests = () => {
-    const { admin } = useContext(AuthContext)
+    const admin = localStorage.getItem('admin')
+    if (!admin) return (navigate('/'))
 
+    const navigate = useNavigate()
 
     const [reqCine, setReqCine] = useState([])
 
     useEffect(() => {
+
+
         (
+
             async () => {
-                const data = await FindRequestCine()
+                const data = await CustomFetch('http://localhost:4000/api/request-cine', 'GET')
 
                 setReqCine(data)
-                if (!admin) return (<Navigate to={'/'} />)
+
             }
         )()
+
     }, [])
+
 
     return (
         <>

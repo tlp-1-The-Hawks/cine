@@ -166,10 +166,6 @@ export const userReducer = (state, action) => {
                             padding: '1rem',
                             background: '#DBCBCB',
                             grow: 'row'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                return window.location.reload()
-                            }
                         })
 
                 })

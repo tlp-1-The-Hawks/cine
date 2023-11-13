@@ -8,8 +8,8 @@ import { useContext } from 'react';
 
 
 export const Header = ({ setSearchBar }) => {
-  const { isLogged, rolCinema, admin } = useContext(AuthContext)
-
+  const { isLogged, rolCinema } = useContext(AuthContext)
+  const admin = localStorage.getItem('admin')
 
   const [shearchValue, setSearchValue] = useState('')
 
@@ -47,7 +47,7 @@ export const Header = ({ setSearchBar }) => {
                   <Link to={'/'} className="nav-link text-white" aria-current="page" href="#">Inicio</Link>
                 </li>
                 <li className="nav-item">
-                 {admin &&  <Link className='nav-link text-white' to={'/solicitudes'}>Solicitudes</Link>}
+                  {admin && <Link className='nav-link text-white' to={'/solicitudes'}>Solicitudes</Link>}
                 </li>
                 <li className="nav-item">
                   {rolCinema && <Link className='nav-link text-white' to={'/reservaciones'}>Reservaciones</Link>}
@@ -87,7 +87,7 @@ export const Header = ({ setSearchBar }) => {
             {!isLogged && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
           </div>
         </div>
-    
+
       </nav>
 
     </header>
