@@ -10,7 +10,10 @@ export const CustomFetch = async (url, req, payload,) => {
     if (req === 'POST') {
         const response = await fetch(url, {
             method: req,
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            headers: {
+                'content-type': 'application/json'
+            }
         })
 
         const data = await response.json()
