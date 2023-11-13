@@ -6,6 +6,7 @@ import { LogoutButton } from './LogoutButton.jsx';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import { useContext } from 'react';
 
+
 export const Header = ({ setSearchBar }) => {
   const { isLogged, rolCinema } = useContext(AuthContext)
 
@@ -82,7 +83,9 @@ export const Header = ({ setSearchBar }) => {
             {!isLogged && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
           </div>
         </div>
+    
       </nav>
+
     </header>
   );
 };
