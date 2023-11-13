@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState} from 'react'
+import { useState } from 'react'
 import '../../assets/style/FormRegister.css'
 import { RegisterSubmit } from '../Submits/RegisterSubmit.jsx'
 
@@ -92,9 +92,9 @@ export const FormRegister = () => {
             />
           </div>
 
-        <RegisterSubmit
-          formState={formState}
-        />
+          <RegisterSubmit
+            formState={formState}
+          />
 
           <div className='groupRegister'>
             <span><a href="#">Recuperar Contraseña</a></span>
