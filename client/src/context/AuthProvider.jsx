@@ -6,13 +6,13 @@ export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
     
-    const [authState, dispatch] = useReducer(authReducer, { logged: false });
+    const [authState, dispatch] = useReducer(authReducer, { islogged: false, rolCinema: false });
 
 
-    const login = (payload) => {
+    const login = async (payload) => {
         dispatch({
             type: types.LOGIN,
-            payload
+            payload 
         })
     }
 

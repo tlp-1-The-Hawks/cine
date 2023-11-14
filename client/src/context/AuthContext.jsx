@@ -11,33 +11,6 @@ export const AuthCtxt = ({ children }) => {
     const [rol, setRol] = useState(false)
     const [admin, setAdmin] = useState(false)
 
-    useEffect(() => {
-        if (token) {
-
-            fetch('http://localhost:4000/auth/user', {
-                method: 'GET',
-                headers: {
-                    'content-type': 'application/json',
-                    'authorization': token
-                }
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.cinemaId != null) {
-                        setRol(true)
-                    }
-                    if (data.admin === true) {
-                        localStorage.setItem('admin', true)
-                    } else {
-                        localStorage.setItem('admin', false)
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
-    }, [])
-
 
 
     return (

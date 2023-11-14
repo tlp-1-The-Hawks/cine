@@ -11,9 +11,13 @@ export const ctrlLoginUser = async (req, res) => {
   try {
     const user = await getUserByEmailAndPassword(req.body);
 
-    const token = await createJWT({ user: user.id });
-
-    res.status(200).json(token);
+    if(user === null){
+      const token = null
+      res.status(200).json(token);
+      }else {
+        const token = await createJWT({ user: user.id });
+        res.status(200).json(token);
+      }
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
