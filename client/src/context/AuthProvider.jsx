@@ -5,14 +5,14 @@ import { types } from "../types/types";
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-    
-    const [authState, dispatch] = useReducer(authReducer, { islogged: false, rolCinema: false });
+
+    const [authState, dispatch] = useReducer(authReducer, { islogged: false });
 
 
     const login = async (payload) => {
         dispatch({
             type: types.LOGIN,
-            payload 
+            payload
         })
     }
 

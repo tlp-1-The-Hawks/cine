@@ -3,14 +3,14 @@ import { Footer } from "../components/Footers/Footer.jsx"
 import { ReservationsBox } from "../components/DirectorioMain/Reservations_box.jsx"
 import { useEffect, useState, useContext } from "react"
 import { FindOneUser } from "../hooks/datePreloads/FindOneUser.js"
-import { AuthContext } from "../context/AuthContext.jsx"
+// import { AuthContext } from "../context/AuthContext.jsx"
 import { Navigate } from "react-router-dom"
 import { CustomFetch } from "../api/customFetch.js"
 import '../assets/style/Reservations.css'
 
 export const WatchReservations = () => {
     const token = localStorage.getItem('token')
-    const { rolCinema } = useContext(AuthContext)
+    // const { rolCinema } = useContext(AuthContext)
 
 
     const [movies, setMovies] = useState([])
@@ -27,7 +27,7 @@ export const WatchReservations = () => {
 
                 setCinemaId(user.cinemaId)
                 setMovies(dataMovies)
-                if (!rolCinema) return (<Navigate to={"/"} />)
+                // if (!rolCinema) return (<Navigate to={"/"} />)
             }
 
         )()

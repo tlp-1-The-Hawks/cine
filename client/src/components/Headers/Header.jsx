@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useReducer } from 'react';
 import '../../assets/style/Header.css';
 import { Link } from 'react-router-dom';
 import { LoginButtons } from './ButtonLoginRegister.jsx';
 import { LogoutButton } from './LogoutButton.jsx';
-import { AuthContext } from '../../context/AuthContext.jsx';
-import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider.jsx';
+import { authReducer } from '../../reducers/authReducer.js';
+
+const token = localStorage.getItem('token');
+// import { AuthContext } from '../../context/AuthContext.jsx';
 
 
 export const Header = ({ setSearchBar }) => {
-  const { isLogged, rolCinema } = useContext(AuthContext)
-  const admin = localStorage.getItem('admin')
-
+  // const { isLogged, rolCinema } = useContext(AuthContext)
+  // const admin = localStorage.getItem('admin')
+  const { authState } = useContext(AuthContext)
+  console.log(authState)
   const [shearchValue, setSearchValue] = useState('')
 
   const handleShear = (e) => {
@@ -46,12 +50,12 @@ export const Header = ({ setSearchBar }) => {
                 <li className="nav-item">
                   <Link to={'/'} className="nav-link text-white" aria-current="page" href="#">Inicio</Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   {admin && <Link className='nav-link text-white' to={'/solicitudes'}>Solicitudes</Link>}
                 </li>
                 <li className="nav-item">
                   {rolCinema && <Link className='nav-link text-white' to={'/reservaciones'}>Reservaciones</Link>}
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <Link className='nav-link text-white' to={'/soporte'}>Contacto</Link>
                 </li>
@@ -83,8 +87,8 @@ export const Header = ({ setSearchBar }) => {
 
           </div>
           <div className="buttons d-flex m-1">
-            {isLogged && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
-            {!isLogged && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
+            {token && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
+            {!token && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
           </div>
         </div>
 

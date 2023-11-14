@@ -1,35 +1,35 @@
 import React from 'react'
 import '../../assets/style/soporteForm.css';
-import { AuthContext } from '../../context/AuthContext.jsx';
-import { useContext } from 'react'
+// import { AuthContext } from '../../context/AuthContext.jsx';
+// import { useContext } from 'react'
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 
 export const SoporteForm = () => {
-  const { isLogged } = useContext(AuthContext)
-  const navigate = useNavigate();
-  
-  
+  // const { isLogged } = useContext(AuthContext)
+  // const navigate = useNavigate();
+
+
   return (
 
     <div className='formularioSoporte'>
       <div className="container">
         <div className='row'>
           <div className="col-12 col-md-6 col-sm-12">
-              <div className='mt-5'>
-                    <h2 className='titleSupport text-center'>Soporte al Cliente</h2>
-                    <p className='textos'>
-                      Nuestro dedicado equipo de soporte revisará tu consulta con prontitud y se comunicará contigo a la brevedad. 
-                      Si tu solicitud requiere atención urgente o asistencia inmediata,
-                      no dudes en contactarnos por teléfono o a través de nuestro servicio de chat en vivo.
-                    </p>
+            <div className='mt-5'>
+              <h2 className='titleSupport text-center'>Soporte al Cliente</h2>
+              <p className='textos'>
+                Nuestro dedicado equipo de soporte revisará tu consulta con prontitud y se comunicará contigo a la brevedad.
+                Si tu solicitud requiere atención urgente o asistencia inmediata,
+                no dudes en contactarnos por teléfono o a través de nuestro servicio de chat en vivo.
+              </p>
 
-                   <div className='mt-5'>
-                      <h4 className='text-center'>Solicitud de Permisos para Subir Películas</h4>
-                        <p>
-                        Si deseas compartir tu cartelera de películas, puedes enviarnos una solicitud y la revisaremos lo más rápido posible.
-                        </p>
-                  </div>
+              <div className='mt-5'>
+                <h4 className='text-center'>Solicitud de Permisos para Subir Películas</h4>
+                <p>
+                  Si deseas compartir tu cartelera de películas, puedes enviarnos una solicitud y la revisaremos lo más rápido posible.
+                </p>
+              </div>
             </div>
 
           </div>
@@ -74,7 +74,7 @@ export const SoporteForm = () => {
                       cols="30"
                       rows="10">
 
-                      </textarea>
+                    </textarea>
                   </div>
                 </div>
                 <div className="row">
@@ -82,20 +82,20 @@ export const SoporteForm = () => {
                     <button className='botonSoporte btn mt-4 mb-2' type="submit">Enviar</button>
                   </div>
                   <div className="col">
-                    <button onClick={ e => {
-                       e.preventDefault()
-                       if(isLogged) {
-                         return navigate('/register-cine')
-                       }
-                       Swal.fire({
-                         title: 'Error',
-                         text: '¡Debes iniciar sesion!',
-                         icon: 'error',
-                         width: '50%',
-                         padding: '1rem',
-                         background: '#DBCBCB',
-                         grow: 'row'
-                     })
+                    <button onClick={e => {
+                      e.preventDefault()
+                      //  if(isLogged) {
+                      //    return navigate('/register-cine')
+                      //  }
+                      Swal.fire({
+                        title: 'Error',
+                        text: '¡Debes iniciar sesion!',
+                        icon: 'error',
+                        width: '50%',
+                        padding: '1rem',
+                        background: '#DBCBCB',
+                        grow: 'row'
+                      })
                     }} className='botonSoporte btn mt-4 mb-2'>Solicitud</button>
                   </div>
                 </div>
