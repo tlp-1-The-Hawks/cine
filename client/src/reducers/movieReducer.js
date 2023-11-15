@@ -13,53 +13,53 @@ export const movieReducer = (state, action) => {
 
             fetch(`http://localhost:4000/api/information/${cinemaId}`, {
                 method: 'POST',
-                body: JSON.stringify(formMovie),
+                body: JSON.stringify({ formMovie, sendImg }),
                 headers: {
                     'content-type': 'application/json'
                 }
             })
-                .then((res) => {
-                    if (res.status === 200) {
+            // .then((res) => {
+            //     if (res.status === 200) {
 
-                        fetch('http://localhost:4000/api/upload-imgmovi', {
-                            method: 'POST',
-                            body: formData
-                        })
-                    }
-                    return res.json()
-                })
-                .then((data) => {
-                    console.log(data)
-                    if (data.errors) {
-                        Swal.fire({
-                            title: 'Error',
-                            text: data.errors[0].msg,
-                            icon: 'error',
-                            width: '50%',
-                            padding: '1rem',
-                            background: '#DBCBCB',
-                            grow: 'row'
-                        })
-                    } else {
-                        Swal.fire({
-                            title: 'Se guardo su película correctamente',
-                            icon: 'success',
-                            confirmButtonText: 'ok',
-                            width: '50%',
-                            padding: '1rem',
-                            background: '#DBCBCB',
-                            grow: 'row'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = '/'
-                            }
-                        })
+            //         fetch('http://localhost:4000/api/upload-imgmovi', {
+            //             method: 'POST',
+            //             body: formData
+            //         })
+            //     }
+            //     return res.json()
+            // })
+            // .then((data) => {
+            //     console.log(data)
+            //     if (data.errors) {
+            //         Swal.fire({
+            //             title: 'Error',
+            //             text: data.errors[0].msg,
+            //             icon: 'error',
+            //             width: '50%',
+            //             padding: '1rem',
+            //             background: '#DBCBCB',
+            //             grow: 'row'
+            //         })
+            //     } else {
+            //         Swal.fire({
+            //             title: 'Se guardo su película correctamente',
+            //             icon: 'success',
+            //             confirmButtonText: 'ok',
+            //             width: '50%',
+            //             padding: '1rem',
+            //             background: '#DBCBCB',
+            //             grow: 'row'
+            //         }).then((result) => {
+            //             if (result.isConfirmed) {
+            //                 // window.location.href = '/'
+            //             }
+            //         })
 
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+            //     }
+            // })
+            // .catch((error) => {
+            //     console.log(error)
+            // })
             break;
         case type_movie.ADD_COMMENT_MOVIE:
             const { comment, userId, movieId } = action.payload

@@ -9,7 +9,7 @@ export const Header = ({ setSearchBar }) => {
 
   const { authState } = useContext(AuthContext)
   const [shearchValue, setSearchValue] = useState('')
-
+  console.log(authState);
   const handleShear = (e) => {
     setSearchValue(e.target.value)
   }
@@ -44,10 +44,10 @@ export const Header = ({ setSearchBar }) => {
                   <Link to={'/'} className="nav-link text-white" aria-current="page" href="#">Inicio</Link>
                 </li>
                 <li className="nav-item">
-                  { authState.admin === false ? "" :<Link className='nav-link text-white' to={'/solicitudes'}>Solicitudes</Link>}
+                  {authState.admin && <Link className='nav-link text-white' to={'/solicitudes'}>Solicitudes</Link>}
                 </li>
                 <li className="nav-item">
-                  {authState.cinema === false ? "" : <Link className='nav-link text-white' to={'/reservaciones'}>Reservaciones</Link>}
+                  {authState.cinema && <Link className='nav-link text-white' to={'/reservaciones'}>Reservaciones</Link>}
                 </li>
                 <li className="nav-item">
                   <Link className='nav-link text-white' to={'/soporte'}>Contacto</Link>

@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthProvider';
 // import { AuthContext } from '../../context/AuthContext.jsx';
 
 export const Tarjetas = ({ moviesWithCinemas }) => {
-  const {authState} = useContext(AuthContext)
+  const { authState } = useContext(AuthContext)
   // const { rolCinema } = useContext(AuthContext)
 
 
@@ -61,7 +61,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
       </section>
       <div className='d-flex justify-content-end text-end'>
-        {!authState && <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>}
+        {authState.cinema && <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>}
       </div>
     </div>
   );

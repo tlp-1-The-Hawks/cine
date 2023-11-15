@@ -5,16 +5,16 @@ export const authReducer = (state = {}, action) => {
 
     switch (action.type) {
         case types.LOGIN:
-        const {token, user} = action.payload
-            localStorage.setItem('token', (token.token));
-            localStorage.setItem('cinema', JSON.stringify(user.cinemaId === null ? false : true));
-            localStorage.setItem('admin', JSON.stringify(user.admin));
+            const { token, user } = action.payload
+            localStorage.setItem('token', token.token);
+            localStorage.setItem('cinema', user.cinemaId === null ? false : true);
+            localStorage.setItem('admin', user.admin);
             localStorage.setItem('islogged', true);
             return {
                 ...action.payload,
                 islogged: true,
                 admin: user.admin,
-                cinema: user.cinemaId !== null 
+                cinema: user.cinemaId !== null
             };
 
         case types.LOGOUT:

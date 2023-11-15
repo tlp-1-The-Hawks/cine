@@ -56,8 +56,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
 
                 });
                 setSendImg(file);
-                reader.readAsDataURL(file);
-                set
+                reader.readAsDataURL(file)
             } else {
                 setImageState({
                     image: null
@@ -69,6 +68,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
             const newNumber = e.target.value
             setNumberDates(newNumber)
         }
+
         if (id === 'events') {
             const { name } = e.target
             const index = parseInt(name.split("_")[0])
@@ -87,7 +87,6 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
             setArrayForDates(newArrayDates);
         }
 
-        console.log(sendImg)
     };
 
 

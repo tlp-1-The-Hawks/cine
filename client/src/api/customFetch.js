@@ -25,7 +25,7 @@ export const CustomFetch = async (url, req, payload,) => {
         const response = await fetch(url, {
             method: 'GET',
             headers: {
-                'authorization': token
+                'authorization': payload
             }
         })
 
@@ -34,5 +34,27 @@ export const CustomFetch = async (url, req, payload,) => {
         return data
     }
 
-    
+    if (req === 'MOVIE') {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+
+
+        return response
+    }
+
+
+    if (req === 'IMAGE') {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: payload,
+        })
+
+
+        return response
+    }
 }
