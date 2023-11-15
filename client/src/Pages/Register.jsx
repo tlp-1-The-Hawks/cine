@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthProvider';
 export const Register = () => {
   const { authState } = useContext(AuthContext)
 
-  if (!authState.isLogged) return (<Navigate to={'/'} />)
+  if (authState.islogged) return (<Navigate to={'/'} />)
   return (
     <FormRegister />
   );

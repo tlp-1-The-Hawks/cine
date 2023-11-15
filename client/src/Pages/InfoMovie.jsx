@@ -30,8 +30,9 @@ export const InfoMovie = ({ socket }) => {
 
                 if (token) {
                     const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token)
-                    const databooking = await CustomFetch(`http://localhost:4000/api/booking/${movie}/${cinema}/${user}`, 'GET')
+                    const databooking = await CustomFetch(`http://localhost:4000/api/booking/${movie}/${cinema}/${user.id}`, 'GET')
 
+                    console.log(databooking)
                     setAuthReserva(databooking)
                 }
             }

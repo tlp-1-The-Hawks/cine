@@ -1,12 +1,7 @@
 import { Header } from "../components/Headers/Header.jsx"
 import { Footer } from "../components/Footers/Footer.jsx"
 import { ReservationsBox } from "../components/DirectorioMain/Reservations_box.jsx"
-import { useEffect, useState, useContext } from "react"
-import { FindOneUser } from "../hooks/datePreloads/FindOneUser.js"
-import { CustomFetch } from "../api/customFetch.js"
-
-// import { AuthContext } from "../context/AuthContext.jsx"
-import { Navigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 import { CustomFetch } from "../api/customFetch.js"
 import '../assets/style/Reservations.css'
 
