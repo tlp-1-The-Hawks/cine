@@ -20,4 +20,19 @@ export const CustomFetch = async (url, req, payload,) => {
 
         return data
     }
+
+    if (req === 'TOKEN') {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'authorization': token
+            }
+        })
+
+        const data = await response.json()
+
+        return data
+    }
+
+    
 }

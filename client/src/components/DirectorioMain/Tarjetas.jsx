@@ -2,10 +2,13 @@ import React from 'react';
 import '../../assets/style/Tarjetas.css'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
 // import { AuthContext } from '../../context/AuthContext.jsx';
 
 export const Tarjetas = ({ moviesWithCinemas }) => {
+  const {authState} = useContext(AuthContext)
   // const { rolCinema } = useContext(AuthContext)
+
 
   const infoMovie = async (e) => {
     const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
@@ -58,7 +61,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
       </section>
       <div className='d-flex justify-content-end text-end'>
-        <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>
+        {!authState && <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>}
       </div>
     </div>
   );

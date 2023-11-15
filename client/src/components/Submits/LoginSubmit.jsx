@@ -41,10 +41,12 @@ export const LoginSubmit = ({ formState }) => {
         grow: 'row'
       })
     }
+   
     if (resp.token) {
+
+      console.log(resp)
       login(resp);
       conectarSocket();
-      localStorage.setItem('token', resp.token);
       Swal.fire({
         title: 'Inicio sesión correctamente',
         icon: 'success',

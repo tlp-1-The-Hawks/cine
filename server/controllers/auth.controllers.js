@@ -9,8 +9,6 @@ import { environments } from '../config/environments.js';
 
 export const ctrlLoginUser = async (req, res) => {
   try {
-    // if (req.body.password)
-    console.log(req.body.password, req.body.confirmarpassword)
     const user = await getUserByEmailAndPassword(req.body);
 
     if (user === null) {
@@ -18,7 +16,12 @@ export const ctrlLoginUser = async (req, res) => {
       res.status(200).json(token);
     } else {
       const token = await createJWT({ user: user.id });
-      res.status(200).json(token);
+
+      const data = {
+        token,
+        user
+      }
+      res.status(200).json(data);
     }
   } catch (error) {
     console.log(error);
@@ -32,7 +35,12 @@ export const ctrlRegisterUser = async (req, res) => {
 
     const token = await createJWT({ user: user.id });
 
-    res.status(200).json(token);
+    const data = {
+      token,
+      user
+    }
+
+    res.status(200).json(data);
   } catch (error) {
     console.error(error);
     res.sendStatus(500);

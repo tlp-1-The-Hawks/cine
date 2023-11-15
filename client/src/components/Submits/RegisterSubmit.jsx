@@ -5,12 +5,12 @@ import { AuthContext } from "../../context/AuthProvider.jsx"
 import { CustomFetch } from "../../api/customFetch.js"
 import { SocketContext } from "../../context/SocketProvider.jsx"
 import Swal from "sweetalert2"
-
+import { useNavigate } from "react-router-dom"
 export const RegisterSubmit = ({ formState }) => {
   const { login } = useContext(AuthContext)
   const { conectarSocket } = useContext(SocketContext)
   // const { state, dispatch } = useContext(UserContext)
-
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -46,11 +46,11 @@ export const RegisterSubmit = ({ formState }) => {
           grow: 'row'
         })
       }
-
       if (response.token) {
+        console.log(response)
         login(response);
         conectarSocket();
-        localStorage.setItem('token', response.token);
+      
         Swal.fire({
           title: 'Inicio sesión correctamente',
           icon: 'success',

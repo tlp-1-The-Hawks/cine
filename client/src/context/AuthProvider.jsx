@@ -5,8 +5,12 @@ import { types } from "../types/types";
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-
-    const [authState, dispatch] = useReducer(authReducer, { islogged: false });
+    
+    const [authState, dispatch] = useReducer(authReducer, { 
+        islogged: localStorage.getItem('islogged') === 'true' || false,
+        admin: !!localStorage.getItem('admin') || false,
+        cinema: !!localStorage.getItem('cinema') || false
+    });
 
 
     const login = async (payload) => {

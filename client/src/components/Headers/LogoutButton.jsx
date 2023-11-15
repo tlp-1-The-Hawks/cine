@@ -1,10 +1,16 @@
 import React from 'react';
 import Swal from 'sweetalert2'
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
 
 export const LogoutButton = () => {
+  const {logout} = useContext(AuthContext)
+
   const handleLogout = () => {
     // Eliminar el token del localStorage
-    localStorage.removeItem('token');
+    logout().setTimeout(() => {
+      window.location.reload();
+    }, 2000);
 
         // Mostrar una alerta
         Swal.fire({
@@ -13,11 +19,6 @@ export const LogoutButton = () => {
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
-        
-        // Recargar la página
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
       };
 
   return (
