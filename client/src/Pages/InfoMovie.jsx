@@ -4,10 +4,8 @@ import { Footer } from '../components/Footers/Footer.jsx'
 import { useState, useEffect } from 'react'
 import { CommentBox } from '../components/DirectorioMain/comment_box.jsx'
 import '../assets/style/InfoMovie.css'
-import { FindComments } from '../hooks/datePreloads/FindComments.js'
-import { FindInformation } from '../hooks/datePreloads/FindInformation.js'
-import { FindOneUser } from '../hooks/datePreloads/FindOneUser.js'
 import { FindOneBookings } from '../hooks/datePreloads/FindBookings.js'
+import { CustomFetch } from '../api/customFetch.js'
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -23,15 +21,16 @@ export const InfoMovie = ({ socket }) => {
     useEffect(() => {
         (
             async () => {
-                const dataInfo = await FindInformation(movie, cinema)
-                const dataComments = await FindComments(movie)
+                const dataInfo = await CustomFetch(`http://localhost:4000/api/movies/${movie}/${cinema}`, 'GET')
+
+                const dataComments = await CustomFetch(`http://localhost:4000/api/comment/${movie}`, 'GET')
 
                 setInfo(dataInfo)
                 setComments(dataComments)
 
                 if (token) {
-                    const user = await FindOneUser(token)
-                    const databooking = await FindOneBookings(user.id, movie, cinema)
+                    const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token)
+                    const databooking = await CustomFetch(`http://localhost:4000/api/booking/${movie}/${cinema}/${user}`, 'GET')
 
                     setAuthReserva(databooking)
                 }

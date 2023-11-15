@@ -1,14 +1,14 @@
 import React from 'react'
 import { FormLogin } from '../components/Formularios/FormLogin.jsx'
-// import { AuthContext } from '../context/AuthContext.jsx'
 import { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthProvider.jsx'
 
 export const Login = () => {
 
-  // const { isLogged } = useContext(AuthContext)
+  const { authState } = useContext(AuthContext)
 
-  // if (isLogged) return (<Navigate to={"/"} />)
+  if (!authState.isLogged) return (<Navigate to={"/"} />)
   return (
     <FormLogin />
   )
