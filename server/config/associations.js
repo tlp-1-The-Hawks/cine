@@ -170,7 +170,7 @@ async function dataPreloaded() {
 
 export async function startDb() {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     await dataPreloaded();
   } catch (error) {
     console.log(error);
