@@ -3,17 +3,20 @@ import '../../assets/style/Tarjetas.css'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 // import { AuthContext } from '../../context/AuthContext.jsx';
 
 export const Tarjetas = ({ moviesWithCinemas }) => {
+  const navigate = useNavigate()
   const { authState } = useContext(AuthContext)
   // const { rolCinema } = useContext(AuthContext)
 
 
-  const infoMovie = async (e) => {
+  const infoMovie =  (e) => {
     const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
     const movieId = e.currentTarget.getAttribute("data-movie-id");
-    window.location.href = `/informacion-pelicula?movie=${movieId}&cinema=${cinemaId}`;
+
+    // window.location.href = `/informacion-pelicula?movie=${movieId}&cinema=${cinemaId}`;
 
   }
   return (
@@ -33,12 +36,12 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                     <Link
                       id='cineName'
                       key={cine.id}
-                      to="#"
+                      to={`/informacion-pelicula?movie=${movie.id}&cinema=${cine.id}`}
                       data-cinema-id={cine.id}
                       data-movie-id={movie.id}
                       type='button'
                       className='btn btn-outline-dark tageta'
-                      onClick={infoMovie}
+                    
                     >
                       {cine.name}
                     </Link>

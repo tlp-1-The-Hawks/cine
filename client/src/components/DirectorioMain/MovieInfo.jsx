@@ -1,4 +1,6 @@
-export const MovieInfo = ({ info, authReserva }) => {
+import { Link } from "react-router-dom";
+
+export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
   function convertirMinutosAHorasYMinutos(minutos) {
     const horas = Math.floor(minutos / 60);
@@ -128,17 +130,14 @@ export const MovieInfo = ({ info, authReserva }) => {
                   Reservado
                 </button>
                 :
-                <a
+                <Link
                   className="reserva"
                   role="button"
-                  onClick={() => {
-                    const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
-                    const movieId = info.id; // Obtén el ID de la película
-                    window.location.href = `/reserva?movieId=${movieId}&cinemaId=${cinemaId}`;
-                  }}
+                  to={`/reserva?movieId=${movie}&cinemaId=${cinema}`}
+               
                 >
                   Reservar
-                </a>
+                </Link>
             }
 
             {trailerURL && (

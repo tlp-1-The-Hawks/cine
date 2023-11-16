@@ -4,19 +4,24 @@ import { Footer } from '../components/Footers/Footer.jsx'
 import { useState, useEffect } from 'react'
 import { CommentBox } from '../components/DirectorioMain/comment_box.jsx'
 import '../assets/style/InfoMovie.css'
-import { FindOneBookings } from '../hooks/datePreloads/FindBookings.js'
 import { CustomFetch } from '../api/customFetch.js'
+import { useLocation } from 'react-router-dom'
 
-const urlSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
-const { movie, cinema } = params;
 
 
 export const InfoMovie = ({ socket }) => {
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
     const token = localStorage.getItem('token')
     const [info, setInfo] = useState([])
     const [comments, setComments] = useState([]);
     const [authReserva, setAuthReserva] = useState(null);
+
+  
+  
+
+    const movie = searchParams.get('movie');
+    const cinema = searchParams.get('cinema');
 
     useEffect(() => {
         (
@@ -51,6 +56,8 @@ export const InfoMovie = ({ socket }) => {
             <MovieInfo
                 info={info}
                 authReserva={authReserva}
+                cinema={cinema}
+                movie={movie}
             />
             <CommentBox
                 authReserva={authReserva}

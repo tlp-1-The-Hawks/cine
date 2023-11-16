@@ -19,7 +19,7 @@ export const WatchReservations = () => {
         (
             async () => {
                 const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token);
-                const dataMovies = await CustomFetch(`http://localhost:4000/api/movies/${user.id}`, 'GET')
+                const dataMovies = await CustomFetch(`http://localhost:4000/api/movies/${user.cinemaId}`, 'GET')
 
 
                 setCinemaId(user.cinemaId)
