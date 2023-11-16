@@ -1,12 +1,24 @@
 .titleForm{
     text-align: center;
 }
-body{background-color: #222222;
-color:white;}
-.formulario{
-border: solid 1px ;
-margin: 40px;
+.formularioSoporte{
+    background-color: #222222;
+    color:white;
+    display: flex;
+    justify-content: center;
 }
+
+.formSoporteBox{
+    position: relative;
+    border: 2px solid rgba(255, 255, 2550.5);
+    margin-top: 120px;
+    margin-bottom: 120px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+}
+
 .formularioItems{
     display: flex;
     flex-direction: column;
@@ -17,19 +29,21 @@ margin: 40px;
 .formularioItems input{
     border: solid 1px orange;
     background: none;
-    color: white
+    color: white;
 }
 .formularioItems textarea{
     border: solid 1px orange;
     background: none;
     color: white
 }
-.formularioItems button{
+
+.botonSoporte{
     border: solid 1px orange;
- background: none;   
- color: white;
+    background: none;   
+    color: white;
 }
-.formularioItems button:hover {
+.botonSoporte:hover {
+
     transform: scale(1.10);
     background-color: white;
     color: #222222;

@@ -1,48 +1,27 @@
-import { createContext } from "react";
-import { useEffect, useState } from "react";
+// import { createContext } from "react";
+// import { useEffect, useState } from "react";
 
-export const AuthContext = createContext();
-
-
-
-export const AuthCtxt = ({ children }) => {
-
-    const token = localStorage.getItem('token');
-    const [rol, setRol] = useState(false)
-
-    useEffect(() => {
-        if (token) {
-
-            fetch('http://localhost:4000/auth/user', {
-                method: 'GET',
-                headers: {
-                    'content-type': 'application/json',
-                    'authorization': token
-                }
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.cinemaId != null) {
-                        setRol(true)
-                        localStorage.setItem('rol', true)
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
-    }, [])
+// export const AuthContext = createContext();
 
 
 
-    return (
-        <AuthContext.Provider
-            value={{
-                isLogged: token ? true : false,
-                rolCinema: rol
-            }}
-        >
-            {children}
-        </AuthContext.Provider>
-    )
-}
+// export const AuthCtxt = ({ children }) => {
+
+//     const token = localStorage.getItem('token');
+//     const [rol, setRol] = useState(false)
+//     const [admin, setAdmin] = useState(false)
+
+
+
+//     return (
+//         <AuthContext.Provider
+//             value={{
+//                 isLogged: token ? true : false,
+//                 rolCinema: rol,
+//                 admin: admin
+//             }}
+//         >
+//             {children}
+//         </AuthContext.Provider>
+//     )
+// }

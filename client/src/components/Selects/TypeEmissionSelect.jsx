@@ -1,7 +1,20 @@
 import React from 'react';
-import { FindTypeEmission } from '../../hooks/datePreloads/FindTypeEmission.js';
+import { useEffect, useState } from 'react';
+import { CustomFetch } from '../../api/customFetch.js';
 export const TypeEmissionSelect = ({ formMovie, handleChange }) => {
-  const type_emission = FindTypeEmission()
+  const [type_emission, setType_emission] = useState([])
+
+
+  useEffect(() => {
+    (
+      async () => {
+        const data = await CustomFetch('http://localhost:4000/api/type-emission', 'GET')
+        setType_emission(data)
+      }
+
+    )()
+  }, [])
+
 
   return (
     <div className="mt-3 col col-sm-12 col-md-6 mb-3">

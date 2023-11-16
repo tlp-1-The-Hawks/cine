@@ -14,6 +14,9 @@ import { hallModel } from '../models/Hall.models.js';
 import { hallXcinemas } from '../models/hallXCinemas.js';
 import { dateEmissionsModel } from '../models/DateEmissions.js';
 import { infoXdateEmissions } from '../models/InfoXDateEmissions.js';
+import { locationModel, createLocation } from '../models/location.model.js';
+import { provinceModel, createProvince } from '../models/Province.model.js';
+import { requestCinemaModel } from '../models/RequestCinema.js';
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -159,10 +162,32 @@ dateEmissionsModel.belongsToMany(informationModel, { through: infoXdateEmissions
 dateEmissionsModel.hasMany(bookingModel)
 bookingModel.belongsTo(dateEmissionsModel)
 
+
+//Province and location
+provinceModel.hasMany(locationModel)
+locationModel.belongsTo(provinceModel)
+
+//requestsCinema
+provinceModel.hasMany(requestCinemaModel)
+requestCinemaModel.belongsTo(provinceModel)
+
+locationModel.hasMany(requestCinemaModel)
+requestCinemaModel.belongsTo(locationModel)
+
+
+//cinema and privince/location
+provinceModel.hasMany(cinemaModel)
+cinemaModel.belongsTo(provinceModel)
+
+locationModel.hasMany(cinemaModel)
+cinemaModel.belongsTo(locationModel)
+
 //preloaded data
 async function dataPreloaded() {
   await createGenre()
   await addTypeEmission()
+  await createProvince()
+  await createLocation()
 }
 
 
@@ -170,7 +195,7 @@ async function dataPreloaded() {
 
 export async function startDb() {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     await dataPreloaded();
   } catch (error) {
     console.log(error);

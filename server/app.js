@@ -13,15 +13,21 @@ import { authRouter } from './routes/auth.routes.js';
 import { infoMovierouter } from './routes/infomovie.routes.js';
 import { genrerouter } from './routes/genre.routes.js';
 import { bookingRouter } from './routes/booking.routes.js';
-import __dirname from './helpers/__dirname.js';
+import { provinceRouter } from './routes/provinces.routes.js';
 import { movieRouter } from './routes/movies.routes.js';
+import { locationRouter } from './routes/location.routes.js';
+import { requestCineRouter } from './routes/requestcine.routes.js';
 import { handleErrors } from './middlewares/handleError.js';
 import { createLogs } from './helpers/createLogs.js';
 import paymentsRoutes from './routes/payment.routes.js';
-import { Server } from 'socket.io';
-import { createServer } from 'node:http'
+import { Server as SocketServer } from 'socket.io';
+import { createServer } from 'http';
+import __dirname from './helpers/__dirname.js';
+
 
 const app = express();
+const httpServer = createServer(app);
+const io = new SocketServer(httpServer);
 
 app.use(express.json());
 app.use(cors());
@@ -47,30 +53,28 @@ app.use('/api', genrerouter);
 app.use('/api', bookingRouter)
 app.use('/api', type_emissionRouter)
 app.use('/api', paymentsRoutes)
+app.use('/api', provinceRouter)
+app.use('/api', requestCineRouter)
+app.use('/api', locationRouter)
 app.use('/auth', authRouter);
 app.use(handleErrors);
 
-const server = createServer(app, {
-  cors: {
-    origin: "*",
-  },
+io.on('connection', (socket) => {
+  console.log('Cliente conectado', socket.id);
+
+  socket.emit('message', 'Bienvenido al chat');
+
+  socket.on('new-message', (data) => {
+    console.log(data);
+    io.emit('new-message', data);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Cliente desconectado', socket.id);
+  });
 });
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-  },
-});
-
-io.on('connect', (socket) => {
-  console.log('user connecting')
-
-  socket.on('comment', (comment) => {
-    io.emit('comment', comment)
-  })
-})
-
-server.listen(environments.PORT, () => {
+httpServer.listen(environments.PORT, () => {
   console.log(`Server on http://localhost:${environments.PORT}`);
   startDb();
 });

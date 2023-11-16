@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Headers/Header.jsx';
 import { Filtros } from './components/DirectorioMain/Filtros.jsx';
 import { Footer } from './components/Footers/Footer.jsx';
-import { FindCinemas } from './hooks/datePreloads/FindCinemas.js';
-import { FindMovies } from './hooks/datePreloads/FindMovies.js';
+import { CustomFetch } from './api/customFetch.js';
 import './App.css';
 
 
@@ -18,8 +17,8 @@ function App() {
   useEffect(() => {
     (
       async () => {
-        const data = await FindCinemas()
-        const dataMovies = await FindMovies()
+        const dataMovies = await CustomFetch('http://localhost:4000/api/movies', 'GET')
+        const data = await CustomFetch('http://localhost:4000/api/cinema', 'GET')
 
         setCinemas(data)
 

@@ -54,7 +54,7 @@ export const ctrlAddInfoMovie = async (req, res) => {
         const newMovieInfo = await addMovieInfo(movieId, informationId)
 
         res.status(200).json({
-            message: 'Movie and information added'
+            msg: 'movie added successfully'
         })
 
     } catch (error) {

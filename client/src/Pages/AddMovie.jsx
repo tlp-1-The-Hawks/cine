@@ -1,33 +1,31 @@
 import { FormAddMovie } from '../components/Formularios/FormAddMovie.jsx';
 import { useState, useEffect } from 'react';
 import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext.jsx';
+import { CustomFetch } from '../api/customFetch.js';
+import { AuthContext } from '../context/AuthProvider.jsx';
 import { Navigate } from 'react-router-dom';
-import { findHall } from '../hooks/datePreloads/FindHall.js';
-import { FindOneUser } from '../hooks/datePreloads/FindOneUser.js';
 
 export const AddMovie = () => {
+    const token = localStorage.getItem('token')
     const [cinemaId, setCinemaId] = useState(null)
     const [hallState, setHallState] = useState([]);
-    const { isLogged } = useContext(AuthContext)
-    if (!isLogged) return (<Navigate to={"/"} />)
-    const token = localStorage.getItem('token');
+
+    const { authState } = useContext(AuthContext)
+
+
+    if (!authState.cinema) return (<Navigate to={"/"} />)
 
     useEffect(() => {
         (async () => {
-           
-                const user = await FindOneUser(token);
-                
-                if (user.cinemaId === null) {
-                    return window.location.href = '/';
-                } else {
-                    setCinemaId(user.cinemaId);
 
-                    const halls = await findHall(user.cinemaId);
-                    setHallState(halls.halls);
-                    setCinemaId(user.cinemaId)
-                }
-           
+            const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token);
+
+            setCinemaId(user.cinemaId);
+            const halls = await CustomFetch(`http://localhost:4000/api/hall/${user.cinemaId}`, 'GET')
+            setHallState(halls.halls);
+            setCinemaId(user.cinemaId)
+
+
         })();
     }, []);
     return (

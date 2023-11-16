@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState} from 'react'
+import { useState } from 'react'
 import '../../assets/style/FormRegister.css'
 import { RegisterSubmit } from '../Submits/RegisterSubmit.jsx'
 
@@ -31,7 +31,6 @@ export const FormRegister = () => {
       <div className='formBoxRegister'>
         <form name='formregister'>
           <h2 className='mt-2'>Registro</h2>
-
           <div className='inputBoxRegister'>
             <input type="text"
               placeholder='Nombre'
@@ -93,9 +92,9 @@ export const FormRegister = () => {
             />
           </div>
 
-        <RegisterSubmit
-          formState={formState}
-        />
+          <RegisterSubmit
+            formState={formState}
+          />
 
           <div className='groupRegister'>
             <span><a href="#">Recuperar Contraseña</a></span>

@@ -2,10 +2,13 @@ import React from 'react';
 import '../../assets/style/Tarjetas.css'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext.jsx';
+import { AuthContext } from '../../context/AuthProvider';
+// import { AuthContext } from '../../context/AuthContext.jsx';
 
 export const Tarjetas = ({ moviesWithCinemas }) => {
-  const { rolCinema } = useContext(AuthContext)
+  const { authState } = useContext(AuthContext)
+  // const { rolCinema } = useContext(AuthContext)
+
 
   const infoMovie = async (e) => {
     const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
@@ -40,7 +43,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                       {cine.name}
                     </Link>
                   ))}
-                  <div className='crud'>
+                  {/* <div className='crud'>
                     <div className='crudBoton' data-tooltip="editar"><button className='crudButton'>                      <box-icon name='edit-alt' type='solid' color='#ffffff' ></box-icon></button>
 
                     </div>
@@ -48,7 +51,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
                     </div>
 
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -58,7 +61,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
       </section>
       <div className='d-flex justify-content-end text-end'>
-        {rolCinema && <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>}
+        {authState.cinema && <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>}
       </div>
     </div>
   );
