@@ -21,6 +21,17 @@ export const CustomFetch = async (url, req, payload,) => {
         return data
     }
 
+    if (req === 'DELETE') {
+        const response = await fetch(url, {
+            method: req
+        })
+
+        const data = await response.json()
+
+        return data
+    }
+
+
     if (req === 'TOKEN') {
         const response = await fetch(url, {
             method: 'GET',

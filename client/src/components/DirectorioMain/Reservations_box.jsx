@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { FindBookings } from "../../hooks/datePreloads/FindBookings.js"
 import { CustomFetch } from "../../api/customFetch.js"
 
 export const ReservationsBox = ({ movies, cinemaId }) => {

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer } from 'react';
+import React, { useState, useContext} from 'react';
 import '../../assets/style/Header.css';
 import { Link } from 'react-router-dom';
 import { LoginButtons } from './ButtonLoginRegister.jsx';
@@ -9,7 +9,7 @@ export const Header = ({ setSearchBar }) => {
 
   const { authState } = useContext(AuthContext)
   const [shearchValue, setSearchValue] = useState('')
-  console.log(authState);
+
   const handleShear = (e) => {
     setSearchValue(e.target.value)
   }

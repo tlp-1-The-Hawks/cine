@@ -1,5 +1,3 @@
-import { UserContext } from "../../context/UserContext.jsx"
-import { types_user } from "../../types/types.user.js"
 import { useContext } from "react"
 import { AuthContext } from "../../context/AuthProvider.jsx"
 import { CustomFetch } from "../../api/customFetch.js"
@@ -9,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 export const RegisterSubmit = ({ formState }) => {
   const { login } = useContext(AuthContext)
   const { conectarSocket } = useContext(SocketContext)
-  // const { state, dispatch } = useContext(UserContext)
+
   const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()

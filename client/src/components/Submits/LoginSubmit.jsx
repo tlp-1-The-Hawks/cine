@@ -1,9 +1,6 @@
-import { types_user } from "../../types/types.user.js"
-import { UserContext } from "../../context/UserContext.jsx"
 import { useContext } from "react"
 import { CustomFetch } from "../../api/customFetch.js"
 import { SocketContext } from "../../context/SocketProvider.jsx"
-import { FindOneUser } from "../../hooks/datePreloads/FindOneUser.js"
 import { AuthContext } from "../../context/AuthProvider.jsx"
 import { useNavigate } from 'react-router-dom'
 import Swal from "sweetalert2"
@@ -12,7 +9,7 @@ export const LoginSubmit = ({ formState }) => {
   const navigate = useNavigate()
   const { conectarSocket } = useContext(SocketContext)
   const { login } = useContext(AuthContext)
-  const { state, dispatch } = useContext(UserContext)
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

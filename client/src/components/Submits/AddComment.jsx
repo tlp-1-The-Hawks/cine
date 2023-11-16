@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
-import { movieContext } from "../../context/MovieContext.jsx";
-import { type_movie } from "../../types/types.movie.js";
-import { useContext } from "react";
 import Swal from "sweetalert2";
 import { CustomFetch } from "../../api/customFetch.js";
 
 const token = localStorage.getItem("token");
 
 export const AddComment = ({ movie, socket }) => {
-    const { state, dispatch } = useContext(movieContext)
+   
     const [user, setUser] = useState('')
     const [nuevoComentario, setNuevoComentario] = useState('');
 

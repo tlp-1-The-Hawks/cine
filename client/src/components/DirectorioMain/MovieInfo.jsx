@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
+import { useContext } from "react";
 
 export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
+  const {authState} = useContext(AuthContext)
+
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
   function convertirMinutosAHorasYMinutos(minutos) {
     const horas = Math.floor(minutos / 60);
@@ -130,6 +134,15 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                   Reservado
                 </button>
                 :
+                authState.islogged === false ?
+                <Link
+                className="reserva"
+                role="button"
+                to={'/register'}
+                >
+                Registrate para reservar
+              </Link>
+                  :
                 <Link
                   className="reserva"
                   role="button"

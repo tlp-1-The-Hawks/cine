@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react"
-import { UserContext } from "../../context/UserContext"
-import { useContext } from "react"
-import { types_user } from "../../types/types.user"
-
+import { CustomFetch } from "../../api/customFetch.js"
 export const RequestsBox = ({ reqCine }) => {
-    const { state, dispatch } = useContext(UserContext)
+
     const [requestCine, setRequestCine] = useState([])
 
-    const rejectedRequest = (e) => {
+    const rejectedRequest = async (e) => {
         e.preventDefault()
-        dispatch({
-            type: types_user.DELETE_CINE_REQUEST,
-            payload: e.target.id
-        })
+        const data = await CustomFetch(`http://localhost:4000/api/request-cine/${e.target.id}`, 'DELETE')
+        console.log(data)
+
         setRequestCine(reqCine)
         window.location.reload()
     }

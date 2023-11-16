@@ -6,11 +6,8 @@ import { Seat } from '../otros/seats';
 import { useLocation } from 'react-router-dom';
 
 
-// const urlSearchParams = new URLSearchParams(window.location.search);
-// const params = Object.fromEntries(urlSearchParams.entries());
-// const { movieId, cinemaId } = params;
-const token = localStorage.getItem('token');
 export const FormReserva = () => {
+  const token = localStorage.getItem('token');
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
