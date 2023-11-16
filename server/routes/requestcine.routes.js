@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { ctrlAddRequestCine, ctrlDeleteCine, ctrlGetRequestCine } from '../controllers/request_cine.controllers.js'
+import { ctrlAcceptRequest, ctrlAddRequestCine, ctrlDeleteCine, ctrlGetRequestCine } from '../controllers/request_cine.controllers.js'
 import { createRequestCineSchema } from '../models/schemas/request_cine.schema.js'
 import { validador } from '../middlewares/validator.js'
 
@@ -10,5 +10,7 @@ requestCineRouter.post('/request-cine', createRequestCineSchema, validador, ctrl
 requestCineRouter.get('/request-cine', ctrlGetRequestCine)
 
 requestCineRouter.delete('/request-cine/:id', ctrlDeleteCine)
+
+requestCineRouter.post('/request-cine/:id', ctrlAcceptRequest)
 
 export { requestCineRouter }

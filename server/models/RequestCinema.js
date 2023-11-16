@@ -2,6 +2,7 @@ import { sequelize } from '../config/database.js'
 import { DataTypes } from 'sequelize'
 import { provinceModel } from './Province.model.js'
 import { locationModel } from './location.model.js'
+import { cinemaModel } from './Cinema.models.js'
 
 export const requestCinemaModel = sequelize.define(
     'requestCinema',
@@ -54,4 +55,25 @@ export async function deleteRequestCine(id) {
             id: id
         }
     })
+}
+
+export async function acceptRequest(id) {
+    const request = await requestCinemaModel.findOne({
+        where: {
+            id: id
+        }
+    })
+    const addCinema = await cinemaModel.create({
+        name: request.name_cinema,
+        address: request.address,
+        email: request.email,
+        phone: request.phone,
+        cuit: request.cuit,
+        provinceId: request.provinceId,
+        locationId: request.locationId
+    })
+
+    const delRequest = await requestCinemaModel.destroy(request)
+
+    return addCinema
 }

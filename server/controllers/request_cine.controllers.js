@@ -1,4 +1,4 @@
-import { addRequestCine, getRequestCine, deleteRequestCine } from "../models/RequestCinema.js"
+import { addRequestCine, getRequestCine, deleteRequestCine, acceptRequest } from "../models/RequestCinema.js"
 
 export const ctrlAddRequestCine = async (req, res) => {
     try {
@@ -42,6 +42,21 @@ export const ctrlDeleteCine = async (req, res) => {
         console.log(error)
         res.status(500).json({
             message: 'error rejected requests'
+        })
+    }
+}
+
+export const ctrlAcceptRequest = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const newCinema = await acceptRequest(id)
+
+        res.status(200).json(newCinema)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            msg: "error while accepting"
         })
     }
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { CustomFetch } from "../../api/customFetch.js"
+import Swal from "sweetalert2"
 export const RequestsBox = ({ reqCine }) => {
 
     const [requestCine, setRequestCine] = useState([])
@@ -7,16 +8,32 @@ export const RequestsBox = ({ reqCine }) => {
     const rejectedRequest = async (e) => {
         e.preventDefault()
         const data = await CustomFetch(`http://localhost:4000/api/request-cine/${e.target.id}`, 'DELETE')
-        console.log(data)
+        const dataCine = await CustomFetch('http://localhost:4000/api/request-cine', 'GET')
 
-        setRequestCine(reqCine)
-        window.location.reload()
+        setRequestCine(dataCine)
+
+        Swal.fire({
+            title: 'Solucitud eliminada',
+            icon: 'success',
+            confirmButtonText: 'ok',
+            width: '50%',
+            padding: '1rem',
+            background: '#DBCBCB',
+            grow: 'row'
+        })
+
     }
 
+    const acceptRequest = async (e) => {
+        e.preventDefault()
+
+        const response = await CustomFetch('')
+    }
 
     useEffect(() => {
         setRequestCine(reqCine)
-    }, [reqCine])
+    }, [])
+
 
     return (
         <div className="requestsBox">
@@ -52,7 +69,7 @@ export const RequestsBox = ({ reqCine }) => {
                                     </div>
                                     <div className="d-flex justify-content-end">
                                         <div className="">
-                                            <button className="requestsButton btn btn-danger">Aceptar</button>
+                                            <button onClick={acceptRequest} className="requestsButton btn btn-danger">Aceptar</button>
                                         </div>
                                         <div className="">
                                             <button onClick={rejectedRequest}

@@ -19,6 +19,10 @@ export const cinemaModel = sequelize.define(
     phone: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    cuit: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   },
   {
