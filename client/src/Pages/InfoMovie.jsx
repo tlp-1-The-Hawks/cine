@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom'
 
 
 
-export const InfoMovie = ({ socket }) => {
+export const InfoMovie = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const token = localStorage.getItem('token')
@@ -17,8 +17,8 @@ export const InfoMovie = ({ socket }) => {
     const [comments, setComments] = useState([]);
     const [authReserva, setAuthReserva] = useState(null);
 
-  
-  
+
+
 
     const movie = searchParams.get('movie');
     const cinema = searchParams.get('cinema');
@@ -43,13 +43,6 @@ export const InfoMovie = ({ socket }) => {
             }
         )()
     }, [])
-
-    useEffect(() => {
-        socket.on('connect', () => {
-            console.log("El usuario se ha conectado al servidor Socket.io");
-        });
-    }, [socket]);
-
     return (
         <>
             <Header />
@@ -61,7 +54,6 @@ export const InfoMovie = ({ socket }) => {
             />
             <CommentBox
                 authReserva={authReserva}
-                socket={socket}
                 movie={movie}
                 comments={comments} />
             <Footer />
