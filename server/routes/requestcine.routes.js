@@ -5,12 +5,12 @@ import { validador } from '../middlewares/validator.js'
 
 const requestCineRouter = Router()
 
-requestCineRouter.post('/request-cine', createRequestCineSchema, validador, ctrlAddRequestCine)
+requestCineRouter.post('/request-cine/:userId', createRequestCineSchema, validador, ctrlAddRequestCine)
 
 requestCineRouter.get('/request-cine', ctrlGetRequestCine)
 
 requestCineRouter.delete('/request-cine/:id', ctrlDeleteCine)
 
-requestCineRouter.post('/request-cine/:id', ctrlAcceptRequest)
+requestCineRouter.get('/request-cine/:id', ctrlAcceptRequest)
 
 export { requestCineRouter }

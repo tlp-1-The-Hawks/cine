@@ -26,13 +26,27 @@ export const RequestsBox = ({ reqCine }) => {
 
     const acceptRequest = async (e) => {
         e.preventDefault()
+ 
+        const response = await CustomFetch(`http://localhost:4000/api/request-cine/${e.target.id}`, 'GET')
 
-        const response = await CustomFetch('')
+        const dataCine = await CustomFetch('http://localhost:4000/api/request-cine', 'GET')
+
+        setRequestCine(dataCine)
+
+        Swal.fire({
+            title: 'Solucitud aceptada',
+            icon: 'success',
+            confirmButtonText: 'ok',
+            width: '50%',
+            padding: '1rem',
+            background: '#DBCBCB',
+            grow: 'row'
+        })
     }
 
     useEffect(() => {
         setRequestCine(reqCine)
-    }, [])
+    }, [reqCine])
 
 
     return (
@@ -43,7 +57,7 @@ export const RequestsBox = ({ reqCine }) => {
                     <div className="col-8 text-white">
                         {
                             requestCine.map((cine) => (
-                                <div className="border  border-white w-75 rounded-4 mt-3 mb-3">
+                                <div key={cine.id} className="border  border-white w-75 rounded-4 mt-3 mb-3">
                                     <div className="container text-center mt-3">
                                         <div className="row">
                                             <div className="col">
@@ -67,13 +81,13 @@ export const RequestsBox = ({ reqCine }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="d-flex justify-content-end">
+                                    <div className="d-flex justify-content-end"> 
                                         <div className="">
-                                            <button onClick={acceptRequest} className="requestsButton btn btn-danger">Aceptar</button>
+                                            <button id={cine.id} onClick={acceptRequest} className="requestsButton btn btn-danger">Aceptar</button>
                                         </div>
                                         <div className="">
                                             <button onClick={rejectedRequest}
-                                                key={cine.id} id={cine.id} className="requestsButton  btn btn-success">Rechazar</button>
+                                               id={cine.id} className="requestsButton  btn btn-success">Rechazar</button>
                                         </div>
                                     </div>
 

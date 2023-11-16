@@ -3,6 +3,7 @@ import { DataTypes } from 'sequelize'
 import { provinceModel } from './Province.model.js'
 import { locationModel } from './location.model.js'
 import { cinemaModel } from './Cinema.models.js'
+import { UserModel } from './user_model.js'
 
 export const requestCinemaModel = sequelize.define(
     'requestCinema',
@@ -31,8 +32,17 @@ export const requestCinemaModel = sequelize.define(
 )
 
 
-export async function addRequestCine(solicitud) {
-    return await requestCinemaModel.create(solicitud)
+export async function addRequestCine(solicitud, userId) {
+    return await requestCinemaModel.create({
+        name_cinema: solicitud.name_cinema,
+        address: solicitud.address,
+        email: solicitud.email,
+        phone: solicitud.phone,
+        cuit: solicitud.cuit,
+        provinceId: solicitud.provinceId, 
+        locationId: solicitud.locationId,
+        UserId:userId
+    })
 }
 
 export async function getRequestCine() {
@@ -63,6 +73,7 @@ export async function acceptRequest(id) {
             id: id
         }
     })
+  
     const addCinema = await cinemaModel.create({
         name: request.name_cinema,
         address: request.address,
@@ -73,7 +84,19 @@ export async function acceptRequest(id) {
         locationId: request.locationId
     })
 
-    const delRequest = await requestCinemaModel.destroy(request)
+    const user = await UserModel.findOne({
+        id: request.UserId
+    })
+ 
+
+
+   await user.update({cinemaId: addCinema.id})
+
+    const delRequest = await requestCinemaModel.destroy({
+        where: {
+            id: request.id
+        }
+    })
 
     return addCinema
 }
