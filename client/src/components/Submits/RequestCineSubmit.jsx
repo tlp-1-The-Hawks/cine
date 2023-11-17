@@ -3,12 +3,13 @@ import { CustomFetch } from '../../api/customFetch.js'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 const token = localStorage.getItem('token')
-export const RequestCineSubmit = ({formState}) => {
+export const RequestCineSubmit = ({ formState }) => {
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const user = await CustomFetch("http://localhost:4000/auth/user",'TOKEN', token)
+
+        const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token)
 
         const data = await CustomFetch(`http://localhost:4000/api/request-cine/${user.id}`, 'POST', formState)
 
@@ -34,23 +35,23 @@ export const RequestCineSubmit = ({formState}) => {
             grow: 'row'
         }).then((result) => {
             if (result.isConfirmed) {
-               navigate('/')
+                navigate('/')
             }
         })
     }
 
     return (
-        
-            <div className='groupRegisterCine'>
-                    <div className='row'>
-                        <div className='col'>
-                            <button onClick={handleSubmit} className='botonRegisterCine1 btn'>Enviar</button>
-                        </div>
-                        <div className="col">
-                            <Link className='botonRegisterCine2 btn' to={'/soporte'}>Cancelar</Link>
-                        </div>
-                    </div>
-             </div>
-        
+
+        <div className='groupRegisterCine'>
+            <div className='row'>
+                <div className='col'>
+                    <button onClick={handleSubmit} className='botonRegisterCine1 btn'>Enviar</button>
+                </div>
+                <div className="col">
+                    <Link className='botonRegisterCine2 btn' to={'/soporte'}>Cancelar</Link>
+                </div>
+            </div>
+        </div>
+
     )
 }
