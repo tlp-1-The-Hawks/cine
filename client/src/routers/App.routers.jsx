@@ -4,11 +4,12 @@ import { Register } from '../Pages/Register.jsx';
 import { Reserva } from '../Pages/Reserva.jsx'
 import { Login } from '../Pages/Login.jsx';
 import { AddMovie } from '../Pages/AddMovie.jsx';
-import { Support } from '../Pages/support.jsx';
+import { Support } from '../Pages/Support.jsx';
+import { ManageRequests } from '../Pages/ManageRequests.jsx';
 import { InfoMovie } from '../Pages/InfoMovie.jsx';
 import { WatchReservations } from '../Pages/WatchReservations.jsx';
-import io from 'socket.io-client'
-const socket = io("http://localhost:4000")
+import { RegisterCinema } from '../Pages/RegisterCinema.jsx';
+
 
 export const AppRouter = () => {
     return (
@@ -37,7 +38,6 @@ export const AppRouter = () => {
                 <Route
                     path='/informacion-pelicula'
                     element={<InfoMovie
-                        socket={socket}
                     />}
                 />
                 <Route
@@ -47,6 +47,14 @@ export const AppRouter = () => {
                 <Route
                     path='/reservaciones'
                     element={<WatchReservations />}
+                />
+                <Route
+                    path='/register-cine'
+                    element={<RegisterCinema />}
+                />
+                <Route
+                    path='/solicitudes'
+                    element={<ManageRequests />}
                 />
             </Routes>
         </BrowserRouter>

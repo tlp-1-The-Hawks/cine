@@ -1,25 +1,58 @@
 import { Link } from "react-router-dom"
-import { useContext } from "react"
-import { movieContext } from "../../context/MovieContext.jsx"
-import { type_movie } from "../../types/types.movie.js"
-
-
+import { CustomFetch } from "../../api/customFetch.js"
+import Swal from "sweetalert2"
 export const AddMovieSubmit = ({ formMovie, sendImg, cinemaId }) => {
 
-    const { state, dispatch } = useContext(movieContext)
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
-        dispatch({
-            type: type_movie.MOVIE_ADD,
-            payload: {
-                formMovie: formMovie,
-                sendImg: sendImg,
-                cinemaId: cinemaId,
-            }
-        })
+        const formData = new FormData();
+        formData.append('file', sendImg);
+
+
+
+        const response = await CustomFetch(`http://localhost:4000/api/information/${cinemaId}`, 'MOVIE', formMovie)
+        const data = await response.json()
+
+
+        if (data.errors) {
+            return Swal.fire({
+                title: 'Error',
+                text: data.errors[0].msg,
+                icon: 'error',
+                width: '50%',
+                padding: '1rem',
+                background: '#DBCBCB',
+                grow: 'row'
+            })
+        }
+
+        if (response.status === 200) {
+
+            const response = await CustomFetch('http://localhost:4000/api/upload-imgmovi', 'IMAGE', formData)
+
+            const data = await response.json()
+
+
+            return Swal.fire({
+                title: 'Se guardo su película correctamente',
+                icon: 'success',
+                confirmButtonText: 'ok',
+                width: '50%',
+                padding: '1rem',
+                background: '#DBCBCB',
+                grow: 'row'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/'
+                }
+            })
+        }
+
+
+
     }
 
     return (

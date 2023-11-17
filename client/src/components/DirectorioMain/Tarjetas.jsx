@@ -2,17 +2,16 @@ import React from 'react';
 import '../../assets/style/Tarjetas.css'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext.jsx';
+import { AuthContext } from '../../context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+
 
 export const Tarjetas = ({ moviesWithCinemas }) => {
-  const { rolCinema } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const { authState } = useContext(AuthContext)
 
-  const infoMovie = async (e) => {
-    const cinemaId = e.currentTarget.getAttribute("data-cinema-id");
-    const movieId = e.currentTarget.getAttribute("data-movie-id");
-    window.location.href = `/informacion-pelicula?movie=${movieId}&cinema=${cinemaId}`;
 
-  }
+
   return (
     <div className='mb-5'>
       <section className='tarjetaContenedor container'>
@@ -30,17 +29,17 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                     <Link
                       id='cineName'
                       key={cine.id}
-                      to="#"
+                      to={`/informacion-pelicula?movie=${movie.id}&cinema=${cine.id}`}
                       data-cinema-id={cine.id}
                       data-movie-id={movie.id}
                       type='button'
                       className='btn btn-outline-dark tageta'
-                      onClick={infoMovie}
+                    
                     >
                       {cine.name}
                     </Link>
                   ))}
-                  <div className='crud'>
+                  {/* <div className='crud'>
                     <div className='crudBoton' data-tooltip="editar"><button className='crudButton'>                      <box-icon name='edit-alt' type='solid' color='#ffffff' ></box-icon></button>
 
                     </div>
@@ -48,7 +47,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
                     </div>
 
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -58,7 +57,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
       </section>
       <div className='d-flex justify-content-end text-end'>
-        {rolCinema && <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>}
+        {authState.cinema && <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>}
       </div>
     </div>
   );

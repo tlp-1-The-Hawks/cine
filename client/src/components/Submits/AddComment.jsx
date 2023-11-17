@@ -1,20 +1,18 @@
 import { useState, useEffect } from "react";
-import { movieContext } from "../../context/MovieContext.jsx";
-import { type_movie } from "../../types/types.movie.js";
-import { useContext } from "react";
-import { FindOneUser } from "../../hooks/datePreloads/FindOneUser.js";
 import Swal from "sweetalert2";
+import { CustomFetch } from "../../api/customFetch.js";
+
 const token = localStorage.getItem("token");
 
-export const AddComment = ({ movie, socket }) => {
-    const { state, dispatch } = useContext(movieContext)
+export const AddComment = ({ movie }) => {
+
     const [user, setUser] = useState('')
     const [nuevoComentario, setNuevoComentario] = useState('');
 
     useEffect(() => {
         (
             async () => {
-                const user = await FindOneUser(token)
+                const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token)
                 setUser(user)
             }
         )()
@@ -26,21 +24,16 @@ export const AddComment = ({ movie, socket }) => {
 
         setNuevoComentario(value)
 
-        console.log(nuevoComentario)
     }
 
-    const agregarComentario = (e) => {
+    const agregarComentario = async (e) => {
         e.preventDefault()
 
         if (nuevoComentario.length > 0) {
-            dispatch({
-                type: type_movie.ADD_COMMENT_MOVIE,
-                payload: {
-                    comment: nuevoComentario,
-                    userId: user.id,
-                    movieId: movie
-                }
-            })
+            console.log(nuevoComentario)
+            const response = await CustomFetch(`http://localhost:4000/api/comment/${movie}/${user.id}`, 'POST', nuevoComentario)
+            const data = await response.json()
+            console.log(data)
 
             const comment = {
                 description: nuevoComentario,
@@ -48,7 +41,7 @@ export const AddComment = ({ movie, socket }) => {
                     username: user.username
                 }
             }
-            socket.emit('comment', comment)
+
 
             setNuevoComentario('')
         } else {
@@ -60,7 +53,7 @@ export const AddComment = ({ movie, socket }) => {
     };
     return (
 
-        <div className='agregarComentario container mb-2'> 
+        <div className='agregarComentario container mb-2'>
             <form action="" onChange={handleChange}>
                 <div className="row">
                     <div className="row">

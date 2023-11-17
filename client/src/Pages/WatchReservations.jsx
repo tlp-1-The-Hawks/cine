@@ -1,16 +1,13 @@
 import { Header } from "../components/Headers/Header.jsx"
 import { Footer } from "../components/Footers/Footer.jsx"
 import { ReservationsBox } from "../components/DirectorioMain/Reservations_box.jsx"
-import { useEffect, useState, useContext } from "react"
-import { FindMovieByCinema } from "../hooks/datePreloads/FindMovies.js"
-import { FindOneUser } from "../hooks/datePreloads/FindOneUser.js"
-import { AuthContext } from "../context/AuthContext.jsx"
-import { Navigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { CustomFetch } from "../api/customFetch.js"
 import '../assets/style/Reservations.css'
 
 export const WatchReservations = () => {
     const token = localStorage.getItem('token')
-    const { rolCinema } = useContext(AuthContext)
+
 
 
     const [movies, setMovies] = useState([])
@@ -21,12 +18,12 @@ export const WatchReservations = () => {
 
         (
             async () => {
-                const user = await FindOneUser(token)
-                const dataMovies = await FindMovieByCinema(user.id)
+                const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token);
+                const dataMovies = await CustomFetch(`http://localhost:4000/api/movies/${user.cinemaId}`, 'GET')
+
 
                 setCinemaId(user.cinemaId)
                 setMovies(dataMovies)
-                if (!rolCinema) return (<Navigate to={"/"} />)
             }
 
         )()

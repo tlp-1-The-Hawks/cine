@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import '../../assets/style/Header.css';
 import { Link } from 'react-router-dom';
 import { LoginButtons } from './ButtonLoginRegister.jsx';
 import { LogoutButton } from './LogoutButton.jsx';
-import { AuthContext } from '../../context/AuthContext.jsx';
-import { useContext } from 'react';
-
+import { AuthContext } from '../../context/AuthProvider.jsx';
 
 export const Header = ({ setSearchBar }) => {
-  const { isLogged, rolCinema } = useContext(AuthContext)
 
-
+  const { authState } = useContext(AuthContext)
   const [shearchValue, setSearchValue] = useState('')
 
   const handleShear = (e) => {
@@ -47,10 +44,13 @@ export const Header = ({ setSearchBar }) => {
                   <Link to={'/'} className="nav-link text-white" aria-current="page" href="#">Inicio</Link>
                 </li>
                 <li className="nav-item">
-                  {rolCinema && <Link className='nav-link text-white' to={'/reservaciones'}>Reservaciones</Link>}
+                  {authState.admin && <Link className='nav-link text-white' to={'/solicitudes'}>Solicitudes</Link>}
                 </li>
                 <li className="nav-item">
-                  {isLogged && <Link className='nav-link text-white' to={'/soporte'}>Contacto</Link>}
+                  {authState.cinema && <Link className='nav-link text-white' to={'/reservaciones'}>Reservaciones</Link>}
+                </li>
+                <li className="nav-item">
+                  <Link className='nav-link text-white' to={'/soporte'}>Contacto</Link>
                 </li>
               </ul>
             </div>
@@ -59,6 +59,7 @@ export const Header = ({ setSearchBar }) => {
               <div>
                 <form className="d-flex prueba" id='Buscador' role="search">
                   <input
+                    autoComplete='off'
                     className="form-control me-2 borde-colorBusqueda color-fondo"
                     id='buscador'
                     type="search"
@@ -79,11 +80,11 @@ export const Header = ({ setSearchBar }) => {
 
           </div>
           <div className="buttons d-flex m-1">
-            {isLogged && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
-            {!isLogged && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
+            {authState.islogged && <LogoutButton />} {/* Muestra el botón de cierre de sesión solo si existe un token */}
+            {!authState.islogged && <LoginButtons />} {/* Muestra los botones de inicio de sesión y registro si no hay un token */}
           </div>
         </div>
-    
+
       </nav>
 
     </header>

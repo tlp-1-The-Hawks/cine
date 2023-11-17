@@ -1,8 +1,19 @@
 import React from 'react';
-import { FindGenre } from '../../hooks/datePreloads/FindGenres.js';
+import { useEffect, useState } from 'react';
+import { CustomFetch } from '../../api/customFetch.js';
 
 export const GenreSelect = ({ formMovie, handleChange }) => {
-  const genreState = FindGenre();
+  const [genreState, setGenreState] = useState([])
+
+  useEffect(() => {
+    (
+      async () => {
+        const data = await CustomFetch('http://localhost:4000/api/genre', 'GET')
+
+        setGenreState(data)
+      }
+    )()
+  }, [])
 
   return (
     <div className="mt-3 col col-sm-12 col-md-6 mb-3">

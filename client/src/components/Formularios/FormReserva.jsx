@@ -3,12 +3,25 @@ import { useState, useEffect } from 'react';
 import { initMercadoPago } from '@mercadopago/sdk-react';
 import axios from 'axios';
 import { Seat } from '../otros/seats';
+<<<<<<< HEAD
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movieId, cinemaId } = params;
 const token = localStorage.getItem('token');
+=======
+import { useLocation } from 'react-router-dom';
+
+
+>>>>>>> main
 export const FormReserva = () => {
+  const token = localStorage.getItem('token');
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  const movieId = searchParams.get('movieId');
+  const cinemaId = searchParams.get('cinemaId');
+
   const [info, setInfo] = useState({})
   const [price, setPrice] = useState("Cargando...");
   const [quantity, setQuantity] = useState(1);

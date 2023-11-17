@@ -1,6 +1,8 @@
 
 
 import Swal from "sweetalert2";
+
+
 export const HallSelect = ({ formMovie, handleChange, hallState, cinemaId }) => {
 
 
