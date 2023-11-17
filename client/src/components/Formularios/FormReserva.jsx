@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { initMercadoPago } from '@mercadopago/sdk-react';
 import axios from 'axios';
 import { Seat } from '../otros/seats';
+
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 const { movieId, cinemaId } = params;
@@ -124,6 +125,7 @@ export const FormReserva = () => {
             </div>
             <div className="col d-flex justify-content-center">
               <Seat info={info} />
+              {/* <Contador/> */}
             </div>
           </div>
         </div>
