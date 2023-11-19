@@ -25,24 +25,16 @@ export const requestCinemaModel = sequelize.define(
             allowNull: false
         },
         cuit: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         }
     }
 )
 
 
-export async function addRequestCine(solicitud, userId) {
-    return await requestCinemaModel.create({
-        name_cinema: solicitud.name_cinema,
-        address: solicitud.address,
-        email: solicitud.email,
-        phone: solicitud.phone,
-        cuit: solicitud.cuit,
-        provinceId: solicitud.provinceId, 
-        locationId: solicitud.locationId,
-        UserId:userId
-    })
+export async function addRequestCine(solicitud, UserId) {
+    const data = {...solicitud, UserId}
+    return await requestCinemaModel.create(data)
 }
 
 export async function getRequestCine() {
@@ -73,6 +65,7 @@ export async function acceptRequest(id) {
             id: id
         }
     })
+
   
     const addCinema = await cinemaModel.create({
         name: request.name_cinema,
@@ -85,11 +78,13 @@ export async function acceptRequest(id) {
     })
 
     const user = await UserModel.findOne({
-        id: request.UserId
+        where: {
+            id: request.UserId
+        }
     })
  
 
-
+ 
    await user.update({cinemaId: addCinema.id})
 
     const delRequest = await requestCinemaModel.destroy({

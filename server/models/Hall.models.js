@@ -29,12 +29,12 @@ export async function addCreateHall(hall) {
 }
 
 export async function getAllHallByCinemaId(cinemaId) {
-    return await cinemaModel.findOne({
-        where: {
-            id: cinemaId
-        },
+    return await hallModel.findAll({
         include: {
-            model: hallModel
+            model: cinemaModel,
+            where: {
+                id: cinemaId
+            }
         }
     })
 }
