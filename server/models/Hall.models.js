@@ -12,7 +12,14 @@ export const hallModel = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-
+        row: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        column: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
     }
 )
 

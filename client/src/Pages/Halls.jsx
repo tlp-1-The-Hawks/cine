@@ -7,7 +7,7 @@ export const Halls = () => {
     return (
         <>
             <Header />
-            <HallsBox />
+                <HallsBox />
             <Footer />
         </>
     )

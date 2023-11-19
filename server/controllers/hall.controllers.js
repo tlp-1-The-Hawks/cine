@@ -1,15 +1,19 @@
 import { addCreateHall, getAllHallByCinemaId } from "../models/Hall.models.js";
 import { addHallxCinemas } from "../models/hallXCinemas.js";
+import { addSeating } from "../models/seating.mode.js";
 
 export const ctrlAddHall = async (req, res) => {
     try {
-        const hall = req.body
+      
+
         const {
             cinemaId
         } = req.params;
 
-        const NewHall = await addCreateHall(hall)
+        const NewHall = await addCreateHall(req.body.formState)
         const hallId = NewHall.id
+
+        const newSeating = await addSeating(req.body.selectedButtons, hallId)
 
         const newHallxCinema = await addHallxCinemas(cinemaId, hallId)
 
