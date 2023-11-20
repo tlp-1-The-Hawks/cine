@@ -8,7 +8,7 @@ export const AddHallSubmit = ({ formState, selectedButtons}) => {
 
         const user = await CustomFetch('http://localhost:4000/auth/user', 'TOKEN', token)
 
-
+        console.log(user)
         const hall = {
           selectedButtons: selectedButtons,
           formState: formState

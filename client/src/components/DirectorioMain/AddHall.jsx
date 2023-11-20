@@ -25,10 +25,10 @@ export const AddHall = () => {
         if (e.target.name === "column") {
             setColumnState(e.target.value); 
         }
-        console.log(formState)
     };
 
     useEffect(() => {
+
         const availableWidth = document.getElementById("buttons-container")?.clientWidth || 0;
         const calculatedButtonWidth = availableWidth / columnState;
         setButtonWidth(calculatedButtonWidth);
@@ -55,11 +55,11 @@ export const AddHall = () => {
             setSelectedButtons(prevSelected => [...prevSelected, buttonInfo]);
 
         }
-        console.log(selectedButtons)
     };
 
     const generateButtons = () => {
         const buttons = [];
+        let buttonValue = 1; // Valor inicial para los botones
     
         for (let i = 0; i < rowState; i++) {
             const row = [];
@@ -67,33 +67,28 @@ export const AddHall = () => {
                 const isButtonSelected = selectedButtons.some(button =>
                     button.row === i && button.column === j
                 );
-    
-                const buttonStyle = {
-                    width: `${buttonWidth}px`,
-                    height: '30px',
-                    backgroundColor: isButtonSelected ? 'green' : 'blue', // Cambiar el color aquí según esté seleccionado o no
-                };
-    
                 row.push(
                     <button
                         key={`button-${i}-${j}`}
                         onClick={(e) => selectButton(e, i, j)}
-                        className="btn btn-primary m-1 btn-responsive"
-                        style={buttonStyle}
+                        className={`seatingButton btn m-1 btn-responsive ${isButtonSelected ? 'btn-danger' : 'btn-dark'}`}
+                 
                     >
-                        {i}
+                        {buttonValue} {/* Mostrar valor único */}
                     </button>
                 );
+                buttonValue++; // Incrementar el valor para el siguiente botón
             }
-            buttons.push(
-                <div key={`row-${i}`} className="d-flex justify-content-center">
-                    {row}
-                </div>
-            );
+        buttons.push(
+            <div key={`row-${i}`} className="d-flex justify-content-center">
+                {row}
+            </div>
+        );
         }
     
         return buttons;
     };
+    
 
     return (
         <div className="container mt-5">

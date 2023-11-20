@@ -10,9 +10,8 @@ export const RequestCineSubmit = ({ formState }) => {
         e.preventDefault()
 
         const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token)
-        const userId = user.id
 
-        const data = await CustomFetch(`http://localhost:4000/api/request-cine/${userId}`, 'POST', formState)
+        const data = await CustomFetch(`http://localhost:4000/api/request-cine/${user.id}`, 'POST', formState)
 
         if (data.errors) {
             return Swal.fire({
