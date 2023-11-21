@@ -1,7 +1,7 @@
 import { sequelize } from "../config/database.js"
 import { DataTypes } from "sequelize"
 import { cinemaModel } from "./Cinema.models.js"
-
+import { seatingModel } from "./seating.mode.js"
 export const hallModel = sequelize.define(
     'hall',
     {
@@ -42,7 +42,29 @@ export async function getAllHallByCinemaId(cinemaId) {
 export async function deleteHall(id) {
     return await hallModel.destroy({
         where: {
-            id:id
+            id: id
         }
+    })
+}
+
+export async function getOneHallById(id, cinemaId) {
+    return await hallModel.findOne({
+        where: {
+            id: id
+        },
+        include: [
+            {
+                model: seatingModel,
+                where: {
+                    hallId: id
+                }
+            },
+            {
+                model: cinemaModel,
+                where: {
+                    id: cinemaId
+                }
+            }
+        ]
     })
 }

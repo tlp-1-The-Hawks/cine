@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 import { CustomFetch } from "../../api/customFetch.js"
-
-export const EditHall = ({ halls, cinemaId }) => {
+import { Link } from "react-router-dom"
+export const ManageHalls = ({ halls, cinemaId }) => {
 
     const [hallState, setHallState] = useState([])
     useEffect(() => {
@@ -69,7 +69,7 @@ export const EditHall = ({ halls, cinemaId }) => {
                             </div>
                             <div className="d-flex justify-content-end">
                                 <div className="">
-                                    <button className="text-dark requestsButton bg-white btn btn-white ">Editar</button>
+                                    <Link to={`/editar-sala?cinema=${cinemaId}&hall=${hall.id}`} className="text-dark requestsButton bg-white btn btn-white ">Editar</Link>
                                 </div>
                                 <div className="">
                                     <button

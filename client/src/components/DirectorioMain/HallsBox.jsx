@@ -1,6 +1,6 @@
 import { CustomFetch } from "../../api/customFetch.js";
 import { AddHall } from "./AddHall.jsx";
-import { EditHall } from "./EditHall.jsx";
+import { ManageHalls } from "./ManagaHalls.jsx";
 import { useEffect, useState } from "react";
 const token = localStorage.getItem('token')
 export const HallsBox = () => {
@@ -34,10 +34,10 @@ export const HallsBox = () => {
                             <button onClick={handleButtonHall} id={1} className="hallbutton btn w-100 text-white">Agregar Sala</button>
                         </div>
                         <div className="col mt-5">
-                            <button onClick={handleButtonHall} id={2} className="hallbutton btn w-100 text-white">Editar Sala</button>
+                            <button onClick={handleButtonHall} id={2} className="hallbutton btn w-100 text-white">Mis Salas</button>
                         </div>
                     </div>
-                    {buttonHall === 1 ? <AddHall /> : <EditHall halls={halls} cinemaId={cinemaId} />}
+                    {buttonHall === 1 ? <AddHall /> : <ManageHalls halls={halls} cinemaId={cinemaId} />}
                 </div>
             </div>
         </>
