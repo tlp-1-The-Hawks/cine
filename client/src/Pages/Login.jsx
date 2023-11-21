@@ -8,7 +8,8 @@ export const Login = () => {
 
   const { authState } = useContext(AuthContext)
 
-  if (authState.isLogged) return (<Navigate to={"/"} />)
+
+  if (authState.islogged) return (<Navigate to={"/"} />)
   return (
     <FormLogin />
   )

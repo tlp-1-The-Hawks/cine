@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import '../../assets/style/FormRegisterCinema.css'
 import { RequestCineSubmit } from '../Submits/RequestCineSubmit.jsx'
-import { FindLocation } from '../../hooks/datePreloads/FindProvinceAndLocation.js'
-
+import { CustomFetch } from '../../api/customFetch.js'
 
 export const FormRegisterCinema = ({province}) => {
     const [formState, setFormState] = useState({
@@ -34,7 +33,7 @@ export const FormRegisterCinema = ({province}) => {
         if (name === 'provinceId') {
           try {
             if (value >  0) {
-                const data = await FindLocation(value);
+                const data = await CustomFetch(`http://localhost:4000/api/location/${value}`, 'GET')
                 setLocations(data)
                 
             }else{

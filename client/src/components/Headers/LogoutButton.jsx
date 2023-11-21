@@ -8,9 +8,10 @@ export const LogoutButton = () => {
 
   const handleLogout = () => {
     // Eliminar el token del localStorage
-    logout().setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+    logout()
+    // .setTimeout(() => {
+    //   window.location.reload();
+    // }, 2000);
 
         // Mostrar una alerta
         Swal.fire({

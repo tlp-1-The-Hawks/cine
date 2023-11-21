@@ -7,7 +7,7 @@ export const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
 
     const [authState, dispatch] = useReducer(authReducer, {
-        islogged: localStorage.getItem('islogged') === 'true' || false,
+        islogged: (localStorage.getItem('islogged') == 'true') ? true : false,
         admin: (localStorage.getItem('admin') == 'true') ? true : false,
         cinema: (localStorage.getItem('cinema') == 'true') ? true : false
     });

@@ -1,13 +1,13 @@
 import React from 'react'
 import '../../assets/style/soporteForm.css';
-// import { AuthContext } from '../../context/AuthContext.jsx';
-// import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthProvider';
+import { useContext } from 'react'
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 
 export const SoporteForm = () => {
-  // const { isLogged } = useContext(AuthContext)
-  // const navigate = useNavigate();
+  const {authState} = useContext(AuthContext)
+  const navigate = useNavigate();
 
 
   return (
@@ -84,9 +84,20 @@ export const SoporteForm = () => {
                   <div className="col">
                     <button onClick={e => {
                       e.preventDefault()
-                      //  if(isLogged) {
-                      //    return navigate('/register-cine')
-                      //  }
+                      if(authState.cinema){
+                       return Swal.fire({
+                          title: 'Error',
+                          text: '¡Ya puedes compartir tu cartelera de películas!',
+                          icon: 'error',
+                          width: '50%',
+                          padding: '1rem',
+                          background: '#DBCBCB',
+                          grow: 'row'
+                        })
+                      }
+                       if(authState.islogged) {
+                         return navigate('/register-cine')
+                       }
                       Swal.fire({
                         title: 'Error',
                         text: '¡Debes iniciar sesion!',
