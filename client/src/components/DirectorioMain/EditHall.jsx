@@ -1,5 +1,7 @@
 
 import { useEffect, useState } from "react"
+import Swal from "sweetalert2"
+import { CustomFetch } from "../../api/customFetch.js"
 
 export const EditHall = ({halls}) => {
 
@@ -8,14 +10,28 @@ export const EditHall = ({halls}) => {
         setHallState(halls)
         console.log(halls)
     }, [halls])
+    
+    const deleteHall = (e) => {
+        e.preventDefault()
 
+        return Swal.fire({
+            title: '¿Seguro que quieres eliminar?',
+            icon: 'question',
+            confirmButtonText: 'Aceptar',
+            showCancelButton: 'cancelar',
+            width: '50%',
+            padding: '1rem',
+            background: '#DBCBCB',
+            grow: 'row'
+        })
+    }
     return (
         <div className="container mt-5">
             <div className="row">
                 {
                     hallState.map((hall) => (
-                        <div key={hall.id} className="col-12 col-md-4 col-sm-6 border border-white rounded bg-dark ms-2 me-2 mt-2 mb-2">
-                                    <div className="container mt-3">
+                        <div key={hall.id} className="col-12 col-md-6 mt-2 mb-2">
+                                    <div className="container mt-3 border border-white rounded  bg-dark ">
                                         <div className="row ms-2">
                                             <div className="col">
                                                 <p className="">Número de sala: {hall.nr_hall}</p>
@@ -35,17 +51,14 @@ export const EditHall = ({halls}) => {
                                     </div>
                                     <div className="d-flex justify-content-end"> 
                                         <div className="">
-                                            <button  className="text-dark requestsButton bg-white btn btn-white ">Editar</button>
+                                            <button className="text-dark requestsButton bg-white btn btn-white ">Editar</button>
                                         </div>
                                         <div className="">
                                             <button 
-                                                className="requestsButton  btn btn-danger">Eliminar</button>
+                                               id={hall.id} onClick={deleteHall}   className="requestsButton  btn btn-danger">Eliminar</button>
                                         </div>
                                     </div>
-                              
-                             
                         </div>
-                       
                     ))
                 }
             </div>

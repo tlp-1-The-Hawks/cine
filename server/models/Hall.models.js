@@ -38,3 +38,11 @@ export async function getAllHallByCinemaId(cinemaId) {
         }
     })
 }
+
+export async function deleteHall(id) {
+    return await hallModel.destroy({
+        where: {
+            id:id
+        }
+    })
+}

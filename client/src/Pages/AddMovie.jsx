@@ -22,10 +22,8 @@ export const AddMovie = () => {
 
             setCinemaId(user.cinemaId);
             const halls = await CustomFetch(`http://localhost:4000/api/hall/${user.cinemaId}`, 'GET')
-            setHallState(halls.halls);
+            setHallState(halls);
             setCinemaId(user.cinemaId)
-
-
         })();
     }, []);
     return (
