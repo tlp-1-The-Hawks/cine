@@ -4,8 +4,8 @@ import { CustomFetch } from "../../api/customFetch.js";
 
 const token = localStorage.getItem("token");
 
-export const AddComment = ({ movie, socket }) => {
-   
+export const AddComment = ({ movie }) => {
+
     const [user, setUser] = useState('')
     const [nuevoComentario, setNuevoComentario] = useState('');
 
@@ -41,7 +41,7 @@ export const AddComment = ({ movie, socket }) => {
                     username: user.username
                 }
             }
-            socket.emit('comment', comment)
+
 
             setNuevoComentario('')
         } else {

@@ -182,6 +182,10 @@ cinemaModel.belongsTo(provinceModel)
 locationModel.hasMany(cinemaModel)
 cinemaModel.belongsTo(locationModel)
 
+//Request and user 
+UserModel.hasMany(requestCinemaModel)
+requestCinemaModel.belongsTo(UserModel)
+
 //preloaded data
 async function dataPreloaded() {
   await createGenre()
