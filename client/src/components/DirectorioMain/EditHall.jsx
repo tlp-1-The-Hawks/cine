@@ -3,15 +3,14 @@ import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 import { CustomFetch } from "../../api/customFetch.js"
 
-export const EditHall = ({ halls }) => {
+export const EditHall = ({ halls, cinemaId }) => {
 
     const [hallState, setHallState] = useState([])
     useEffect(() => {
         setHallState(halls)
-        console.log(halls)
     }, [halls])
 
-    const deleteHall = (e) => {
+    const deleteHall = async (e) => {
         e.preventDefault()
 
         return Swal.fire({
@@ -23,6 +22,25 @@ export const EditHall = ({ halls }) => {
             padding: '1rem',
             background: '#DBCBCB',
             grow: 'row'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                (
+                    async () => {
+                        const response = await CustomFetch(`http://localhost:4000/api/hall/${e.target.id}`, 'DELETE')
+                        Swal.fire({
+                            title: 'Sala eliminada',
+                            icon: 'success',
+                            confirmButtonText: 'ok',
+                            width: '50%',
+                            padding: '1rem',
+                            background: '#DBCBCB',
+                            grow: 'row'
+                        })
+                        const data = await CustomFetch(`http://localhost:4000/api/hall/${cinemaId}}`, 'GET')
+                        setHallState(data)
+                    }
+                )()
+            }
         })
     }
     return (

@@ -6,6 +6,7 @@ const token = localStorage.getItem('token')
 export const HallsBox = () => {
     const [buttonHall, setButtonHall] = useState(1);
     const [halls, setHalls] = useState([])
+    const [cinemaId, setCinemaId] = useState("")
 
     const handleButtonHall = (e) => {
         const buttonId = parseInt(e.target.id);
@@ -13,12 +14,13 @@ export const HallsBox = () => {
     };
 
     useEffect(() => {
-        
+
         (
             async () => {
-                const user = await CustomFetch('http://localhost:4000/auth/user', 'TOKEN',token )
+                const user = await CustomFetch('http://localhost:4000/auth/user', 'TOKEN', token)
                 const dateHalls = await CustomFetch(`http://localhost:4000/api/hall/${user.cinemaId}`, 'GET')
                 setHalls(dateHalls)
+                setCinemaId(user.cinemaId)
             }
         )()
     }, [])
@@ -34,8 +36,8 @@ export const HallsBox = () => {
                         <div className="col mt-5">
                             <button onClick={handleButtonHall} id={2} className="hallbutton btn w-100 text-white">Editar Sala</button>
                         </div>
-                  </div>
-                            {buttonHall === 1 ? <AddHall /> : <EditHall halls={halls} />}
+                    </div>
+                    {buttonHall === 1 ? <AddHall /> : <EditHall halls={halls} cinemaId={cinemaId} />}
                 </div>
             </div>
         </>
