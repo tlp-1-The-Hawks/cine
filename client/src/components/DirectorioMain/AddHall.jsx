@@ -58,7 +58,6 @@ export const AddHall = () => {
 
     const generateButtons = () => {
         const buttons = [];
-        let buttonValue = 1;
 
         for (let i = 0; i < rowState; i++) {
             const row = [];
@@ -66,6 +65,7 @@ export const AddHall = () => {
                 const isButtonSelected = selectedButtons.some(button =>
                     button.row === i && button.column === j
                 );
+
                 row.push(
                     <button
                         key={`button-${i}-${j}`}
@@ -76,7 +76,7 @@ export const AddHall = () => {
                         -
                     </button>
                 );
-                buttonValue++;
+
             }
             buttons.push(
                 <div key={`row-${i}`} className="d-flex justify-content-center">

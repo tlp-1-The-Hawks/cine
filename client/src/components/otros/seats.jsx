@@ -15,12 +15,14 @@ export const Seat = ({ hall, cinemaId }) => {
         setRowState(dataHall.row)
         setColumnState(dataHall.column)
         setSelectedButtons(dataHall.seatings)
+        console.log(selectedButtons)
       }
     )()
   }, [hall])
 
-  const selectButton = (i, j) => {
+  const selectButton = (e, i, j) => {
     const buttonInfo = {
+      id: e,
       row: i,
       column: j
     };
@@ -40,24 +42,35 @@ export const Seat = ({ hall, cinemaId }) => {
     }
   };
 
+
   const generateButtons = () => {
     const buttons = [];
-    let buttonValue = 1;
+    let id = 0;
 
     for (let i = 0; i < rowState; i++) {
       const row = [];
       for (let j = 0; j < columnState; j++) {
+
         const isButtonSelected = selectedButtons.some(button =>
           button.row === i && button.column === j
         );
         const isSelectSeatings = selectedSeatings.some(button =>
           button.row === i && button.column === j
         );
+
+        let idButton = 0
+        selectedButtons.forEach(button => {
+          if (button.row === i && button.column === j) {
+            idButton = button.id
+          }
+        })
         row.push(
           isSelectSeatings ?
             <button
               key={`button-${i}-${j}`}
-              onClick={() => selectButton(i, j)}
+              onClick={(e) => selectButton(idButton, i, j)
+
+              }
               className={`seatingButton btn m-1 btn-responsive btn-success`}
             >
               -
@@ -65,20 +78,21 @@ export const Seat = ({ hall, cinemaId }) => {
             isButtonSelected ?
               <button
                 key={`button-${i}-${j}`}
-                onClick={() => selectButton(i, j)}
+                value={selectedButtons[id].id}
+                onClick={(e) => selectButton(idButton, i, j)}
                 className={`seatingButton btn m-1 btn-responsive btn-danger`}
               >
                 -
               </button>
               : <button className='seatingButton btn m-1 btn-responsive btn-dark text-dark' disabled>-</button>
         );
-        buttonValue++;
       }
       buttons.push(
         <div key={`row-${i}`} className="d-flex justify-content-center">
           {row}
         </div>
       );
+
     }
 
     return buttons;
