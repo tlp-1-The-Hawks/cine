@@ -11,6 +11,7 @@ import { WatchReservations } from '../Pages/WatchReservations.jsx';
 import { RegisterCinema } from '../Pages/RegisterCinema.jsx';
 import { Halls } from '../Pages/Halls.jsx';
 import { EditHall } from '../Pages/EditHall.jsx';
+import { MyReservation } from '../Pages/MyReservation.jsx';
 
 export const AppRouter = () => {
     return (
@@ -46,7 +47,7 @@ export const AppRouter = () => {
                     element={<Support />}
                 />
                             <Route
-                    path='/MiReserva'
+                    path='/MiReservas'
                     element={<MyReservation/>}
                  /> 
                 <Route
