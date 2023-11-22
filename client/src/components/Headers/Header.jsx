@@ -52,6 +52,9 @@ export const Header = ({ setSearchBar }) => {
                 <li className="nav-item">
                   <Link className='nav-link text-white' to={'/soporte'}>Contacto</Link>
                 </li>
+                <li className="nav-item">
+                  <Link className='nav-link text-white' to={'/MiReservas'}>Mis Reservas</Link>
+                </li>
               </ul>
             </div>
 
