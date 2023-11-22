@@ -6,7 +6,6 @@ import { CustomFetch } from "../api/customFetch.js"
 import '../assets/style/Reservations.css'
 
 export const MyReservation = () => {
-    const token = localStorage.getItem('token')
 
 
 
@@ -18,7 +17,7 @@ export const MyReservation = () => {
 
         (
             async () => {
-                const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token);
+                const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', localStorage.getItem('token'));
                 const dataMovies = await CustomFetch(`http://localhost:4000/api/movies/${user.cinemaId}`, 'GET')
 
 
@@ -32,7 +31,7 @@ export const MyReservation = () => {
     return (
         <>
             <Header />
-            <MyReservations 
+            <MyReservations
                 movies={movies}
                 cinemaId={cinemaId}
             />
