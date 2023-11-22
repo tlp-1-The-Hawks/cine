@@ -70,7 +70,7 @@ export const AddHall = () => {
                     <button
                         key={`button-${i}-${j}`}
                         onClick={(e) => selectButton(i, j)}
-                        className={`seatingButton btn m-1 btn-responsive ${isButtonSelected ? 'btn-danger' : 'btn-dark'}`}
+                        className={`seatingButton btn m-1 btn-responsive ${isButtonSelected ? 'btn-danger' : 'btn-secondary'}`}
 
                     >
                         {buttonValue}
