@@ -68,3 +68,13 @@ export async function getOneHallById(id, cinemaId) {
         ]
     })
 }
+
+
+export async function updateHall(id,formState) {
+    const hall = await hallModel.findOne({
+        where: {
+            id:id
+        }
+    })
+    return await hall.update(formState)
+}

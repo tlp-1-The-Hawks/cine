@@ -34,11 +34,10 @@ export const AddHall = () => {
         setButtonWidth(calculatedButtonWidth);
     }, [columnState]);
 
-    const selectButton = (e, i, j) => {
+    const selectButton = (i, j) => {
         const buttonInfo = {
             row: i,
-            column: j,
-            value: e.target.innerText
+            column: j
         };
 
         const buttonIndex = selectedButtons.findIndex(button =>
@@ -70,7 +69,7 @@ export const AddHall = () => {
                 row.push(
                     <button
                         key={`button-${i}-${j}`}
-                        onClick={(e) => selectButton(e, i, j)}
+                        onClick={(e) => selectButton(i, j)}
                         className={`seatingButton btn m-1 btn-responsive ${isButtonSelected ? 'btn-danger' : 'btn-dark'}`}
 
                     >
@@ -137,9 +136,7 @@ export const AddHall = () => {
                 {generateButtons()}
             </div>
             <AddHallSubmit
-                rowState={rowState}
-                columnState={columnState}
-                setFormState={setFormState}
+                request={'POST'}
                 formState={formState}
                 selectedButtons={selectedButtons}
             />

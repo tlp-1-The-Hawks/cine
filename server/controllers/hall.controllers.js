@@ -1,6 +1,6 @@
-import { addCreateHall, deleteHall, getAllHallByCinemaId, getOneHallById } from "../models/Hall.models.js";
+import { addCreateHall, deleteHall, getAllHallByCinemaId, getOneHallById, updateHall } from "../models/Hall.models.js";
 import { addHallxCinemas } from "../models/hallXCinemas.js";
-import { addSeating } from "../models/seating.mode.js";
+import { addSeating, updateSeating } from "../models/seating.mode.js";
 
 export const ctrlAddHall = async (req, res) => {
     try {
@@ -77,6 +77,25 @@ export const ctrlGetOneHallById = async (req, res) => {
         console.log(error);
         res.status(500).json({
             msg: 'Error get one hall'
+        })
+    }
+}
+
+
+export const ctrlUpdateHall = async (req, res) => {
+    try {
+        const { id } = req.params
+        
+        const hall = await updateHall(id, req.body.formState)
+        const seating = await updateSeating(req.body.selectedButtons, id)
+
+        res.status(200).json({
+            msg: 'hall updated'
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'error update hall'
         })
     }
 }

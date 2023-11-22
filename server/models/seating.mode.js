@@ -25,3 +25,20 @@ export async function addSeating(seating, hallId) {
         })
     }
 }
+
+export async function updateSeating(seating, hallId) {
+    const oldSeating = await seatingModel.destroy({
+        where: {
+            hallId: hallId
+        }
+    })
+    
+    for (let index = 0; index < seating.length; index++) {
+
+        const newSeating = await seatingModel.create({
+            row: seating[index].row,
+            column: seating[index].column,
+            hallId: hallId
+        })
+    }
+}
