@@ -34,7 +34,7 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
                       data-movie-id={movie.id}
                       type='button'
                       className='btn btn-outline-dark tageta'
-                    
+
                     >
                       {cine.name}
                     </Link>
@@ -57,7 +57,8 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
 
       </section>
       <div className='d-flex justify-content-end text-end'>
-        {authState.cinema && <Link to='/agregar-pelicula' className='m-5 btn btn-outline-light'>Agregar película</Link>}
+        {authState.cinema && <Link to='/salas' className='mt-5 me-4 btn btn-outline-light'>Salas</Link>}
+        {authState.cinema && <Link to='/agregar-pelicula' className='mt-5 me-5 btn btn-outline-light'>Agregar película</Link>}
       </div>
     </div>
   );

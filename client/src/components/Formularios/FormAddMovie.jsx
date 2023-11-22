@@ -19,7 +19,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
         date_issue: "",
         type_emissionId: 1,
         url_trailer: "",
-        hallId: "1",
+        hallId: "",
         events: []
     });
 
@@ -39,6 +39,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
         };
         setFormMovie(newFormData);
 
+        console.log(formMovie)
         if (name === 'rutaImage') {
             const file = e.target.files[0];
             if (file) {

@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
 
 .contenedorReserva {
-  display: flex;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: url('../img/formReserva.jpg') no-repeat;
@@ -10,6 +8,7 @@
 }
 
 .formBoxReserva {
+  width: 70%;
   position: relative;
   border: 5px solid rgba(0, 0, 0, 0.5);
   border: 2px solid rgba(255, 255, 255, 0.5);

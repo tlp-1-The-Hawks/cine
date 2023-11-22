@@ -1,64 +1,106 @@
 import React, { useEffect, useState } from 'react';
 import '../../assets/style/seat.css';
+import { CustomFetch } from '../../api/customFetch';
 
-export const Seat = ({ info }) => {
-  const [selectedSeats, setSelectedSeats] = useState([]);
-  const [capacity, setCapacity] = useState(0);
-  const occupiedSeats = [];
+export const Seat = ({ hall, cinemaId }) => {
+  const [columnState, setColumnState] = useState(1);
+  const [rowState, setRowState] = useState(1);
+  const [selectedButtons, setSelectedButtons] = useState([]);
+  const [selectedSeatings, setSelectedSeatings] = useState([]);
 
   useEffect(() => {
-    if (info && info.information && info.information.length > 0) {
-      setCapacity(info.information[0].hall.capacity);
-    }
-  }, [info]);
+    (
+      async () => {
+        const dataHall = await CustomFetch(`http://localhost:4000/api/hall/${hall}/${cinemaId}`, 'GET')
+        setRowState(dataHall.row)
+        setColumnState(dataHall.column)
+        setSelectedButtons(dataHall.seatings)
+        console.log(selectedButtons)
+      }
+    )()
+  }, [hall])
 
-  const selectSeat = (seatNumber) => {
-    if (selectedSeats.includes(seatNumber)) {
-      setSelectedSeats(selectedSeats.filter((seat) => seat !== seatNumber));
-    } else if (selectedSeats.length < capacity) { // Utiliza la capacidad en lugar de availableSeats
-      setSelectedSeats([...selectedSeats, seatNumber]);
+  const selectButton = (e, i, j) => {
+    const buttonInfo = {
+      id: e,
+      row: i,
+      column: j
+    };
+    const buttonIndex = selectedSeatings.findIndex(button =>
+      button.row === i && button.column === j
+    );
+
+    if (buttonIndex !== -1) {
+      const updatedButtons = [...selectedSeatings];
+      updatedButtons.splice(buttonIndex, 1);
+      console.log(updatedButtons)
+      setSelectedSeatings(updatedButtons);
+    } else {
+      const newState = [...selectedSeatings, buttonInfo]
+      console.log(newState)
+      setSelectedSeatings(newState)
     }
   };
 
-  const seatingPlan = [];
 
-  for (let row = 1; row <= 5; row++) {
-    for (let col = 1; col <= 10; col++) {
-      const seatNumber = (row - 1) * 10 + col;
-      const isOccupied = occupiedSeats.includes(seatNumber);
-      const isSelected = selectedSeats.includes(seatNumber);
-      const rowChar = String.fromCharCode(65 + Math.floor((seatNumber - 1) / 10));
-      const seatLabel = rowChar + col;
-      const seatClassName = `seat ${isOccupied ? 'occupied' : ''} ${isSelected ? 'selected' : ''}`;
-      seatingPlan.push(
-        <div key={seatNumber} className={seatClassName} onClick={() => selectSeat(seatNumber)}>
-          {seatLabel}
+  const generateButtons = () => {
+    const buttons = [];
+    let id = 0;
+
+    for (let i = 0; i < rowState; i++) {
+      const row = [];
+      for (let j = 0; j < columnState; j++) {
+
+        const isButtonSelected = selectedButtons.some(button =>
+          button.row === i && button.column === j
+        );
+        const isSelectSeatings = selectedSeatings.some(button =>
+          button.row === i && button.column === j
+        );
+
+        let idButton = 0
+        selectedButtons.forEach(button => {
+          if (button.row === i && button.column === j) {
+            idButton = button.id
+          }
+        })
+        row.push(
+          isSelectSeatings ?
+            <button
+              key={`button-${i}-${j}`}
+              onClick={(e) => selectButton(idButton, i, j)
+
+              }
+              className={`seatingButton btn m-1 btn-responsive btn-success`}
+            >
+              -
+            </button> :
+            isButtonSelected ?
+              <button
+                key={`button-${i}-${j}`}
+                value={selectedButtons[id].id}
+                onClick={(e) => selectButton(idButton, i, j)}
+                className={`seatingButton btn m-1 btn-responsive btn-danger`}
+              >
+                -
+              </button>
+              : <button className='seatingButton btn m-1 btn-responsive btn-dark text-dark' disabled>-</button>
+        );
+      }
+      buttons.push(
+        <div key={`row-${i}`} className="d-flex justify-content-center">
+          {row}
         </div>
       );
+
     }
-  }
+
+    return buttons;
+  };
 
   return (
-    <div className="seats">
-      <p>Asientos:</p>
-      <div className='ejemplos container'>
-        <div className="row">
-          <div className="col-4 d-flex">
-            <p>Disponible</p>
-            <button className='ejemplos1'>A1</button>
-          </div>
-          <div className="col-4 d-flex">
-            <p>Ocupado</p>
-            <button className='ejemplos2'>A1</button>
-          </div>
-          <div className="col-4 d-flex">
-            <p>Seleccionado</p>
-            <button className='ejemplos3'>A1</button>
-          </div>
-        </div>
-      </div>
-      <div className="seating-plan">{seatingPlan}</div>
-      <div id="selectedSeats">Asientos seleccionados: {selectedSeats.map(seatNumber => String.fromCharCode(65 + Math.floor((seatNumber - 1) / 10)) + (seatNumber % 10)).join(', ')}</div>
+    <div className="text-center">
+      {generateButtons()}
     </div>
   );
 }

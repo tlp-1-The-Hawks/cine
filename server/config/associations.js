@@ -17,6 +17,8 @@ import { infoXdateEmissions } from '../models/InfoXDateEmissions.js';
 import { locationModel, createLocation } from '../models/location.model.js';
 import { provinceModel, createProvince } from '../models/Province.model.js';
 import { requestCinemaModel } from '../models/RequestCinema.js';
+import { seatingModel } from '../models/seating.mode.js';
+
 
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
@@ -185,6 +187,12 @@ cinemaModel.belongsTo(locationModel)
 //Request and user 
 UserModel.hasMany(requestCinemaModel)
 requestCinemaModel.belongsTo(UserModel)
+
+
+//hall and seating
+hallModel.hasMany(seatingModel)
+seatingModel.belongsTo(hallModel)
+
 
 //preloaded data
 async function dataPreloaded() {

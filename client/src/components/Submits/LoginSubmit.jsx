@@ -40,8 +40,6 @@ export const LoginSubmit = ({ formState }) => {
     }
    
     if (resp.token) {
-
-      console.log(resp)
       login(resp);
       conectarSocket();
       Swal.fire({

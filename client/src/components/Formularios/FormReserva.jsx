@@ -13,7 +13,7 @@ export const FormReserva = () => {
 
   const movieId = searchParams.get('movieId');
   const cinemaId = searchParams.get('cinemaId');
-
+  const [hall, setHall] = useState("")
   const [info, setInfo] = useState({})
   const [price, setPrice] = useState("Cargando...");
   const [quantity, setQuantity] = useState(1);
@@ -48,6 +48,7 @@ export const FormReserva = () => {
         setInfo(data)
         setInfoDate(data.information[0].date_emissions);
         setPrice(data.information[0].price)
+        setHall(data.information[0].hallId)
       })
       .catch((error) => console.log(error));
   }, [])
@@ -85,7 +86,7 @@ export const FormReserva = () => {
   }, []);
 
   return (
-    < div className="contenedorReserva" >
+    < div className="contenedorReserva d-flex justify-content-center" >
 
       <div className="formBoxReserva">
         <div className='container'>
@@ -128,9 +129,11 @@ export const FormReserva = () => {
                   })}
               </div>
             </div>
-            <div className="col d-flex justify-content-center">
-              <Seat info={info} />
-              {/* <Contador/> */}
+
+          </div>
+          <div className="row">
+            <div className="col">
+              <Seat hall={hall} cinemaId={cinemaId} />
             </div>
           </div>
         </div>

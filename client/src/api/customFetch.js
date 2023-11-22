@@ -31,7 +31,18 @@ export const CustomFetch = async (url, req, payload,) => {
         return data
     }
 
+    if(req === 'PUT'){
+        const response = await fetch(url,{
+            method: 'PUT',
+            body: JSON.stringify(payload),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        const data = await response.json()
 
+        return data
+    }
     if (req === 'TOKEN') {
         const response = await fetch(url, {
             method: 'GET',

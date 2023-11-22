@@ -19,7 +19,11 @@ export const LogoutButton = () => {
           text: 'Has cerrado sesión exitosamente.',
           icon: 'success',
           confirmButtonText: 'Aceptar',
-        });
+        }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.reload()
+          }
+      })
       };
 
   return (
