@@ -42,3 +42,11 @@ export async function updateSeating(seating, hallId) {
         })
     }
 }
+
+export async function deleteSeatings(hallId){
+    return await seatingModel.destroy({
+        where: {
+            hallId: hallId
+        }
+    })
+}

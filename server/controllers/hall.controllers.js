@@ -1,6 +1,6 @@
 import { addCreateHall, deleteHall, getAllHallByCinemaId, getOneHallById, updateHall } from "../models/Hall.models.js";
 import { addHallxCinemas } from "../models/hallXCinemas.js";
-import { addSeating, updateSeating } from "../models/seating.mode.js";
+import { addSeating, deleteSeatings, updateSeating } from "../models/seating.mode.js";
 
 export const ctrlAddHall = async (req, res) => {
     try {
@@ -52,8 +52,9 @@ export const ctrlGetAllHallByCinemaId = async (req, res) => {
 export const ctrlDeleteHall = async (req, res) => {
     try {
         const { id } = req.params
+        const delSeatings = await deleteSeatings(id)
+        const delHalls = await deleteHall(id)
 
-        const halls = await deleteHall(id)
 
         res.status(200).json({
             msg: 'hall eliminated'
