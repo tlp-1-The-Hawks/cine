@@ -6,7 +6,6 @@ import { AuthContext } from '../context/AuthProvider.jsx';
 import { Navigate } from 'react-router-dom';
 
 export const AddMovie = () => {
-    const token = localStorage.getItem('token')
     const [cinemaId, setCinemaId] = useState(null)
     const [hallState, setHallState] = useState([]);
 
@@ -18,7 +17,7 @@ export const AddMovie = () => {
     useEffect(() => {
         (async () => {
 
-            const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token);
+            const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', localStorage.getItem('token'));
 
             setCinemaId(user.cinemaId);
             const halls = await CustomFetch(`http://localhost:4000/api/hall/${user.cinemaId}`, 'GET')

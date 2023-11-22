@@ -12,12 +12,14 @@ export const HallSelect = ({ formMovie, handleChange, hallState, cinemaId }) => 
                     name="hallId"
                     id="hall" onChange={handleChange}
                     value={formMovie.hallId}
-                >
+                >     <option value={0}>selecciona la sala</option>
                     {
                         (hallState && hallState.length === 0)
                             ? <option defaultValue={"Valor"}>--No hay opciones--</option>
-                            : hallState.map((hall) => (
+                            :
+                            hallState.map((hall) => (
                                 <option key={hall.id} id={hall.id} value={hall.id}>
+
                                     {hall.nr_hall}
                                 </option>
                             ))
