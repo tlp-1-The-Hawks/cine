@@ -86,7 +86,7 @@ export const FormReserva = () => {
   }, []);
 
   return (
-    < div className="contenedorReserva" >
+    < div className="contenedorReserva d-flex justify-content-center" >
 
       <div className="formBoxReserva">
         <div className='container'>
@@ -129,11 +129,11 @@ export const FormReserva = () => {
                   })}
               </div>
             </div>
-        
+
           </div>
           <div className="row">
-          <div className="col d-flex justify-content-center">
-              <Seat hall={hall} cinemaId={cinemaId}/>
+            <div className="col">
+              <Seat hall={hall} cinemaId={cinemaId} />
             </div>
           </div>
         </div>
