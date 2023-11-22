@@ -54,7 +54,7 @@ export const Seat = ({ hall, cinemaId }) => {
               isButtonSelected ? 
                 <button
                     key={`button-${i}-${j}`}
-                    onClick={(e) => selectButton(i, j)}
+                    
                     className={`seatingButton btn m-1 btn-responsive btn-danger`}
                 >
                     {buttonValue}
