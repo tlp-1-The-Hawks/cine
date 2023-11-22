@@ -21,7 +21,7 @@ export const cinemaModel = sequelize.define(
       allowNull: false
     },
     cuit: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false
     }
   },

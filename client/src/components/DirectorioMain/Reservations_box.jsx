@@ -21,8 +21,8 @@ export const ReservationsBox = ({ movies, cinemaId }) => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <div className="row mt-4">
-                            <h2 className="text-center text-white">Mi cartelera</h2>
+                        <div className="row mt-5">
+                            <h2 className="text-center text-white mt-5">Mi cartelera</h2>
                             {
                                 cartelera.map((movies) => (
                                     <div className="miCartelera mt-1 mb-1">
@@ -38,7 +38,7 @@ export const ReservationsBox = ({ movies, cinemaId }) => {
                         <div className="d-flex justify-content-center">
                             {
                                 bookings.map((bookings) => (
-                                    <p className="text-white">{bookings.paymentId}</p>
+                                    <p>{bookings.paymentId}</p>
                                 ))
                             }
                         </div>

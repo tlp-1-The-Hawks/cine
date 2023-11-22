@@ -12,9 +12,9 @@ export const FormReserva = () => {
 
   const movieId = searchParams.get('movieId');
   const cinemaId = searchParams.get('cinemaId');
-
-  const [info, setInfo] = useState({});
-  const [price, setPrice] = useState('Cargando...');
+  const [hall, setHall] = useState("")
+  const [info, setInfo] = useState({})
+  const [price, setPrice] = useState("Cargando...");
   const [quantity, setQuantity] = useState(1);
   const [idUser, setIdUser] = useState('');
   const [infoDate, setInfoDate] = useState([]);
@@ -47,7 +47,8 @@ export const FormReserva = () => {
         console.log(data);
         setInfo(data);
         setInfoDate(data.information[0].date_emissions);
-        setPrice(data.information[0].price);
+        setPrice(data.information[0].price)
+        setHall(data.information[0].hallId)
       })
       .catch((error) => console.log(error));
   }, []);
@@ -143,6 +144,12 @@ export const FormReserva = () => {
                   );
                 })}
               </div>
+            </div>
+
+          </div>
+          <div className="row">
+            <div className="col d-flex justify-content-center">
+              <Seat hall={hall} cinemaId={cinemaId} />
             </div>
           </div>
         </div>
