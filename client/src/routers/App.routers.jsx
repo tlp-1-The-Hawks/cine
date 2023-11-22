@@ -9,6 +9,7 @@ import { ManageRequests } from '../Pages/ManageRequests.jsx';
 import { InfoMovie } from '../Pages/InfoMovie.jsx';
 import { WatchReservations } from '../Pages/WatchReservations.jsx';
 import { RegisterCinema } from '../Pages/RegisterCinema.jsx';
+import { MyReservation } from '../Pages/MyReservation.jsx';
 
 
 export const AppRouter = () => {
@@ -44,6 +45,10 @@ export const AppRouter = () => {
                     path='/soporte'
                     element={<Support />}
                 />
+                            <Route
+                    path='/MiReserva'
+                    element={<MyReservation/>}
+                 /> 
                 <Route
                     path='/reservaciones'
                     element={<WatchReservations />}

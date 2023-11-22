@@ -91,7 +91,8 @@ export const SoporteForm = () => {
                           icon: 'error',
                           width: '50%',
                           padding: '1rem',
-                          background: '#DBCBCB',
+                          background: '#ff0000',
+                          color:'white',
                           grow: 'row'
                         })
                       }

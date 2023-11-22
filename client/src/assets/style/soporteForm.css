@@ -1,3 +1,4 @@
+
 .titleForm{
     text-align: center;
 }
@@ -6,6 +7,7 @@
     color:white;
     display: flex;
     justify-content: center;
+    height: 100%;
 }
 
 .formSoporteBox{
@@ -27,26 +29,26 @@
 
 }
 .formularioItems input{
-    border: solid 1px orange;
+    border: solid 1px #ff0000;
     background: none;
     color: white;
 }
 .formularioItems textarea{
-    border: solid 1px orange;
+    border: solid 1px #ff0000;
     background: none;
     color: white
 }
 
 .botonSoporte{
-    border: solid 1px orange;
+    border: solid 1px #ff0000;
     background: none;   
     color: white;
 }
 .botonSoporte:hover {
 
     transform: scale(1.10);
-    background-color: white;
-    color: #222222;
+    background-color: #ff0000;
+    color: #ffffff;
     /* Aumenta el tamaño en un 10% en el hover */
     transition: transform 0.5s;
     /* Agrega una transición suave */
