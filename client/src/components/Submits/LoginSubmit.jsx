@@ -9,7 +9,7 @@ export const LoginSubmit = ({ formState }) => {
   const navigate = useNavigate()
   const { conectarSocket } = useContext(SocketContext)
   const { login } = useContext(AuthContext)
- 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,24 +38,23 @@ export const LoginSubmit = ({ formState }) => {
         grow: 'row'
       })
     }
-   
+
     if (resp.token) {
       login(resp);
       conectarSocket();
       Swal.fire({
         title: 'Inicio sesión correctamente',
         icon: 'success',
-        confirmButtonText: 'ok',
         width: '50%',
         padding: '1rem',
         background: '#DBCBCB',
-        grow: 'row'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // window.location.href = '/'
-          navigate('/')
-        }
+        grow: 'row',
+        showConfirmButton: false
       })
+      setTimeout(() => {
+        // Recarga la página después de 2 segundos
+        window.location.reload();
+      }, 2000);
     }
 
   }

@@ -21,10 +21,17 @@ export const LogoutButton = () => {
         location.reload(true);
       }
     })
+
+    logout();
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+
   };
 
   return (
-    <button onClick={handleLogout} className="btn bg-dark d-flex justify-content-center pt-2 text-white " > <box-icon name='log-out' type='solid' color='#fffcfc' ></box-icon>      Cerrar Sesión </button>
+    <button onClick={handleLogout} className="btn bg-dark d-flex justify-content-center pt-2 text-white "><box-icon name='log-out' type='solid' color='#fffcfc'></box-icon>Cerrar Sesión </button>
   );
 };
 
