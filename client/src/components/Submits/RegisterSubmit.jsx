@@ -45,10 +45,10 @@ export const RegisterSubmit = ({ formState }) => {
         })
       }
       if (response.token) {
-        console.log(response)
-        login(response);
+        login(response)
+
         conectarSocket();
-      
+
         Swal.fire({
           title: 'Inicio sesión correctamente',
           icon: 'success',
