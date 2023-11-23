@@ -52,16 +52,18 @@ export const RegisterSubmit = ({ formState }) => {
         Swal.fire({
           title: 'Inicio sesión correctamente',
           icon: 'success',
-          confirmButtonText: 'ok',
           width: '50%',
           padding: '1rem',
           background: '#DBCBCB',
-          grow: 'row'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navigate('/')
-          }
+          grow: 'row',
+          showConfirmButton: false
         })
+
+        setTimeout(() => {
+          // Recarga la página después de 2 segundos
+          window.location.reload();
+        }, 2000);
+
       }
 
     }

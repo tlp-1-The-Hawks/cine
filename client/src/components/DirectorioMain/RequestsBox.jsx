@@ -26,7 +26,7 @@ export const RequestsBox = ({ reqCine }) => {
 
     const acceptRequest = async (e) => {
         e.preventDefault()
- 
+
         const response = await CustomFetch(`http://localhost:4000/api/request-cine/${e.target.id}`, 'GET')
 
         const dataCine = await CustomFetch('http://localhost:4000/api/request-cine', 'GET')
@@ -81,13 +81,13 @@ export const RequestsBox = ({ reqCine }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="d-flex justify-content-end"> 
+                                    <div className="d-flex justify-content-end">
                                         <div className="">
-                                            <button id={cine.id} onClick={acceptRequest} className="requestsButton btn btn-danger">Aceptar</button>
+                                            <button id={cine.id} onClick={acceptRequest} className="requestsButton btn btn-success">Aceptar</button>
                                         </div>
                                         <div className="">
                                             <button onClick={rejectedRequest}
-                                               id={cine.id} className="requestsButton  btn btn-success">Rechazar</button>
+                                                id={cine.id} className="requestsButton  btn btn-danger">Rechazar</button>
                                         </div>
                                     </div>
 

@@ -6,76 +6,101 @@ export const Seat = ({ hall, cinemaId }) => {
   const [columnState, setColumnState] = useState(1);
   const [rowState, setRowState] = useState(1);
   const [selectedButtons, setSelectedButtons] = useState([]);
+  const [selectedSeatings, setSelectedSeatings] = useState([]);
 
   useEffect(() => {
     (
       async () => {
         const dataHall = await CustomFetch(`http://localhost:4000/api/hall/${hall}/${cinemaId}`, 'GET')
         setRowState(dataHall.row)
-        setColumnState(dataHall.column) 
+        setColumnState(dataHall.column)
         setSelectedButtons(dataHall.seatings)
+        console.log(selectedButtons)
       }
     )()
-  },[hall])
+  }, [hall])
 
-  const selectButton = (i, j) => {
+  const selectButton = (e, i, j) => {
     const buttonInfo = {
-        row: i,
-        column: j
+      id: e,
+      row: i,
+      column: j
     };
-
-    const buttonIndex = selectedButtons.findIndex(button =>
-        button.row === i && button.column === j
+    const buttonIndex = selectedSeatings.findIndex(button =>
+      button.row === i && button.column === j
     );
 
     if (buttonIndex !== -1) {
-
-        const updatedButtons = [...selectedButtons];
-        updatedButtons.splice(buttonIndex, 1);
-        setSelectedButtons(updatedButtons);
+      const updatedButtons = [...selectedSeatings];
+      updatedButtons.splice(buttonIndex, 1);
+      console.log(updatedButtons)
+      setSelectedSeatings(updatedButtons);
     } else {
-
-        setSelectedButtons(prevSelected => [...prevSelected, buttonInfo]);
-
+      const newState = [...selectedSeatings, buttonInfo]
+      console.log(newState)
+      setSelectedSeatings(newState)
     }
-};
+  };
+
 
   const generateButtons = () => {
     const buttons = [];
-    let buttonValue = 1;
+    let id = 0;
 
     for (let i = 0; i < rowState; i++) {
-        const row = [];
-        for (let j = 0; j < columnState; j++) {
-            const isButtonSelected = selectedButtons.some(button =>
-                button.row === i && button.column === j
-            );
-            row.push(
-              isButtonSelected ? 
-                <button
-                    key={`button-${i}-${j}`}
-                    onClick={(e) => selectButton(i, j)}
-                    className={`seatingButton btn m-1 btn-responsive btn-danger`}
-                >
-                    {buttonValue}
-                </button>
-                : <button className='seatingButton btn m-1 btn-responsive btn-dark' disabled>-</button>
-            );
-            buttonValue++;
-        }
-        buttons.push(
-            <div key={`row-${i}`} className="d-flex justify-content-center">
-                {row}
-            </div>
+      const row = [];
+      for (let j = 0; j < columnState; j++) {
+
+        const isButtonSelected = selectedButtons.some(button =>
+          button.row === i && button.column === j
         );
+        const isSelectSeatings = selectedSeatings.some(button =>
+          button.row === i && button.column === j
+        );
+
+        let idButton = 0
+        selectedButtons.forEach(button => {
+          if (button.row === i && button.column === j) {
+            idButton = button.id
+          }
+        })
+        row.push(
+          isSelectSeatings ?
+            <button
+              key={`button-${i}-${j}`}
+              onClick={(e) => selectButton(idButton, i, j)
+
+              }
+              className={`seatingButton btn m-1 btn-responsive btn-success`}
+            >
+              -
+            </button> :
+            isButtonSelected ?
+              <button
+                key={`button-${i}-${j}`}
+                value={selectedButtons[id].id}
+                onClick={(e) => selectButton(idButton, i, j)}
+                className={`seatingButton btn m-1 btn-responsive btn-danger`}
+              >
+                -
+              </button>
+              : <button className='seatingButton btn m-1 btn-responsive btn-dark text-dark' disabled>-</button>
+        );
+      }
+      buttons.push(
+        <div key={`row-${i}`} className="d-flex justify-content-center">
+          {row}
+        </div>
+      );
+
     }
 
     return buttons;
-};
+  };
 
   return (
     <div className="text-center">
-    {generateButtons()}
+      {generateButtons()}
     </div>
   );
 }

@@ -99,7 +99,8 @@ export const FormReserva = () => {
 
 
   return (
-    <div className="contenedorReserva">
+    < div className="contenedorReserva d-flex justify-content-center" >
+
       <div className="formBoxReserva">
         <div className="container">
           <h2>Reserva de Asientos de Cine</h2>
@@ -148,7 +149,7 @@ export const FormReserva = () => {
 
           </div>
           <div className="row">
-            <div className="col d-flex justify-content-center">
+            <div className="col">
               <Seat hall={hall} cinemaId={cinemaId} />
             </div>
           </div>

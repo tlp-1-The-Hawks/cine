@@ -88,7 +88,7 @@ export const EditHallBox = ({ hall }) => {
                         className={`seatingButton btn m-1 btn-responsive ${isButtonSelected ? 'btn-danger' : 'btn-dark'}`}
 
                     >
-                        {buttonValue}
+                        -
                     </button>
                 );
                 buttonValue++;
@@ -108,56 +108,56 @@ export const EditHallBox = ({ hall }) => {
             <div className="container">
                 <h1 className="text-center">Edita tu sala</h1>
                 <div className="container mt-5">
-            <div className="row text-center">
-                <div className="col">
-                    <div className="row justify-content-center">
-                        <label htmlFor="">Numero de sala</label>
-                        <input onChange={handleChange} value={formState.nr_hall} name="nr_hall" className="rounded w-75" type="text" />
+                    <div className="row text-center">
+                        <div className="col">
+                            <div className="row justify-content-center">
+                                <label htmlFor="">Numero de sala</label>
+                                <input onChange={handleChange} value={formState.nr_hall} name="nr_hall" className="rounded w-75" type="text" />
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="row justify-content-center">
+                                <label htmlFor="">Capacidad</label>
+                                <input onChange={handleChange} value={formState.capacity} name="capacity" className="rounded w-75" type="text" />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="col">
-                    <div className="row justify-content-center">
-                        <label htmlFor="">Capacidad</label>
-                        <input onChange={handleChange} value={formState.capacity} name="capacity" className="rounded w-75" type="text" />
+                    <div className="row text-center">
+                        <div className="col">
+                            <div className="row justify-content-center">
+                                <label htmlFor="">Indique las filas</label>
+                                <input
+                                    name="row"
+                                    value={rowState}
+                                    onChange={handleChange}
+                                    className="rounded w-75"
+                                    type="text"
+                                />
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="row justify-content-center">
+                                <label htmlFor="">Indique las columnas</label>
+                                <input
+                                    name="column"
+                                    value={columnState}
+                                    onChange={handleChange}
+                                    className="rounded w-75"
+                                    type="text"
+                                />
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-             <div className="row text-center">
-                <div className="col">
-                    <div className="row justify-content-center">
-                        <label htmlFor="">Indique las filas</label>
-                        <input
-                            name="row"
-                            value={rowState}
-                            onChange={handleChange}
-                            className="rounded w-75"
-                            type="text"
-                        />
-                    </div>
-                </div>
-                <div className="col">
-                    <div className="row justify-content-center">
-                        <label htmlFor="">Indique las columnas</label>
-                        <input
-                            name="column"
-                            value={columnState}
-                            onChange={handleChange}
-                            className="rounded w-75"
-                            type="text"
-                        />
-                    </div>
-                </div>
-                </div>
-             <div className="row mt-5 text-center">
+                    <div className="row mt-5 text-center">
 
-                {generateButtons()}
-             </div>
-            <AddHallSubmit
-                hallId={hall.id}
-                request={'PUT'}
-                formState={formState}
-                selectedButtons={selectedButtons}
-            />
+                        {generateButtons()}
+                    </div>
+                    <AddHallSubmit
+                        hallId={hall.id}
+                        request={'PUT'}
+                        formState={formState}
+                        selectedButtons={selectedButtons}
+                    />
                 </div>
             </div>
         </div>
