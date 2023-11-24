@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import '../../assets/style/FormLogin.css'
 import { LoginSubmit } from '../Submits/LoginSubmit.jsx'
+import { Link } from "react-router-dom"
 
 export const FormLogin = () => {
 
@@ -52,7 +53,7 @@ export const FormLogin = () => {
           />
 
           <div className='groupLogin'>
-            <span><a href="#">Recuperar Contraseña</a></span>
+            <Link to={'/recuperar-clave'}> <a href="#">Recuperar Contraseña</a>   </Link>
             <span><a href="/register">Registro</a></span>
           </div>
 

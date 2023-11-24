@@ -12,6 +12,7 @@ import { RegisterCinema } from '../Pages/RegisterCinema.jsx';
 import { Halls } from '../Pages/Halls.jsx';
 import { EditHall } from '../Pages/EditHall.jsx';
 import { MyReservation } from '../Pages/MyReservation.jsx';
+import { RecoveryPassword } from '../Pages/RecoveryPassword.jsx';
 
 export const AppRouter = () => {
     return (
@@ -71,20 +72,8 @@ export const AppRouter = () => {
                     element={<EditHall />}
                 />
                 <Route
-                    path='/pract'
-                    element={<InfoMovie />}
-                />
-                <Route
-                    path='/reserva_boletos'
-                    element={<Reserva_boletos />}
-                />
-                <Route
-                    path='/r'
-                    element={<R />}
-                />
-                <Route
-                    path='/comentario'
-                    element={<Card />}
+                    path='/recuperar-clave'
+                    element={<RecoveryPassword />}
                 />
             </Routes>
         </BrowserRouter>
