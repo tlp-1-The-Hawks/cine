@@ -1,6 +1,6 @@
 import { getAllTypesEmissions } from "../models/TypeEmission.model.js";
 
-export const ctrlGetAllTypesEmissions = async (req, res, next) => {
+export const ctrlGetAllTypesEmissions = async (req, res) => {
     try {
         const types_emissions = await getAllTypesEmissions()
 
