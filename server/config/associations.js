@@ -18,8 +18,8 @@ import { locationModel, createLocation } from '../models/location.model.js';
 import { provinceModel, createProvince } from '../models/Province.model.js';
 import { requestCinemaModel } from '../models/RequestCinema.js';
 import { seatingModel } from '../models/seating.mode.js';
-
-
+import { dateEmissionXseatings } from '../models/DateEmissionsXSatings.js';
+import { bookingsXSeatings } from '../models/BookingsXSeatings.js';
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
   foreignKey: 'cinemaId',
@@ -193,6 +193,11 @@ requestCinemaModel.belongsTo(UserModel)
 hallModel.hasMany(seatingModel)
 seatingModel.belongsTo(hallModel)
 
+seatingModel.belongsToMany(dateEmissionsModel, { through: dateEmissionXseatings });
+dateEmissionsModel.belongsToMany(seatingModel, { through: dateEmissionXseatings });
+
+seatingModel.belongsToMany(bookingModel, { through: bookingsXSeatings });
+bookingModel.belongsToMany(seatingModel, { through: bookingsXSeatings });
 
 //preloaded data
 async function dataPreloaded() {

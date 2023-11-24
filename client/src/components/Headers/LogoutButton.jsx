@@ -7,10 +7,9 @@ export const LogoutButton = () => {
   const { logout } = useContext(AuthContext)
 
   const handleLogout = () => {
-    // Eliminar el token del localStorage
-    // logout()
+    logout()
 
-
+    // Mostrar una alerta
     Swal.fire({
       title: 'Cierre de Sesión',
       text: 'Has cerrado sesión exitosamente.',
@@ -24,6 +23,13 @@ export const LogoutButton = () => {
         }, 2000);
       }
     })
+
+    logout();
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+
   };
 
   return (

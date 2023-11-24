@@ -3,7 +3,7 @@ import {
   getAllMovies,
   getMovieById,
   getMovieByInfo,
-  getMovieByCinemaId
+  getMovieByCinemaId,
 } from '../models/movie_model.js';
 
 export const ctrlCreateMovie = async (req, res) => {
@@ -77,3 +77,4 @@ export const ctrlGetMovieByCinemaId = async (req, res) => {
     })
   }
 }
+

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../assets/style/seat.css';
 import { CustomFetch } from '../../api/customFetch';
 
-export const Seat = ({ hall, cinemaId }) => {
+export const Seat = ({ hall, cinemaId, selectedDate }) => {
   const [columnState, setColumnState] = useState(1);
   const [rowState, setRowState] = useState(1);
   const [selectedButtons, setSelectedButtons] = useState([]);
@@ -18,7 +18,7 @@ export const Seat = ({ hall, cinemaId }) => {
         console.log(selectedButtons)
       }
     )()
-  }, [hall])
+  }, [selectedDate, hall])
 
   const selectButton = (e, i, j) => {
     const buttonInfo = {

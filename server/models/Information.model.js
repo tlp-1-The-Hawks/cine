@@ -39,3 +39,13 @@ export async function addInfor(newInfo) {
 
   return newInfoMovie
 }
+
+
+export async function deleteInfo(id) {
+  return await informationModel.destroy({
+    where: {
+      id:id
+    }
+  })
+}
+
