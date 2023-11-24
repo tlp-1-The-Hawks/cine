@@ -2,10 +2,14 @@ import { Header } from "../components/Headers/Header.jsx"
 import { Footer } from "../components/Footers/Footer.jsx"
 import { MyReservations } from "../components/DirectorioMain/MyReservations.jsx"
 import { useEffect, useState } from "react"
+import { useContext } from "react"
+import { AuthContext } from "../context/AuthProvider.jsx"
 import { CustomFetch } from "../api/customFetch.js"
 import '../assets/style/Reservations.css'
 
 export const MyReservation = () => {
+
+
 
 
 
