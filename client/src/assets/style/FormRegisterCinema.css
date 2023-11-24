@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
+
+.contenedorRegisterCine {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background: url('../img/formRegister.jpg') no-repeat;
+  background-size: cover;
+}
+
+.formBoxRegisterCine {
+
+  position: relative;
+  border: 2px solid rgba(255, 255, 2550.5);
+  margin-top: 120px;
+  margin-bottom: 120px;
+  height: 50%;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.formBoxRegister h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 32px;
+}
+
+.formBoxRegisterCine .inputBoxRegister {
+  position: relative;
+  margin: 30px 0;
+  width: 100%;
+  border-bottom: 2px solid #fff;
+}
+
+.formBoxRegisterCine .inputBoxRegister input {
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 20px 0 5px;
+  color: #fff;
+  font-size: 16px;
+}
+
+i {
+  position: absolute;
+  color: #fff;
+  top: 13px;
+  right: 0;
+}
+
+input::placeholder {
+  color: #fff;
+}
+
+.botonRegister {
+  color: #fff;
+  background: blue;
+  width: 100%;
+  height: 50px;
+  border: 5px;
+  outline: none;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, .5);
+}
+
+.groupRegisterCine {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.botonRegisterCine1 {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding-left: 50px;
+}
+
+
+.botonRegisterCine2 {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.botonRegisterCine:focus {
+  text-decoration: underline;
+}

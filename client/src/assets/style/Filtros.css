@@ -4,7 +4,7 @@
   border-radius: 10px;
 }
 
-label {
+.filtro-label {
   color: #ffffff;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 2px;
@@ -14,6 +14,9 @@ h1 {
   padding-top: 40px;
   color: #ffffff;
   border-bottom: 1px solid #e21515;
-  width: 57%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.filtrobuttons {
+  background-color: #FF2C25;
 }

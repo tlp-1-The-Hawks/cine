@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
 
 .contenedorReserva {
-  display: flex;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: url('../img/formReserva.jpg') no-repeat;
@@ -10,10 +8,9 @@
 }
 
 .formBoxReserva {
+  width: 70%;
   position: relative;
-
   border: 5px solid rgba(0, 0, 0, 0.5);
-  height: 70vh;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   backdrop-filter: blur(15px);
@@ -40,7 +37,6 @@
 .formBoxReserva .inputBoxReserva {
   position: relative;
   margin: 30px;
-  width: 310px;
   border-bottom: 2px solid #FF2C25;
   border-bottom: 2px solid #fff;
   display: flex;
@@ -74,15 +70,14 @@
 .botonReserva {
   color: #fff;
   background: #FF2C25;
-  width: 25%;
-  height: 50px;
   border-radius: 20px;
   border: none;
   outline: none;
   font-size: 17px;
   cursor: pointer;
   box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
-  margin-top: 70px;
+  margin-top: 60px;
+  margin-bottom: 10px;
 
   /* Espacio entre el último elemento y el botón */
 }
@@ -122,4 +117,11 @@
 /* Estilos para el ícono del carrito */
 .mercado-pago-button box-icon {
   margin-right: 5px;
+}
+
+.selectedButton {
+  background-color: #FF2C25;
+  /* Puedes ajustar el color según tus preferencias */
+  color: #000;
+  /* Color del texto */
 }

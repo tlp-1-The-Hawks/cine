@@ -1,8 +1,8 @@
-import { addCinemaInfo } from "../models/infoXcinema.model.js";
 import { createMovie } from "../models/movie_model.js";
 import { addMovieCinema } from '../models/movieXcinema.js';
 import { addMovieInfo } from "../models/moviexinfo.model.js";
-import { addInfor } from "../models/Information.model.js";
+import { addInfor, deleteInfo } from "../models/Information.model.js";
+import { addDateEmissions } from "../models/DateEmissions.js";
 
 export const ctrlAddInfoMovie = async (req, res) => {
     try {
@@ -16,8 +16,10 @@ export const ctrlAddInfoMovie = async (req, res) => {
             price,
             genreId,
             rutaImage,
-            date_issue,
-            type_emissionId
+            type_emissionId,
+            url_trailer,
+            hallId,
+            events
         } = req.body
         const { cinemaId } = req.params
 
@@ -30,8 +32,10 @@ export const ctrlAddInfoMovie = async (req, res) => {
             actors,
             price,
             genreId,
-            date_issue,
-            type_emissionId
+            type_emissionId,
+            url_trailer,
+            hallId,
+            cinemaId,
         }
 
         const NewMovie = await createMovie(title)
@@ -43,15 +47,14 @@ export const ctrlAddInfoMovie = async (req, res) => {
         const movieId = NewMovie.id
         const informationId = addInfo.id
 
+        const newInfoXdateEmissions = await addDateEmissions(events, informationId)
 
         const MovieCinema = await addMovieCinema(movieId, cinemaId)
-
-        const CinemaInfo = await addCinemaInfo(cinemaId, informationId)
 
         const newMovieInfo = await addMovieInfo(movieId, informationId)
 
         res.status(200).json({
-            message: 'Movie and information added'
+            msg: 'movie added successfully'
         })
 
     } catch (error) {
@@ -64,9 +67,10 @@ export const ctrlAddInfoMovie = async (req, res) => {
 
 export const ctrlUploadImgMovie = async (req, res) => {
     try {
-        const file = req.files.file;
-        const fileName = file.name;
 
+        const file = req.files.file;
+
+        const fileName = file.name
 
         file.mv(`../client/public/movies_img/${fileName}`, (err) => {
             if (err) {
@@ -80,3 +84,19 @@ export const ctrlUploadImgMovie = async (req, res) => {
         res.status(500).json({ message: 'Error upload image' });
     }
 };
+
+export const ctrlDeleteInfoById = async (req,res) => {
+    try {
+        const {id} = req.params
+
+        const delInfo = await deleteInfo(id)
+        res.status(200).json({
+            msg: 'infomation deleted'
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            msg: 'error dekete infomation'
+        })
+    }
+}   

@@ -1,0 +1,14 @@
+.hallsBox {
+    background-color: #222;
+    min-height: 90vh;
+    color: white;
+}
+
+.hallbutton {
+    background-color: #FF2C25;
+}
+
+.seatingButton {
+    width: 5%;
+    height: 70%;
+}

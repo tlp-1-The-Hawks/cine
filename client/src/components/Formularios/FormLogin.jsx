@@ -1,12 +1,11 @@
 import React from 'react'
-import { types_user } from '../../types/types.user.js'
-import { useState, useContext } from 'react'
-import { UserContext } from '../../context/UserContext.jsx'
+import { useState } from 'react'
 import '../../assets/style/FormLogin.css'
+import { LoginSubmit } from '../Submits/LoginSubmit.jsx'
 
 export const FormLogin = () => {
 
-  const { state, dispatch } = useContext(UserContext)
+
 
   const [formState, setFormState] = useState({
     email: "",
@@ -22,20 +21,10 @@ export const FormLogin = () => {
   };
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    dispatch({
-      type: types_user.USER_FIND_ONE,
-      payload: formState
-    })
-
-  }
-
   return (
     <div className='contenedorLogin'>
       <div className='formBoxLogin'>
-        <form name='formlogin' onSubmit={handleSubmit}>
+        <form name='formlogin'>
           <h2> Inicio de Sesión</h2>
 
           <div className='inputBoxLogin'>
@@ -58,9 +47,9 @@ export const FormLogin = () => {
             />
           </div>
 
-          <div className='botonLogin'>
-            <input type="submit" className='botonLogin' value="Registro" />
-          </div>
+          <LoginSubmit
+            formState={formState}
+          />
 
           <div className='groupLogin'>
             <span><a href="#">Recuperar Contraseña</a></span>

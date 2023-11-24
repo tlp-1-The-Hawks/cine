@@ -4,10 +4,15 @@ import { Register } from '../Pages/Register.jsx';
 import { Reserva } from '../Pages/Reserva.jsx'
 import { Login } from '../Pages/Login.jsx';
 import { AddMovie } from '../Pages/AddMovie.jsx';
+import { Support } from '../Pages/Support.jsx';
+import { ManageRequests } from '../Pages/ManageRequests.jsx';
 import { InfoMovie } from '../Pages/InfoMovie.jsx';
-import R from '../components/reserva_boletos/r';
-import Reserva_boletos from '../components/reserva_boletos/Reserva_boletos';
-import Card from '../components/comentarios/card';
+import { WatchReservations } from '../Pages/WatchReservations.jsx';
+import { RegisterCinema } from '../Pages/RegisterCinema.jsx';
+import { Halls } from '../Pages/Halls.jsx';
+import { EditHall } from '../Pages/EditHall.jsx';
+import { MyReservation } from '../Pages/MyReservation.jsx';
+
 export const AppRouter = () => {
     return (
         <BrowserRouter>
@@ -34,7 +39,36 @@ export const AppRouter = () => {
                 />
                 <Route
                     path='/informacion-pelicula'
-                    element={<InfoMovie />}
+                    element={<InfoMovie
+                    />}
+                />
+                <Route
+                    path='/soporte'
+                    element={<Support />}
+                />
+                <Route
+                    path='/MiReservas'
+                    element={<MyReservation />}
+                />
+                <Route
+                    path='/reservaciones'
+                    element={<WatchReservations />}
+                />
+                <Route
+                    path='/register-cine'
+                    element={<RegisterCinema />}
+                />
+                <Route
+                    path='/solicitudes'
+                    element={<ManageRequests />}
+                />
+                <Route
+                    path='/salas'
+                    element={<Halls />}
+                />
+                <Route
+                    path='/editar-sala'
+                    element={<EditHall />}
                 />
                 <Route
                     path='/pract'

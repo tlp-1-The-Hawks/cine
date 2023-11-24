@@ -1,7 +1,49 @@
-export const MovieInfo = ({ info }) => {
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
+import { useContext, useState } from "react";
+import { useEffect } from "react";
+import { CustomFetch } from "../../api/customFetch";
+import { useNavigate } from "react-router-dom";
+
+export const MovieInfo = ({ info, authReserva, cinema, movie }) => {
+  const navigate = useNavigate()
+  const [authCine, setAuthCine] = useState(false)
+  const { authState } = useContext(AuthContext)
+  const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
+  function convertirMinutosAHorasYMinutos(minutos) {
+    const horas = Math.floor(minutos / 60);
+    const minutosRestantes = minutos % 60;
+    const horaFormateada = horas < 10 ? `${horas}` : `${horas}`;
+    const minutosFormateados = minutosRestantes < 10 ? `0${minutosRestantes}` : `${minutosRestantes}`;
+    return `${horaFormateada}:${minutosFormateados}`;
+  }
+  useEffect(() => {
+    if (authState.islogged === true) {
+      CustomFetch('http://localhost:4000/auth/user', 'TOKEN', localStorage.getItem('token')).then((data) => {
+        if (data.cinemaId == cinema) {
+          setAuthCine(true)
+        }
+      })
+    }
+  }, [cinema])
+
+  const deleteInfo = async (e) => {
+    e.preventDefault()
+    const response = await CustomFetch(`http://localhost:4000/api/information/${info.id}`, 'DELETE')
+    navigate('/')
+  }
   return (
     <div className="bgInfoMovie">
       <div className="infomovie container rounded-4">
+        {authState.cinema && authCine &&
+          <div className='crud'>
+            <div className='crudBoton mt-2 me-2' data-tooltip="Editar">
+              <button className='crudButton'>                      <box-icon name='edit-alt' type='solid' color='#ffffff' ></box-icon></button>
+            </div>
+            <div className='crudBoton mt-2' data-tooltip="Eliminar">
+              <button onClick={deleteInfo} className='crudButton'>               <box-icon name='x-circle' color='#ffffff' ></box-icon></button>
+            </div>
+          </div>}
         <div className="row">
           <div className="col-md-4">
             {info &&
@@ -27,8 +69,7 @@ export const MovieInfo = ({ info }) => {
               <div>
                 <ul className="movie-info">
                   <li>
-                    <span className="lista">Precio:</span>
-                    {info &&
+                    <span className="lista">Precio:</span>${info &&
                       info.information &&
                       info.information[0] && (
                         <span>{info.information[0].price}</span>
@@ -43,17 +84,24 @@ export const MovieInfo = ({ info }) => {
                       )}
                   </li>
                   <li>
-                    <span className="lista">Lugar:</span>
-                    Sala 3
+                    <span className="lista">N° Sala:</span>
+                    {info &&
+                      info.information &&
+                      info.information[0] &&
+                      info.information[0].hall && (
+                        <span>
+                          {info.information[0].hall.nr_hall}
+                        </span>
+                      )}
                   </li>
                   <li>
                     <span className="lista">Formato:</span>
-                    {
-                      info &&
+                    {info &&
                       info.information &&
-                      info.information[0] && (
+                      info.information[0] &&
+                      info.information[0].type_emission && (
                         <span>
-                          {info.information[0].type_emissionId}
+                          {info.information[0].type_emission.type_emission}
                         </span>
                       )}
                   </li>
@@ -62,7 +110,9 @@ export const MovieInfo = ({ info }) => {
                     {info &&
                       info.information &&
                       info.information[0] && (
-                        <span>{info.information[0].duration}</span>
+                        <span>
+                          {convertirMinutosAHorasYMinutos(info.information[0].duration)} h
+                        </span>
                       )}
                   </li>
                   <li>
@@ -73,6 +123,28 @@ export const MovieInfo = ({ info }) => {
                         <span>{info.information[0].director}</span>
                       )}
                   </li>
+                  <li>
+                    <span className="lista">Fechas de emisión:</span>
+                    <div className="row">
+                      {info &&
+                        info.information &&
+                        info.information[0].date_emissions &&
+                        info.information[0].date_emissions.map((date) => {
+                          const formattedDate = new Date(date.date);
+                          const month = formattedDate.toLocaleString('default', { month: 'short' });
+                          const day = formattedDate.getDate();
+                          const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
+
+                          return (
+                            <div key={date.id} className="col">
+                              <p className="text-center bg-dark p-1 rounded" key={date.id} id={date.id}>
+                                {month} {day}, {hour}
+                              </p>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -80,36 +152,45 @@ export const MovieInfo = ({ info }) => {
         </div>
         <div className="text-end">
           <p className="d-inline-flex gap-1">
-            <a
-              className="reserva"
-              role="button"
-              onClick={() => {
-                const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
-                const movieId = info.id; // Obtén el ID de la película
-                window.location.href = `/reserva?movieId=${movieId}&cinemaId=${cinemaId}`;
-              }}
-            >
-              Reservar
-            </a>
-            <a
-              className="reserva"
-              role="button"
-              onClick={() => {
-                const cinemaId = info.cinemas[0].id; // Obtén el ID del cine
-                const movieId = info.id; // Obtén el ID de la película
-                window.location.href = `/comentario?movieId=${movieId}&cinemaId=${cinemaId}`;
-              }}
-            >
-              Comentar
-            </a>
-            <a
-              className="trailer"
-              href="https://www.youtube.com/watch?v=YrbdN5zaouU"
-              role="button"
-              target="_blank"
-            >
-              Ver Tráiler
-            </a>
+            {
+              authReserva !== null ?
+
+                <button
+                  className="reserva btn bg-primary"
+                  role="button"
+                >
+                  Reservado
+                </button>
+                :
+                authState.islogged === false ?
+                  <Link
+                    className="reserva"
+                    role="button"
+                    to={'/register'}
+                  >
+                    Registrate para reservar
+                  </Link>
+                  :
+                  <Link
+                    className="reserva"
+                    role="button"
+                    to={`/reserva?movieId=${movie}&cinemaId=${cinema}`}
+
+                  >
+                    Reservar
+                  </Link>
+            }
+
+            {trailerURL && (
+              <a
+                className="trailer"
+                href={trailerURL}
+                role="button"
+                target="_blank"
+              >
+                Ver Tráiler
+              </a>
+            )}
           </p>
         </div>
       </div>

@@ -3,7 +3,9 @@ import { DataTypes } from 'sequelize';
 import { cinemaModel } from './Cinema.models.js';
 import { informationModel } from './Information.model.js';
 import { genreModel } from './genre.models.js';
-import { movieCinemaModel } from './movieXcinema.js';
+import { dateEmissionsModel } from './DateEmissions.js';
+import { hallModel } from './Hall.models.js';
+import { TypeEmissionModel } from './TypeEmission.model.js';
 
 export const MovieModel = sequelize.define(
   'movie',
@@ -40,9 +42,9 @@ export async function createMovie(title) {
 
 
     return newMovie
-  } else {
-    return shearchMovie
   }
+  return shearchMovie
+
 }
 
 export async function getAllMovies() {
@@ -63,7 +65,7 @@ export async function getAllMovies() {
 }
 
 export async function getMovieById(movieId, cinemaId) {
-  const movie = await MovieModel.findOne({
+  return await MovieModel.findOne({
     where: {
       id: movieId
     },
@@ -75,17 +77,26 @@ export async function getMovieById(movieId, cinemaId) {
         }
       },
       {
-        model: informationModel
+        model: informationModel,
+        where: {
+          cinemaId: cinemaId
+        },
+        include: [
+          {
+            model: dateEmissionsModel
+          },
+          {
+            model: hallModel
+          },
+          {
+            model: TypeEmissionModel
+          }
+        ]
       }
     ]
   });
-
-
-  if (!movie) {
-    return null;
-  }
-  return movie;
 }
+
 
 export async function deleteMovieById(movieId) {
   const movie = await MovieModel.findByPk(movieId);
@@ -125,6 +136,19 @@ export async function getMovieByInfo(genreId) {
         as: 'infomovie',
         where: {
           genreId: genreId
+        }
+      }
+    ]
+  })
+}
+
+export async function getMovieByCinemaId(cinemaId) {
+  return await MovieModel.findAll({
+    include: [
+      {
+        model: informationModel,
+        where: {
+          cinemaId: cinemaId
         }
       }
     ]

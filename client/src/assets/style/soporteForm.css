@@ -1,0 +1,55 @@
+
+.titleForm{
+    text-align: center;
+}
+.formularioSoporte{
+    background-color: #222222;
+    color:white;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.formSoporteBox{
+    position: relative;
+    border: 2px solid rgba(255, 255, 2550.5);
+    margin-top: 120px;
+    margin-bottom: 120px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+}
+
+.formularioItems{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.formularioItems input{
+    border: solid 1px #ff0000;
+    background: none;
+    color: white;
+}
+.formularioItems textarea{
+    border: solid 1px #ff0000;
+    background: none;
+    color: white
+}
+
+.botonSoporte{
+    border: solid 1px #ff0000;
+    background: none;   
+    color: white;
+}
+.botonSoporte:hover {
+
+    transform: scale(1.10);
+    background-color: #ff0000;
+    color: #ffffff;
+    /* Aumenta el tamaño en un 10% en el hover */
+    transition: transform 0.5s;
+    /* Agrega una transición suave */
+  }

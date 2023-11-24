@@ -1,13 +1,9 @@
 import React from 'react'
-import { useState, useEffect, useContext } from 'react'
-import { types_user } from '../../types/types.user.js'
-import { UserContext } from '../../context/UserContext.jsx'
+import { useState } from 'react'
 import '../../assets/style/FormRegister.css'
-
+import { RegisterSubmit } from '../Submits/RegisterSubmit.jsx'
 
 export const FormRegister = () => {
-
-  const { state, dispatch } = useContext(UserContext)
 
   const [formState, setFormState] = useState({
     name: "",
@@ -27,22 +23,14 @@ export const FormRegister = () => {
   };
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
 
-    dispatch({
-      type: types_user.USER_ADD,
-      payload: formState
-    })
-  }
 
   return (
 
     <div className='contenedorRegister'>
       <div className='formBoxRegister'>
-        <form name='formregister' onSubmit={handleSubmit}>
+        <form name='formregister'>
           <h2 className='mt-2'>Registro</h2>
-
           <div className='inputBoxRegister'>
             <input type="text"
               placeholder='Nombre'
@@ -104,9 +92,9 @@ export const FormRegister = () => {
             />
           </div>
 
-          <div className='botonRegister'>
-            <input type="submit" className='botonRegister' value="Registro" />
-          </div>
+          <RegisterSubmit
+            formState={formState}
+          />
 
           <div className='groupRegister'>
             <span><a href="#">Recuperar Contraseña</a></span>

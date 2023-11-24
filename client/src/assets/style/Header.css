@@ -13,7 +13,6 @@ header img {
 
 .contimgtitu {
   background-color: #202529;
-  margin-right: 50px;
 }
 
 
@@ -34,19 +33,27 @@ header img {
   color: #ffffff;
 }
 
-#buscador:hover::placeholder {
-  color: white;
-}
 
 .color-fondo:hover {
   background-color: #000000;
   color: white;
 }
-#lupa{
+
+.color-fondo:focus {
+  background-color: #000000;
+  color: white;
+}
+
+#lupa {
   color: #FF2C25;
 }
-#Buscador{
+
+#Buscador {
   background-color: #202529;
   border: 2px solid #202529;
   border-radius: 10px;
+}
+
+#Buscador:focus {
+  color: white;
 }

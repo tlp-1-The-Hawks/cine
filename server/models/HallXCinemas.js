@@ -15,6 +15,7 @@ hallXcinemas.removeAttribute('id');
 
 export async function addHallxCinemas(cinemaId, hallId) {
     return await hallXcinemas.create({
+
         cinemaId: cinemaId,
         hallId: hallId
     })

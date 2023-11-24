@@ -9,13 +9,17 @@ import { ratingModel } from '../models/Rating.models.js';
 import { informationModel } from '../models/Information.model.js';
 import { createGenre, genreModel } from '../models/genre.models.js';
 import { movieInfoModel } from '../models/moviexinfo.model.js';
-import { infoCinemaModel } from '../models/infoXcinema.model.js';
 import { TypeEmissionModel, addTypeEmission } from '../models/TypeEmission.model.js';
 import { hallModel } from '../models/Hall.models.js';
 import { hallXcinemas } from '../models/hallXCinemas.js';
-
-
-
+import { dateEmissionsModel } from '../models/DateEmissions.js';
+import { infoXdateEmissions } from '../models/InfoXDateEmissions.js';
+import { locationModel, createLocation } from '../models/location.model.js';
+import { provinceModel, createProvince } from '../models/Province.model.js';
+import { requestCinemaModel } from '../models/RequestCinema.js';
+import { seatingModel } from '../models/seating.mode.js';
+import { dateEmissionXseatings } from '../models/DateEmissionsXSatings.js';
+import { bookingsXSeatings } from '../models/BookingsXSeatings.js';
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
   foreignKey: 'cinemaId',
@@ -72,13 +76,13 @@ bookingModel.belongsTo(MovieModel, {
 });
 
 //uno a muchos 
-movieCinemaModel.belongsTo(MovieModel, {
-  foreignKey: 'movieId',
+informationModel.belongsTo(cinemaModel, {
+  foreignKey: 'cinemaId',
   targetKey: 'id',
 })
 
-MovieModel.hasMany(movieCinemaModel, {
-  foreignKey: 'movieId',
+cinemaModel.hasMany(informationModel, {
+  foreignKey: 'cinemaId',
   sourceKey: 'id'
 })
 
@@ -92,8 +96,6 @@ cinemaModel.belongsToMany(MovieModel, { through: movieCinemaModel });
 MovieModel.belongsToMany(informationModel, { through: movieInfoModel });
 informationModel.belongsToMany(MovieModel, { through: movieInfoModel });
 
-cinemaModel.belongsToMany(informationModel, { through: infoCinemaModel });
-informationModel.belongsToMany(cinemaModel, { through: infoCinemaModel })
 
 //genre and information
 genreModel.hasMany(informationModel, {
@@ -138,15 +140,71 @@ TypeEmissionModel.hasMany(informationModel, {
   sourceKey: 'id'
 })
 
-infoCinemaModel.belongsTo(TypeEmissionModel, {
+informationModel.belongsTo(TypeEmissionModel, {
   foreignKey: 'type_emissionId',
   targetKey: 'id'
 })
+
+//Hall and information 
+hallModel.hasMany(informationModel, {
+  foreignKey: 'hallId',
+  sourceKey: 'id'
+})
+
+informationModel.belongsTo(hallModel, {
+  foreignKey: 'hallId',
+  targetKey: 'id'
+})
+
+//info and dateEmissions
+informationModel.belongsToMany(dateEmissionsModel, { through: infoXdateEmissions })
+dateEmissionsModel.belongsToMany(informationModel, { through: infoXdateEmissions })
+
+//booking and date emission
+dateEmissionsModel.hasMany(bookingModel)
+bookingModel.belongsTo(dateEmissionsModel)
+
+
+//Province and location
+provinceModel.hasMany(locationModel)
+locationModel.belongsTo(provinceModel)
+
+//requestsCinema
+provinceModel.hasMany(requestCinemaModel)
+requestCinemaModel.belongsTo(provinceModel)
+
+locationModel.hasMany(requestCinemaModel)
+requestCinemaModel.belongsTo(locationModel)
+
+
+//cinema and privince/location
+provinceModel.hasMany(cinemaModel)
+cinemaModel.belongsTo(provinceModel)
+
+locationModel.hasMany(cinemaModel)
+cinemaModel.belongsTo(locationModel)
+
+//Request and user 
+UserModel.hasMany(requestCinemaModel)
+requestCinemaModel.belongsTo(UserModel)
+
+
+//hall and seating
+hallModel.hasMany(seatingModel)
+seatingModel.belongsTo(hallModel)
+
+seatingModel.belongsToMany(dateEmissionsModel, { through: dateEmissionXseatings });
+dateEmissionsModel.belongsToMany(seatingModel, { through: dateEmissionXseatings });
+
+seatingModel.belongsToMany(bookingModel, { through: bookingsXSeatings });
+bookingModel.belongsToMany(seatingModel, { through: bookingsXSeatings });
 
 //preloaded data
 async function dataPreloaded() {
   await createGenre()
   await addTypeEmission()
+  await createProvince()
+  await createLocation()
 }
 
 

@@ -11,9 +11,18 @@ export const ctrlLoginUser = async (req, res) => {
   try {
     const user = await getUserByEmailAndPassword(req.body);
 
-    const token = await createJWT({ user: user.id });
+    if (user === null) {
+      const token = null
+      res.status(200).json(token);
+    } else {
+      const token = await createJWT({ user: user.id });
 
-    res.status(200).json(token);
+      const data = {
+        token,
+        user
+      }
+      res.status(200).json(data);
+    }
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -26,8 +35,14 @@ export const ctrlRegisterUser = async (req, res) => {
 
     const token = await createJWT({ user: user.id });
 
-    res.status(200).json(token);
+    const data = {
+      token,
+      user
+    }
+
+    res.status(200).json(data);
   } catch (error) {
+    console.error(error);
     res.sendStatus(500);
   }
 };
@@ -48,5 +63,7 @@ export const ctrlGetUserInfoByToken = async (req, res) => {
     return res.sendStatus(404);
   }
 
-  res.status(200).json(user);
+  res.status(200).json(
+    user
+  );
 };
