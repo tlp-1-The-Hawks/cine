@@ -7,9 +7,10 @@ export const LogoutButton = () => {
   const { logout } = useContext(AuthContext)
 
   const handleLogout = () => {
-    logout()
+    // Eliminar el token del localStorage
+    // logout()
 
-    // Mostrar una alerta
+
     Swal.fire({
       title: 'Cierre de Sesión',
       text: 'Has cerrado sesión exitosamente.',
@@ -17,14 +18,16 @@ export const LogoutButton = () => {
       confirmButtonText: 'Aceptar',
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.clear();
-        location.reload(true);
+        logout()
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
     })
   };
 
   return (
-    <button onClick={handleLogout} className="btn bg-dark d-flex justify-content-center pt-2 text-white " > <box-icon name='log-out' type='solid' color='#fffcfc' ></box-icon>      Cerrar Sesión </button>
+    <button onClick={handleLogout} className="btn bg-dark d-flex justify-content-center pt-2 text-white "><box-icon name='log-out' type='solid' color='#fffcfc'></box-icon>Cerrar Sesión </button>
   );
 };
 

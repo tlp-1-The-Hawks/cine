@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import '../../assets/style/Header.css';
 import { Link } from 'react-router-dom';
 import { LoginButtons } from './ButtonLoginRegister.jsx';
@@ -75,7 +75,7 @@ export const Header = ({ setSearchBar }) => {
                     type="submit"
                     onClick={submitSearch}
                   >
-                    <box-icon name='search-alt' color='#ffffff' ></box-icon>
+                    <div className="mt-2"><box-icon name='search-alt' color='#ffffff' ></box-icon></div>
                   </button>
                 </form>
               </div>

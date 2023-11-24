@@ -99,7 +99,7 @@ export const FormReserva = () => {
 
 
   return (
-    < div className="contenedorReserva" >
+    < div className="contenedorReserva d-flex justify-content-center" >
 
       <div className="formBoxReserva">
         <div className="container">
@@ -149,20 +149,22 @@ export const FormReserva = () => {
 
           </div>
           <div className="row">
-            <div className="col d-flex justify-content-center">
-              <Seat hall={hall} cinemaId={cinemaId} />
+            <div className="col">
+              <div className="col d-flex justify-content-center">
+                <Seat hall={hall} cinemaId={cinemaId} />
+              </div>
             </div>
           </div>
+          <button
+            className="botonReserva d-flex justify-content-center pt-2"
+            onClick={() => createPreference()}
+          >
+            <div className="mt-1">
+              <box-icon name="cart-add" color="#ffffff"></box-icon>
+            </div>
+            <p className="p-1">Pagar Mi Boleto</p>
+          </button>
         </div>
-        <button
-          className="botonReserva d-flex justify-content-center pt-2"
-          onClick={() => createPreference()}
-        >
-          <div className="mt-1">
-            <box-icon name="cart-add" color="#ffffff"></box-icon>
-          </div>
-          <p className="p-1">Pagar Mi Boleto</p>
-        </button>
       </div>
     </div>
   );
