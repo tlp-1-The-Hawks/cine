@@ -3,7 +3,6 @@ export const CustomFetch = async (url, req, payload,) => {
         const response = await fetch(url)
 
         const data = await response.json()
-
         return data
     }
 
@@ -31,8 +30,8 @@ export const CustomFetch = async (url, req, payload,) => {
         return data
     }
 
-    if(req === 'PUT'){
-        const response = await fetch(url,{
+    if (req === 'PUT') {
+        const response = await fetch(url, {
             method: 'PUT',
             body: JSON.stringify(payload),
             headers: {

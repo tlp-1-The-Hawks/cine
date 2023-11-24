@@ -118,3 +118,10 @@
 .mercado-pago-button box-icon {
   margin-right: 5px;
 }
+
+.selectedButton {
+  background-color: #FF2C25;
+  /* Puedes ajustar el color según tus preferencias */
+  color: #000;
+  /* Color del texto */
+}

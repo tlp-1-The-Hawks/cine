@@ -38,14 +38,22 @@ header img {
   background-color: #000000;
   color: white;
 }
-#lupa{
+
+.color-fondo:focus {
+  background-color: #000000;
+  color: white;
+}
+
+#lupa {
   color: #FF2C25;
 }
-#Buscador{
+
+#Buscador {
   background-color: #202529;
   border: 2px solid #202529;
   border-radius: 10px;
 }
-#Buscador:focus{
+
+#Buscador:focus {
   color: white;
 }
