@@ -11,7 +11,7 @@ function App() {
   const [cinemas, setCinemas] = useState([]);
   const [searchBar, setSearchBar] = useState('');
   const [movies, setMovies] = useState([]);
-  // const movies = FindMovies()
+
 
 
   useEffect(() => {

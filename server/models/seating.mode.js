@@ -56,12 +56,13 @@ export async function getSeatingsByHallAndDate(hallId, dateId) {
         where: {
             hallId: hallId
         },
-        include:
-        {
+        include:[
+            {
             model: dateEmissionsModel,
             where: {
-                dateEmissionId: dateId
+                id: dateId
             }
-        }
+            }
+        ]
     })
 }

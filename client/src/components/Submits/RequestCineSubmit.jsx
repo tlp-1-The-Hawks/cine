@@ -49,10 +49,10 @@ export const RequestCineSubmit = ({ formState }) => {
         <div className='groupRegisterCine'>
             <div className='row'>
                 <div className='col'>
-                    <button onClick={handleSubmit} className='botonRegisterCine1'>Enviar</button>
+                    <button onClick={handleSubmit} className='botonRegisterCine1 btn'>Enviar</button>
                 </div>
                 <div className="col">
-                    <Link className='botonRegisterCine2' to={'/soporte'}>Cancelar</Link>
+                    <Link className='botonRegisterCine2 btn' to={'/soporte'}>Cancelar</Link>
                 </div>
             </div>
         </div>

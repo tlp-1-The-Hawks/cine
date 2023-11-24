@@ -18,6 +18,7 @@ export const Header = ({ setSearchBar }) => {
     e.preventDefault();
 
     setSearchBar(shearchValue)
+    console.log(shearchValue)
   }
 
   return (

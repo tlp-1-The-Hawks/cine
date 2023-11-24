@@ -1,7 +1,7 @@
 import { createMovie } from "../models/movie_model.js";
 import { addMovieCinema } from '../models/movieXcinema.js';
 import { addMovieInfo } from "../models/moviexinfo.model.js";
-import { addInfor } from "../models/Information.model.js";
+import { addInfor, deleteInfo } from "../models/Information.model.js";
 import { addDateEmissions } from "../models/DateEmissions.js";
 
 export const ctrlAddInfoMovie = async (req, res) => {
@@ -84,3 +84,19 @@ export const ctrlUploadImgMovie = async (req, res) => {
         res.status(500).json({ message: 'Error upload image' });
     }
 };
+
+export const ctrlDeleteInfoById = async (req,res) => {
+    try {
+        const {id} = req.params
+
+        const delInfo = await deleteInfo(id)
+        res.status(200).json({
+            msg: 'infomation deleted'
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            msg: 'error dekete infomation'
+        })
+    }
+}   
