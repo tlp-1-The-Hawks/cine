@@ -15,7 +15,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mercadopago/sdk-react": "^0.0.15",
     "@nextui-org/react": "^2.1.13",
-    "axios": "^1.5.1",
+    "axios": "^1.6.2",
     "bootstrap-icons": "^1.11.1",
     "font-awesome": "^4.7.0",
     "framer-motion": "^10.16.4",

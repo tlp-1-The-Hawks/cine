@@ -1,14 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react';
 import '../../assets/style/soporteForm.css';
 import { AuthContext } from '../../context/AuthProvider';
 import { useContext } from 'react'
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+
+
 
 export const SoporteForm = () => {
   const {authState} = useContext(AuthContext)
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    subject: '',
+    message: '',
+  });
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:4000/signup', formData); // Reemplaza con tu dirección de servidor correcta
+      console.log(response.data); // Mensaje de éxito o error
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
 
@@ -35,48 +57,41 @@ export const SoporteForm = () => {
           </div>
           <div className="col">
             <div className='formSoporteBox container mt-5'>
-              <form className='formularioItems'>
+              <form className='formularioItems' onSubmit={handleSubmit}>
                 <h5 className='titleForm mt-3'>¡Contactate con nosotros!</h5>
                 <div className="row">
 
                 </div>
-                <div className='row mt-2'>
-                  <div className='row justify-content-center' >
-                    <label className='text-center'>Correo Electrónico:</label>
-                    <input
-                      className='w-75'
-                      type="email"
-                      name="email"
-
-                    />
-                  </div>
-                </div>
-                <div className='row'>
-                  <div className='row' >
-                    <label className='text-center'>Asunto:</label>
-                    <input
-                      className='w-100'
-                      type="text"
-                      name="name"
-
-                    />
-                  </div>
-
-                </div>
-                <div className='row justify-content-center'>
-
-                  <div className='row'>
-                    <label className='text-center'>Mensaje:</label>
-                    <textarea
-                      className='rounded'
-                      name=""
-                      id=""
-                      cols="30"
-                      rows="10">
-
-                    </textarea>
-                  </div>
-                </div>
+                <div className="mb-3">
+            <label>Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label>Subject</label>
+            <input
+              type="text"
+              className="form-control"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label>Message</label>
+            <textarea
+              className="form-control"
+              name="message"
+              rows="3"
+              value={formData.message}
+              onChange={handleChange}
+            ></textarea>
+          </div>
                 <div className="row">
                   <div className="col">
                     <button className='botonSoporte btn mt-4 mb-2' type="submit">Enviar</button>

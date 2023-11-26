@@ -12,7 +12,8 @@ import { RegisterCinema } from '../Pages/RegisterCinema.jsx';
 import { Halls } from '../Pages/Halls.jsx';
 import { EditHall } from '../Pages/EditHall.jsx';
 import { MyReservation } from '../Pages/MyReservation.jsx';
-import { RecoveryPassword } from '../Pages/RecoveryPassword.jsx';
+import { Correo_devolucion } from '../Pages/Correo_devolucion.jsx';
+import {Codigo_Correo} from '../components/otros/Codigo-Correo.jsx';
 
 export const AppRouter = () => {
     return (
@@ -73,8 +74,13 @@ export const AppRouter = () => {
                 />
                 <Route
                     path='/recuperar-clave'
-                    element={<RecoveryPassword />}
+                    element={<Correo_devolucion />}
                 />
+                <Route
+                    path='/Codigo-Correo'
+                    element={<Codigo_Correo/>}
+                />
+               
             </Routes>
         </BrowserRouter>
     )

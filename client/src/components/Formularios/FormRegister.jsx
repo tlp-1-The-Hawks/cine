@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import '../../assets/style/FormRegister.css'
 import { RegisterSubmit } from '../Submits/RegisterSubmit.jsx'
+import { Link } from "react-router-dom"
+
 
 export const FormRegister = () => {
 
@@ -97,7 +99,7 @@ export const FormRegister = () => {
           />
 
           <div className='groupRegister'>
-            <span><a href="#">Recuperar Contraseña</a></span>
+          <Link to={'/recuperar-clave'}> <a href="#">Recuperar Contraseña</a>   </Link>
             <span><a href="/login">Inicia Sesion</a></span>
           </div>
         </form>
