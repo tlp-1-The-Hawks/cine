@@ -38,7 +38,7 @@ export const ReservationsBox = ({ movies, cinemaId }) => {
                         <div className="d-flex justify-content-center">
                             {
                                 bookings.map((bookings) => (
-                                    <p>{bookings.paymentId}</p>
+                                    <p className="text-white">{bookings.paymentId}</p>
                                 ))
                             }
                         </div>

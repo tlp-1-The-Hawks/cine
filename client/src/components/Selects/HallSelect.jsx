@@ -13,6 +13,7 @@ export const HallSelect = ({ formMovie, handleChange, hallState, cinemaId }) => 
                     id="hall" onChange={handleChange}
                     value={formMovie.hallId}
                 >
+                    <option value={0}> Seleccione una sala</option>
                     {
                         (hallState && hallState.length === 0)
                             ? <option defaultValue={"Valor"}>--No hay opciones--</option>
@@ -24,6 +25,6 @@ export const HallSelect = ({ formMovie, handleChange, hallState, cinemaId }) => 
                     }
                 </select>
             </div>
-        </div>
+        </div >
     );
 };  
