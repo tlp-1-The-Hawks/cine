@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import '../../assets/style/seat.css';
 import { CustomFetch } from '../../api/customFetch';
 
-export const Seat = ({ hall, cinemaId, selectedDate }) => {
+export const Seat = ({ hall, cinemaId, selectedDate, setPrice, price }) => {
   const [columnState, setColumnState] = useState(1);
   const [rowState, setRowState] = useState(1);
   const [selectedButtons, setSelectedButtons] = useState([]);
   const [selectedSeatings, setSelectedSeatings] = useState([]);
+  const [oldPrice, setOldPrice] = useState(1)
 
   useEffect(() => {
     (
@@ -15,7 +16,7 @@ export const Seat = ({ hall, cinemaId, selectedDate }) => {
         setRowState(dataHall.row)
         setColumnState(dataHall.column)
         setSelectedButtons(dataHall.seatings)
-        console.log(selectedButtons)
+        setOldPrice(price)
       }
     )()
   }, [selectedDate, hall])
@@ -39,6 +40,18 @@ export const Seat = ({ hall, cinemaId, selectedDate }) => {
       const newState = [...selectedSeatings, buttonInfo]
       console.log(newState)
       setSelectedSeatings(newState)
+
+      if (newState.length > selectedSeatings.length) {
+        const newPrice = newState.length * oldPrice
+        setPrice(newPrice)
+      }
+
+      console.log(selectedSeatings)
+      if (newState.length <= selectedSeatings.length) {
+        const newPrice = price - oldPrice
+        setPrice(newPrice)
+      }
+
     }
   };
 

@@ -18,17 +18,17 @@ export const LogoutButton = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         logout()
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 2000);
       }
     })
 
     logout();
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 2000);
 
   };
 
