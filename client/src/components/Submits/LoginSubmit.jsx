@@ -52,7 +52,6 @@ export const LoginSubmit = ({ formState }) => {
         showConfirmButton: false
       })
       setTimeout(() => {
-        // Recarga la página después de 2 segundos
         window.location.reload();
       }, 2000);
     }

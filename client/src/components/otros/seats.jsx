@@ -11,14 +11,17 @@ export const Seat = ({ hall, cinemaId }) => {
   useEffect(() => {
     (
       async () => {
-        const dataHall = await CustomFetch(`http://localhost:4000/api/hall/${hall}/${cinemaId}`, 'GET')
-        setRowState(dataHall.row)
-        setColumnState(dataHall.column)
-        setSelectedButtons(dataHall.seatings)
-        console.log(selectedButtons)
+        try {
+          const dataHall = await CustomFetch(`http://localhost:4000/api/hall/${hall}/${cinemaId}`, 'GET');
+          setRowState(dataHall.row);
+          setColumnState(dataHall.column);
+          setSelectedButtons(dataHall.seatings);
+        } catch (error) {
+          console.error(error);
+        }
       }
-    )()
-  }, [hall])
+    )();
+  }, [hall]);
 
   const selectButton = (e, i, j) => {
     const buttonInfo = {
@@ -33,11 +36,9 @@ export const Seat = ({ hall, cinemaId }) => {
     if (buttonIndex !== -1) {
       const updatedButtons = [...selectedSeatings];
       updatedButtons.splice(buttonIndex, 1);
-      console.log(updatedButtons)
       setSelectedSeatings(updatedButtons);
     } else {
       const newState = [...selectedSeatings, buttonInfo]
-      console.log(newState)
       setSelectedSeatings(newState)
     }
   };
