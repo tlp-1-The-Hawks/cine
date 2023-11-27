@@ -1,4 +1,4 @@
-export const HallSelect = ({ formMovie, handleChange, hallState, cinemaId }) => {
+export const HallSelect = ({ formMovie, handleChange, hallState }) => {
 
 
 
