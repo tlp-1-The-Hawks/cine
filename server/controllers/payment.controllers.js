@@ -18,9 +18,9 @@ export const createOrder = async (req, res) => {
           quantity: Number(req.body.quantity),
         },
       ],
-      notification_url: `https://c18d-138-121-113-13.ngrok.io/api/webhook/${movieId}/${cinemaId}/${idUser}/${price}/${selectedDate}`,
+      notification_url: `https://b9bc-138-121-113-13.ngrok.io/api/webhook/${movieId}/${cinemaId}/${idUser}/${price}/${selectedDate}`,
       back_urls: {
-        success: "http://localhost:3000/informacion-pelicula",
+        success: "http://localhost:3000/",
         // pending: "https://e720-190-237-16-208.sa.ngrok.io/pending",
         failure: "http://localhost:3000/informacion-pelicula",
       },

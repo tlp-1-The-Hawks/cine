@@ -16,10 +16,10 @@ export const Seat = ({ hall, cinemaId, selectedDate, setPrice, price }) => {
         setRowState(dataHall.row)
         setColumnState(dataHall.column)
         setSelectedButtons(dataHall.seatings)
-        setOldPrice(price)
+        console.log(selectedButtons)
       }
     )()
-  }, [selectedDate, hall])
+  }, [hall])
 
   const selectButton = (e, i, j) => {
     const buttonInfo = {
@@ -34,11 +34,9 @@ export const Seat = ({ hall, cinemaId, selectedDate, setPrice, price }) => {
     if (buttonIndex !== -1) {
       const updatedButtons = [...selectedSeatings];
       updatedButtons.splice(buttonIndex, 1);
-      console.log(updatedButtons)
       setSelectedSeatings(updatedButtons);
     } else {
       const newState = [...selectedSeatings, buttonInfo]
-      console.log(newState)
       setSelectedSeatings(newState)
 
       if (newState.length > selectedSeatings.length) {

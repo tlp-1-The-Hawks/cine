@@ -44,7 +44,6 @@ export const FormReserva = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setInfo(data);
         setInfoDate(data.information[0].date_emissions);
         setPrice(data.information[0].price)
@@ -78,11 +77,6 @@ export const FormReserva = () => {
     setPrice(newPrice);
   };
 
-  useEffect(() => {
-    // Este efecto se ejecutará después de que el estado selectedDate se haya actualizado
-    console.log('Horario seleccionado:', selectedDate);
-  },); // Asegúrate de incluir selectedDate como dependencia
-
   const handleDateClick = (dateId) => {
     const selectedDateInfo = infoDate.find((date) => date.id === dateId);
     setSelectedDate(selectedDateInfo.id);
@@ -91,7 +85,7 @@ export const FormReserva = () => {
 
   useEffect(() => {
     if (infoDate.length > 0) {
-      const defaultDateInfo = infoDate[0]; // Puedes ajustar esto según tus necesidades
+      const defaultDateInfo = infoDate[0];
       setSelectedDate(defaultDateInfo.id);
       setSelectedButton(defaultDateInfo.id);
     }
@@ -128,7 +122,6 @@ export const FormReserva = () => {
                   const hour =
                     formattedDate.getHours() +
                     ':' +
-                    (formattedDate.getMinutes() < 10 ? '0' : '') +
                     formattedDate.getMinutes();
 
                   return (

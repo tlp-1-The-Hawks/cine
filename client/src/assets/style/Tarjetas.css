@@ -21,8 +21,8 @@
 }
 
 .card-img {
-overflow: hidden;
-  height: 410px;
+  overflow: hidden;
+  height: 450px;
   object-fit: cover;
 }
 
