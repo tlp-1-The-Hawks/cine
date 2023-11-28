@@ -22,7 +22,7 @@ export const FormAddMovie = ({ cinemaId, hallState, request, info }) => {
         hallId: "1",
         events: []
     });
-
+    const [infoId, setInfoId] = useState(null)
     const [imageState, setImageState] = useState(null);
     const [sendImg, setSendImg] = useState(null);
     const [numberDates, setNumberDates] = useState(0);
@@ -30,7 +30,6 @@ export const FormAddMovie = ({ cinemaId, hallState, request, info }) => {
 
     useEffect(() => {
         if (request === 'PUT' && info && info.movies && info.movies.length > 0) {
-            console.log(info)
             setFormMovie({
                 title: info.movies[0].title,
                 genreId: info.genreId,
@@ -48,6 +47,7 @@ export const FormAddMovie = ({ cinemaId, hallState, request, info }) => {
             });
             setNumberDates(info.date_emissions.length)
             setArrayForDates(info.date_emissions)
+            setInfoId(info.id)
         }
     }, [info, request]);
     
@@ -244,7 +244,7 @@ export const FormAddMovie = ({ cinemaId, hallState, request, info }) => {
                                 sendImg={sendImg}
                                 cinemaId={cinemaId}
                                 request={request}
-                                infoId={info.id}
+                                infoId={infoId}
                             />
                         </form>
                     </div>
