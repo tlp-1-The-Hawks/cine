@@ -12,6 +12,7 @@ import { RegisterCinema } from '../Pages/RegisterCinema.jsx';
 import { Halls } from '../Pages/Halls.jsx';
 import { EditHall } from '../Pages/EditHall.jsx';
 import { MyReservation } from '../Pages/MyReservation.jsx';
+import { EditMovie } from '../Pages/EditMovie.jsx';
 
 export const AppRouter = () => {
     return (
@@ -47,7 +48,7 @@ export const AppRouter = () => {
                     element={<Support />}
                 />
                             <Route
-                    path='/MiReservas'
+                    path='/mis-reservas'
                     element={<MyReservation/>}
                  /> 
                 <Route
@@ -69,6 +70,10 @@ export const AppRouter = () => {
                 <Route
                     path='/editar-sala'
                     element={<EditHall />}
+                />
+                <Route
+                    path='/editar-movie'
+                    element={<EditMovie />}
                 />
             </Routes>
         </BrowserRouter>

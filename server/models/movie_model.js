@@ -58,7 +58,8 @@ export async function getAllMovies() {
         model: informationModel,
         include: {
           model: genreModel
-        }
+        },
+        required: true
       }
     ]
   }) ?? null;
@@ -107,11 +108,23 @@ export async function deleteMovieById(movieId) {
   return movie;
 }
 
-export async function updateMovie(movieId, movieData) {
-  const editMovie = await MovieModel.findByPk(movieId);
+export async function updateMovie(movieId, title) {
+  const movie = await MovieModel.findOne({
+    where : {
+      id: movieId
+    }
+  });
 
-  editMovie.update(movieData);
-  return editMovie;
+  if(movie.title == title){
+    return movie.update({title:title})
+  } 
+
+  if(movie !== title) {
+    return await MovieModel.create({
+      title: title
+    })
+  }
+
 }
 
 export async function getMovieByTitle(title) {

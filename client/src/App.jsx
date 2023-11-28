@@ -23,6 +23,7 @@ function App() {
         setCinemas(data)
 
         setMovies(dataMovies)
+        console.log(dataMovies)
       }
     )()
   }, [])

@@ -38,9 +38,9 @@ export const CustomFetch = async (url, req, payload,) => {
                 'content-type': 'application/json'
             }
         })
-        const data = await response.json()
+        // const data = await response.json()
 
-        return data
+        return response
     }
     if (req === 'TOKEN') {
         const response = await fetch(url, {

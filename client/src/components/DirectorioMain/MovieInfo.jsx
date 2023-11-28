@@ -10,6 +10,8 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
   const [authCine, setAuthCine] = useState(false)
   const {authState} = useContext(AuthContext)
   const trailerURL = info && info.information && info.information[0] && info.information[0].url_trailer;
+
+
   function convertirMinutosAHorasYMinutos(minutos) {
     const horas = Math.floor(minutos / 60);
     const minutosRestantes = minutos % 60;
@@ -17,6 +19,8 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
     const minutosFormateados = minutosRestantes < 10 ? `0${minutosRestantes}` : `${minutosRestantes}`;
     return `${horaFormateada}:${minutosFormateados}`;
   }
+
+
   useEffect(() => {
     if(authState.islogged === true) {
         CustomFetch('http://localhost:4000/auth/user', 'TOKEN', localStorage.getItem('token')).then((data) => {
@@ -29,8 +33,12 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
 
   const deleteInfo = async (e) => {
     e.preventDefault()
-    const response = await CustomFetch(`http://localhost:4000/api/information/${info.id}`, 'DELETE')
+    const response = await CustomFetch(`http://localhost:4000/api/information/${info.information[0].id}`, 'DELETE')
     navigate('/')
+  }
+  const editInfo = async (e) => {
+    e.preventDefault()
+    navigate(`/editar-movie?info=${info.information[0].id}&movie=${movie}`)
   }
   return (
     <div className="bgInfoMovie">
@@ -38,7 +46,7 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
       {authState.cinema && authCine && 
                   <div className='crud'>
                     <div className='crudBoton mt-2 me-2' data-tooltip="Editar">
-                      <button className='crudButton'>                      <box-icon name='edit-alt' type='solid' color='#ffffff' ></box-icon></button>
+                      <button onClick={editInfo} className='crudButton'><box-icon name='edit-alt' type='solid' color='#ffffff' ></box-icon></button>
                     </div>
                     <div className='crudBoton mt-2' data-tooltip="Eliminar">
                       <button onClick={deleteInfo} className='crudButton'>               <box-icon name='x-circle' color='#ffffff' ></box-icon></button>

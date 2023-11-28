@@ -1,8 +1,8 @@
-import { createMovie } from "../models/movie_model.js";
-import { addMovieCinema } from '../models/movieXcinema.js';
-import { addMovieInfo } from "../models/moviexinfo.model.js";
-import { addInfor, deleteInfo } from "../models/Information.model.js";
-import { addDateEmissions } from "../models/DateEmissions.js";
+import { createMovie, updateMovie } from "../models/movie_model.js";
+import { addMovieCinema, updateMovieAndCinema } from '../models/movieXcinema.js';
+import { addMovieInfo, updateMovieInfo } from "../models/moviexinfo.model.js";
+import { addInfor, deleteInfo, getOneInfo, updateInfo } from "../models/Information.model.js";
+import { addDateEmissions, updateDateEmissions } from "../models/DateEmissions.js";
 
 export const ctrlAddInfoMovie = async (req, res) => {
     try {
@@ -97,6 +97,79 @@ export const ctrlDeleteInfoById = async (req,res) => {
         console.log(error)
         res.status(500).json({
             msg: 'error dekete infomation'
+        })
+    }
+}   
+
+
+export const ctrlGetOneInfo = async (req,res) => {
+    try {
+        const {id} = req.params
+
+        const info = await getOneInfo(id)
+        res.status(200).json(info)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            msg: 'error get one info'
+        })
+    }
+}   
+
+
+
+export const ctrlUpdateInfo = async (req,res) => {
+    try {
+        const {
+            title,
+            director,
+            description,
+            duration,
+            rating,
+            actors,
+            price,
+            genreId,
+            rutaImage,
+            type_emissionId,
+            url_trailer,
+            hallId,
+            events
+        } = req.body
+        const { cinemaId, infoId, movieId } = req.params
+
+        const newInfo = {
+            rutaImage,
+            director,
+            description,
+            duration,
+            rating,
+            actors,
+            price,
+            genreId,
+            type_emissionId,
+            url_trailer,
+            hallId,
+            cinemaId,
+        }
+
+        const info = await updateInfo(newInfo, infoId)
+
+        const movie = await updateMovie(movieId, title)
+
+
+        const newEvents = await updateDateEmissions(events, infoId)
+
+        const movieAndCinema = await updateMovieAndCinema(movie.id, cinemaId)
+
+        const movieAndInfo = await updateMovieInfo(movie.id, infoId)
+
+        res.status(200).json({
+            msg: 'info updated'
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            msg: 'error update info'
         })
     }
 }   

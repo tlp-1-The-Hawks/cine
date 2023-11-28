@@ -1,6 +1,7 @@
 import { sequelize } from "../config/database.js";
 import { DataTypes} from "sequelize";
 import { addInfoXdateEmissions } from "./InfoXDateEmissions.js";
+import { informationModel } from "./Information.model.js";
 
 export const dateEmissionsModel = sequelize.define(
     'date_emission',
@@ -22,4 +23,30 @@ export async function addDateEmissions(events, informationId){
 
     }
     return 
+}
+
+export async function updateDateEmissions(events, informationId){
+    const dates = await dateEmissionsModel.findAll({
+        include: {
+            model: informationModel,
+            where: {
+                id: informationId
+            }
+        }
+    })
+
+    for (let index = 0; index < events.length; index++) {
+        if (dates[index]) {
+     
+            await dates[index].update({ date: events[index].date });
+        } else {
+
+            const newDateEmissions = await dateEmissionsModel.create({
+                date: events[index]
+            });
+            
+            const dateEmissionId = newDateEmissions.id;
+            const newInfoXdateEmissions = await addInfoXdateEmissions(informationId, dateEmissionId);
+        }
+    }
 }

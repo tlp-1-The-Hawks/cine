@@ -30,6 +30,7 @@ export const AddMovie = () => {
             <FormAddMovie
                 cinemaId={cinemaId}
                 hallState={hallState}
+                request={'POST'}
             />
         </>
     )
