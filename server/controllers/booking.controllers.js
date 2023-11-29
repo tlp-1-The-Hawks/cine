@@ -1,4 +1,4 @@
-import { addBooking, getAllBooking, getAllBookingByMovieIdAndCinemaId, getBookingById } from "../models/Booking.models.js"
+import { addBooking, getAllBooking, getAllBookingByDateId, getAllBookingByMovieIdAndCinemaId, getBookingById } from "../models/Booking.models.js"
 
 export const ctrlAddBooking = async (req, res) => {
     try {
@@ -78,6 +78,22 @@ export const ctrlGetAllBookingsByMovieIdAndCinemaId = async (req, res) => {
         res.status(500).json({
 
             message: 'error get all bookings by movieId and cinemId'
+        })
+    }
+}
+
+export const ctrlGetAllBookingsByDateId = async (req, res) => {
+    try {
+        const { dateId } = req.params
+
+        const bookings = await getAllBookingByDateId(dateId)
+
+        res.status(200).json(bookings)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+
+            message: 'error get all bookings by dateId'
         })
     }
 }

@@ -2,6 +2,7 @@ import { sequelize } from "../config/database.js";
 import { DataTypes} from "sequelize";
 import { addInfoXdateEmissions } from "./InfoXDateEmissions.js";
 import { informationModel } from "./Information.model.js";
+import { MovieModel } from "./movie_model.js";
 
 export const dateEmissionsModel = sequelize.define(
     'date_emission',
@@ -49,4 +50,25 @@ export async function updateDateEmissions(events, informationId){
             const newInfoXdateEmissions = await addInfoXdateEmissions(informationId, dateEmissionId);
         }
     }
+}
+
+export async function getDateEmissionByCinemaAndMovie(cinemaId, movieId){
+    return await dateEmissionsModel.findAll({
+        include: [
+            {
+                model: informationModel,
+                where: {
+                    cinemaId: cinemaId
+                },
+                include: [
+                    {
+                        model: MovieModel,
+                        where: {
+                            id: movieId
+                        }
+                    }
+                ]
+            }
+        ]
+    })
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../assets/style/seat.css';
 import { CustomFetch } from '../../api/customFetch';
 
-export const Seat = ({ hall, cinemaId, setQuantity,handleQuantityChange,seatingOccupied }) => {
+export const Seat = ({ hall, cinemaId, setQuantity,handleQuantityChange,seatingOccupied, setSeatingSelect }) => {
   const [columnState, setColumnState] = useState(1);
   const [rowState, setRowState] = useState(1);
   const [replicaHall, setReplicaHall] = useState([]);
@@ -38,12 +38,13 @@ export const Seat = ({ hall, cinemaId, setQuantity,handleQuantityChange,seatingO
           setSelectedSeatings(updatedButtons);
           setQuantity(updatedButtons.length)
           handleQuantityChange(updatedButtons.length)
+          setSeatingSelect(updatedButtons)
         } else {
           const newState = [...selectedSeatings, buttonInfo]
           setSelectedSeatings(newState)
           setQuantity(newState.length)
           handleQuantityChange(newState.length)
-
+          setSeatingSelect(newState)
         }
 
   };

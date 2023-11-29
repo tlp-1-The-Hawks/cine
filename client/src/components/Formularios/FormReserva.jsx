@@ -23,6 +23,7 @@ export const FormReserva = () => {
   const [selectedButton, setSelectedButton] = useState(null);
   const [seatingOccupied, setSeatingOccupied] = useState([])
   const [hallSeating, setHallSeating] = useState(0)
+  const [seatingSelect, setSeatingSelect] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:4000/auth/user', {
@@ -51,7 +52,6 @@ export const FormReserva = () => {
         setInfoDate(response.information[0].date_emissions);
         setPrice(response.information[0].price)
         setHall(response.information[0].hallId)
-        console.log(response)
         setHallSeating(response.information[0].hall.column * response.information[0].hall.row)
         const dataSeatings = await CustomFetch(`http://localhost:4000/api/seating/${response.information[0].date_emissions[0].id}`,
          'GET')
@@ -69,6 +69,7 @@ export const FormReserva = () => {
         {
           description: 'Boleto de cine',
           price: price,
+          seatings: seatingSelect,
           quantity: 1,
         }
       );
@@ -103,7 +104,9 @@ export const FormReserva = () => {
     }
   }, [infoDate]);
 
-
+  useEffect(() => {
+    console.log(seatingSelect);
+  }, [seatingSelect])
   return (
     <div className="contenedorReserva d-flex justify-content-center" >
       <div className="formBoxReserva">
@@ -189,7 +192,7 @@ export const FormReserva = () => {
               <div className="col d-flex justify-content-center">
 
                 <Seat hall={hall} cinemaId={cinemaId} setQuantity={setQuantity} handleQuantityChange={handleQuantityChange}
-                 seatingOccupied={seatingOccupied}/>
+                 seatingOccupied={seatingOccupied} setSeatingSelect={setSeatingSelect}/>
               </div>
             </div>
           </div>

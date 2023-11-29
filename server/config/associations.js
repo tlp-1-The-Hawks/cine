@@ -18,7 +18,7 @@ import { locationModel, createLocation } from '../models/location.model.js';
 import { provinceModel, createProvince } from '../models/Province.model.js';
 import { requestCinemaModel } from '../models/RequestCinema.js';
 import { seatingModel } from '../models/seating.mode.js';
-import { dateEmissionXseatings } from '../models/DateEmissionsXSatings.js';
+import { dateEmissionXseatings } from '../models/DateEmissionsXSeatings.js';
 import { bookingsXSeatings } from '../models/BookingsXSeatings.js';
 //cinema and booking
 cinemaModel.hasMany(bookingModel, {
