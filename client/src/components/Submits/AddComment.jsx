@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { CustomFetch } from "../../api/customFetch.js";
 
-const token = localStorage.getItem("token");
-
-export const AddComment = ({ movie }) => {
+export const AddComment = ({ movie, setComments }) => {
 
     const [user, setUser] = useState('')
     const [nuevoComentario, setNuevoComentario] = useState('');
@@ -12,7 +10,7 @@ export const AddComment = ({ movie }) => {
     useEffect(() => {
         (
             async () => {
-                const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token)
+                const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', localStorage.getItem('token'))
                 setUser(user)
             }
         )()
@@ -27,22 +25,21 @@ export const AddComment = ({ movie }) => {
     }
 
     const agregarComentario = async (e) => {
-        e.preventDefault()
+        e.preventDefault() 
+        
+
 
         if (nuevoComentario.length > 0) {
-            console.log(nuevoComentario)
-            const response = await CustomFetch(`http://localhost:4000/api/comment/${movie}/${user.id}`, 'POST', nuevoComentario)
-            const data = await response.json()
-            console.log(data)
 
             const comment = {
-                description: nuevoComentario,
-                User: {
-                    username: user.username
-                }
+                description: nuevoComentario
             }
 
+            const response = await CustomFetch(`http://localhost:4000/api/comment/${movie}/${user.id}`, 'POST', comment)
 
+            const dataComments = await CustomFetch(`http://localhost:4000/api/comment/${movie}`, 'GET')
+            setComments(dataComments)
+            
             setNuevoComentario('')
         } else {
             Swal.fire({
@@ -50,6 +47,8 @@ export const AddComment = ({ movie }) => {
                 icon: 'error'
             })
         }
+
+
     };
     return (
 

@@ -52,7 +52,7 @@ export const FormAddMovie = ({ cinemaId, hallState, request, info }) => {
     }, [info, request]);
     
 
-    const handleChange = (e) => {
+    const handleChange =  (e) => {
         const { name, value, id } = e.target;
         const newFormData = {
             ...formMovie,
@@ -60,7 +60,6 @@ export const FormAddMovie = ({ cinemaId, hallState, request, info }) => {
         };
         setFormMovie(newFormData);
 
-        console.log(formMovie)
         if (name === 'rutaImage') {
             const file = e.target.files[0];
             if (file) {
@@ -78,7 +77,7 @@ export const FormAddMovie = ({ cinemaId, hallState, request, info }) => {
 
                 });
                 setSendImg(file);
-                reader.readAsDataURL(file)
+
             } else {
                 setImageState({
                     image: null

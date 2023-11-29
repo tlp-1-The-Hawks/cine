@@ -66,3 +66,17 @@ export async function getSeatingsByHallAndDate(hallId, dateId) {
         ]
     })
 }
+
+
+export async function getSeatingsByDate(dateId) {
+    return await seatingModel.findAll({
+        include:[
+            {
+            model: dateEmissionsModel,
+            where: {
+                id: dateId
+            }
+            }
+        ]
+    })
+}
