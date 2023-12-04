@@ -1,7 +1,7 @@
 import { AddComment } from "../Submits/AddComment.jsx";
 import { useEffect, useState } from "react";
 
-export const CommentBox = ({ movie, comments, authReserva }) => {
+export const CommentBox = ({ movie, comments, authReserva,setComments }) => {
     const [comment, setComment] = useState([]);
     const [contComment, setContComment] = useState('');
 
@@ -37,10 +37,14 @@ export const CommentBox = ({ movie, comments, authReserva }) => {
         }
     }, [authReserva]);
 
+    useEffect(() => {
+        setComment(comments)
+    },[comments])
+
     return (
         <div className="Contenedor_comentario">
             {authReserva === null ? <p className="text-white">!Reseva la película y luego dinos tu opinión¡</p> :
-                contComment === '0d 0h 0m 0s' ? <AddComment movie={movie} /> :
+                contComment === '0d 0h 0m 0s' ? <AddComment movie={movie} setComments={setComments} /> :
                     <p className="text-white">Activación de comentario: {contComment}</p>
             }
             <div className="container">

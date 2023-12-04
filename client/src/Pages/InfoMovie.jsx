@@ -55,7 +55,9 @@ export const InfoMovie = () => {
             <CommentBox
                 authReserva={authReserva}
                 movie={movie}
-                comments={comments} />
+                comments={comments}
+                setComments={setComments}
+                />
             <Footer />
         </>
     )

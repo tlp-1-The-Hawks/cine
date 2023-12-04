@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { ctrlAddSeating } from "../controllers/seating.controllers.js";
+import { ctrlAddSeating, ctrlGetSeatingsByDate, ctrlGetSeatingsByHallAndDate } from "../controllers/seating.controllers.js";
 
 const seatingRouter = Router()
 
 seatingRouter.post('/seating/:hallId', ctrlAddSeating)
 
-export {seatingRouter}
+seatingRouter.get('/seating/:hallId/:dateId', ctrlGetSeatingsByHallAndDate)
+
+seatingRouter.get('/seating/:dateId', ctrlGetSeatingsByDate)
+
+export { seatingRouter }

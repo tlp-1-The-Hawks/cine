@@ -6,7 +6,7 @@ import { CustomFetch } from '../../api/customFetch.js';
 export const FormRegisterCinema = ({ province }) => {
     const [formState, setFormState] = useState({
         name_cinema: '',
-        provinceId: 'provincia', // Cambié el valor predeterminado
+        provinceId: 'provincia', 
         locationId: 'localidad',
         address: '',
         email: '',

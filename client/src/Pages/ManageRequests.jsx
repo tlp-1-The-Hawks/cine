@@ -15,8 +15,6 @@ export const ManageRequests = () => {
     const [reqCine, setReqCine] = useState([])
 
     useEffect(() => {
-
-
         (
 
             async () => {

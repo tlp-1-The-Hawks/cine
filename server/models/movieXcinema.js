@@ -63,3 +63,21 @@ export async function deleteMovieCinema(id) {
   await movieXcinema.destroy();
   return movieXcinema;
 }
+
+export async function updateMovieAndCinema(movieId, cinemaId){
+  const movieAndCinema = await movieCinemaModel.findOne({
+    where: {
+      movieId: movieId,
+      cinemaId: cinemaId
+    }
+  })
+
+  if(movieAndCinema) return 
+
+
+  return await movieCinemaModel.create({
+    movieId: movieId,
+    cinemaId: cinemaId
+  });
+
+}

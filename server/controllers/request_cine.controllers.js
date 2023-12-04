@@ -2,12 +2,12 @@ import { addRequestCine, getRequestCine, deleteRequestCine, acceptRequest } from
 
 export const ctrlAddRequestCine = async (req, res) => {
     try {
-        const {userId} = req.params
+        const { userId } = req.params
         const solicitud = req.body
 
         const newRequestCine = await addRequestCine(solicitud, userId)
 
-        res.status(200).json('')
+        res.status(200).json(newRequestCine)
     } catch (error) {
         console.log(error)
         res.status(500).json({
@@ -50,7 +50,7 @@ export const ctrlDeleteCine = async (req, res) => {
 export const ctrlAcceptRequest = async (req, res) => {
     try {
         const { id } = req.params
-    
+
         const newCinema = await acceptRequest(id)
 
         res.status(200).json(newCinema)

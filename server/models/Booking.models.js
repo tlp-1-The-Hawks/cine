@@ -4,6 +4,7 @@ import { UserModel } from './user_model.js';
 import { cinemaModel } from './Cinema.models.js';
 import { MovieModel } from './movie_model.js';
 import { dateEmissionsModel } from './DateEmissions.js';
+import { seatingModel } from './seating.mode.js';
 export const bookingModel = sequelize.define(
   'booking',
   {
@@ -92,6 +93,12 @@ export async function getAllBookingByMovieIdAndCinemaId(movieId, cinemaId) {
     include: [
       {
         model: UserModel
+      },
+      {
+        model: dateEmissionsModel
+      },
+      {
+        model: seatingModel
       }
     ]
   });
@@ -100,4 +107,32 @@ export async function getAllBookingByMovieIdAndCinemaId(movieId, cinemaId) {
   }
   return booking;
 }
+
+
+
+export async function getAllBookingByDateId(dateId) {
+  const booking = await bookingModel.findAll({
+    where: {
+      dateEmissionId: dateId
+    },
+    include: [
+      {
+        model: UserModel
+      },
+      {
+        model: dateEmissionsModel
+      },
+      {
+        model: seatingModel
+      }
+    ]
+  });
+  if (!booking) {
+    return null;
+  }
+  return booking;
+}
+
+
+	
 

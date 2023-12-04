@@ -34,7 +34,7 @@
   /* Agrega una transición suave */
 }
 
-.seat.occupied {
+.seat-occupied {
   background-color: rgb(94, 91, 91);
   cursor: not-allowed;
 }

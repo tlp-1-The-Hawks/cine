@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../../assets/style/FormMovie.css"
 import { GenreSelect } from '../Selects/GenreSelect';
 import { TypeEmissionSelect } from '../Selects/TypeEmissionSelect';
@@ -6,7 +6,7 @@ import { AddMovieSubmit } from '../Submits/AddMovieSubmit';
 import { HallSelect } from '../Selects/HallSelect.jsx';
 import { DateEmissionSelect } from '../Selects/DateEmissionSelect.jsx';
 
-export const FormAddMovie = ({ cinemaId, hallState }) => {
+export const FormAddMovie = ({ cinemaId, hallState, request, info }) => {
     const [formMovie, setFormMovie] = useState({
         title: "",
         genreId: "1",
@@ -22,16 +22,37 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
         hallId: "1",
         events: []
     });
-
+    const [infoId, setInfoId] = useState(null)
     const [imageState, setImageState] = useState(null);
     const [sendImg, setSendImg] = useState(null);
     const [numberDates, setNumberDates] = useState(0);
     const [arrayForDates, setArrayForDates] = useState([]);
 
+    useEffect(() => {
+        if (request === 'PUT' && info && info.movies && info.movies.length > 0) {
+            setFormMovie({
+                title: info.movies[0].title,
+                genreId: info.genreId,
+                description: info.description,
+                duration: info.duration,
+                actors: info.actors,
+                director: info.director,
+                price: info.price,
+                rutaImage: info.rutaImage,
+                date_issue: info.date_emissions.length,
+                type_emissionId: info.type_emissionId,
+                url_trailer: info.url_trailer,
+                hallId: info.hallId,
+                events: info.date_emissions
+            });
+            setNumberDates(info.date_emissions.length)
+            setArrayForDates(info.date_emissions)
+            setInfoId(info.id)
+        }
+    }, [info, request]);
+    
 
-
-
-    const handleChange = (e) => {
+    const handleChange =  (e) => {
         const { name, value, id } = e.target;
         const newFormData = {
             ...formMovie,
@@ -39,7 +60,6 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
         };
         setFormMovie(newFormData);
 
-        console.log(formMovie)
         if (name === 'rutaImage') {
             const file = e.target.files[0];
             if (file) {
@@ -57,7 +77,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
 
                 });
                 setSendImg(file);
-                reader.readAsDataURL(file)
+
             } else {
                 setImageState({
                     image: null
@@ -146,7 +166,8 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                             id="minutos"
                                             name="duration"
                                             min="0"
-
+                                            onChange={handleChange}
+                                            value={formMovie.duration}
                                             placeholder="Minutos"
                                         />
                                     </div>
@@ -160,7 +181,7 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                 </div>
                                 <div className="mt-3 col-12 col-md-6 col-sm-12 mb-3">
                                     <label htmlFor="director" className="form-label">Director</label>
-                                    <input type="text" className="form-control" id="director"
+                                    <input onChange={handleChange} value={formMovie.director} type="text" className="form-control" id="director"
                                         name="director" />
                                 </div>
 
@@ -195,27 +216,34 @@ export const FormAddMovie = ({ cinemaId, hallState }) => {
                                 />
                             </div>
                             <div className='row'>
-                                {
-                                    numberDates > 0 ? (handleInputsCreate(numberDates)).map(number => (
-                                        <div className='col-6' key={number}>
-                                            <div className='row'>
-                                                <label htmlFor="">{number}° Fecha</label>
-                                                <input
-                                                    id='events'
-                                                    name={`${number}_date`}
-                                                    type="datetime-local"
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
+                            {
+                                numberDates > 0 ? (handleInputsCreate(numberDates)).map(number => (
+                                    <div className='col-6' key={number}>
+                                        <div className='row'>
+                                            <label htmlFor="">{number}° Fecha</label>
+                                            <input
+                                                id='events'
+                                                name={`${number}_date`}
+                                                type="datetime-local"
+                                                onChange={handleChange}
+                                                defaultValue={
+                                                    request === 'PUT' ? 
+                                                        (formMovie.events[number - 1]?.date ||  "") 
+                                                        : ""
+                                                }
+                                            />
                                         </div>
+                                    </div>
+                                )) : null
+                            }
 
-                                    )) : null
-                                }
                             </div>
                             <AddMovieSubmit
                                 formMovie={formMovie}
                                 sendImg={sendImg}
                                 cinemaId={cinemaId}
+                                request={request}
+                                infoId={infoId}
                             />
                         </form>
                     </div>

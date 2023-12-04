@@ -18,6 +18,7 @@ export const Header = ({ setSearchBar }) => {
     e.preventDefault();
 
     setSearchBar(shearchValue)
+    console.log(shearchValue)
   }
 
   return (
@@ -53,7 +54,7 @@ export const Header = ({ setSearchBar }) => {
                   <Link className='nav-link text-white' to={'/soporte'}>Contacto</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className='nav-link text-white' to={'/MiReservas'}>Mis Reservas</Link>
+                  {/* {authState.islogged && <Link className='nav-link text-white' to={'/MiReservas'}>Mis Reservas</Link>} */}
                 </li>
               </ul>
             </div>

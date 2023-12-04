@@ -7,19 +7,28 @@ export const LogoutButton = () => {
   const { logout } = useContext(AuthContext)
 
   const handleLogout = () => {
+    logout()
 
+    // Mostrar una alerta
     Swal.fire({
       title: 'Cierre de Sesión',
       text: 'Has cerrado sesión exitosamente.',
       icon: 'success',
-      showConfirmButton: false
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout()
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 2000);
+      }
     })
 
     logout();
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 2000);
 
   };
 

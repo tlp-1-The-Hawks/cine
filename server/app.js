@@ -10,11 +10,12 @@ import { type_emissionRouter } from './routes/type_emission.routes.js';
 import { cinemaRouter } from './routes/cinema.routes.js';
 import { commentRouter } from './routes/comment.routes.js';
 import { authRouter } from './routes/auth.routes.js';
-import { infoMovierouter } from './routes/infomovie.routes.js';
+import { informationRouter } from './routes/information.routes.js';
 import { genrerouter } from './routes/genre.routes.js';
 import { bookingRouter } from './routes/booking.routes.js';
 import { provinceRouter } from './routes/provinces.routes.js';
 import { movieRouter } from './routes/movies.routes.js';
+import { dateEmissionRouter } from './routes/datesEmissions.routes.js';
 import { seatingRouter } from './routes/seating.routes.js';
 import { locationRouter } from './routes/location.routes.js';
 import { requestCineRouter } from './routes/requestcine.routes.js';
@@ -49,13 +50,14 @@ app.use('/api', cinemaRouter);
 app.use('/api', commentRouter);
 app.use('/api', movieRouter)
 app.use('/api', hallrouter);
-app.use('/api', infoMovierouter);
+app.use('/api', informationRouter);
 app.use('/api', genrerouter);
 app.use('/api', bookingRouter)
 app.use('/api', type_emissionRouter)
 app.use('/api', paymentsRoutes)
 app.use('/api', provinceRouter)
 app.use('/api', requestCineRouter)
+app.use('/api', dateEmissionRouter)
 app.use('/api', locationRouter)
 app.use('/api', seatingRouter)
 app.use('/auth', authRouter);
