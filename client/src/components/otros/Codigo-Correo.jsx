@@ -1,27 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-export const Codigo_Correo = ({ codigo }) => {
-  const [codigoRecibido, setCodigoRecibido] = useState('');
+export const Codigo_Correo = () => {
+  const [verificationCode, setVerificationCode] = useState('');
 
-  useEffect(() => {
-    setCodigoRecibido(codigo);
-  }, [codigo]);
+  const handleVerification = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/codigo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: 'correo@ejemplo.com' }), // Reemplaza con el correo adecuado
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Código recibido del backend:', data.codigo); // Muestra el código en la consola
+      setVerificationCode(data.codigo); // Establece el código recibido en el estado
+    } catch (error) {
+      console.error('Error fetching verification code:', error);
+    }
+  };
 
   return (
     <div>
-      <h2>Código Recibido</h2>
-      {codigoRecibido ? (
-        <div>
-          <p>El código recibido es: {codigoRecibido}</p>
-          <button onClick={() => {
-            console.log('Código ingresado:', codigoRecibido);
-            // Aquí podrías hacer cualquier otra acción que desees con el código recibido
-          }}>
-            Verificar Código
-          </button>
-        </div>
-      ) : (
-        <p>Aún no se ha recibido ningún código.</p>
+      <h2>Código de Verificación</h2>
+      <button onClick={handleVerification}>Obtener Código</button>
+      {verificationCode && (
+        <p>El código recibido es: {verificationCode}</p>
       )}
     </div>
   );
