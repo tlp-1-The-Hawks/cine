@@ -39,16 +39,20 @@ export const Seat = ({ hall, cinemaId, setQuantity, handleQuantityChange, seatin
       setSelectedSeatings(updatedButtons);
       setQuantity(updatedButtons.length)
       handleQuantityChange(updatedButtons.length)
+      const idSeats = updatedButtons.map(seat => {
+        return seat.id
+      });
+      setSeatOccupiedId(idSeats.join("-"))
     } else {
       const newState = [...selectedSeatings, buttonInfo]
       setSelectedSeatings(newState)
       setQuantity(newState.length)
       handleQuantityChange(newState.length)
+      const idSeats = newState.map(seat => {
+        return seat.id
+      });
+      setSeatOccupiedId(idSeats.join("-"))
     }
-    const idSeats = selectedSeatings.map(seat => {
-      return seat.id
-    });
-    setSeatOccupiedId(idSeats.join("-"))
   };
 
 
