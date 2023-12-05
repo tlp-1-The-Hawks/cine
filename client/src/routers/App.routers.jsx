@@ -75,6 +75,7 @@ export const AppRouter = () => {
                     path='/editar-movie'
                     element={<EditMovie />}
                 />
+                
             </Routes>
         </BrowserRouter>
     )
