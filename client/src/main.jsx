@@ -4,8 +4,13 @@ import App from './App.jsx';
 import { AppRouter } from './routers/App.routers.jsx';
 import { AuthProvider } from './context/AuthProvider.jsx';
 import { SocketProvider } from './context/SocketProvider.jsx';
-import { Vinculo } from './components/Link.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-<Vinculo></Vinculo>
+  <AuthProvider>
+    <SocketProvider>
+      <AppRouter>
+        <App />
+      </AppRouter>
+    </SocketProvider>
+  </AuthProvider>
 );
