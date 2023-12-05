@@ -52,5 +52,6 @@ export const Tarjetas = ({ moviesWithCinemas }) => {
         {authState.cinema && <Link to='/agregar-pelicula' className='mt-5 me-5 btn btn-outline-light'>Agregar película</Link>}
       </div>
     </div>
+    //importar custom fecht y react y luego expoet cont  y anjo de eso el async co  el await custom fecht  y abajo de eso un return 
   );
 }

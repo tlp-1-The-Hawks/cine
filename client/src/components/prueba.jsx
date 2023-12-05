@@ -1,14 +1,24 @@
 import React from 'react'
+import { CustomFetch } from '../api/customFetch'
 
-export default function Prueba() {
-    
- 
-        const response = CustomFetch(`http://localhost:4000/api/movies/${1}/${1}`, 'GET')
 
-        console.log(response)
-
+export const Prueba= ()=> {
+  const estilo = {
+    color: 'black',
+    fontSize: '160px',
+    backgroundColor: 'lightBlue',
+  };
+        (
+            async () => {
+                const response = await CustomFetch(`http://localhost:4000/api/movies/${1}/${2}`, 'GET')
+                console.log(response)
+            }
+        )()
         return(
-            <div>prueba</div>
+          <div style={estilo}>
+            <p className='color'>Prueba</p></div>
+
         ) 
 }
+
 
