@@ -47,10 +47,10 @@ export const AppRouter = () => {
                     path='/soporte'
                     element={<Support />}
                 />
-                            <Route
+                <Route
                     path='/mis-reservas'
-                    element={<MyReservation/>}
-                 /> 
+                    element={<MyReservation />}
+                />
                 <Route
                     path='/reservaciones'
                     element={<WatchReservations />}
