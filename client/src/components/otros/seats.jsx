@@ -13,22 +13,11 @@ export const Seat = ({ hall, cinemaId, setQuantity, handleQuantityChange, seatin
   useEffect(() => {
     (
       async () => {
-<<<<<<< HEAD
-        try {
-          const dataHall = await CustomFetch(`http://localhost:4000/api/hall/${hall}/${cinemaId}`, 'GET');
-          setRowState(dataHall.row);
-          setColumnState(dataHall.column);
-          setSelectedButtons(dataHall.seatings);
-        } catch (error) {
-          console.error(error);
-        }
-=======
         const dataHall = await CustomFetch(`http://localhost:4000/api/hall/${hall}/${cinemaId}`, 'GET')
         setRowState(dataHall.row)
         setColumnState(dataHall.column)
         setReplicaHall(dataHall.seatings)
         setSeatOccupied(seatingOccupied)
->>>>>>> 6b277df0ee7c1da7d1331deab1467b7450528029
       }
     )()
   }, [hall, seatingOccupied])
