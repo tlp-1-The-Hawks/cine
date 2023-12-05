@@ -1,5 +1,5 @@
 import React from 'react'
-import { CustomFetch } from '../api/customFetch'
+import { CustomFetch } from '../../api/customFetch'
 
 
 export const Prueba= ()=> {
