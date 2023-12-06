@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Seat } from '../otros/seats';
 import { useLocation } from 'react-router-dom';
 import { CustomFetch } from '../../api/customFetch';
+import Swal from 'sweetalert2';
 
 export const FormReserva = () => {
   const token = localStorage.getItem('token');
@@ -15,15 +16,14 @@ export const FormReserva = () => {
   const cinemaId = searchParams.get('cinemaId');
   const [hall, setHall] = useState("")
   const [info, setInfo] = useState({})
-  const [price, setPrice] = useState("Cargando...");
-  const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(0);
   const [idUser, setIdUser] = useState('');
   const [infoDate, setInfoDate] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedButton, setSelectedButton] = useState(null);
   const [seatingOccupied, setSeatingOccupied] = useState([])
   const [hallSeating, setHallSeating] = useState(0)
-  const [seatingSelect, setSeatingSelect] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:4000/auth/user', {
@@ -49,7 +49,7 @@ export const FormReserva = () => {
 
         setInfo(response);
         setInfoDate(response.information[0].date_emissions);
-        setPrice(response.information[0].price)
+        setPrice(' Esperando cantidad de boletos...')
         setHall(response.information[0].hallId)
         setHallSeating(response.information[0].hall.column * response.information[0].hall.row)
         const dataSeatings = await CustomFetch(`http://localhost:4000/api/seating/${response.information[0].date_emissions[0].id}`,
@@ -63,6 +63,19 @@ export const FormReserva = () => {
 
   const createPreference = async () => {
     try {
+      if (quantity === 0) {
+        // Si la cantidad es cero, muestra una alerta
+        Swal.fire({
+          title: 'Debe reservar al menos un asiento',
+          icon: 'error',
+          confirmButtonText: 'ok',
+          width: '50%',
+          padding: '1rem',
+          background: '#DBCBCB',
+          grow: 'row'
+        })
+        return;
+      }
       const response = await axios.post(
         `http://localhost:4000/api/create-order/${cinemaId}/${movieId}/${idUser}/${price}/${selectedDate}`,
         {
@@ -117,13 +130,13 @@ export const FormReserva = () => {
                   <input
                     min={1}
                     max={50}
-                    type="number"
+                    type="text"
                     value={quantity}
                     onChange={handleQuantityChange}
                   />
                 </div>
                 <div className="inputBoxReserva">
-                  <p defaultValue={0}>${price}</p>
+                  <p>${price == 0 ? ' Esperando cantidad de boletos...' : price}</p>
                 </div>
               </div>
 
@@ -153,7 +166,9 @@ export const FormReserva = () => {
                   );
                 })}
               </div>
-              <p className='text-white text-center'>Reservas: {seatingOccupied.length}/{hallSeating}</p>
+              <p className='text-white text-center'>Reservas: {seatingOccupied.length}/{info && info.information && info.information[0] && info.information[0].hall && (
+                info.information[0].hall.capacity
+              )}</p>
             </div>
           </div>
           <div className="row mt-2">

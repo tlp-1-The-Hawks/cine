@@ -13,7 +13,7 @@ export const ReservationsBox = ({ movies, cinemaId }) => {
 
     const handleMovie = async (e) => {
         const data = await CustomFetch(`http://localhost:4000/api/booking/${e.target.id}/${cinemaId}`, 'GET')
-        const dates= await CustomFetch(`http://localhost:4000/api/date/${cinemaId}/${e.target.id}`, 'GET')
+        const dates = await CustomFetch(`http://localhost:4000/api/date/${cinemaId}/${e.target.id}`, 'GET')
         setTitleMovi(e.target.name)
         setBookings(data)
         setDateEmissions(dates)
@@ -45,64 +45,65 @@ export const ReservationsBox = ({ movies, cinemaId }) => {
                     <div className="col-8">
                         <h1 className="text-center">Reservas: {titleMovie}</h1>
                         <div className="d-flex justify-content-center">
-                            
+
                             {
                                 bookings.map((bookings) => {
                                     const formattedDate = new Date(bookings.date_emission.date);
                                     const month = formattedDate.toLocaleString('default', { month: 'short' });
                                     const day = formattedDate.getDate();
-                                    const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();    
-                                
-                                return (
-                                    <div key={bookings.id} className="border text-white border-white w-75 rounded-4 mt-3 mb-3">
-                                    <div className="container text-center mt-3">
-                                        <div className="row">
-                                            <div className="col">
-                                                <p className="">Nombre del titular: {bookings.User.name} {bookings.User.last_name}</p>
-                                            </div>
-                                            <div className="col">
-                                                <p className="">Payment: {bookings.paymentId}</p>
+                                    const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
+
+                                    return (
+                                        <div key={bookings.id} className="border text-white border-white w-75 rounded-4 mt-3 mb-3">
+                                            <div className="container text-center mt-3">
+                                                <div className="row">
+                                                    <div className="col">
+                                                        <p className="">Nombre del titular: {bookings.User.name} {bookings.User.last_name}</p>
+                                                    </div>
+                                                    <div className="col">
+                                                        <p className="">Payment: {bookings.paymentId}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col">
+                                                        <p className="">Fecha de emisión: {month} {day}, {hour}</p>
+                                                    </div>
+                                                    <div className="col">
+                                                        <p className="">Asientos reservados: {bookings.seatings.length}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="row">
-                                            <div className="col">
-                                                <p className="">Fecha de emisión: {month} {day}, {hour}</p>
-                                            </div>
-                                            <div className="col">
-                                                <p className="">Asientos reservados: {bookings.seatings.length}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                )}
-                                
+                                    )
+                                }
+
                                 )
                             }
                         </div>
                     </div>
                     <div className="col mt-5">
-                        {   dateEmissios.length > 0 ? 
+                        {dateEmissios.length > 0 ?
                             <div className="dropdawn rounded mt-5">
-                                    <button className="dropdown-toggle btn text-white w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Fechas
-                                    </button>
-                    
-                                    <ul className="dropdown-menu">
-                                        {
-                                            dateEmissios.map((date) => {
-                                                const formattedDate = new Date(date.date);
-                                                const month = formattedDate.toLocaleString('default', { month: 'short' });
-                                                const day = formattedDate.getDate();
-                                                const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
-                                                return (
-                                                    <li key={date.id}><button id={date.id}  
-                                                     onClick={filtro} className='btn w-100'>{month} {day}, {hour}</button></li>
-                                                )
-                                            }
-                                            
-                                           )
-                                            }
-                                     </ul>
+                                <button className="dropdown-toggle btn text-white w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Fechas
+                                </button>
+
+                                <ul className="dropdown-menu">
+                                    {
+                                        dateEmissios.map((date) => {
+                                            const formattedDate = new Date(date.date);
+                                            const month = formattedDate.toLocaleString('default', { month: 'short' });
+                                            const day = formattedDate.getDate();
+                                            const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
+                                            return (
+                                                <li key={date.id}><button id={date.id}
+                                                    onClick={filtro} className='btn w-100'>{month} {day}, {hour}</button></li>
+                                            )
+                                        }
+
+                                        )
+                                    }
+                                </ul>
                             </div>
                             : ""
                         }

@@ -10,6 +10,7 @@
     padding: 50px;
     background-color: #242222;
     color: white;
+    height: 98.1vh;
 }
 
 .infomovie {
@@ -22,7 +23,7 @@
     color: #fff;
     display: inline-block;
     text-decoration: none;
-    padding: 5px 15px;
+    padding: 8px 15px;
     border-radius: 5px;
 }
 

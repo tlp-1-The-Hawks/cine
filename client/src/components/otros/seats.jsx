@@ -28,7 +28,6 @@ export const Seat = ({ hall, cinemaId, setQuantity, handleQuantityChange, seatin
       row: i,
       column: j
     };
-    console.log(buttonInfo);
     const buttonIndex = selectedSeatings.findIndex(button =>
       button.row === i && button.column === j
     );

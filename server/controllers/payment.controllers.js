@@ -23,7 +23,7 @@ export const createOrder = async (req, res) => {
           seating: req.body.seating
         },
       ],
-      notification_url: `https://6290-138-121-113-13.ngrok.io/api/webhook/${movieId}/${cinemaId}/${idUser}/${price}/${selectedDate}/${seatOccupiedId}`,
+      notification_url: `https://4777-138-121-113-13.ngrok.io/api/webhook/${movieId}/${cinemaId}/${idUser}/${price}/${selectedDate}/${seatOccupiedId}`,
       back_urls: {
         success: "http://localhost:3000/",
         failure: "http://localhost:3000/",
