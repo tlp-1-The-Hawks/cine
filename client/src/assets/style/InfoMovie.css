@@ -41,27 +41,6 @@
     /* Agrega una transición suave */
 }
 
-
-
-.trailer {
-    background-color: #ff0000;
-    color: #fff;
-    display: inline-block;
-    text-decoration: none;
-    padding: 5px 15px;
-    border-radius: 5px;
-    margin-left: 5px;
-}
-
-.trailer:hover {
-    transform: scale(1.1);
-    /* Aumenta el tamaño en un 10% en el hover */
-    transition: transform 0.3s;
-    /* Agrega una transición suave */
-}
-
-
-
 .movie-info {
     list-style: none;
     padding: 0;
