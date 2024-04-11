@@ -151,6 +151,7 @@ export const ctrlUpdateInfo = async (req,res) => {
             hallId,
             cinemaId,
         }
+        console.log(infoId);
 
         const info = await updateInfo(newInfo, infoId)
 
@@ -159,7 +160,7 @@ export const ctrlUpdateInfo = async (req,res) => {
 
         const newEvents = await updateDateEmissions(events, infoId)
 
-        const movieAndCinema = await updateMovieAndCinema(movie.id, cinemaId)
+        const movieAndCinema = await updateMovieAndCinema(movie.id, cinemaId,movieId)
 
         const movieAndInfo = await updateMovieInfo(movie.id, infoId)
 

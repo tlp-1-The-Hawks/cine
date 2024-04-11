@@ -20,17 +20,16 @@ export async function addMovieInfo(movieId, informationId) {
 export async function updateMovieInfo(movieId, informationId) {
 
     const movieAndInfo = await movieInfoModel.findOne({
-        informationId: informationId
+        where:{informationId: informationId}
     })
 
 
     if(movieAndInfo.movieId !== movieId) {
-         await movieAndInfo.destroy(movieAndInfo)
+         const updateMovie = await movieAndInfo.update({
+            informationId: movieAndInfo.informationId,
+            movieId: movieId
+         })
 
-         return await movieInfoModel.create({
-            movieId: movieId,
-            informationId: informationId
-        })
     }
 
     return 

@@ -64,18 +64,17 @@ export async function deleteMovieCinema(id) {
   return movieXcinema;
 }
 
-export async function updateMovieAndCinema(movieId, cinemaId){
+export async function updateMovieAndCinema(movieId, cinemaId, beforeMovieId){
   const movieAndCinema = await movieCinemaModel.findOne({
     where: {
-      movieId: movieId,
+      movieId: beforeMovieId,
       cinemaId: cinemaId
     }
   })
 
-  if(movieAndCinema) return 
 
 
-  return await movieCinemaModel.create({
+  const update =  await movieAndCinema.update({
     movieId: movieId,
     cinemaId: cinemaId
   });

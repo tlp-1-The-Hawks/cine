@@ -20,7 +20,7 @@ export const EditMovie = () => {
         (async () => {
             const info = await CustomFetch(`http://localhost:4000/api/information/${infoId}`, 'GET')
             const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', localStorage.getItem('token'));
-
+            console.log(info);
             setCinemaId(user.cinemaId);
             const halls = await CustomFetch(`http://localhost:4000/api/hall/${user.cinemaId}`, 'GET')
             setHallState(halls);
