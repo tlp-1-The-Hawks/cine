@@ -42,7 +42,7 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
   }
   return (
     <div className="bgInfoMovie">
-      <div className="infomovie container rounded-4">
+      <div className="infomovie container">
       {authState.cinema && authCine && 
                   <div className='crud'>
                     <div className='crudBoton mt-2 me-2' data-tooltip="Editar">
@@ -64,7 +64,7 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                 />
               )}
           </div>
-          <div className="col-md-8">
+          <div className="col-md-6">
             <div className="descripcion">
               <h1 className="">{info === undefined ? '' : info.title}</h1>
 
@@ -131,19 +131,7 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                         <span>{info.information[0].director}</span>
                       )}
                   </li>
-                  <li>
-  {trailerURL && (
-    <div style={{ width: '250px', height: '250px', position: 'relative' }}>
-      <ReactPlayer
-        url={trailerURL}
-        controls
-        width="100%"
-        height="100%"
-        style={{ position: 'absolute', top: '0', left: '0' }}
-      />
-    </div>
-  )}
-</li>
+
 
                   <li>
                     <span className="lista">Fechas de emisión:</span>
@@ -167,6 +155,19 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                         })}
                     </div>
                   </li>
+                                    <li>
+  {trailerURL && (
+    <div style={{ width: '615px', height: '325px', position: 'relative' }}>
+      <ReactPlayer
+        url={trailerURL}
+        controls
+        width="100%"
+        height="100%"
+        style={{ position: 'absolute', top: '0', left: '0' }}
+      />
+    </div>
+  )}
+</li>
                 </ul>
               </div>
             </div>

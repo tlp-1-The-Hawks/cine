@@ -4,15 +4,19 @@
     height: auto;
     margin-top: 30px;
     /* Asegura que la imagen mantenga su proporción */
+    
 }
 
 .bgInfoMovie {
     padding: 50px;
     background-color: #242222;
     color: white;
-    height: 98.1vh;
 }
-
+.col{
+    background-color: #ff0000;
+    padding: 15px;
+    
+}
 .infomovie {
     /* border: 2px solid; */
     background-color: #424242;
