@@ -12,12 +12,12 @@ export const dateEmissionXseatings = sequelize.define(
 )
 
 
-export async function addDateEmissionXseatings(seatings,dateId){
+export async function addDateEmissionXseatings(seatings, dateId) {
     for (let index = 0; index < seatings.length; index++) {
         const newdateEmissionXseatings = await dateEmissionXseatings.create({
-            seatingId: seatings[index].id,
+            seatingId: seatings[index],
             dateEmissionId: dateId
         })
     }
 }
-	
+

@@ -37,7 +37,6 @@ export const InfoMovie = () => {
                     const user = await CustomFetch("http://localhost:4000/auth/user", 'TOKEN', token)
                     const databooking = await CustomFetch(`http://localhost:4000/api/booking/${movie}/${cinema}/${user.id}`, 'GET')
 
-                    console.log(databooking)
                     setAuthReserva(databooking)
                 }
             }
@@ -57,7 +56,7 @@ export const InfoMovie = () => {
                 movie={movie}
                 comments={comments}
                 setComments={setComments}
-                />
+            />
             <Footer />
         </>
     )

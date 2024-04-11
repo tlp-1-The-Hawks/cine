@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import '../../assets/style/seat.css';
 import { CustomFetch } from '../../api/customFetch';
 
-export const Seat = ({ hall, cinemaId, setQuantity,handleQuantityChange,seatingOccupied, setSeatingSelect }) => {
+export const Seat = ({ hall, cinemaId, setQuantity, handleQuantityChange, seatingOccupied, setSeatOccupiedId }) => {
   const [columnState, setColumnState] = useState(1);
   const [rowState, setRowState] = useState(1);
   const [replicaHall, setReplicaHall] = useState([]);
   const [selectedSeatings, setSelectedSeatings] = useState([]);
   const [seatOccupied, setSeatOccupied] = useState([])
+
 
   useEffect(() => {
     (
@@ -22,31 +23,35 @@ export const Seat = ({ hall, cinemaId, setQuantity,handleQuantityChange,seatingO
   }, [hall, seatingOccupied])
 
   const selectButton = (e, i, j) => {
-        const buttonInfo = {
-          id: e,
-          row: i,
-          column: j
-        };
-        console.log(buttonInfo);
-        const buttonIndex = selectedSeatings.findIndex(button =>
-          button.row === i && button.column === j
-        );
+    const buttonInfo = {
+      id: e,
+      row: i,
+      column: j
+    };
+    const buttonIndex = selectedSeatings.findIndex(button =>
+      button.row === i && button.column === j
+    );
 
-        if (buttonIndex !== -1) {
-          const updatedButtons = [...selectedSeatings];
-          updatedButtons.splice(buttonIndex, 1);
-          setSelectedSeatings(updatedButtons);
-          setQuantity(updatedButtons.length)
-          handleQuantityChange(updatedButtons.length)
-          setSeatingSelect(updatedButtons)
-        } else {
-          const newState = [...selectedSeatings, buttonInfo]
-          setSelectedSeatings(newState)
-          setQuantity(newState.length)
-          handleQuantityChange(newState.length)
-          setSeatingSelect(newState)
-        }
-
+    if (buttonIndex !== -1) {
+      const updatedButtons = [...selectedSeatings];
+      updatedButtons.splice(buttonIndex, 1);
+      setSelectedSeatings(updatedButtons);
+      setQuantity(updatedButtons.length)
+      handleQuantityChange(updatedButtons.length)
+      const idSeats = updatedButtons.map(seat => {
+        return seat.id
+      });
+      setSeatOccupiedId(idSeats.join("-"))
+    } else {
+      const newState = [...selectedSeatings, buttonInfo]
+      setSelectedSeatings(newState)
+      setQuantity(newState.length)
+      handleQuantityChange(newState.length)
+      const idSeats = newState.map(seat => {
+        return seat.id
+      });
+      setSeatOccupiedId(idSeats.join("-"))
+    }
   };
 
 
@@ -69,7 +74,7 @@ export const Seat = ({ hall, cinemaId, setQuantity,handleQuantityChange,seatingO
         let idSeatOcupped = 0
 
         seatOccupied.forEach(seat => {
-          if(seat.row === i && seat.column === j){
+          if (seat.row === i && seat.column === j) {
             idSeatOcupped = seat.id
           }
         })
@@ -102,8 +107,8 @@ export const Seat = ({ hall, cinemaId, setQuantity,handleQuantityChange,seatingO
                 </button>
                 : <button className='seatingButton btn m-1 btn-responsive btn-dark text-dark' disabled>-</button>
         );
-        
-        
+
+
       }
       buttons.push(
         <div key={`row-${i}`} className="d-flex justify-content-center">

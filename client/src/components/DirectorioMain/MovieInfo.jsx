@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { CustomFetch } from "../../api/customFetch";
 import { useNavigate } from "react-router-dom";
-
+import ReactPlayer from "react-player"
 export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
   const navigate = useNavigate()
   const [authCine, setAuthCine] = useState(false)
@@ -53,7 +53,7 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                 </div>
           </div>}
         <div className="row">
-          <div className="col-md-4">
+          <div className="col">
             {info &&
               info.information &&
               info.information[0] && (
@@ -64,7 +64,7 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                 />
               )}
           </div>
-          <div className="col-md-6">
+          <div className="col-md-8">
             <div className="descripcion">
               <h1 className="">{info === undefined ? '' : info.title}</h1>
 
@@ -132,6 +132,20 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                       )}
                   </li>
                   <li>
+  {trailerURL && (
+    <div style={{ width: '250px', height: '250px', position: 'relative' }}>
+      <ReactPlayer
+        url={trailerURL}
+        controls
+        width="100%"
+        height="100%"
+        style={{ position: 'absolute', top: '0', left: '0' }}
+      />
+    </div>
+  )}
+</li>
+
+                  <li>
                     <span className="lista">Fechas de emisión:</span>
                     <div className="row">
                       {info &&
@@ -189,16 +203,6 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                 </Link>
             }
 
-            {trailerURL && (
-              <a
-                className="trailer"
-                href={trailerURL}
-                role="button"
-                target="_blank"
-              >
-                Ver Tráiler
-              </a>
-            )}
           </p>
         </div>
       </div>
