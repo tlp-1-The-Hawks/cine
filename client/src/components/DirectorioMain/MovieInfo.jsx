@@ -146,7 +146,7 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                           const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
 
                           return (
-                            <div key={date.id} className="col">
+                            <div key={date.id} className="col-6">
                               <p className="text-center bg-dark p-1 rounded" key={date.id} id={date.id}>
                                 {month} {day}, {hour}
                               </p>
