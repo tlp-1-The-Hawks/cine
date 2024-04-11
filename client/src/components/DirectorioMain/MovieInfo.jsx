@@ -53,7 +53,7 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                 </div>
           </div>}
         <div className="row">
-          <div className="col">
+          <div className="col-6">
             {info &&
               info.information &&
               info.information[0] && (
@@ -146,7 +146,7 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                           const hour = formattedDate.getHours() + ':' + (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes();
 
                           return (
-                            <div key={date.id} className="col-6">
+                            <div key={date.id} className="col-5">
                               <p className="text-center bg-dark p-1 rounded" key={date.id} id={date.id}>
                                 {month} {day}, {hour}
                               </p>
@@ -155,19 +155,17 @@ export const MovieInfo = ({ info, authReserva, cinema,movie }) => {
                         })}
                     </div>
                   </li>
-                                    <li>
-  {trailerURL && (
-    <div style={{ width: '615px', height: '325px', position: 'relative' }}>
-      <ReactPlayer
-        url={trailerURL}
-        controls
-        width="100%"
-        height="100%"
-        style={{ position: 'absolute', top: '0', left: '0' }}
-      />
-    </div>
-  )}
-</li>
+                  <li>
+                      {trailerURL && (
+                          <div style={{ width: '615px', height: '325px', position: 'relative' }}>
+                        <ReactPlayer
+                          url={trailerURL}
+                          controls
+                          loop
+                              />
+                        </div>
+                        )}
+                </li>
                 </ul>
               </div>
             </div>
